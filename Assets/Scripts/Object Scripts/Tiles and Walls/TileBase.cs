@@ -1,0 +1,107 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TileBase : MonoBehaviour {
+    protected GameObject _occupant;
+    protected string _tileName;
+    [SerializeField] protected bool _isOccupied = false;
+    [SerializeField] protected TileBase _neighborN, _neighborE, _neighborS, _neighborW;
+
+    //upon start, tile fires four raycasts at each direction
+    //detects objects with TileBase scripts (layer 7)
+    //if the raycast hits a tile, the tile assigns the hit to a neighbor tile
+    private void Start(){
+        int layermask = 1 << 7;
+        tileName = gameObject.name;
+        float distance = Globals.Instance.distancePerTile;
+        Vector3 north = new Vector3(0, 0, 1);
+        Vector3 south = new Vector3(0, 0, -1);
+        Vector3 east = new Vector3(1, 0, 0);
+        Vector3 west = new Vector3(-1, 0, 0);
+        RaycastHit hit;
+
+        if(Physics.Raycast(transform.position, north, out hit, distance, layermask)){
+            neighborN = hit.transform.gameObject.GetComponent<TileBase>();
+        }
+        if(Physics.Raycast(transform.position, south, out hit, distance, layermask)){
+            neighborS = hit.transform.gameObject.GetComponent<TileBase>();
+        }
+        if(Physics.Raycast(transform.position, east, out hit, distance, layermask)){
+            neighborE = hit.transform.gameObject.GetComponent<TileBase>();
+        }
+        if(Physics.Raycast(transform.position, west, out hit, distance, layermask)){
+            neighborW = hit.transform.gameObject.GetComponent<TileBase>();
+        }
+    }
+
+    //variable getters and setters
+    public bool isOccupied{
+        get { return _isOccupied; }
+        set { _isOccupied = value; }
+    }
+
+    public string tileName{
+        get { return _tileName; }
+        set { _tileName = value; }
+    }
+
+    public GameObject occupant{
+        get { return _occupant; }
+        set { _occupant = value; }
+    }
+
+    //neighbor tile getters and setters
+    public TileBase neighborN{
+        get { 
+            if(_neighborN != null){
+                return _neighborN;
+            }
+            return null;
+        }
+        set { _neighborN = value; }
+    }
+
+    public TileBase neighborS{
+        get { 
+            if(_neighborS != null){
+                return _neighborS;
+            }
+            return null;
+        }
+        set { _neighborS = value; }
+    }
+
+    public TileBase neighborW{
+        get { 
+            if(_neighborW != null){
+                return _neighborW;
+            }
+            return null;
+        }
+        set { _neighborW = value; }
+    }
+
+    public TileBase neighborE{
+        get { 
+            if(_neighborE != null){
+                return _neighborE;
+            }
+            return null;
+        }
+        set { _neighborE = value; }
+    }
+    
+    //checks for occupants
+    protected void OnTriggerEnter(Collider col){
+        occupant = col.gameObject;
+        if(col.tag != "Player"){
+            isOccupied = true;
+        }
+    }
+
+    protected void OnTriggerExit(Collider col){
+        occupant = null;
+        isOccupied = false;
+    }
+}

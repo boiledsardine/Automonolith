@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - TileBlack
-  - TileWhite
+  - Big Object
+  - Small Object
+  - Tile
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Walls
+  - Tiles
   - 
   - 
   - 
