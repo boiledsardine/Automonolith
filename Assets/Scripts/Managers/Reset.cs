@@ -27,7 +27,6 @@ public class Reset : MonoBehaviour{
         if(SceneManager.GetActiveScene().isDirty){
             return false;
         }
-        
         return true;
     }
 }
