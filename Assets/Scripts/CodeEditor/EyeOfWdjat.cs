@@ -10,7 +10,8 @@ public class EyeOfWdjat : MonoBehaviour
 {
     [SerializeField] private Text input;
     public static EyeOfWdjat Instance { get; private set; }
-
+    
+    //Instantiates singleton
     private void Awake(){
         if(Instance == null){
             Instance = this;
@@ -19,12 +20,16 @@ public class EyeOfWdjat : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
+    //Called by run button
+    //Resets scene and starts reading Code Editor
     public void Run(){
         Reset.Instance.Exterminatus();
         StartCoroutine(readLines());
     }
-
+    
+    //Reads Code Editor input line by line
+    //Passes each line to understanding method and executor
     private IEnumerator readLines(){
         yield return new WaitForSeconds(0.5f);
         char[] delim = new[] { '\r', '\n' };
@@ -35,6 +40,7 @@ public class EyeOfWdjat : MonoBehaviour
         Bot.Instance.execute();
     }
 
+    //Normalizes string format by removing unnecessary whitespaces    
     private string normalizer(){
         string normalString = input.text;
         normalString = Regex.Replace(normalString, "\\s+\\{", "{");
@@ -43,6 +49,8 @@ public class EyeOfWdjat : MonoBehaviour
         return normalString;
     }
 
+    //Reads each line and triggers a method to enqueue a command
+    //Uses Regex to read passed arguments
     private void understanding(string str){
         if(str == "Bot.moveUp();"){
             Bot.moveUp();
