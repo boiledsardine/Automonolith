@@ -10,12 +10,14 @@ public class Bot : MonoBehaviour {
     
     private LimitedQueue<string> _commandQueue = new LimitedQueue<string>();
     private LimitedQueue<int> _intArgQueue = new LimitedQueue<int>();
+    private Queue<string> _stringArgQueue = new Queue<string>();
 
     private GameObject playerCharacter;
     private Movement playerMovement;
     private Environment playerEnvironment;
     private Interaction playerInteraction;
     private Vector3 originPos;
+    public static string readLine = "";
 
     void Awake(){
         if(Instance == null){
@@ -50,6 +52,10 @@ public class Bot : MonoBehaviour {
 
     public Queue<int> intArgQueue{
         get { return _intArgQueue; }
+    }
+
+    public Queue<string> stringArgQueue{
+        get { return _stringArgQueue; }
     }
 
     //commands to be written by the player
@@ -124,7 +130,29 @@ public class Bot : MonoBehaviour {
 
     public static void release(){
         Instance.checkQueue();
-        Instance.commandQueue.Enqueue("release");
+        Instance.commandQueue.Enqueue("drop");
+    }
+
+    public static void interact(){
+        Instance.checkQueue();
+        Instance.commandQueue.Enqueue("act");
+    }
+
+    public static void read(){
+        Instance.checkQueue();
+        Instance.commandQueue.Enqueue("read");
+    }
+    
+    public static void write(string input){
+        Instance.checkQueue();
+        Instance.stringArgQueue.Enqueue(input);
+        Instance.commandQueue.Enqueue("write");
+    }
+
+    public static void say(string input){
+        Instance.checkQueue();
+        Instance.stringArgQueue.Enqueue(input);
+        Instance.commandQueue.Enqueue("say");
     }
 
     //runs the command queue
@@ -211,8 +239,20 @@ public class Bot : MonoBehaviour {
             case "hold":
                 StartCoroutine(playerInteraction.hold());
                 break;
-            case "release":
+            case "drop":
                 StartCoroutine(playerInteraction.release());
+                break;
+            case "act":
+                StartCoroutine(playerInteraction.interact());
+                break;
+            case "read":
+                StartCoroutine(playerInteraction.read());
+                break;
+            case "write":
+                StartCoroutine(playerInteraction.write(stringArgQueue.Dequeue()));
+                break;
+            case "say":
+                StartCoroutine(playerInteraction.say(stringArgQueue.Dequeue()));
                 break;
             default:
                 Debug.Log("void CommandExecution: No such instruction");

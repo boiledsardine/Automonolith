@@ -19,7 +19,6 @@ public class Movement : MonoBehaviour, IMovement {
         envirScript = gameObject.GetComponent<Environment>();
         interScript = gameObject.GetComponent<Interaction>();
         setFacing();
-        Debug.Log(gameObject.name + " position: " + transform.position);
     }
 
     //getters and setters
@@ -156,12 +155,11 @@ public class Movement : MonoBehaviour, IMovement {
 
     //Lerp'd coroutines        
     public IEnumerator Move(Vector3 moveDir){
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
         if(recurCount > 0){
             if(envirScript.neighborIsValid(direction) && !envirScript.checkForWalls(direction)){                
                 //moves any held object
                 interScript.moveObject(direction);
-
-                yield return new WaitForSeconds(Globals.Instance.timePerStep);
                 
                 //moves the player
                 float timeElapsed = 0;

@@ -66,6 +66,12 @@ public class Interaction : MonoBehaviour {
     }
 
     public IEnumerator release(){
+        release_NoExecute();
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        Bot.Instance.execute();
+    }
+
+    public void release_NoExecute(){
         if(isHoldingSmall){
             heldObject.GetComponent<Positioning>().release();
         }
@@ -77,7 +83,66 @@ public class Interaction : MonoBehaviour {
             isHoldingBig = false;
             isHoldingSmall = false;
         }
+    }
+
+    public IEnumerator interact(){
+        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
+        Vector3 fwd = transform.TransformDirection(Vector3.back);
+        float distance = Globals.Instance.distancePerTile;
+        RaycastHit hit;
+
+        if(Physics.Raycast(transform.position, fwd, out hit, distance)){
+            GameObject hitObject = hit.transform.gameObject;
+            if(hitObject.tag == "Interactable"){
+                IActivate activation = hitObject.GetComponent<IActivate>();
+                activation.activate();
+                Debug.Log("Interacted with " + hitObject.name);
+            } else {
+                Debug.Log(hitObject.name + " is not interactable");
+            }
+        }
+        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
+        Bot.Instance.execute();
+    }
+
+    public IEnumerator read(){
         yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        Vector3 fwd = transform.TransformDirection(Vector3.back);
+        float distance = Globals.Instance.distancePerObject;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, fwd, out hit, distance)){
+            if(hit.transform.gameObject.tag == "WallPanel"){
+                WallPanel panel = hit.transform.gameObject.GetComponent<WallPanel>();
+                //Debug.Log("Read: " + panel.storedLine);
+                Bot.readLine = panel.storedLine;
+            } else {
+                Debug.Log("Object is not a readable panel!");
+            }
+        }
+        Bot.Instance.execute();
+    }
+
+    public IEnumerator write(string input){
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        Vector3 fwd = transform.TransformDirection(Vector3.back);
+        float distance = Globals.Instance.distancePerObject;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, fwd, out hit, distance)){
+            if(hit.transform.gameObject.tag == "WallPanel"){
+                WallPanel panel = hit.transform.gameObject.GetComponent<WallPanel>();
+                panel.storedLine = input;
+                Debug.Log("Successfully wrote \"" + input + "\"");
+                panel.checkPassword();
+            } else {
+                Debug.Log("Object is not a writable panel!");
+            }
+        }
+        Bot.Instance.execute();
+    }
+
+    public IEnumerator say(string input){
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        Debug.LogWarning("Gawain says: " + input);
         Bot.Instance.execute();
     }
 

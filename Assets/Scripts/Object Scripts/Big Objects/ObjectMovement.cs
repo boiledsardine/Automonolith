@@ -20,8 +20,6 @@ public class ObjectMovement : MonoBehaviour, IMovement{
 
     public IEnumerator Move(Vector3 moveDir){
         if(envirScript.neighborIsValid(dir) && !envirScript.checkForWalls(dir)){
-            yield return new WaitForSeconds(Globals.Instance.timePerStep);
-
             float timeElapsed = 0;
             originPos = transform.position;
             targetPos = originPos + moveDir;

@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorButton : ObjectBase{
+public class FloorButton : ButtonBase{
     private bool _isActivated = false;
     private Material currentMaterial;
     private Renderer render;
     [SerializeField] Material colorOff;
     [SerializeField] Material colorOn;
-    [SerializeField] GateBase boundGate;
 
     public bool isActivated{
         get { return _isActivated; }
@@ -28,7 +27,7 @@ public class FloorButton : ObjectBase{
             render.sharedMaterial = colorOn;
             transform.position = originPos - new Vector3(0f, 3f, 0f);
             Debug.Log(gameObject.name + " is live");
-            boundGate.checkActivationFlag();
+            boundObject.GetComponent<IActivate>().activate();
         }
     }
 
@@ -38,7 +37,7 @@ public class FloorButton : ObjectBase{
             render.sharedMaterial = colorOff;
             transform.position = originPos;
             Debug.Log(gameObject.name + " is dead");
-            boundGate.checkActivationFlag();
+            boundObject.GetComponent<IActivate>().deactivate();
         }
     }
 }

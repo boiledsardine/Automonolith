@@ -7,6 +7,8 @@ TagManager:
   - Big Object
   - Small Object
   - Tile
+  - Interactable
+  - WallPanel
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - Walls
   - Tiles
-  - 
+  - WallPanel
   - 
   - 
   - 
