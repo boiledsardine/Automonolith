@@ -91,7 +91,7 @@ public class Environment : MonoBehaviour, IEnvironment {
     //assigns Collider col with object from colliding trigger (in this case, tiles)
     //also on Awake: sets the starting tile to level starting tile
     public void OnTriggerEnter(Collider col){
-        if(col.gameObject.tag == "Tile"){
+        if(col.gameObject.layer == 7){
             tileUnder = col.gameObject.GetComponent<TileBase>();
         }
     }

@@ -12,7 +12,7 @@ public class CoinPickup : ObjectBase{
 
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
-            Debug.Log("Coin picked up!");
+            Debug.Log("Gem picked up!");
             Destroy(this.gameObject);
         }
     }

@@ -46,7 +46,7 @@ public class Positioning : MonoBehaviour{
                 (releasePoint.y + 65), releasePoint.z);
             }
         } else {
-            Bot.Instance.terminateExecution();
+            Compiler.Instance.terminateExecution();
         }
     }
 }

@@ -104,4 +104,11 @@ public class TileBase : MonoBehaviour {
         occupant = null;
         isOccupied = false;
     }
+
+    /*private void Update(){
+        Debug.DrawRay(transform.position, Vector3.back * Globals.Instance.distancePerTile, Color.red);
+        Debug.DrawRay(transform.position, Vector3.forward * Globals.Instance.distancePerTile, Color.blue);
+        Debug.DrawRay(transform.position, Vector3.left * Globals.Instance.distancePerTile, Color.yellow);
+        Debug.DrawRay(transform.position, Vector3.right * Globals.Instance.distancePerTile, Color.green);
+    }*/
 }

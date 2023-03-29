@@ -17,15 +17,24 @@ public class ReservedConstants{
     };
     public const string mathOperators = "+-*/()";
     const string comparisonOperators = "<>=";
-    public const string allOperators = mathOperators + comparisonOperators;
+    const string textChars = "\"'";
+    public const string allOperators = mathOperators + comparisonOperators + textChars;
 }
 
-public enum ExpressionElement{
+public enum MathExpression{
     Add,
     Subtract,
-    Multply,
+    Multiply,
     Divide,
     StartGroup,
     EndGroup,
     Value
+}
+
+public enum ArgTypes{
+    integer,
+    floatpoint,
+    truefalse,
+    character,
+    textstring
 }

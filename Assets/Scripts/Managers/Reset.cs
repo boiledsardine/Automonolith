@@ -6,10 +6,8 @@ using CommandControl;
 
 public class Reset : MonoBehaviour{
     public static Reset Instance { get; private set; }
-    private static Vector3 origin;
 
     private void Awake(){
-        origin = GameObject.Find("PlayerCharacter").transform.position;
         if(Instance == null){
             Instance = this;
             //DontDestroyOnLoad(gameObject);
@@ -19,7 +17,8 @@ public class Reset : MonoBehaviour{
     }
 
     public void Exterminatus(){
-        Debug.LogAssertion("Declaring Exterminatus");
+        //Debug.LogAssertion("Declaring Exterminatus");
+        Compiler.Instance.clearDictionaries();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

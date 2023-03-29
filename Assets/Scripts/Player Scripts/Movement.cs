@@ -50,7 +50,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = 1;
         direction = 'N';
         yield return StartCoroutine(Move(new Vector3(0f, 0f, 100f)));
-        Bot.Instance.execute();
     }
 
     public IEnumerator moveDown(){
@@ -60,7 +59,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = 1;
         direction = 'S';
         yield return StartCoroutine(Move(new Vector3(0f, 0f, -100f)));
-        Bot.Instance.execute();
     }
 
     public IEnumerator moveLeft(){
@@ -70,7 +68,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = 1;
         direction = 'W';
         yield return StartCoroutine(Move(new Vector3(-100f, 0f, 0f)));
-        Bot.Instance.execute();
     }
 
     public IEnumerator moveRight(){
@@ -80,7 +77,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = 1;
         direction = 'E';
         yield return StartCoroutine(Move(new Vector3(100f, 0f, 0f)));
-        Bot.Instance.execute();
     }
 
     //parameterized movement methods
@@ -91,7 +87,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = num;
         direction = 'N';
         yield return StartCoroutine(Move(new Vector3(0f, 0f, 100f)));
-        Bot.Instance.execute();
     }
 
     public IEnumerator moveDown(int num){
@@ -101,7 +96,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = num;
         direction = 'S';
         yield return StartCoroutine(Move(new Vector3(0f, 0f, -100f)));
-        Bot.Instance.execute();
     }
 
     public IEnumerator moveLeft(int num){
@@ -111,7 +105,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = num;
         direction = 'W';
         yield return StartCoroutine(Move(new Vector3(-100f, 0f, 0f)));
-        Bot.Instance.execute();
     }
 
     public IEnumerator moveRight(int num){
@@ -121,7 +114,6 @@ public class Movement : MonoBehaviour, IMovement {
         recurCount = num;
         direction = 'E';
         yield return StartCoroutine(Move(new Vector3(100f, 0f, 0f)));
-        Bot.Instance.execute();
     }
 
     //rotation methods
@@ -129,28 +121,24 @@ public class Movement : MonoBehaviour, IMovement {
         if(!interScript.isHoldingBig){
             yield return StartCoroutine(Rotate(Quaternion.Euler(0, 180, 0)));
         }
-        Bot.Instance.execute();
     }
 
     public IEnumerator turnDown(){
         if(!interScript.isHoldingBig){
             yield return StartCoroutine(Rotate(Quaternion.Euler(0, 0, 0)));
         }
-        Bot.Instance.execute();
     }
 
     public IEnumerator turnLeft(){
         if(!interScript.isHoldingBig){
             yield return StartCoroutine(Rotate(Quaternion.Euler(0, 90, 0)));
         }
-        Bot.Instance.execute();
     }
     
     public IEnumerator turnRight(){
         if(!interScript.isHoldingBig){
             yield return StartCoroutine(Rotate(Quaternion.Euler(0, 270, 0)));
         }
-        Bot.Instance.execute();
     }
 
     //Lerp'd coroutines        
@@ -180,7 +168,7 @@ public class Movement : MonoBehaviour, IMovement {
                 yield return StartCoroutine(Move(moveDir));
             } else {
                 Debug.LogAssertion("Invalid direction");
-                Bot.Instance.terminateExecution();
+                Compiler.Instance.terminateExecution();
             }  
         }
     }

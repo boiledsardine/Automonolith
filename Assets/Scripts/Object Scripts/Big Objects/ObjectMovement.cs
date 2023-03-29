@@ -33,7 +33,7 @@ public class ObjectMovement : MonoBehaviour, IMovement{
             transform.position = targetPos;
         } else {
             envirScript.tileUnder.isOccupied = true;
-            Bot.Instance.terminateExecution();
+            Compiler.Instance.terminateExecution();
         }
     }
 

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using CommandControl;
 
-public class ExitPoint : MonoBehaviour, IActivate{
+public class ExitPoint : ObjectBase, IActivate{
     private GameObject playerCharacter;
 
-    private void Start(){
+    private new void Start(){
+        base.Start();
         playerCharacter = GameObject.Find("PlayerCharacter");
     }
     
     public void activate(){
         Debug.LogWarning("LEVEL FINISHED!");
         Destroy(playerCharacter);
-        Bot.Instance.terminateExecution();
+        Compiler.Instance.terminateExecution();
     }
 
     public void deactivate(){

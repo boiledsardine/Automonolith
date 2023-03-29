@@ -16,7 +16,7 @@ public class KeyGate : GateBase, IActivate{
         if(playerAct.isHoldingSmall){
             GameObject playerHeldObject = playerAct.heldObject;
             if(playerHeldObject == boundKey.transform.gameObject){
-                playerAct.release_NoExecute();
+                playerAct.drop_NoExecute();
                 StartCoroutine(openGate());
                 Destroy(boundKey.transform.gameObject);
             }

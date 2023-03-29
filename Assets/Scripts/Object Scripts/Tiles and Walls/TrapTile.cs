@@ -7,7 +7,7 @@ public class TrapTile : TileBase {
     public new void OnTriggerEnter(Collider col){
         base.OnTriggerEnter(col);
         if(occupant.tag == "Player"){
-            Bot.Instance.terminateExecution();
+            Compiler.Instance.terminateExecution();
             Destroy(col.gameObject);
             isOccupied = false;
         }
