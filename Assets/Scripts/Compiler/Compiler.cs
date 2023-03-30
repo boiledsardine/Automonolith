@@ -13,9 +13,15 @@ public class Compiler : MonoBehaviour{
 
     string code, processedCode;
     string[] codeLines;
-    [SerializeField] private Text input;
+    
+    //takes text from InputField instead of InputField's text component
+    //Text component truncates text that isn't on screen at the moment
+    //InputField's text property stores all the text lines
+    [SerializeField] private InputField input;
+    
     //External monobehaviour handler scripts
     FunctionHandler functionHandler;
+    
     //Variable dictionaries
     Dictionary<string, string> _allVars;
     Dictionary<string, int> _intVars;

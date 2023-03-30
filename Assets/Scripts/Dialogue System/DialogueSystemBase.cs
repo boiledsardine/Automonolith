@@ -9,6 +9,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
 
     protected List<string> dialogueLines;
     
+    [SerializeField] protected Animator panelAnimator;
     [SerializeField] protected Animator dialogueBoxAnimator;
     [SerializeField] protected RawImage leftSprite;
     [SerializeField] protected RawImage rightSprite;
@@ -34,6 +35,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
 
     public void endDialogue(){
         dialogueBoxAnimator.SetBool("isOpen", false);
+        panelAnimator.SetBool("isOpen", false);
         leftSprite.GetComponent<RawImage>().enabled = false;
         rightSprite.GetComponent<RawImage>().enabled = false;
         Debug.Log("End of conversation");

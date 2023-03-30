@@ -15,7 +15,7 @@ public class QuizManager : DialogueSystemBase{
     void Awake(){
         if(Instance == null){
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
@@ -23,6 +23,7 @@ public class QuizManager : DialogueSystemBase{
 
     public override void startDialogue(int npcBlockIndex, int blockLineIndex){
         dialogueBoxAnimator.SetBool("isOpen", true);
+        panelAnimator.SetBool("isOpen", true);
         
         quizItem = npcQuizBlocks[npcBlockIndex];
         currentBlock = npcBlockIndex;

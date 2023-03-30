@@ -11,7 +11,7 @@ public class DialogueManager : DialogueSystemBase{
     void Awake(){
         if(Instance == null){
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
@@ -19,6 +19,7 @@ public class DialogueManager : DialogueSystemBase{
 
     public override void startDialogue(int npcBlockIndex, int blockLineIndex){
         dialogueBoxAnimator.SetBool("isOpen", true);
+        panelAnimator.SetBool("isOpen", true);
         
         Dialogue dialogue = npcDialogueBlocks[npcBlockIndex];
         currentBlock = npcBlockIndex;
