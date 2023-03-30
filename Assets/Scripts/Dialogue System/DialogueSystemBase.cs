@@ -8,6 +8,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     [SerializeField] protected Text dialogueText;
 
     protected List<string> dialogueLines;
+    
     [SerializeField] protected Animator dialogueBoxAnimator;
     [SerializeField] protected RawImage leftSprite;
     [SerializeField] protected RawImage rightSprite;
