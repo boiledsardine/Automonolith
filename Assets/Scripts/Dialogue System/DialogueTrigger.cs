@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour{
+    [SerializeField] private Conversation convoToLoad;
+    [SerializeField] private Canvas dialogueCanvas;
     public void startDialogue(){
-        DialogueManager.Instance.startDialogue(0, 0);
-    }
-
-    public void startQuiz(){
-        QuizManager.Instance.startDialogue(0, 0);
+        dialogueCanvas.gameObject.SetActive(true);
+        DialogueManager.Instance.startDialogue(convoToLoad);
     }
 }

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo01
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Testia
+    showNpc: 0
+    npcPos: 0
+    npcSprite: {fileID: 0}
+    lines:
+    - "THIS IS TEST DIALOGUE!\t"
+    - 'The following dialogue is from Jojo''s Bizzare Adventure: Stardust Crusaders
+      episode 46.'
+    - This is here only for testing and debug purposes!
+  - npcName: DIO
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 2800000, guid: 042a30e587eef514e83a398f207488e0, type: 3}
+    lines:
+    - Tsugi wa Jotaro...
+    - KISAMA DA!
+  - npcName: Jotaro Kujo
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 2800000, guid: 2266c7bee6fb58549a5fd17379dbf09d, type: 3}
+    lines:
+    - Yarou... DIO!
+  - npcName: DIO
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 2800000, guid: 042a30e587eef514e83a398f207488e0, type: 3}
+    lines:
+    - Ho, mukatte kuru no ka?
+    - Nigezu ni kono DIO ni chikadzuite kuru no ka?
+    - Sekkaku sofu no Josefu ga watashi no [ZA WARUDO] no shotai wo. Shiken shuryu
+      chaimu chokuzen made mondai yo toitte iru jukensee ne you na? Kisshi koita
+      kibun de wo shietekure ta to yuu no ni?
+  - npcName: Jotaro Kujo
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 2800000, guid: 2266c7bee6fb58549a5fd17379dbf09d, type: 3}
+    lines:
+    - Chikadzukanakya teme wo buchi no me tenain de na.
+  - npcName: DIO
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 2800000, guid: 042a30e587eef514e83a398f207488e0, type: 3}
+    lines:
+    - Hoho!
+    - Dewa juubun chikadzukanai yoi.

@@ -21,48 +21,26 @@ public class QuizManager : DialogueSystemBase{
         }
     }
 
-    public override void startDialogue(int npcBlockIndex, int blockLineIndex){
+    public override void startDialogue(Conversation convoToLoad){
         dialogueBoxAnimator.SetBool("isOpen", true);
         panelAnimator.SetBool("isOpen", true);
         
-        quizItem = npcQuizBlocks[npcBlockIndex];
-        currentBlock = npcBlockIndex;
 
-        Debug.Log("Starting conversation with " + quizItem.name);
+        Debug.Log("Starting conversation with " + quizItem.npcName);
         dialogueLines.Clear();
 
-        if(quizItem.showNpc){
-            RawImage rawImageLeft = leftSprite.GetComponent<RawImage>();
-            RawImage rawImageRight = rightSprite.GetComponent<RawImage>();
-            switch(quizItem.npcPos){
-                case 'L':
-                    rawImageLeft.enabled = true;
-                    rawImageLeft.texture = quizItem.npcSprite;
-                    rawImageLeft.color = Color.white;
-                    rawImageRight.color = Color.gray;
-                    break;
-                case 'R':
-                    rawImageRight.enabled = true;
-                    rawImageRight.texture = quizItem.npcSprite;
-                    rawImageRight.color = Color.white;
-                    rawImageLeft.color = Color.gray;
-                    break;
-            }
-        } else {
-            leftSprite.GetComponent<RawImage>().color = Color.gray;
-            rightSprite.GetComponent<RawImage>().color = Color.gray;
-        }
+        npcHighlight(quizItem);
 
-        nameText.text = quizItem.name;
+        nameText.text = quizItem.npcName;
 
         foreach(string s in quizItem.lines){
-            dialogueLines.Add(s);
+            //dialogueLines.Add(s);
         }
 
-        string line = dialogueLines[blockLineIndex];
-        currentLine = blockLineIndex;
+        //string line = dialogueLines[0];
+        currentLine = 0;
         StopAllCoroutines();
-        StartCoroutine(typeSentence(line));
+        //StartCoroutine(typeSentence(line));
     }
 
     public void checkIfChoice(){
@@ -79,18 +57,23 @@ public class QuizManager : DialogueSystemBase{
         }
 
         if(currentLine == dialogueLines.Count){
-            if(currentBlock + 1 != npcQuizBlocks.Length){
-                startDialogue(currentBlock + 1, 0);
-            } else {
+            if(currentBlock == stopIndex){
+                Debug.Log("Current: " + currentBlock + "; Stopping at: " + stopIndex);
+                endDialogue();
+                return;
+            } else if(currentBlock == npcQuizBlocks.Length - 1){
                 currentLine = dialogueLines.Count - 1;
                 endDialogue();
+                return;
+            } else {
+                
                 return;
             }
         }
 
-        string line = dialogueLines[currentLine];
+        //string line = dialogueLines[currentLine];
         StopAllCoroutines();
-        StartCoroutine(typeSentence(line));
+        //StartCoroutine(typeSentence(line));
 
         //checks if current item has a choice
         //if it does, opens the buttons and sets their text

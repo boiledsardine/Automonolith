@@ -8,10 +8,15 @@ public class Positioning : MonoBehaviour{
     private GameObject playerCharacter;
     private Floating floatScript;
 
+    //sets how high object hovers over player head when held
+    [SerializeField] private float hoverDistance;
+    
+    //should be equal to yPos as much as possible
+    [SerializeField] private float yOffset;
+
     private void Start(){
         playerCharacter = GameObject.Find("PlayerCharacter");
         floatScript = GetComponent<Floating>();
-
     }
 
     private void Update(){
@@ -24,7 +29,7 @@ public class Positioning : MonoBehaviour{
     private void relocate(){
         Vector3 playerPosition = playerCharacter.transform.position;
         transform.position = new Vector3(playerPosition.x,
-        (playerPosition.y + 80), playerPosition.z);
+        (playerPosition.y + hoverDistance), playerPosition.z);
     }
 
     //puts small object down
@@ -43,7 +48,7 @@ public class Positioning : MonoBehaviour{
             Vector3 releasePoint = releaseTile.transform.position;
             if(floatScript != null){
                 floatScript.posOffset = new Vector3(releasePoint.x,
-                (releasePoint.y + 65), releasePoint.z);
+                (releasePoint.y + yOffset), releasePoint.z);
             }
         } else {
             Compiler.Instance.terminateExecution();

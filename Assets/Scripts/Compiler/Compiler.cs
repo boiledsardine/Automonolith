@@ -7,6 +7,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using CommandControl;
+using System.Text.RegularExpressions;
 
 public class Compiler : MonoBehaviour{
     public static Compiler Instance { get; private set; }
@@ -17,10 +18,13 @@ public class Compiler : MonoBehaviour{
     //takes text from InputField instead of InputField's text component
     //Text component truncates text that isn't on screen at the moment
     //InputField's text property stores all the text lines
-    [SerializeField] private InputField input;
+    [SerializeField] private TMPro.TMP_Text tmpInput;
+
+    [SerializeField] private Text lineCount;
     
     //External monobehaviour handler scripts
     FunctionHandler functionHandler;
+    ErrorChecker errorChecker;
     
     //Variable dictionaries
     Dictionary<string, string> _allVars;
@@ -37,10 +41,14 @@ public class Compiler : MonoBehaviour{
         get { return _strVars; }
     }
 
+    private int currentIndex = 0;
+    private bool hasError = false;
+    private bool hasArgError = false;
+
     public void Awake(){
         if(Instance == null){
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
@@ -52,9 +60,12 @@ public class Compiler : MonoBehaviour{
         _strVars = new Dictionary<string, string>();
 
         functionHandler = gameObject.GetComponent<FunctionHandler>();
+        errorChecker = gameObject.GetComponent<ErrorChecker>();
     }
 
     public void Run(){
+        errorChecker.errorConvo.dialogueBlocks = new List<Dialogue>();
+        hasError = false;
         Reset.Instance.Exterminatus();
         Invoke("delayedRun", 0.05f);
     }
@@ -62,8 +73,8 @@ public class Compiler : MonoBehaviour{
     private void delayedRun(){
         if(Reset.isResetSuccessful()){
             //Debug.Log("Exterminatus successful");
-            preprocessCode(input.text);
-            StartCoroutine(runLines(0, codeLines.Length));
+            preprocessCode(tmpInput.text);
+            StartCoroutine(firstPass(0, codeLines.Length));
         }
     }
     
@@ -80,73 +91,110 @@ public class Compiler : MonoBehaviour{
         string[] unformattedLines = code.Split('\n');
         List<string> formattedLines = new List<string>();
         foreach(string s in unformattedLines){
-            if(string.IsNullOrWhiteSpace(s)){
+            
+            /*if(string.IsNullOrWhiteSpace(s)){
                 continue;
-            }
+            }*/
+
             string formattedLine = CodeFormatter.Format(s);
             string[] sections = formattedLine.Split(' ');
 
-            if(!string.IsNullOrWhiteSpace(formattedLine)){
-                if(sections.Length > 1){
-                    switch(sections[1]){
-                        case "+=":
-                            formattedLine = formatOperator(sections, "+");
-                            break;
-                        case "-=":
-                            formattedLine = formatOperator(sections, "-");
-                            break;
-                        case "*=":
-                            formattedLine = formatOperator(sections, "*");
-                            break;
-                        case "/=":
-                            formattedLine = formatOperator(sections, "/");
-                            break;
-                        case "++":
-                            formattedLine = string.Format("{0} = {0} + 1", sections[0]);
-                            break;
-                        case "--":
-                            formattedLine = string.Format("{0} = {0} - 1", sections[0]);
-                            break;
-                        default:
-                            break;
-                    }
+            if(sections.Length > 1){
+                switch(sections[1]){
+                    case "+=":
+                        formattedLine = formatOperator(sections, "+");
+                        break;
+                    case "-=":
+                        formattedLine = formatOperator(sections, "-");
+                        break;
+                    case "*=":
+                        formattedLine = formatOperator(sections, "*");
+                        break;
+                    case "/=":
+                        formattedLine = formatOperator(sections, "/");
+                        break;
+                    case "++":
+                        formattedLine = string.Format("{0} = {0} + 1", sections[0]);
+                        break;
+                    case "--":
+                        formattedLine = string.Format("{0} = {0} - 1", sections[0]);
+                        break;
+                    default:
+                        break;
                 }
-                formattedLines.Add(formattedLine);
-                processedCode += formattedLine + '\n';
             }
+            formattedLines.Add(formattedLine);
+            processedCode += formattedLine + '\n';
         }
         codeLines = formattedLines.ToArray();
+        lineCount.text = codeLines.Length.ToString();
     }
 
-    private IEnumerator runLines(int lineIndex, int stopIndex){
-
-        //Debug.Log("running lines with index " + lineIndex);
+    private IEnumerator firstPass(int lineIndex, int stopIndex){
+        currentIndex = lineIndex;
         
         string currentLine = codeLines[lineIndex];
         string[] sections = currentLine.Split(' ');
+
+        LineChecker lineChecker = new LineChecker(currentLine, lineIndex + 1, errorChecker);
+        LineType lineType = lineChecker.lineType;
+
+        if(lineChecker.hasError){
+            this.hasError = true;
+        }
+
+        if(lineType == LineType.varInitialize){
+            initializeVariable(currentLine);
+        }
+
+        if(lineType == LineType.varAssign){
+            assignVariable(currentLine);
+        }
+
+        //argument errors should be checked here
+        if(lineType == LineType.functionCall){
+            functionHandler.initializeHandler(currentLine, lineIndex + 1);
+            hasArgError = functionHandler.hasError;
+        }
 
         //checks for the Read() function
         if(sections.Length > 1 && sections.Contains("read")){
             currentLine = checkForRead(sections);
         }
 
-        //checks for functions
-        if(sections.Length > 1 && FunctionHandler.builtInFunctions.Contains(sections[0])){
-            functionHandler.initializeHandler(currentLine);
-            yield return StartCoroutine(functionHandler.runFunction());
+        if((lineIndex + 1) >= codeLines.Length || (lineIndex + 1) == stopIndex){
+            if(hasError || hasArgError){
+                errorChecker.writeError();
+            } else {
+                Debug.LogWarning("No errors - starting second pass");
+                StartCoroutine(secondPass(0, stopIndex));
+            }
+        } else {
+            yield return StartCoroutine(firstPass(lineIndex + 1, stopIndex));
         }
+    }
 
-        //check for variable assignment
-        if(sections.Length > 1 && sections.Contains("=")){
-            assignVariable(currentLine);
+    private IEnumerator secondPass(int lineIndex, int stopIndex){
+        string currentLine = codeLines[lineIndex];
+        
+        LineChecker lineChecker = new LineChecker(currentLine, lineIndex + 1, errorChecker);
+        LineType lineType = lineChecker.lineType;
+
+        if(lineType == LineType.functionCall){
+            functionHandler.initializeHandler(currentLine, lineIndex + 1);
+            hasError = functionHandler.hasError;
+            if(!functionHandler.hasError){
+                yield return StartCoroutine(functionHandler.runFunction());   
+            }
         }
 
         if((lineIndex + 1) >= codeLines.Length || (lineIndex + 1) == stopIndex){
-            //Debug.Log("execution complete!");
+            Debug.LogWarning("Execution finished!");
         } else {
-            yield return StartCoroutine(runLines(lineIndex + 1, stopIndex));
+            yield return StartCoroutine(secondPass(lineIndex + 1, stopIndex));
         }
     }
+
 
     private string checkForRead(string[] sections){
         List<string> sectionList = sections.ToList();
@@ -181,14 +229,42 @@ public class Compiler : MonoBehaviour{
                 sectionList.Insert(readIndex, "$read");
                 Interaction playerAct = GameObject.Find("PlayerCharacter").GetComponent<Interaction>();
                 strVars["$read"] = playerAct.read();
-                //Debug.Log("$read = " + strVars["$read"]);
             } else {
-                //error
                 Debug.LogAssertion("went wrong somewhere");
             }
         }
         
         return arrayToString(sectionList.ToArray(), 0);
+    }
+   
+    private void initializeVariable(string line){
+        string[] sections = line.Split(' ');
+        string varName = sections[1];
+        string varType = sections[0];
+
+        switch(varType){
+            case "int":
+                if(!allVars.ContainsKey(varName) && !intVars.ContainsKey(varName)){
+                    allVars.Add(varName, "int");
+                    intVars.Add(varName, 0);
+                } else {
+                    errorChecker.variableDefinedError(currentIndex + 1, varName);
+                    return;
+                }
+                break;
+            case "string":
+                if(!allVars.ContainsKey(varName) && !strVars.ContainsKey(varName)){
+                    allVars.Add(varName, "string");
+                    strVars.Add(varName, null);
+                } else {
+                    errorChecker.variableDefinedError(currentIndex + 1, varName);
+                    return;
+                }
+                break;
+            default:
+                errorChecker.nonexistentTypeError(currentIndex + 1, varType);
+                break;
+        }
     }
 
     //split a string by space to find the operator
@@ -198,37 +274,23 @@ public class Compiler : MonoBehaviour{
     //for now only does ints
     private void assignVariable(string line){
         string[] sections = line.Split(' ');
-        int operatorIndex = Array.IndexOf(sections, "=");
-        string varName = sections[operatorIndex - 1];
+        int opIndex = Array.IndexOf(sections, "=");
+        string varName = sections[opIndex - 1];
+        string varType = opIndex != 1 ? sections[opIndex - 2] : null;
         string expression = line.Split('=')[1].Trim();
-        string[] delim = {varName};
-        string varType = line.Split(delim, StringSplitOptions.None)[0].Trim();
 
         if(!string.IsNullOrWhiteSpace(varType)){
-            switch(varType){
-                case "int":
-                    if(!allVars.ContainsKey(varName) && !intVars.ContainsKey(varName)){
-                        allVars.Add(varName, "int");
-                        intVars.Add(varName, 0);
-                        //Debug.Log("Created new int " + varName);
-                    } else {
-                        //Debug.LogAssertion("Variable \"" + varName + "\" already exists!");
-                        return;
-                    }
-                    break;
-                case "string":
-                    if(!allVars.ContainsKey(varName) && !strVars.ContainsKey(varName)){
-                        allVars.Add(varName, "string");
-                        strVars.Add(varName, null);
-                    } else {
-                        return;
-                    }
-                    break;
-            }
+            initializeVariable(line);
         }
-        
-        if(!allVars.ContainsKey(varName)){
-            //Debug.Log("Variable " + varName + " does not exist!");
+
+        if(ReservedConstants.varTypes.Contains(varName) && varType == null){
+            errorChecker.unnamedVariableError(currentIndex + 1, varName);
+            return;
+        } else if(ReservedConstants.reserved.Contains(varName)){
+            errorChecker.reservedNameError(currentIndex + 1);
+            return;
+        } else if(!allVars.ContainsKey(varName)){
+            errorChecker.noexistentVariableError(currentIndex + 1, varName);
             return;
         }
 
@@ -238,9 +300,8 @@ public class Compiler : MonoBehaviour{
                 if(intEval.isInt){
                     int intValue = intEval.evaluate();
                     intVars[varName] = intValue;
-                    //Debug.Log("Assigned " + intValue + " to int " + varName);
                 } else {
-                    //Debug.LogAssertion("Not an integer!");
+                    errorChecker.wrongTypeError(currentIndex + 1, varType);
                 }
                 break;
             case "string":

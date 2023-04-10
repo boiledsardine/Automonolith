@@ -5,79 +5,66 @@ using UnityEngine.UI;
 
 public class DialogueManager : DialogueSystemBase{
     public static DialogueManager Instance;
-    
-    [SerializeField] protected Dialogue[] npcDialogueBlocks;
+    [SerializeField] private Conversation conversation;
+    private Queue<Dialogue> dialogueBlocks;
 
-    void Awake(){
+    new void Awake(){
+        base.Awake();
+
         if(Instance == null){
             Instance = this;
             //DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
+
+        dialogueBlocks = new Queue<Dialogue>();
     }
 
-    public override void startDialogue(int npcBlockIndex, int blockLineIndex){
+    public override void startDialogue(Conversation convoToLoad){
+        foreach(Dialogue d in convoToLoad.dialogueBlocks){
+            dialogueBlocks.Enqueue(d);
+        }
+        
         dialogueBoxAnimator.SetBool("isOpen", true);
         panelAnimator.SetBool("isOpen", true);
-        
-        Dialogue dialogue = npcDialogueBlocks[npcBlockIndex];
-        currentBlock = npcBlockIndex;
 
-        Debug.Log("Starting conversation with " + dialogue.name);
-        dialogueLines.Clear();
+        loadDialogue();
 
-        if(dialogue.showNpc){
-            RawImage rawImageLeft = leftSprite.GetComponent<RawImage>();
-            RawImage rawImageRight = rightSprite.GetComponent<RawImage>();
-            switch(dialogue.npcPos){
-                case 'L':
-                    rawImageLeft.enabled = true;
-                    rawImageLeft.texture = dialogue.npcSprite;
-                    rawImageLeft.color = Color.white;
-                    rawImageRight.color = Color.gray;
-                    break;
-                case 'R':
-                    rawImageRight.enabled = true;
-                    rawImageRight.texture = dialogue.npcSprite;
-                    rawImageRight.color = Color.white;
-                    rawImageLeft.color = Color.gray;
-                    break;
-            }
-        } else {
-            leftSprite.GetComponent<RawImage>().color = Color.gray;
-            rightSprite.GetComponent<RawImage>().color = Color.gray;
-        }
-
-        nameText.text = dialogue.name;
-
-        foreach(string s in dialogue.lines){
-            dialogueLines.Add(s);
-        }
-
-        string line = dialogueLines[blockLineIndex];
-        currentLine = blockLineIndex;
+        currentLine = 0;
         StopAllCoroutines();
-        StartCoroutine(typeSentence(line));
+        StartCoroutine(typeSentence(dialogueLines.Dequeue()));
     }
 
     public override void nextLine(){
-        if(currentLine != dialogueLines.Count){
-            currentLine++;
-        }
-
-        if(currentLine == dialogueLines.Count){
-            if(currentBlock + 1 != npcDialogueBlocks.Length){
-                startDialogue(currentBlock + 1, 0);
-            } else {
-                currentLine = dialogueLines.Count - 1;
+        if(dialogueLines.Count == 0){
+            //check if there's another block in the queue
+            //if yes, end dialogue
+            //if no, load the next one
+            if(dialogueBlocks.Count == 0){
                 endDialogue();
                 return;
+            } else {
+                loadDialogue();
             }
         }
 
-        string line = dialogueLines[currentLine];
         StopAllCoroutines();
-        StartCoroutine(typeSentence(line));
+        StartCoroutine(typeSentence(dialogueLines.Dequeue()));
+    }
+
+    public void loadDialogue(){
+        Dialogue dialogue = dialogueBlocks.Dequeue();
+
+        Debug.Log("Starting conversation with " + dialogue.npcName);
+        dialogueLines.Clear();
+
+        npcHighlight(dialogue);
+
+        nameText.text = dialogue.npcName;
+
+        foreach(string s in dialogue.lines){
+            dialogueLines.Enqueue(s);
+        }
     }
 }

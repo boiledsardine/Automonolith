@@ -53,42 +53,22 @@ public class TileBase : MonoBehaviour {
 
     //neighbor tile getters and setters
     public TileBase neighborN{
-        get { 
-            if(_neighborN != null){
-                return _neighborN;
-            }
-            return null;
-        }
+        get { return _neighborN; }
         set { _neighborN = value; }
     }
 
     public TileBase neighborS{
-        get { 
-            if(_neighborS != null){
-                return _neighborS;
-            }
-            return null;
-        }
+        get { return _neighborS; }
         set { _neighborS = value; }
     }
 
     public TileBase neighborW{
-        get { 
-            if(_neighborW != null){
-                return _neighborW;
-            }
-            return null;
-        }
+        get { return _neighborW; }
         set { _neighborW = value; }
     }
 
     public TileBase neighborE{
-        get { 
-            if(_neighborE != null){
-                return _neighborE;
-            }
-            return null;
-        }
+        get { return _neighborE; }
         set { _neighborE = value; }
     }
     

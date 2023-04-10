@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class DialogueSystemBase : MonoBehaviour{
-    [SerializeField] protected Text nameText;
-    [SerializeField] protected Text dialogueText;
+    [SerializeField] protected TMPro.TMP_Text nameText;
+    [SerializeField] protected TMPro.TMP_Text dialogueText;
 
-    protected List<string> dialogueLines;
+    protected Queue<string> dialogueLines;
     
     [SerializeField] protected Animator panelAnimator;
     [SerializeField] protected Animator dialogueBoxAnimator;
@@ -15,12 +15,13 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     [SerializeField] protected RawImage rightSprite;
     protected int currentLine = -1;
     protected int currentBlock = -1;
+    protected int stopIndex;
 
-    public void Start(){
-        dialogueLines = new List<string>();
+    public void Awake(){
+        dialogueLines = new Queue<string>();
     }
 
-    public abstract void startDialogue(int npcBlockIndex, int blockLineIndex);
+    public abstract void startDialogue(Conversation convoToLoad);
 
     public IEnumerator typeSentence(string sentence){
         dialogueText.text = "";
@@ -39,5 +40,42 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         leftSprite.GetComponent<RawImage>().enabled = false;
         rightSprite.GetComponent<RawImage>().enabled = false;
         Debug.Log("End of conversation");
+        Invoke("disableCanvas", 0.25f);
+    }
+
+    public void disableCanvas(){
+        gameObject.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void npcHighlight(Dialogue dialogue){
+        if(dialogue.showNpc){
+            RawImage rawImageLeft = leftSprite.GetComponent<RawImage>();
+            RawImage rawImageRight = rightSprite.GetComponent<RawImage>();
+            switch(dialogue.npcPos){
+                case 'L':
+                    rawImageLeft.enabled = true;
+                    rawImageLeft.texture = dialogue.npcSprite;
+                    rawImageLeft.color = Color.white;
+                    rawImageRight.color = Color.gray;
+                    break;
+                case 'R':
+                    rawImageRight.enabled = true;
+                    rawImageRight.texture = dialogue.npcSprite;
+                    rawImageRight.color = Color.white;
+                    rawImageLeft.color = Color.gray;
+                    break;
+                case 'B':
+                    rawImageLeft.color = Color.white;
+                    rawImageRight.color = Color.white;
+                    break;
+                case 'C':
+                    rawImageLeft.enabled = false;
+                    rawImageRight.enabled = false;
+                    break;
+            }
+        } else {
+            leftSprite.GetComponent<RawImage>().color = Color.gray;
+            rightSprite.GetComponent<RawImage>().color = Color.gray;
+        }
     }
 }

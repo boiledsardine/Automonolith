@@ -16,12 +16,23 @@ public class StringExpression{
         string sentence = "";
 
         foreach(string s in words){
-            if(s != "\""){
-                sentence += s + " ";
+            if(s.Contains("\"")){
+                char[] literal = s.ToCharArray();
+                int stringStartIndex = s.IndexOf("\"");
+                int stringEndIndex = s.LastIndexOf("\"");
+                for(int i = stringStartIndex + 1; i < stringEndIndex; i++){
+                    if(literal[i] == '|'){
+                        sentence += ' ';
+                    } else {
+                        sentence += literal[i];
+                    }
+                }
+            } else {
+                sentence += s;
             }
         }
-        
-        return sentence.Trim();
+
+        return sentence;
     }
 }
 
@@ -32,14 +43,17 @@ public class StringValue{
     public List<string> strTexts;
     public List<MathExpression> elements;
     
-    public StringValue(string line){
+    public StringValue(string expression){
         this.allVars = Compiler.Instance.allVars;
         this.intVars = Compiler.Instance.intVars;
         this.strVars = Compiler.Instance.strVars;
 
         strTexts = new List<string>();
         elements = new List<MathExpression>();
-        string[] sectionArr = line.Split(' ');
+
+        expression = processLiteral(expression);
+
+        string[] sectionArr = expression.Split(' ');
         
         for(int i = 0; i < sectionArr.Length; i++){
             string currentSection = sectionArr[i];
@@ -52,6 +66,32 @@ public class StringValue{
                 strTexts.Add(currentSection);
             }
         }
+    }
+    
+    //replaces whitespaces in literals with '|'
+    //which is eventually replaced by StringExpression class
+    //prevents shenanigans with anything that splits a string by whitespace
+    //shenanigans being literals being split by space too and throwing errors everywhere
+    //of course this means that you can't put '|' in a string literal anymore
+    //gotta fix that somehow
+    private string processLiteral(string expression){
+        char[] charArray = expression.ToCharArray();
+        bool isLiteral = false;
+        string substring = "";
+        foreach(char c in charArray){
+            if(c == '\"' && isLiteral == false){
+                isLiteral = true;
+                substring += c;
+            } else if(c == '\"' && isLiteral == true){
+                isLiteral = false;
+                substring += c;
+            } else if(c == ' '){
+                substring += '|';
+            } else {
+                substring += c;
+            }
+        }
+        return substring;
     }
 
     private void addOperatorElement(string currentSection){

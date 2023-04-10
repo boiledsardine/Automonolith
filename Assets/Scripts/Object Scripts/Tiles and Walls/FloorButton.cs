@@ -15,7 +15,6 @@ public class FloorButton : ButtonBase{
         if(col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player"){
             isActivated = true;
             transform.position = originPos - new Vector3(0f, 3f, 0f);
-            //Debug.Log(gameObject.name + " is live");
             boundObject.GetComponent<IActivate>().activate();
         }
     }
@@ -24,7 +23,6 @@ public class FloorButton : ButtonBase{
         if(col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player"){
             isActivated = false;
             transform.position = originPos;
-            //Debug.Log(gameObject.name + " is dead");
             boundObject.GetComponent<IActivate>().deactivate();
         }
     }

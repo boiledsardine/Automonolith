@@ -11,6 +11,8 @@ public class Interaction : MonoBehaviour {
     private bool _isHoldingBig;
     private bool _isHoldingSmall;
     private Vector3 originPos, targetPos;
+    [SerializeField] private GameObject speechBubble;
+    private GameObject bubble = null;
 
     private Environment envirScript;
 
@@ -83,7 +85,7 @@ public class Interaction : MonoBehaviour {
     }
 
     public IEnumerator interact(){
-        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
         Vector3 fwd = transform.TransformDirection(Vector3.back);
         float distance = Globals.Instance.distancePerTile;
         RaycastHit hit;
@@ -98,7 +100,6 @@ public class Interaction : MonoBehaviour {
                 Debug.Log(hitObject.name + " is not interactable");
             }
         }
-        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
     }
 
     public string read(){
@@ -139,6 +140,17 @@ public class Interaction : MonoBehaviour {
 
     public IEnumerator say(string input){
         yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        Vector3 point = transform.position;
+        
+        if(bubble == null){
+            bubble = Instantiate(speechBubble);
+        } else {
+            Destroy(bubble);
+            bubble = Instantiate(speechBubble);
+        }
+
+        var speechText = bubble.transform.GetChild(0);
+        speechText.GetComponent<TextMesh>().text = input;
         Debug.LogWarning("Gawain says: " + input);
     }
 

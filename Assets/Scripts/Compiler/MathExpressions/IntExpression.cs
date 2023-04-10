@@ -163,7 +163,7 @@ public class IntValue{
         for(int i = 0; i < sectionArr.Length; i++){
             string currentSection = sectionArr[i];
 
-            if(ReservedConstants.mathOperators.Contains(currentSection)){
+            if(ReservedConstants.allMathOperators.Contains(currentSection)){
                 addOperatorElement(currentSection);
             } else if(allVars.ContainsKey(currentSection)){
                 if(intVars.ContainsKey(currentSection)){
