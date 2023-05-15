@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using CommandControl;
 using System.Text.RegularExpressions;
 
@@ -20,7 +21,7 @@ public class Compiler : MonoBehaviour{
     //InputField's text property stores all the text lines
     [SerializeField] private TMPro.TMP_Text tmpInput;
 
-    [SerializeField] private Text lineCount;
+    [SerializeField] private TMPro.TMP_Text lineCount;
     
     //External monobehaviour handler scripts
     FunctionHandler functionHandler;
@@ -66,12 +67,12 @@ public class Compiler : MonoBehaviour{
     public void Run(){
         errorChecker.errorConvo.dialogueBlocks = new List<Dialogue>();
         hasError = false;
-        Reset.Instance.Exterminatus();
+        Exterminatus();
         Invoke("delayedRun", 0.05f);
     }
 
     private void delayedRun(){
-        if(Reset.isResetSuccessful()){
+        if(isResetSuccessful()){
             //Debug.Log("Exterminatus successful");
             preprocessCode(tmpInput.text);
             StartCoroutine(firstPass(0, codeLines.Length));
@@ -90,14 +91,16 @@ public class Compiler : MonoBehaviour{
 
         string[] unformattedLines = code.Split('\n');
         List<string> formattedLines = new List<string>();
-        foreach(string s in unformattedLines){
-            
-            /*if(string.IsNullOrWhiteSpace(s)){
-                continue;
-            }*/
-
-            string formattedLine = CodeFormatter.Format(s);
+        foreach(string unformattedLine in unformattedLines){
+            string formattedLine = CodeFormatter.Format(unformattedLine);
             string[] sections = formattedLine.Split(' ');
+
+            //strips comments
+            foreach(string s in sections){
+                if(s == "//"){
+                    formattedLine = formattedLine.Substring(0, formattedLine.IndexOf("//"));
+                }
+            }
 
             if(sections.Length > 1){
                 switch(sections[1]){
@@ -127,7 +130,7 @@ public class Compiler : MonoBehaviour{
             processedCode += formattedLine + '\n';
         }
         codeLines = formattedLines.ToArray();
-        lineCount.text = codeLines.Length.ToString();
+        lineCount.text = string.Format("Lines: {0}", codeLines.Length.ToString());
     }
 
     private IEnumerator firstPass(int lineIndex, int stopIndex){
@@ -141,18 +144,21 @@ public class Compiler : MonoBehaviour{
 
         if(lineChecker.hasError){
             this.hasError = true;
+        } else {
+            sections = semicolonRemover(sections);
+            currentLine = arrayToString(sections, 0);
         }
 
-        if(lineType == LineType.varInitialize){
+        if(!lineChecker.hasError && lineType == LineType.varInitialize){
             initializeVariable(currentLine);
         }
 
-        if(lineType == LineType.varAssign){
+        if(!lineChecker.hasError && lineType == LineType.varAssign){
             assignVariable(currentLine);
         }
 
         //argument errors should be checked here
-        if(lineType == LineType.functionCall){
+        if(!lineChecker.hasError && lineType == LineType.functionCall){
             functionHandler.initializeHandler(currentLine, lineIndex + 1);
             hasArgError = functionHandler.hasError;
         }
@@ -172,6 +178,18 @@ public class Compiler : MonoBehaviour{
         } else {
             yield return StartCoroutine(firstPass(lineIndex + 1, stopIndex));
         }
+    }
+
+    //removes semicolons from the end of a line
+    //assuming the line is formatted correctly
+    //otherwise the code won't even reach here
+    //bc semicolons screw with reading expressions and function arguments
+    private string[] semicolonRemover(string[] sections){
+        string[] newSect = new string[sections.Length - 1];
+        for(int i = 0; i < sections.Length - 1; i++){
+            newSect[i] = sections[i];
+        }
+        return newSect;
     }
 
     private IEnumerator secondPass(int lineIndex, int stopIndex){
@@ -326,6 +344,20 @@ public class Compiler : MonoBehaviour{
             }
         }
         return s;
+    }
+
+    public void Exterminatus(){
+        //Debug.LogAssertion("Declaring Exterminatus");
+        clearDictionaries();
+        EditorSaveLoad.Instance.SaveEditorState();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public static bool isResetSuccessful(){
+        if(SceneManager.GetActiveScene().isDirty){
+            return false;
+        }
+        return true;
     }
 
     public void clearDictionaries(){

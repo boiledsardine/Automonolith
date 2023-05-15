@@ -7,7 +7,7 @@ public class SetHeight : MonoBehaviour{
     [SerializeField] private GameObject obj;
     RectTransform objRect;
     RectTransform rt;
-
+    public SizeMode sizeMode;
 
     // Start is called before the first frame update
     void Start(){
@@ -16,7 +16,19 @@ public class SetHeight : MonoBehaviour{
     }
 
     void LateUpdate(){
-        Vector2 newSize = new Vector2(rt.sizeDelta.x, objRect.sizeDelta.y);
-        rt.sizeDelta = newSize;
+        if(sizeMode == SizeMode.HeightOnly){
+            Vector2 newSize = new Vector2(rt.sizeDelta.x, objRect.sizeDelta.y);
+            rt.sizeDelta = newSize;
+        }
+        if(sizeMode == SizeMode.HeightAndWidth){
+            Vector2 newSize = new Vector2(objRect.sizeDelta.x, objRect.sizeDelta.y);
+            rt.sizeDelta = newSize;
+        }
     }
+}
+
+public enum SizeMode{
+    HeightOnly,
+    WidthOnly,
+    HeightAndWidth
 }

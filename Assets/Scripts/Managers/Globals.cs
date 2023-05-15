@@ -56,4 +56,7 @@ public class Globals : MonoBehaviour{
     public float distancePerObject{
         get { return _distancePerObject; }
     }
+    
+    //TODO: TT2 function for 1.5x and 2x
+    //low prio
 }

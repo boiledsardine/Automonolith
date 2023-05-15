@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ac9baa71bb374d4498713a1b3832f5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ac9baa71bb374d4498713a1b3832f5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8827fd67b954641bdf305757c0824a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speechBubble: {fileID: 5970168902044381155, guid: 3609dbde4a1d6f344a6fca90d9671b01, type: 3}

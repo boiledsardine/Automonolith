@@ -22,7 +22,7 @@ public class FunctionHandler : MonoBehaviour{
         "write"
     };
 
-    [SerializeField] private Text stepCount;
+    [SerializeField] private TMPro.TMP_Text stepCount;
     private int steps = 0;
 
     Dictionary<string, string> allVars;
@@ -41,7 +41,8 @@ public class FunctionHandler : MonoBehaviour{
     private int lineIndex;
 
     public void initializeHandler(string functionLine, int lineIndex){
-        
+        steps = 0;
+
         this.allVars = Compiler.Instance.allVars;
         this.intVars = Compiler.Instance.intVars;
         this.strVars = Compiler.Instance.strVars;
@@ -214,6 +215,6 @@ public class FunctionHandler : MonoBehaviour{
 
     public void addStep(){
         steps++;
-        stepCount.text = steps.ToString();
+        stepCount.text = string.Format("Steps: {0}", steps.ToString());
     }
 }

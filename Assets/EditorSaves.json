@@ -1,0 +1,16 @@
+{
+    "Items": [
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": "Bot.moveRight();\nBot.moveDown();\nBot.interact();"
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
+        }
+    ]
+}

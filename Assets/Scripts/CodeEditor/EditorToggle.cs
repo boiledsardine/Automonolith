@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EditorToggle : MonoBehaviour{
-    public CodeEditor editor;
+    public Canvas editorCanvas;
+    public Animator panelAnimator;
 
-    public void enableEditor(){
-        editor.transform.gameObject.SetActive(true);
+    public void openEditor(){
+        editorCanvas.transform.gameObject.SetActive(true);
+        panelAnimator.SetBool("isOpen", true);
+    }
+
+    public void closeEditor(){
+        if(!gameObject.transform.parent.gameObject.activeSelf || !panelAnimator.GetBool("isOpen")){
+            return;
+        }
+
+        panelAnimator.SetBool("isOpen", false);
+        Invoke("disableEditor", 0.25f);
     }
 
     public void disableEditor(){
-        editor.transform.gameObject.SetActive(false);
+        editorCanvas.transform.gameObject.SetActive(false);
     }
 }

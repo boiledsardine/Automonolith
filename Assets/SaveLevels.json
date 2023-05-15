@@ -1,0 +1,28 @@
+{
+    "Items": [
+        {
+            "isUnlocked": true,
+            "star1": false,
+            "star2": false,
+            "star3": false
+        },
+        {
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "isUnlocked": true,
+            "star1": false,
+            "star2": false,
+            "star3": false
+        },
+        {
+            "isUnlocked": false,
+            "star1": false,
+            "star2": false,
+            "star3": false
+        }
+    ]
+}

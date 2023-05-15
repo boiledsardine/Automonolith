@@ -8,7 +8,7 @@
                 {
                     "name": "Look",
                     "type": "PassThrough",
-                    "id": "83c0b64f-ee22-4a7e-bb76-4aa6c2deb5f0",
+                    "id": "fa1978b0-179d-40ed-bece-340a1dd5b586",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -27,6 +27,15 @@
                     "name": "Rotate",
                     "type": "Button",
                     "id": "a94b437f-241e-444f-89b7-93619baa5f3e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reset Camera",
+                    "type": "Button",
+                    "id": "3bf0a5b6-4637-42dd-b82e-d577e73b787a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -52,17 +61,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "aa5d4a91-d595-4dc8-8448-034c10d3c1ef",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "2faee43a-537e-4c79-ac79-bb9f46075e8d",
@@ -104,6 +102,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebace630-4137-4f51-9e4b-cee1af58ffae",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1f09676-ab91-4886-af1b-415c01487eb6",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

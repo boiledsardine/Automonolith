@@ -7,17 +7,18 @@ using CodeEditorComponents;
 
 public class CodeEditor : MonoBehaviour{
     const string indentString = "  ";
-    const string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=%&,<>()[]{};'\"";
+    const string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=%&,<>()[]{};'\"!";
 
     public TMPro.TMP_Text editorMainText;
     public TMPro.TMP_Text editorLineNumbers;
     public TMPro.TMP_Text editorLineDividers;
     public SetEditorText defaultText;
     public Image caret;
-    public string code;
+    [TextArea(3,10)] public string code;
     public int lineIndex = 0;
     public int charIndex = 0;
     public float caretBlinkRate = 1;
+    public SpecialKeys specialKeys;
     private float lastInputTime;
     private float caretBlinkTimer;
 
@@ -34,6 +35,12 @@ public class CodeEditor : MonoBehaviour{
 
         lineIndex = codeLines.Length - 1;
         charIndex = lineMaxIndex;
+
+        specialKeys.registerSpecialKey(KeyCode.Backspace);
+        specialKeys.registerSpecialKey(KeyCode.LeftArrow);
+        specialKeys.registerSpecialKey(KeyCode.RightArrow);
+        specialKeys.registerSpecialKey(KeyCode.UpArrow);
+        specialKeys.registerSpecialKey(KeyCode.DownArrow);
     }
 
     private void LateUpdate(){
@@ -47,6 +54,8 @@ public class CodeEditor : MonoBehaviour{
     }
 
     private void keyPress(){
+        //triggers on legal character entry
+        //or for a ctrl+C or ctrl+R combo
         if(!Input.GetKey(KeyCode.LeftControl)) {
             foreach(char c in Input.inputString){
                 if(legalChars.Contains(c.ToString().ToLower())){
@@ -67,7 +76,8 @@ public class CodeEditor : MonoBehaviour{
         } else {
             if(Input.GetKey(KeyCode.C)){
                 Compiler.Instance.Run();
-                gameObject.SetActive(false);
+                EditorToggle toggle = gameObject.GetComponent<EditorToggle>();
+                toggle.closeEditor();
             } else if(Input.GetKey(KeyCode.R)){
                 code = defaultText.defaultInput;
 
@@ -80,6 +90,7 @@ public class CodeEditor : MonoBehaviour{
             }
         }
 
+        //enter button
         if(Input.GetKeyDown(KeyCode.Return)){
             lastInputTime = Time.time;
             
@@ -106,7 +117,7 @@ public class CodeEditor : MonoBehaviour{
             code = code.Substring(0, code.Length - 1);
         }
 
-        if(Input.GetKeyDown(KeyCode.Backspace)){
+        if(specialKeys.getKeyPress(KeyCode.Backspace)){
             if(code.Length == 0 || (charIndex == 0 && lineIndex == 0)){
                 return;
             }
@@ -135,7 +146,7 @@ public class CodeEditor : MonoBehaviour{
             code = code.Substring(0, code.Length - 1);
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow)){
+        if(specialKeys.getKeyPress(KeyCode.LeftArrow)){
             if(code.Length > 0){
                 lastInputTime = Time.time;
                 if(charIndex > 0){
@@ -155,7 +166,7 @@ public class CodeEditor : MonoBehaviour{
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.RightArrow)){
+        if(specialKeys.getKeyPress(KeyCode.RightArrow)){
             if(code.Length > 0){
                 lastInputTime = Time.time;
                 string[] codeLines = code.Split('\n');
@@ -179,7 +190,7 @@ public class CodeEditor : MonoBehaviour{
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
+        if(specialKeys.getKeyPress(KeyCode.UpArrow)){
             if(lineIndex > 0){
                 lastInputTime = Time.time;
                 string[] codeLines = code.Split('\n');
@@ -194,7 +205,7 @@ public class CodeEditor : MonoBehaviour{
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
+        if(specialKeys.getKeyPress(KeyCode.DownArrow)){
             string[] codeLines = code.Split('\n');
 
             if(lineIndex < codeLines.Length - 1){

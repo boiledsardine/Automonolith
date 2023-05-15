@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo3
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 2800000, guid: bc806e04249039b448c0121e66b0fd2a, type: 3}
+    lines:
+    - 'Well, now that you know how to ask me for help if you need it, let''s move
+      on to the meat and potatoes of this whole operation: giving G4wain commands.'
+  - npcName: G4wain
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 2800000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
+    lines:
+    - 'EDITOR FUNCTIONS ONLINE;
+
+      AWAITING INSTRUCTIONS;'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 2800000, guid: bc806e04249039b448c0121e66b0fd2a, type: 3}
+    lines:
+    - Attaboy. Now, press the spacebar to open the code editor. Once it's open, you
+      can press the escape button to close it back up again.
+    - Open the editor and I'll tell you more about it.

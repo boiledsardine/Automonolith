@@ -12,7 +12,7 @@ public class QuizManager : DialogueSystemBase{
 
     private QuizItem quizItem;
 
-    void Awake(){
+    new void Awake(){
         if(Instance == null){
             Instance = this;
             //DontDestroyOnLoad(gameObject);

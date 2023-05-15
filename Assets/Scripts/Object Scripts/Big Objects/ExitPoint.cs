@@ -12,9 +12,10 @@ public class ExitPoint : ObjectBase, IActivate{
     }
     
     public void activate(){
-        Debug.LogWarning("LEVEL FINISHED!");
-        Destroy(playerCharacter);
+        ObjectiveManager.Instance.exitTouched = true;
+        ObjectiveManager.Instance.LevelComplete();
         Compiler.Instance.terminateExecution();
+        Debug.Log("Compilation stopped!");
     }
 
     public void deactivate(){

@@ -8,7 +8,7 @@ public class MenuControl : MonoBehaviour{
 
     [SerializeField] private Animator panelAnimator;
     [SerializeField] private Animator submenuAnimator;
-    [SerializeField] private GameObject[] persistents;
+    [SerializeField] private EditorSaveLoad saveLoad;
 
     private void Awake(){
         if(Instance == null){
@@ -44,13 +44,20 @@ public class MenuControl : MonoBehaviour{
 
     public void exitGame(){
         closeMenu();
+
+        //Saves editor state on exit
+        if(saveLoad != null){
+            saveLoad.SaveEditorState();
+        }
+
         SceneManager.LoadScene("Main Menu");
 
-        //Destroy all objects marked with DontDestroyOnLoad
+        //Destroy all objects with the DontDestroy class
         //Works, but is kind of an inelegant solution???
         //look for something else eventually
-        foreach(GameObject obj in persistents){
-            Destroy(obj);
+        DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
+        foreach(DontDestroy obj in persistents){
+            Destroy(obj.gameObject);
         }
     }
 }

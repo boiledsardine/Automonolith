@@ -10,7 +10,7 @@ namespace CodeEditorComponents{
     [Multiline (10)]
     public string defaultInput;
 
-    void Start (){
+    void Awake (){
             textField.text = defaultInput;
         }
     }

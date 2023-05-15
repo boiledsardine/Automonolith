@@ -30,7 +30,7 @@ public class CodeFormatter {
                     sections.Add(tempString);
                 }
             }
-
+            
             previousCharOperator = isOperator;
         }
 

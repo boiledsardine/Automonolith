@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBlocks:
   - npcName: Testia
-    showNpc: 0
-    npcPos: 0
-    npcSprite: {fileID: 0}
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 2800000, guid: bc806e04249039b448c0121e66b0fd2a, type: 3}
     lines:
     - "THIS IS TEST DIALOGUE!\t"
     - 'The following dialogue is from Jojo''s Bizzare Adventure: Stardust Crusaders
@@ -25,20 +25,20 @@ MonoBehaviour:
   - npcName: DIO
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 2800000, guid: 042a30e587eef514e83a398f207488e0, type: 3}
+    npcSprite: {fileID: 2800000, guid: 518b4208d11000d468ab9d0c6d6fffe1, type: 3}
     lines:
     - Tsugi wa Jotaro...
     - KISAMA DA!
   - npcName: Jotaro Kujo
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 2800000, guid: 2266c7bee6fb58549a5fd17379dbf09d, type: 3}
+    npcSprite: {fileID: 2800000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
     lines:
     - Yarou... DIO!
   - npcName: DIO
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 2800000, guid: 042a30e587eef514e83a398f207488e0, type: 3}
+    npcSprite: {fileID: 2800000, guid: 518b4208d11000d468ab9d0c6d6fffe1, type: 3}
     lines:
     - Ho, mukatte kuru no ka?
     - Nigezu ni kono DIO ni chikadzuite kuru no ka?
@@ -48,13 +48,13 @@ MonoBehaviour:
   - npcName: Jotaro Kujo
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 2800000, guid: 2266c7bee6fb58549a5fd17379dbf09d, type: 3}
+    npcSprite: {fileID: 2800000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
     lines:
     - Chikadzukanakya teme wo buchi no me tenain de na.
   - npcName: DIO
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 2800000, guid: 042a30e587eef514e83a398f207488e0, type: 3}
+    npcSprite: {fileID: 2800000, guid: 518b4208d11000d468ab9d0c6d6fffe1, type: 3}
     lines:
     - Hoho!
     - Dewa juubun chikadzukanai yoi.

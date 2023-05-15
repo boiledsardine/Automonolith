@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,33 +28,71 @@ public class LineChecker{
         }
         
         string[] sections = inputLine.Split(' ');
+
+        //checks for variable initialization
         if(ReservedConstants.varTypes.Contains(sections[0])){
             if(!checkInitialize(sections)){
                 hasError = true;
+                return;
             }
-        } else if(allVars.ContainsKey(sections[0])){
+        }
+        //checks for variable assignment
+        else if(allVars.ContainsKey(sections[0])){
             if(checkAssignment(sections)){
                 lineType = LineType.varAssign;
             } else {
                 hasError = true;
+                return;
             }
-        } else if(sections[0] == "Bot"){
+        }
+        //checks for a call using "Bot."
+        else if(sections[0] == "Bot"){
             if(checkBotCall(sections)){
                 lineType = LineType.functionCall;
             } else {
                 hasError = true;
+                return;
             }
-        } else {
+        }
+        //default for all
+        else {
             addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements!", lineIndex));
             hasError = true;
+            return;
+        }
+
+        //checks if there are elements after the first semicolon
+        //if there are, throws an error
+        if(Array.IndexOf(sections, ";") != sections.Length - 1){
+            addErr(string.Format("Line {0}: semicolons are meant to terminate statements - put each command on a separate line!", lineIndex));
+            hasError = true;
+            return;
+        }
+
+        //checks for a semicolon at the end
+        if(sections[sections.Length - 1] != ";"){
+            addErr(string.Format("Line {0}: don't forget to add semicolons at the end of your statements!", lineIndex));
+            hasError = true;
+            return;
         }
     }
 
+    //TODO: Expand to allow supporting multiple initialization
     private bool checkInitialize(string[] sections){
+        if(sections.Length == 1){
+            addErr(string.Format("Line{0}: identifier expected!", lineIndex));
+            return false;
+        }
+
         if(!isValidVarName(sections[1])){
             return false;
         } else if(allVars.ContainsKey(sections[1])){
             addErr(string.Format("Line {0}: {1} is already defined!", lineIndex, sections[1]));
+            return false;
+        }
+
+        if(sections.Length == 2){
+            addErr(string.Format("Line {0}: ';' or '=' expected!", lineIndex));
             return false;
         }
 
@@ -68,7 +107,6 @@ public class LineChecker{
             if(sections[2] == ";" && sections.Length == 3){
                 lineType = LineType.varInitialize;
             } else if(sections[2] == ";" && sections.Length > 3) {
-                Debug.Log("found something after semicolon");
                 addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[3]));
                 
                 //still allows initialization but is technically an error
@@ -76,7 +114,6 @@ public class LineChecker{
                 lineType = LineType.varInitialize;
                 return false;
             } else {
-                Debug.Log("expected semicolon");
                 addErr(string.Format("Line {0}: unexpected token {1}, expected \";\"!", lineIndex, sections[2]));
                 return false;
             }
@@ -105,6 +142,7 @@ public class LineChecker{
         return true;
     }
 
+    //checks for botty call
     private bool checkBotCall(string[] sections){
         if(sections[1] == "."){
             if(!FunctionHandler.builtInFunctions.Contains(sections[2])){
@@ -121,6 +159,7 @@ public class LineChecker{
         return true;
     }
 
+    //checks numerical expression validity
     private bool checkExpression(string[] sections, int index){
         bool isExpectingValue = true;
         //everything else should be part of the expression
@@ -157,6 +196,10 @@ public class LineChecker{
         return true;
     }
 
+    //uses RegEx to check if variable name is valid
+    //as always shouldn't start with a digit
+    //or include anything other than alphanumeric and semicolon
+    //not that the limited editor will allow special chars anyway
     private bool isValidVarName(string varName){
         
         if(Regex.IsMatch(varName.ToCharArray()[0].ToString(), @"^[0-9]$")){
