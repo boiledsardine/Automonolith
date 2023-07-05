@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo4
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - This is the code editor. While it's open, you can type in anything you want
+      but remember that G4wain can only understand certain things.
+    - To that end, there's a list of methods you could use on the bottom of the code
+      editor. If you bring your mouse over one of the methods, it'll show a tooltip
+      about that method.
+    - The tooltip contains what values the method requires, an example, and its description.
+    - Anyway, even if you've written down some code, G4wain won't do anything until
+      you tell him to start. To do that, click the green play button in the lower
+      right corner of the screen.
+    - Take note - once G4wain starts moving, he won't take any new commands that
+      you type into the editor so you have to think several steps ahead to guide
+      G4wain's steps correctly.
+    - Your goal is to get G4wain close to the exit totem (it's that floating slab
+      thing with the green arrow) and tell him to touch it.
+    - Sometimes you'll have to do some other things first, but for now, just get
+      G4wain to touch the exit totem.
+    - For now, type "Bot.moveRight();", "Bot.moveDown();", and "Bot.interact();"
+      on separate lines and hit the play button. Nothing else in the editor but that,
+      capisce?

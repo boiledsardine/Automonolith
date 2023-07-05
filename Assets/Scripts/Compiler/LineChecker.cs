@@ -145,15 +145,41 @@ public class LineChecker{
     //checks for botty call
     private bool checkBotCall(string[] sections){
         if(sections[1] == "."){
+            //checks if function name exists in list of valid functions
             if(!FunctionHandler.builtInFunctions.Contains(sections[2])){
                 addErr(string.Format("Line {0}: Bot has no definition for {1}!", lineIndex, sections[2]));
                 return false;
             }
+            if(sections[3] != "("){
+                //name is valid but no parentheses
+                addErr(string.Format("Line {0}: {1} is a method - add \"()\" after it!", lineIndex, sections[2]));
+                return false;
+            }
+
+            //checks parenthesis depth
+            int parenthesisDepth = 0;
+            foreach(string s in sections){
+                if(s == "("){
+                    parenthesisDepth++;
+                }
+                if(s == ")"){
+                    parenthesisDepth--;
+                }
+            }
+            if(parenthesisDepth > 0){
+                addErr(string.Format("Line {0}: line has an unclosed parenthesis pair!", lineIndex));
+                return false;
+            }
+            if(parenthesisDepth < 0){
+                addErr(string.Format("Line {0}: line has an unopened parenthesis pair!", lineIndex));
+                return false;
+            }
+            
             if(!checkExpression(sections, 3)){
                 return false;
             }
         } else {
-            addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[1]));
+            addErr(string.Format("Line {0}: unexpected token {1}, was expecting a \".\"!", lineIndex, sections[1]));
             return false;
         }
         return true;

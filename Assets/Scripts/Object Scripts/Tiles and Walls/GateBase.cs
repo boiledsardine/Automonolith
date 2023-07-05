@@ -12,6 +12,7 @@ public class GateBase : MonoBehaviour{
     }
 
     protected IEnumerator openGate(){
+        gameObject.layer = 0;
         float timeElapsed = 0;
         while(timeElapsed < Globals.Instance.timeToMove){
             transform.position = Vector3.Lerp(closedPos, openPos,

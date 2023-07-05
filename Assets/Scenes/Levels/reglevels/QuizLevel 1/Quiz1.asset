@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2e6422ecfe85147a7b2436171f42b7, type: 3}
+  m_Name: Quiz1
+  m_EditorClassIdentifier: 
+  quizBlocks:
+  - question: What do you put at the end of a line of code to denote a complete statement?
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - '{'
+    - ;
+    - .
+    correctAnswer: 1
+  - question: 'What steps shall G4wain take if given the following instructions?
+
+
+      Bot.moveUp();
+
+      Bot.moveDown();
+
+      Bot.moveLeft();'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - One up, one left, one down
+    - Two up, one down, one left
+    - One up, one down, one left
+    correctAnswer: 2
+  - question: 'What is the name of the method called in the code segment below?
+
+
+      Bot.interact();'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - interact
+    - moveUp
+    - turnLeft
+    correctAnswer: 0
+  - question: 'Which of the following methods is called correctly?
+
+
+      A.) Bot.moveUp(;
+
+      B.)
+      BotmoveLeft[;
+
+      C.) Bot.moveRight();'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - A
+    - B
+    - C
+    correctAnswer: 2
+  - question: 'What value is used as the argument of the method called in the code
+      segment below?
+
+
+      Console.WriteLine(30);'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - 10
+    - 20
+    - 30
+    correctAnswer: 2

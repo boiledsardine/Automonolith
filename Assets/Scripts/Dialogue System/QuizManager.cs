@@ -8,9 +8,12 @@ public class QuizManager : DialogueSystemBase{
 
     [SerializeField] private Text[] choiceText;
     [SerializeField] private Animator[] buttonAnimators;
-    [SerializeField] private QuizItem[] npcQuizBlocks;
+    private Queue<QuizItem> quizItems;
+    private QuizItem currentItem;
+    private bool isRightOrWrong = false;
+    public int quizScore = 0;
 
-    private QuizItem quizItem;
+    public GameObject quizManager;
 
     new void Awake(){
         if(Instance == null){
@@ -19,95 +22,124 @@ public class QuizManager : DialogueSystemBase{
         } else {
             Destroy(gameObject);
         }
+
+        quizItems = new Queue<QuizItem>();
     }
 
     public override void startDialogue(Conversation convoToLoad){
-        dialogueBoxAnimator.SetBool("isOpen", true);
-        panelAnimator.SetBool("isOpen", true);
-        
-
-        Debug.Log("Starting conversation with " + quizItem.npcName);
-        dialogueLines.Clear();
-
-        npcHighlight(quizItem);
-
-        nameText.text = quizItem.npcName;
-
-        foreach(string s in quizItem.lines){
-            //dialogueLines.Add(s);
-        }
-
-        //string line = dialogueLines[0];
-        currentLine = 0;
-        StopAllCoroutines();
-        //StartCoroutine(typeSentence(line));
+        //do nothing
     }
 
+    public void startQuiz(Quiz quizToLoad){
+        dialogueCanvas.gameObject.SetActive(true);
+
+        foreach(QuizItem qq in quizToLoad.quizBlocks){
+            quizItems.Enqueue(qq);
+        }
+
+        Debug.Log(quizItems.Count);
+
+        dialogueBoxAnimator.SetBool("isOpen", true);
+        panelAnimator.SetBool("isOpen", true);
+
+        loadQuizItem();
+    }
+
+    
+    //invoked upon pressing next button
     public void checkIfChoice(){
-        if(quizItem.hasChoice){
+        if(currentItem.hasChoice && !isRightOrWrong){
             Debug.Log("Answer the question to proceed");
             return;
         }
-        nextLine();
+
+        isRightOrWrong = false;
+        loadQuizItem();
     }
+    
+    public void loadQuizItem(){
+        //check if there's another block in the queue
+        //if yes, end dialogue
+        //if no, load the next one
+        if(quizItems.Count == 0){
+            //send broadcast
+            quizManager.BroadcastMessage("QuizEnd");
 
-    public override void nextLine(){
-        if(currentLine != dialogueLines.Count){
-            currentLine++;
+            endDialogue();
+            return;
         }
 
-        if(currentLine == dialogueLines.Count){
-            if(currentBlock == stopIndex){
-                Debug.Log("Current: " + currentBlock + "; Stopping at: " + stopIndex);
-                endDialogue();
-                return;
-            } else if(currentBlock == npcQuizBlocks.Length - 1){
-                currentLine = dialogueLines.Count - 1;
-                endDialogue();
-                return;
-            } else {
-                
-                return;
-            }
-        }
+        currentItem = quizItems.Dequeue();
 
-        //string line = dialogueLines[currentLine];
-        StopAllCoroutines();
-        //StartCoroutine(typeSentence(line));
+        nameText.text = currentItem.npcName;
 
-        //checks if current item has a choice
-        //if it does, opens the buttons and sets their text
-        //if it doesn't, closes any open buttons
-        if(quizItem.hasChoice){
+        if(currentItem.hasChoice){
             for(int i = 0; i < buttonAnimators.Length; i++){
                 buttonAnimators[i].SetBool("isOpen", true);
-                choiceText[i].text = quizItem.choices[i];
+                choiceText[i].text = currentItem.choices[i];
             }
         } else {
             buttonAnimators[0].SetBool("isOpen", false);
             buttonAnimators[1].SetBool("isOpen", false);
             buttonAnimators[2].SetBool("isOpen", false);
         }
+
+        dialogueText.text = currentItem.question;
+    }
+
+    public void loadCorrect(){
+        buttonAnimators[0].SetBool("isOpen", false);
+        buttonAnimators[1].SetBool("isOpen", false);
+        buttonAnimators[2].SetBool("isOpen", false);
+
+        dialogueText.text = "That is the correct answer.";
+        isRightOrWrong = true;
+    }
+
+    public void loadIncorrect(){
+        buttonAnimators[0].SetBool("isOpen", false);
+        buttonAnimators[1].SetBool("isOpen", false);
+        buttonAnimators[2].SetBool("isOpen", false);
+
+        dialogueText.text = "That is incorrect.";
+        isRightOrWrong = true;
+    }
+
+    char letter(){
+        switch(currentItem.correctAnswer){
+            case Letters.A:
+                return 'A';
+            case Letters.B:
+                return 'B';
+            case Letters.C:
+                return 'C';
+            default:
+                return 'x';
+        }
     }
 
     public void clickA(){
-        checkAnswer('A');
+        checkAnswer(Letters.A);
     }
     
     public void clickB(){
-        checkAnswer('B');
+        checkAnswer(Letters.B);
     }
 
     public void clickC(){
-        checkAnswer('C');
+        checkAnswer(Letters.C);
     }
 
-    public void checkAnswer(char answer){
-        if(answer == quizItem.correctAnswer){
-            nextLine();
+    public void checkAnswer(Letters answer){
+        if(answer == currentItem.correctAnswer){
+            quizScore++;
+            loadCorrect();
         } else {
-            StopAllCoroutines();
-            StartCoroutine(typeSentence("Incorrect!"));
+            loadIncorrect();
         }
+    }
+
+    public override void nextLine() {
+        //do nothing
     }
 }

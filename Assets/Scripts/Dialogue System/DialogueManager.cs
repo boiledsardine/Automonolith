@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : DialogueSystemBase{
     public static DialogueManager Instance;
-    [SerializeField] private Conversation conversation;
     private Queue<Dialogue> dialogueBlocks;
 
     new void Awake(){
@@ -31,7 +30,6 @@ public class DialogueManager : DialogueSystemBase{
 
         loadDialogue();
 
-        currentLine = 0;
         StopAllCoroutines();
         StartCoroutine(typeSentence(dialogueLines.Dequeue()));
     }

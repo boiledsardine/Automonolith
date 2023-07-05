@@ -7,7 +7,7 @@ using UnityEngine;
 public class ErrorChecker : MonoBehaviour{
     [SerializeField] public Conversation errorConvo;
     [SerializeField] private Canvas DialogueCanvas;
-    [SerializeField] public Texture errorSprite;
+    [SerializeField] public Sprite errorSprite;
 
     //possible to alter dialogue to be said
     //do this: errorConvo.dialogueBlocks[0].lines[0] = "whatever here";

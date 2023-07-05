@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: ConvoPass
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 0
+    npcSprite: {fileID: 0}
+    lines:
+    - You've passed my test. Well done. As promised, you may pass.
+    - And as a further reward, I will share with you a technology of the Ancients.
+  - npcName: G4wain
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
+    lines:
+    - VARIABLE PROCESSING MODULE RECEIVED AND INSTALLED
+    - HAVE A NICE DAY :)
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Thank you. But this is...?
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - A modification for your construct - one that would let it read the inscryptions
+      on the Monolith's walls and store them into memory.
+    - So that these values may be changed or called upon whenever they are needed.
+    - You shall need it for the next floors of the Monolith.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Thank you.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Go now. I shall test you again next we meet. And may you find what you seek
+      in this place.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Look at that, you've passed your first test from a mysterious voice and got
+      G4wain an upgrade! Good for you.
+    - So, you heading deeper in, or...?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I'm getting on it, have some patience.

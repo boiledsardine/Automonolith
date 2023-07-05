@@ -9,7 +9,7 @@ public class CameraRotation : MonoBehaviour{
     public bool isRotating;
     private float xRotation;
 
-    [SerializeField] private Vector3 defaultPosition;
+    [SerializeField] public Vector3 defaultPosition;
     [SerializeField] private Quaternion defaultRotation;
     [SerializeField] private float moveSpeed = 10.0f;
     [SerializeField] private float rotateSpeed = 0.5f;
@@ -24,7 +24,15 @@ public class CameraRotation : MonoBehaviour{
     }
 
     public void ResetCameraDefaults(){
+        ResetCameraPosition();
+        ResetCameraRotation();
+    }
+
+    public void ResetCameraPosition(){
         gameObject.transform.position = defaultPosition;
+    }
+
+    public void ResetCameraRotation(){
         gameObject.transform.rotation = defaultRotation;
     }
 

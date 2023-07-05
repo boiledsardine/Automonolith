@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: ConvoStart
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Three floors in. You're not doing too bad for yourself so far, Arthur.
+    - I'd be lying if I didn't say I half-expected you to give up sooner or later.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Where would I be without that razor-sharp tongue of yours, Morgan?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Banging your head away trying to figure out how to make G4wain work, probably.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - '*sigh*'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - In any case, it seems G4wain's made it to the next floor. This one seems empty
+      compared to the last ones, though. Except for that big door at the other end.
+    - 'G4wain, heed these instructions: Bot.hold(); Bot.move();'
+  - npcName: G4wain
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
+    lines:
+    - 'HOLDING
+
+      PUSHING'
+    - UNMOVABLE OBJECT
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - That's just great, now how do we-
+  - npcName: ???
+    showNpc: 0
+    npcPos: 78
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Tresspassers.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - '!!!'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - ...
+  - npcName: ???
+    showNpc: 0
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Unseen will commanding this mindless construct, one that which bears the Key...
+      You cannot hide behind silence.
+    - I will grant your creation the power to speak. Answer my question.
+    - Who are you and why have you come here?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I am Arthur of the College of Arcanix, and I have come to explore the Monolith
+      seeking the knowledge of the Ancients.
+    - Who are you? Where are you? Why can't we see you?
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I am Nimue, caretaker of this monument of the Ancients and all that lie within
+      it. I cannot reveal my form yet - only speak through the systems of the Monolith.
+    - Arthur of Arcanix, you are the first of many to come here bearing the Key to
+      the Monolith. Perhaps you are fit to explore further, unlike the rest.
+    - Even though it is your construct who bears the Key in your stead.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Yes, well, I'm in no shape for exploration...
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - It matters little. For the test of the Monolith is not one of the body, but
+      one of the mind.
+    - And seeing that you have used the Key to get your construct to navigate this
+      far into the Monolith...
+    - It is perhaps fair to say that you have the potential to comprehend the secrets
+      of those you call the Ancients.
+    - Though this door before you shall not open unless I will it to.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Thank you. So, may we pass?
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Not yet.
+    - I wish to ascertain your abilities before I grant you passage further into
+      the Monolith.
+    - I will ask you questions about the language that which you have been using.
+      Get half of them right, and I shall let you through.
+    - However, fail to pass my test and I shall turn you away.
+    - Are you prepared?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I am.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Then let us begin.

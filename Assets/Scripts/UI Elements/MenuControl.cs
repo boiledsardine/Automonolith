@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuControl : MonoBehaviour{
     public static MenuControl Instance { get; private set; }
 
+    [SerializeField] private Canvas menuCanvas;
     [SerializeField] private Animator panelAnimator;
     [SerializeField] private Animator submenuAnimator;
     [SerializeField] private EditorSaveLoad saveLoad;
@@ -19,7 +20,7 @@ public class MenuControl : MonoBehaviour{
     }
 
     public void openMenu(){
-        gameObject.transform.parent.gameObject.SetActive(true);
+        menuCanvas.gameObject.SetActive(true);
         panelAnimator.SetBool("isOpen", true);
         submenuAnimator.SetBool("isOpen", true);
     }
@@ -31,7 +32,7 @@ public class MenuControl : MonoBehaviour{
     }
 
     private void disableMenu(){
-        gameObject.transform.parent.gameObject.SetActive(false);
+        menuCanvas.gameObject.SetActive(false);
     }
 
     public void options(){

@@ -61,6 +61,7 @@ public class CodeEditor : MonoBehaviour{
                 if(legalChars.Contains(c.ToString().ToLower())){
                     lastInputTime = Time.time;
                     string[] codeLines = code.Split('\n');
+
                     string currentLine = codeLines[lineIndex];
 
                     codeLines[lineIndex] = currentLine.Insert(charIndex, c.ToString());

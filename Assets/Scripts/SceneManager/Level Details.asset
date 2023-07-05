@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Level Details
   m_EditorClassIdentifier: 
   levelDetails:
-  - levelName: Testing Map
-    levelDesc: This is a testing map! This is testing text. This shouldn't show up
-      in the final game at all.
+  - levelName: Basic Controls
+    levelDesc: This is a tutorial for basic controls in Automonolith - camera controls
+      and the buttons you'll be pressing for the game.
+  - levelName: Syntax and Methods
+    levelDesc: This is a tutorial for calling methods - a block of instructions which
+      tell the computer what to do.
   - levelName: Level 1
-    levelDesc: This is level 1. It teaches things about level 1, like level 1 stuff.
+    levelDesc: Reach the exit totem by moving pillars out of the way.
   - levelName: Level 2
-    levelDesc: 'MUTEKI NO EGAO DE ARASU MEDIA
-
-      SHIRITAI SONO HIMITSU MYSTERIOUS'
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
   - levelName: Level 3
-    levelDesc: 'Play Lobotomy Corporation
-
-      10/10 if you like pain'
+    levelDesc: Reach the exit totem by opening both gates with the floor buttons.
+  - levelName: Level 4
+    levelDesc: Arthur, G4wain, and Morgan are faced with a test.

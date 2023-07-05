@@ -7,12 +7,12 @@ public class EditorToggle : MonoBehaviour{
     public Animator panelAnimator;
 
     public void openEditor(){
-        editorCanvas.transform.gameObject.SetActive(true);
+        editorCanvas.gameObject.SetActive(true);
         panelAnimator.SetBool("isOpen", true);
     }
 
     public void closeEditor(){
-        if(!gameObject.transform.parent.gameObject.activeSelf || !panelAnimator.GetBool("isOpen")){
+        if(!editorCanvas.gameObject.activeSelf || !panelAnimator.GetBool("isOpen")){
             return;
         }
 
@@ -21,6 +21,6 @@ public class EditorToggle : MonoBehaviour{
     }
 
     public void disableEditor(){
-        editorCanvas.transform.gameObject.SetActive(false);
+        editorCanvas.gameObject.SetActive(false);
     }
 }

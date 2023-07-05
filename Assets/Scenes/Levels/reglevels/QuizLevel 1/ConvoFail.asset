@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: ConvoFail
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 0
+    npcSprite: {fileID: 0}
+    lines:
+    - ...
+    - You've failed my test.
+    - Thus, I cannot allow you to go further.
+    - Turn back now and come back when you are ready.

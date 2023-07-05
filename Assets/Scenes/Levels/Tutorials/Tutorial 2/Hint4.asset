@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Hint4
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - This gate works a bit differently than the last. Instead of a key, it's wired
+      to that brown button. Of course, G4wain can step on it to open the gate, but
+      then he'd have to stand on it forever.
+    - That stone pillar could press the button for G4wain. Turn to face the pillar,
+      then hold it. Once held, the pillar will move in the same direction that G4wain
+      does.
+    - Once it's on the button, use "Bot.drop();" to leave it there, then move past
+      the gate and onto the button.

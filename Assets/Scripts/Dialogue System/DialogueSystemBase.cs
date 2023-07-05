@@ -4,21 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class DialogueSystemBase : MonoBehaviour{
+    [SerializeField] protected Canvas dialogueCanvas;
     [SerializeField] protected TMPro.TMP_Text nameText;
     [SerializeField] protected TMPro.TMP_Text dialogueText;
 
     protected Queue<string> dialogueLines;
+    protected Queue<string> quizLines;
     
     [SerializeField] protected Animator panelAnimator;
     [SerializeField] protected Animator dialogueBoxAnimator;
-    [SerializeField] protected RawImage leftSprite;
-    [SerializeField] protected RawImage rightSprite;
-    protected int currentLine = -1;
-    protected int currentBlock = -1;
-    protected int stopIndex;
+    [SerializeField] protected Image leftSprite;
+    [SerializeField] protected Image rightSprite;
 
     public void Awake(){
         dialogueLines = new Queue<string>();
+        quizLines = new Queue<string>();
     }
 
     public abstract void startDialogue(Conversation convoToLoad);
@@ -37,45 +37,49 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     public void endDialogue(){
         dialogueBoxAnimator.SetBool("isOpen", false);
         panelAnimator.SetBool("isOpen", false);
-        leftSprite.GetComponent<RawImage>().enabled = false;
-        rightSprite.GetComponent<RawImage>().enabled = false;
+        leftSprite.GetComponent<Image>().enabled = false;
+        rightSprite.GetComponent<Image>().enabled = false;
         Debug.Log("End of conversation");
         Invoke("disableCanvas", 0.25f);
     }
 
+    public void enableCanvas(){
+        dialogueCanvas.gameObject.SetActive(true);
+    }
+
     public void disableCanvas(){
-        gameObject.transform.parent.gameObject.SetActive(false);
+        dialogueCanvas.gameObject.SetActive(false);
     }
 
     public void npcHighlight(Dialogue dialogue){
         if(dialogue.showNpc){
-            RawImage rawImageLeft = leftSprite.GetComponent<RawImage>();
-            RawImage rawImageRight = rightSprite.GetComponent<RawImage>();
+            Image ImageLeft = leftSprite.GetComponent<Image>();
+            Image ImageRight = rightSprite.GetComponent<Image>();
             switch(dialogue.npcPos){
                 case 'L':
-                    rawImageLeft.enabled = true;
-                    rawImageLeft.texture = dialogue.npcSprite;
-                    rawImageLeft.color = Color.white;
-                    rawImageRight.color = Color.gray;
+                    ImageLeft.enabled = true;
+                    ImageLeft.sprite = dialogue.npcSprite;
+                    ImageLeft.color = Color.white;
+                    ImageRight.color = Color.gray;
                     break;
                 case 'R':
-                    rawImageRight.enabled = true;
-                    rawImageRight.texture = dialogue.npcSprite;
-                    rawImageRight.color = Color.white;
-                    rawImageLeft.color = Color.gray;
+                    ImageRight.enabled = true;
+                    ImageRight.sprite = dialogue.npcSprite;
+                    ImageRight.color = Color.white;
+                    ImageLeft.color = Color.gray;
                     break;
                 case 'B':
-                    rawImageLeft.color = Color.white;
-                    rawImageRight.color = Color.white;
+                    ImageLeft.color = Color.white;
+                    ImageRight.color = Color.white;
                     break;
                 case 'C':
-                    rawImageLeft.enabled = false;
-                    rawImageRight.enabled = false;
+                    ImageLeft.enabled = false;
+                    ImageRight.enabled = false;
                     break;
             }
         } else {
-            leftSprite.GetComponent<RawImage>().color = Color.gray;
-            rightSprite.GetComponent<RawImage>().color = Color.gray;
+            leftSprite.GetComponent<Image>().color = Color.gray;
+            rightSprite.GetComponent<Image>().color = Color.gray;
         }
     }
 }

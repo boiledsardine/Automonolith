@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuizTrigger : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+public class QuizTrigger : MonoBehaviour{
+    [SerializeField] public Quiz quiz;
+    [SerializeField] private Canvas dialogueCanvas;
+    public void startDialogue(){
+        dialogueCanvas.gameObject.SetActive(true);
+        QuizManager.Instance.startQuiz(quiz);
     }
 }

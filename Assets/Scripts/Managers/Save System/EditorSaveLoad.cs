@@ -9,7 +9,7 @@ public class EditorSaveLoad : MonoBehaviour{
     public static EditorSaveLoad Instance;
     public TMPro.TMP_Text editorText;
     public CodeEditor editor;
-    public int levelIndex; //0 is the testing map
+    public int levelIndex;
     private string editorSave;
     private List<EditorState> editorStates = new List<EditorState>();
 
@@ -37,6 +37,7 @@ public class EditorSaveLoad : MonoBehaviour{
 
     //replaces editor text with whatever's in the savefile
     //called when the level is opened
+    //does nothing if the editor state is empty
     public void LoadEditorState(){
         if(!File.Exists(editorSave)){
             return;
@@ -49,8 +50,21 @@ public class EditorSaveLoad : MonoBehaviour{
         }
 
         editorStates = JsonHelper.FromJson<EditorState>(content).ToList();
-        editor.code = editorStates[levelIndex].editorContent;
-        editorText.text = editorStates[levelIndex].editorContent;
+
+        if(!string.IsNullOrWhiteSpace(editorStates[levelIndex].editorContent)){
+            string savedText = editorStates[levelIndex].editorContent;
+            
+            editor.code = savedText;
+            editorText.text = savedText;
+
+            //update lineIndex and charIndex
+            string[] codeLines = savedText.Split('\n');
+            string finalLine = codeLines[codeLines.Length - 1];
+            int lineMaxIndex = finalLine.Length;
+
+            editor.lineIndex = codeLines.Length - 1;
+            editor.charIndex = lineMaxIndex;
+        }
     }
 }
 

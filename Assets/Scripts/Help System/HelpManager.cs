@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HelpManager : MonoBehaviour{
+    public Canvas helpCanvas;
     public TMPro.TMP_Text articleTitle, articleText, pageNumbers;
     public Button leftButton, rightButton;
     public Animator helpPanelAnim;
@@ -14,7 +15,7 @@ public class HelpManager : MonoBehaviour{
     int lastLoadedIndex = 0;
 
     public void openHelp(){
-        gameObject.transform.parent.gameObject.SetActive(true);
+        helpCanvas.gameObject.SetActive(true);
         loadArticle(lastLoadedIndex);
         helpPanelAnim.SetBool("isOpen", true);
     }
@@ -26,7 +27,7 @@ public class HelpManager : MonoBehaviour{
     }
 
     void disableHelp(){
-        gameObject.transform.parent.gameObject.SetActive(false);
+        helpCanvas.gameObject.SetActive(false);
     }
 
     public void loadArticle(int loadIndex){

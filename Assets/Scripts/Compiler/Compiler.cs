@@ -45,7 +45,7 @@ public class Compiler : MonoBehaviour{
     private int currentIndex = 0;
     private bool hasError = false;
     private bool hasArgError = false;
-
+    public int linesCount = 0;
     public void Awake(){
         if(Instance == null){
             Instance = this;
@@ -73,6 +73,7 @@ public class Compiler : MonoBehaviour{
 
     private void delayedRun(){
         if(isResetSuccessful()){
+            linesCount = 0;
             //Debug.Log("Exterminatus successful");
             preprocessCode(tmpInput.text);
             StartCoroutine(firstPass(0, codeLines.Length));
@@ -130,7 +131,15 @@ public class Compiler : MonoBehaviour{
             processedCode += formattedLine + '\n';
         }
         codeLines = formattedLines.ToArray();
-        lineCount.text = string.Format("Lines: {0}", codeLines.Length.ToString());
+
+        //count non-empty lines
+        foreach(string s in codeLines){
+            if(!string.IsNullOrWhiteSpace(s)){
+                linesCount++;
+            }
+        }
+
+        lineCount.text = string.Format("Lines: {0}", linesCount);
     }
 
     private IEnumerator firstPass(int lineIndex, int stopIndex){
@@ -165,7 +174,7 @@ public class Compiler : MonoBehaviour{
 
         //checks for the Read() function
         if(sections.Length > 1 && sections.Contains("read")){
-            currentLine = checkForRead(sections);
+            //currentLine = checkForRead(sections);
         }
 
         if((lineIndex + 1) >= codeLines.Length || (lineIndex + 1) == stopIndex){
@@ -184,7 +193,7 @@ public class Compiler : MonoBehaviour{
     //assuming the line is formatted correctly
     //otherwise the code won't even reach here
     //bc semicolons screw with reading expressions and function arguments
-    private string[] semicolonRemover(string[] sections){
+        private string[] semicolonRemover(string[] sections){
         string[] newSect = new string[sections.Length - 1];
         for(int i = 0; i < sections.Length - 1; i++){
             newSect[i] = sections[i];
@@ -213,8 +222,8 @@ public class Compiler : MonoBehaviour{
         }
     }
 
-
-    private string checkForRead(string[] sections){
+    //overridden by function checker
+    /*private string checkForRead(string[] sections){
         List<string> sectionList = sections.ToList();
         int readIndex = sectionList.IndexOf("read");
         
@@ -253,7 +262,7 @@ public class Compiler : MonoBehaviour{
         }
         
         return arrayToString(sectionList.ToArray(), 0);
-    }
+    }*/
    
     private void initializeVariable(string line){
         string[] sections = line.Split(' ');
@@ -311,6 +320,10 @@ public class Compiler : MonoBehaviour{
             errorChecker.noexistentVariableError(currentIndex + 1, varName);
             return;
         }
+        
+        if(sections.Contains("Bot")){
+            //check for read
+        }
 
         switch(allVars[varName]){
             case "int":
@@ -328,6 +341,57 @@ public class Compiler : MonoBehaviour{
                 strVars[varName] = strTxt;
                 break;
         }
+    }
+
+    private string CheckForRead(string[] sections){
+        //recur to check
+        //get index of bot
+        //check following tokens
+        //must be ., read, (, )
+        //if it's a different function call, cannot convert void to type
+        //if it's just Bot, error: is Type, not valid in current context
+
+
+        List<string> sectionList = sections.ToList();
+        int readIndex = sectionList.IndexOf("read");
+
+        int indexOfBot = Array.IndexOf(sections, "Bot");
+        //check following tokens
+        //must be ., read, (, )
+        if(sections[indexOfBot + 1] != "."){
+            //incorrect
+            //Bot is a type, not valid in current context
+            //if operator: not valid operand
+            return null;
+        }
+
+        if(sections[indexOfBot + 2] != "read"){
+            //incorrect
+            //if it's another valid call, cannot convert void to string
+            //if it's an invalid call, function does not exist
+            return null;
+        }
+
+        int depth = 0;
+        if(sections[indexOfBot + 3] != "("){
+            //incorrect
+            //error: invoke the method with "()"!
+            return null;
+        } else {
+            depth++;
+        }
+
+        if(sections[indexOfBot + 4] != ")"){
+            //incorrect
+            //error: either close the invocation or don't use args
+            return null;
+        }
+
+        return null;
+    }
+
+    private int wah(){
+        return 0;
     }
     
     private string formatOperator(string[] array, string opChar){        
@@ -371,7 +435,7 @@ public class Compiler : MonoBehaviour{
     public void terminateExecution(){
         clearDictionaries();
         Invoke("killTimer", Globals.Instance.timePerStep);
-        Debug.LogAssertion("Execution terminated");
+        Debug.Log("Execution terminated");
     }
 
     //delays the global coroutine stop by the global time to move

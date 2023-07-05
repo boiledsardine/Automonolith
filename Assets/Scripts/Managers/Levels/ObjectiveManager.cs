@@ -108,7 +108,7 @@ public class ObjectiveManager : MonoBehaviour {
     }
 
     public void SaveLevel(bool goal1, bool goal2, bool goal3){
-        LevelSaveLoad.Instance.SaveLevelInfo(levelIndex, goal1, goal2, goal3);
+        LevelSaveLoad.Instance.EndLevelSave(levelIndex, goal1, goal2, goal3, true);
     }
 
     public enum MainObjectiveType{

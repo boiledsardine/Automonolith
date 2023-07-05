@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBlocks:
   - npcName: Testia
-    showNpc: 1
+    showNpc: 0
     npcPos: 82
     npcSprite: {fileID: 2800000, guid: bc806e04249039b448c0121e66b0fd2a, type: 3}
     lines:
@@ -23,20 +23,20 @@ MonoBehaviour:
       episode 46.'
     - This is here only for testing and debug purposes!
   - npcName: DIO
-    showNpc: 1
+    showNpc: 0
     npcPos: 82
     npcSprite: {fileID: 2800000, guid: 518b4208d11000d468ab9d0c6d6fffe1, type: 3}
     lines:
     - Tsugi wa Jotaro...
     - KISAMA DA!
   - npcName: Jotaro Kujo
-    showNpc: 1
+    showNpc: 0
     npcPos: 76
     npcSprite: {fileID: 2800000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
     lines:
     - Yarou... DIO!
   - npcName: DIO
-    showNpc: 1
+    showNpc: 0
     npcPos: 82
     npcSprite: {fileID: 2800000, guid: 518b4208d11000d468ab9d0c6d6fffe1, type: 3}
     lines:
@@ -46,13 +46,13 @@ MonoBehaviour:
       chaimu chokuzen made mondai yo toitte iru jukensee ne you na? Kisshi koita
       kibun de wo shietekure ta to yuu no ni?
   - npcName: Jotaro Kujo
-    showNpc: 1
+    showNpc: 0
     npcPos: 76
     npcSprite: {fileID: 2800000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
     lines:
     - Chikadzukanakya teme wo buchi no me tenain de na.
   - npcName: DIO
-    showNpc: 1
+    showNpc: 0
     npcPos: 82
     npcSprite: {fileID: 2800000, guid: 518b4208d11000d468ab9d0c6d6fffe1, type: 3}
     lines:

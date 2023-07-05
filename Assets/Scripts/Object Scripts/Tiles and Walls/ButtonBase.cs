@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ButtonBase : MonoBehaviour{
     protected Vector3 originPos;
-    [SerializeField] protected GameObject boundObject;
+    [SerializeField] public GameObject boundObject;
 
     protected void Start(){
         originPos = transform.position;

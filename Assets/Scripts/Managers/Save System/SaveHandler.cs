@@ -8,10 +8,10 @@ using UnityEngine;
 //Does nothing in-game
 //This is a dev tool
 public class SaveHandler : MonoBehaviour{
-    List<LevelInfo> savedLevels = new List<LevelInfo>();
-    List<EditorState> editorStates = new List<EditorState>();
-    string levelSave;
-    string editorSave;
+    public List<LevelInfo> savedLevels = new List<LevelInfo>();
+    public List<EditorState> editorStates = new List<EditorState>();
+    public string levelSave;
+    public string editorSave;
 
     void Start(){
         levelSave = Application.dataPath + "/SaveLevels.json";
@@ -21,18 +21,18 @@ public class SaveHandler : MonoBehaviour{
         DebugListCount();
     }
 
-    public void AddSaveEntry(){
+    public void AddLevelSaveEntry(){
         savedLevels.Add(new LevelInfo(false, false, false, false));
-        editorStates.Add(new EditorState(""));
-
+        
         string levelContent = JsonHelper.ToJson<LevelInfo>(savedLevels.ToArray(), true);
         File.WriteAllText(levelSave, levelContent);
+    }
+
+    public void AddEditorSaveEntry(){
+        editorStates.Add(new EditorState(""));
 
         string editorContent = JsonHelper.ToJson<EditorState>(editorStates.ToArray(), true);
         File.WriteAllText(editorSave, editorContent);
-        
-        Debug.Log("Added new entry to level and editor saves");
-        DebugListCount();
     }
 
     void DebugListCount(){
@@ -41,7 +41,11 @@ public class SaveHandler : MonoBehaviour{
     }
 
     public void LoadSaveFiles(){
-        if(!File.Exists(levelSave) || !File.Exists(editorSave)){
+        if(!File.Exists(levelSave)){
+            return;
+        }
+
+        if(!File.Exists(editorSave)){
             return;
         }
         
