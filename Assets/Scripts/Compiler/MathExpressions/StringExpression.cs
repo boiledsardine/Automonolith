@@ -21,7 +21,7 @@ public class StringExpression{
                 int stringStartIndex = s.IndexOf("\"");
                 int stringEndIndex = s.LastIndexOf("\"");
                 for(int i = stringStartIndex + 1; i < stringEndIndex; i++){
-                    if(literal[i] == '|'){
+                    if(literal[i] == '^'){
                         sentence += ' ';
                     } else {
                         sentence += literal[i];
@@ -37,7 +37,7 @@ public class StringExpression{
 }
 
 public class StringValue{
-    Dictionary<string, string> allVars;
+    Dictionary<string, VariableInfo> allVars;
     Dictionary<string, int> intVars;
     Dictionary<string, string> strVars;
     public List<string> strTexts;
@@ -68,12 +68,13 @@ public class StringValue{
         }
     }
     
-    //replaces whitespaces in literals with '|'
+    //replaces whitespaces in literals with '^'
     //which is eventually replaced by StringExpression class
     //prevents shenanigans with anything that splits a string by whitespace
     //shenanigans being literals being split by space too and throwing errors everywhere
-    //of course this means that you can't put '|' in a string literal anymore
+    //of course this means that you can't put '^' in a string literal anymore
     //gotta fix that somehow
+    //or not
     private string processLiteral(string expression){
         char[] charArray = expression.ToCharArray();
         bool isLiteral = false;
@@ -86,7 +87,7 @@ public class StringValue{
                 isLiteral = false;
                 substring += c;
             } else if(c == ' '){
-                substring += '|';
+                substring += '^';
             } else {
                 substring += c;
             }

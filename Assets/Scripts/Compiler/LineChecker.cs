@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 public class LineChecker{
     public LineType lineType = LineType.none;
     public bool hasError = false;
-    Dictionary<string, string> allVars;
+    Dictionary<string, VariableInfo> allVars;
     int lineIndex;
     ErrorChecker errorChecker;
 
@@ -30,6 +30,7 @@ public class LineChecker{
         string[] sections = inputLine.Split(' ');
 
         //checks for variable initialization
+        //to add a new data type, add it in ReservedConstants.varTypes
         if(ReservedConstants.varTypes.Contains(sections[0])){
             if(!checkInitialize(sections)){
                 hasError = true;
@@ -38,11 +39,28 @@ public class LineChecker{
         }
         //checks for variable assignment
         else if(allVars.ContainsKey(sections[0])){
-            if(checkAssignment(sections)){
+            if(checkAssignment(sections, sections[0])){
                 lineType = LineType.varAssign;
             } else {
                 hasError = true;
                 return;
+            }
+        }
+        //checks for array variable assignment
+        //this block is probably obsolete???
+        //since array index checking happens in preprocessing
+        else if(sections[0].Contains("[") && sections[0].Contains("]")){
+            string varName = sections[0].Substring(0, sections[0].IndexOf("["));
+            if(allVars.ContainsKey(varName)){
+                //Debug.Log("got here!");
+                if(checkAssignment(sections, varName)){
+                    //Debug.Log("successful assignment");
+                    lineType = LineType.varAssign;
+                } else {
+                    //Debug.Log("assignment error");
+                    hasError = true;
+                    return;
+                }
             }
         }
         //checks for a call using "Bot."
@@ -96,6 +114,7 @@ public class LineChecker{
             return false;
         }
 
+        //initializes AND assigns
         if(sections[2] == "="){
             if(!checkExpression(sections, 3)){
                 return false;
@@ -122,8 +141,8 @@ public class LineChecker{
         return true;
     }
 
-    private bool checkAssignment(string[] sections){
-        if(allVars.ContainsKey(sections[0])){
+    private bool checkAssignment(string[] sections, string varName){
+        if(allVars.ContainsKey(varName)){
             if(sections[1] == "="){
                 if(!checkExpression(sections, 2)){
                     return false;
@@ -136,7 +155,7 @@ public class LineChecker{
                 return false;
             }
         } else {
-            addErr(string.Format("Line {0}: variable {1} does not exist!", lineIndex, sections[0]));
+            addErr(string.Format("Line {0}: variable {1} does not exist!", lineIndex, varName));
             return false;
         }
         return true;
@@ -190,8 +209,10 @@ public class LineChecker{
         bool isExpectingValue = true;
         //everything else should be part of the expression
         for(int i = index; i < sections.Length; i++){
+            //error: math operator right after an "=" sign
             if(ReservedConstants.mathOperators.Contains(sections[i])){
                 if(sections[i - 1] == "="){
+                    //Debug.Log("unexpected token error");
                     addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[i]));
                     return false;
                 } else {
@@ -206,15 +227,25 @@ public class LineChecker{
             //dont add parentheses to the pattern
             //if you do this thing won't read expressions right
             //because then it'll flip isExpectingValue and you're screwed
+            //Debug.Log(sections[i]);
             if(isExpectingValue && Regex.IsMatch(sections[i], @"^[a-zA-Z0-9_]+$")){
-                if(isValidVarName(sections[i]) && allVars.ContainsKey(sections[i])){
+                //Debug.Log("matches regex net");
+                if(sections[i] == "true" || sections[i] == "false"){
+                    //do nothing
+                    //this is in here so the compiler can process boolean assignments
+                    //removing this makes the interpreter treat true/false values as numerical expressions
+                    //which subjects it to the same rules and errors as math expressions
+                } else if(isValidVarName(sections[i]) && allVars.ContainsKey(sections[i])){
+                    //Debug.Log("not expecting value");
                     isExpectingValue = false;
                 } else if(isValidVarName(sections[i]) && !allVars.ContainsKey(sections[i])){
                     addErr(string.Format("Line {0}: variable {1} does not exist!", lineIndex, sections[i]));
                     isExpectingValue = false;
+                    //Debug.Log("var doesn't exist error");
                     return false;
                 } else {
                     addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[i]));
+                    //Debug.Log("unexpected token error");
                     return false;
                 }
             }

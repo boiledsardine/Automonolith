@@ -18,22 +18,37 @@ public class ReservedConstants{
         "<=",
         ">=",
         "==",
+        "!=",
         "//"
     };
 
     public static readonly string[] varTypes = {
         "int",
-        "string"
+        "int[]",
+        "string",
+        "bool"
+    };
+
+    public static readonly string[] comparisonOperators = {
+        "&&",
+        "||",
+        "<",
+        "<=",
+        "==",
+        ">=",
+        ">",
+        "!="
     };
 
     public const string mathOperators = "+-*/";
 
     public const string parentheses = "()";
     public const string allMathOperators = mathOperators + parentheses;
-    const string comparisonOperators = "<>=";
+    const string comparisonString = "<>=";
     //const string textChars = "\"'";
     const string specChars = ".;,";
-    public const string allOperators = allMathOperators + comparisonOperators + specChars;
+    public const string arrayIndexSeparator = "`";
+    public const string allOperators = allMathOperators + comparisonString + specChars;
     public static readonly string[] reserved = FunctionHandler.builtInFunctions.Concat(varTypes).ToArray();
 }
 

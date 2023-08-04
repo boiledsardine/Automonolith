@@ -73,7 +73,7 @@ public class TutorialManager3 : MonoBehaviour, IActivate{
     }
 
     public void AddVars(){
-        Compiler.Instance.allVars.Add("num", "int");
+        Compiler.Instance.allVars.Add("num", new VariableInfo(VariableInfo.Type.intVar, true));
         Compiler.Instance.intVars.Add("num", 3);
     }
 

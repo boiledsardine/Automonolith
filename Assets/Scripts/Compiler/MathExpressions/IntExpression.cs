@@ -142,7 +142,7 @@ public class IntExpression{
 }
 
 public class IntValue{
-    Dictionary<string, string> allVars;
+    Dictionary<string, VariableInfo> allVars;
     Dictionary<string, int> intVars;
     Dictionary<string, string> strVars;
     public List<int> intValues;
@@ -166,16 +166,19 @@ public class IntValue{
             if(ReservedConstants.allMathOperators.Contains(currentSection)){
                 addOperatorElement(currentSection);
             } else if(allVars.ContainsKey(currentSection)){
-                if(intVars.ContainsKey(currentSection)){
-                    intValues.Add(intVars[currentSection]);
-                    elements.Add(MathExpression.Value);
-                } else if(strVars.ContainsKey(currentSection)){
-                    int value;
-                    if(int.TryParse(strVars[currentSection], out value)){
-                        intValues.Add(value);
+                //check if variable is int
+                if(allVars[currentSection].type == VariableInfo.Type.intVar){
+                    //proceed
+                    if(intVars.ContainsKey(currentSection)){
+                        intValues.Add(intVars[currentSection]);
                         elements.Add(MathExpression.Value);
                     }
-                } else {
+                }
+                else {
+                    //error works
+                    //still goes on though because the default value for an integer is 0
+                    //throw an error
+                    //force compiler execution to stop and launch an error message
                     Debug.Log("Cannot be cast into int!");
                 }
             } else {

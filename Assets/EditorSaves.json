@@ -1,7 +1,7 @@
 {
     "Items": [
         {
-            "editorContent": "//this is a comment\n//comments are marked with a double slash\n//these aren't processed as instructions\n//they're here so you can read them\n\n//type the following, but remove the double slash\n//Bot.moveRight();\n//Bot.moveDown();\n//Bot.interact();\n\nBot.moveRight();\nBot.moveDown();\nBot.interact();"
+            "editorContent": "int[] wah = {1,2,3*3,4,5}\n\nwah[3] *= 4\n\nBot.say(wah[3])"
         },
         {
             "editorContent": "//Press the button\n\n//Move next to the yellow button\n//Then turn right\n//Then interact with it\n//Make your way next to the exit\n//Then face it and interact with it \n\nBot.moveUp(3);\nBot.turnRight();\nBot.interact();\nBot.moveUp();\nBot.moveRight(3);\nBot.interact();"

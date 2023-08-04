@@ -7,7 +7,10 @@ using CodeEditorComponents;
 
 public class CodeEditor : MonoBehaviour{
     const string indentString = "  ";
-    const string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=%&,<>()[]{};'\"!";
+
+    //please for the love of god don't add $ or ^ or `
+    //those chars are used for special purposes
+    const string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=%&|,<>()[]{};'\"!`";
 
     public TMPro.TMP_Text editorMainText;
     public TMPro.TMP_Text editorLineNumbers;

@@ -9,7 +9,7 @@ public class FunctionProcessor {
     public List<List<ArgTypes>> argTypes;
     public int argsCount;
     public string[] passedArgs;
-    private Dictionary<string, string> allVars;
+    private Dictionary<string, VariableInfo> allVars;
 
     public FunctionProcessor(string functionLine){
         this.allVars = Compiler.Instance.allVars;
@@ -61,12 +61,12 @@ public class FunctionProcessor {
         //makes new list of string lists called typesInArgs
         //checks each element in argsSections
         //if current element is a variable, adds its type to typesInArgs
-        List<List<string>> typesInArgs = new List<List<string>>();
+        List<List<VariableInfo.Type>> typesInArgs = new List<List<VariableInfo.Type>>();
         for(int i = 0; i < argsSections.Count; i++){
-            typesInArgs.Add(new List<string>());
+            typesInArgs.Add(new List<VariableInfo.Type>());
             for(int j = 0; j < argsSections[i].Length; j++){
                 if(allVars.ContainsKey(argsSections[i][j])){
-                    typesInArgs[i].Add(allVars[argsSections[i][j]]);
+                    typesInArgs[i].Add(allVars[argsSections[i][j]].type);
                 }
             }
         }
@@ -87,11 +87,14 @@ public class FunctionProcessor {
                 string s = argsSections[i][j];
                 s = s.Trim();
 
-                if(Regex.IsMatch(s, intPattern) || typesInArgs[i].Contains("int")){
+                if(Regex.IsMatch(s, intPattern) || typesInArgs[i].Contains(VariableInfo.Type.intVar)){
                     argTypes[i].Add(ArgTypes.integer);
                 }
-                if(Regex.IsMatch(s, stringPattern) || typesInArgs[i].Contains("string")){
+                if(Regex.IsMatch(s, stringPattern) || typesInArgs[i].Contains(VariableInfo.Type.strVar)){
                     argTypes[i].Add(ArgTypes.textstring);
+                }
+                if(typesInArgs[i].Contains(VariableInfo.Type.intVarArr)){
+                    argTypes[i].Add(ArgTypes.integer);
                 }
                 passedArgs[i] = arrayToString(argsSections[i].ToArray(), 0);
             }

@@ -25,7 +25,7 @@ public class FunctionHandler : MonoBehaviour{
     [SerializeField] private TMPro.TMP_Text stepCount;
     private int steps = 0;
 
-    Dictionary<string, string> allVars;
+    Dictionary<string, VariableInfo> allVars;
     Dictionary<string, int> intVars;
     Dictionary<string, string> strVars;
     int argsCount;
