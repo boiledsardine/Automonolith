@@ -48,6 +48,9 @@ public class Compiler : MonoBehaviour{
     public Dictionary<string, bool> boolVars{
         get { return _boolVars; }
     }
+    public string[] getCodeLines{
+        get { return codeLines; }
+    }
 
     private int currentIndex = 0;
     private bool hasError = false;
@@ -89,7 +92,7 @@ public class Compiler : MonoBehaviour{
             StartCoroutine(firstPass(0, codeLines.Length));
         }
     }
-    
+
     private void preprocessCode(string rawCode){
         //reserves the $read name for the read() function
         allVars.Add("$read", new VariableInfo(VariableInfo.Type.strVar, true));
@@ -150,11 +153,41 @@ public class Compiler : MonoBehaviour{
             formattedLines.Add(formattedLine);
             processedCode += formattedLine + '\n';
         }
-        codeLines = formattedLines.ToArray();
 
-        /*foreach(string s in codeLines){
-            Debug.Log(s);
-        }*/
+        foreach(string s in formattedLines){
+            Debug.Log("formattedLines: " + s);
+        }
+        
+        //remove newlines before and after braces
+        for(int i = 0; i < formattedLines.Count; i++){
+            string s = formattedLines[i];
+            string beforeS = i == 0 ? "notempty" : formattedLines[i - 1];
+            string afterS = i == formattedLines.Count - 1 ? "notempty" : formattedLines[i + 1];
+
+            if(s == "{" || s == "}"){
+                if(string.IsNullOrEmpty(afterS)){
+                    formattedLines.RemoveAt(i + 1);
+                }
+                if(string.IsNullOrEmpty(beforeS)){
+                    formattedLines.RemoveAt(i - 1);
+                    i--;
+                }
+            }
+
+            if(s =="}"){
+                afterS = i == formattedLines.Count - 1 ? "notempty" : formattedLines[i + 1];
+                //Debug.Log("afterS: " + afterS);
+                if(afterS == ";"){
+                    formattedLines[i] = "} ;";
+                    formattedLines.RemoveAt(i + 1);
+                }
+            }
+        }
+
+        codeLines = formattedLines.ToArray();
+        foreach(string s in codeLines){
+            Debug.Log("codeLines: " + s);
+        }
 
         //create condition block info
         List<ConditionBlocks> conditionBlocks = new List<ConditionBlocks>();
@@ -199,6 +232,8 @@ public class Compiler : MonoBehaviour{
             conditionByIndex.Add(condition.lineIndex, condition);
             //find else/else if attached to this block
             if(condition.type == ConditionBlocks.Type.If || condition.type == ConditionBlocks.Type.ElseIf){
+                //redundant loop
+                //TODO: remove nesting for
                 for(int j = i + 1; j < conditionBlocks.Count; j++){
                     var nextCondition = conditionBlocks[j];
 
@@ -231,6 +266,7 @@ public class Compiler : MonoBehaviour{
         lineCount.text = string.Format("Lines: {0}", linesCount);
     }
 
+    int braceDepth = 0;
     private IEnumerator firstPass(int lineIndex, int stopIndex){
         currentIndex = lineIndex;
         
@@ -244,18 +280,37 @@ public class Compiler : MonoBehaviour{
         //Debug for figuring out lineTypes:
         //Debug.Log(lineType);
 
-        /*if(lineChecker.hasError){
+        if(lineChecker.hasError){
             this.hasError = true;
         } else {
-            sections = semicolonRemover(sections);
+            if(sections.Length > 1){
+                sections = semicolonRemover(sections);
+            }
             currentLine = arrayToString(sections, 0);
-        }*/
+        }
 
         //remove this line once error checker is active again
-        lineChecker.hasError = false;
+        //lineChecker.hasError = false;
+
+        if(currentLine.Split(' ').Contains("$read")){
+            Interaction playerAct = GameObject.Find("PlayerCharacter").GetComponent<Interaction>();
+            strVars["$read"] = playerAct.read();
+            Debug.Log(strVars["$read"]);
+        }
+
+        //track bracket depth
+        if(lineType == LineType.openBrace){
+            braceDepth++;
+        }
+        if(lineType == LineType.closeBrace){
+            braceDepth--;
+        }
 
         if(!lineChecker.hasError && lineType == LineType.varInitialize){
             initializeVariable(currentLine);
+        }
+        if(!lineChecker.hasError && lineType == LineType.varAssign){
+            assignVariable(currentLine);
         }
 
         //argument errors should be checked here
@@ -265,10 +320,38 @@ public class Compiler : MonoBehaviour{
         }
 
         if((lineIndex + 1) >= codeLines.Length || (lineIndex + 1) == stopIndex){
+            if(braceDepth > 0){
+                Debug.LogWarning("Unclosed braces somewhere");
+                //hasError = true;
+            }
+            if(braceDepth < 0){
+                Debug.LogWarning("Unopened braces somewhere");
+                //hasError = true;
+            }
+
+            //check if any else or elseif declarations don't have a preceding condition
+            foreach(KeyValuePair<int, ConditionBlocks> entry in conditionByIndex){
+                var con = entry.Value;
+                bool hasLastBlock = con.lastBlock != null;
+                //Debug.Log(con.lineIndex + ", depth:" + con.depth + ": " +
+                //    con.type.ToString() + ", hasLastBlock: " + hasLastBlock);
+                if(con.type == ConditionBlocks.Type.ElseIf || con.type == ConditionBlocks.Type.Else){
+                    if(!hasLastBlock){
+                        //error
+                        Debug.LogWarning("Else/ElseIf cannot start a conditional chain");
+                        //hasError = true;
+                    }
+                }
+            }
+
             if(hasError || hasArgError){
                 errorChecker.writeError();
             } else {
                 Debug.LogWarning("No errors - starting second pass");
+                clearDictionaries(false);
+                //re-adds reserved $read var cleared by dict purge
+                allVars.Add("$read", new VariableInfo(VariableInfo.Type.strVar, true));
+                strVars.Add("$read", null);
                 StartCoroutine(secondPass(0, stopIndex));
             }
         } else {
@@ -281,11 +364,12 @@ public class Compiler : MonoBehaviour{
     //otherwise the code won't even reach here
     //bc semicolons screw with reading expressions and function arguments
     private string[] semicolonRemover(string[] sections){
-        string[] newSect = new string[sections.Length - 1];
-        for(int i = 0; i < sections.Length - 1; i++){
-            newSect[i] = sections[i];
+        List<string> newSect = sections.ToList();
+        if(newSect[newSect.Count - 1] == ";"){
+            newSect.RemoveAt(newSect.Count - 1);
         }
-        return newSect;
+
+        return newSect.ToArray();
     }
 
     private IEnumerator secondPass(int lineIndex, int stopIndex){
@@ -293,9 +377,32 @@ public class Compiler : MonoBehaviour{
         currentIndex = lineIndex;
         
         string currentLine = codeLines[lineIndex];
+        string[] sections = currentLine.Split(' ');
         
         LineChecker lineChecker = new LineChecker(currentLine, lineIndex + 1, errorChecker);
         LineType lineType = lineChecker.lineType;
+
+        if(lineChecker.hasError){
+            this.hasError = true;
+        } else {
+            if(sections.Length > 1){
+                sections = semicolonRemover(sections);
+            }
+            currentLine = arrayToString(sections, 0);
+        }
+
+        if(currentLine.Split(' ').Contains("$read")){
+            Interaction playerAct = GameObject.Find("PlayerCharacter").GetComponent<Interaction>();
+            strVars["$read"] = playerAct.read();
+            Debug.Log(strVars["$read"]);
+        }
+
+        if(lineType == LineType.varInitialize){
+            initializeVariable(currentLine);
+        }
+        if(lineType == LineType.varAssign){
+            assignVariable(currentLine);
+        }
 
         if(lineType == LineType.functionCall){
             functionHandler.initializeHandler(currentLine, lineIndex + 1);
@@ -307,7 +414,6 @@ public class Compiler : MonoBehaviour{
 
         //test if line is a conditional
         if(conditionByIndex.ContainsKey(lineIndex)){
-            Debug.Log("conditional detected");
             var condition = conditionByIndex[lineIndex];
             bool runCondition = GetConditionResult(currentLine);
 
@@ -327,7 +433,7 @@ public class Compiler : MonoBehaviour{
             }
 
             condition.lastEval = runCondition;
-            Debug.Log(runCondition);
+            //Debug.Log(runCondition);
             HandleCondition(runCondition, lineIndex, stopIndex);
             yield break;
         }
@@ -350,15 +456,6 @@ public class Compiler : MonoBehaviour{
                 StartCoroutine(secondPass(loopEndIndex + 1, stopIndex));
                 yield break;
             }
-        }
-
-        //if this is in first pass, variables aren't added in runtime
-        //making dynamically changing variables in runtime impossible
-        //as the variable takes its last value at the end of the code after 1st pass
-        //keep this here
-        //add error checking mechanism to second pass
-        if(lineType == LineType.varAssign){
-            assignVariable(currentLine);
         }
 
         if((lineIndex + 1) >= codeLines.Length || (lineIndex + 1) == stopIndex){
@@ -451,8 +548,6 @@ public class Compiler : MonoBehaviour{
                     int intValue = intEval.evaluate();
                     intVars[varName] = intValue;
                     allVars[varName].isSet = true;
-                } else {
-                    errorChecker.wrongTypeError(currentIndex + 1, varType);
                 }
                 break;
             case VariableInfo.Type.intVarArr:
@@ -520,8 +615,6 @@ public class Compiler : MonoBehaviour{
         }
     }
 
-    //IT WORKS NOW
-    //TODO: Check for Bot. callstring
     private string CheckForRead(string[] sections){
         //recur to check
         //get index of bot
@@ -534,7 +627,13 @@ public class Compiler : MonoBehaviour{
         int readIndex = sectionList.IndexOf("read");
 
         //something that checks for if "read()" is preceeded by "Bot."
+        if(!(sectionList[readIndex - 2] == "Bot" && sectionList[readIndex - 1] == ".")){
+            //TODO: error here - something to the effect of "G4wain has no definition for read()"
+        }
 
+        int botIndex = readIndex - 2;
+
+        //checks if read() is formatted correctly
         int depth = -1;
         List<string> readList = new List<string>();
         for(int i = readIndex; i < sectionList.Count; i++){
@@ -561,10 +660,8 @@ public class Compiler : MonoBehaviour{
         //checks if found read() contains no parameters
         //shit only reads strings
         if(arrayToString(readList.ToArray(), 0).Equals("read ( )")){
-            sectionList.RemoveRange(readIndex, 3);
-            sectionList.Insert(readIndex, "$read");
-            Interaction playerAct = GameObject.Find("PlayerCharacter").GetComponent<Interaction>();
-            strVars["$read"] = playerAct.read();
+            sectionList.RemoveRange(botIndex, 5);
+            sectionList.Insert(botIndex, "$read");
         } else {
             Debug.Log("went wrong somewhere");
         }
@@ -572,13 +669,13 @@ public class Compiler : MonoBehaviour{
     }
 
     bool GetConditionResult(string line){
-        Debug.Log(line);
+        //Debug.Log(line);
         int startIndex = line.IndexOf('(') + 1;
         int endIndex = line.LastIndexOf(')');
         string conditionString = GetSubstring(line, startIndex, endIndex);
-        Debug.Log(conditionString);
+        //Debug.Log(conditionString);
         List<string> sections = conditionString.Split(' ').ToList<string>();
-        Debug.Log(arrayToString(sections.ToArray(), 0));
+        //Debug.Log(arrayToString(sections.ToArray(), 0));
 
         //check if currentString has a boolean variable or value
         //preprocess code to replace stuff
@@ -586,7 +683,7 @@ public class Compiler : MonoBehaviour{
         //so convert booleans to numerical comparisons that evaluate as true or false
         for(int i = 0; i < sections.Count; i++){
             string s = sections[i];
-            Debug.Log(s);
+            //Debug.Log(s);
             //check if boolean value
             if(s.ToLower() == "true"){
                 string[] arr = {"0", "==", "0"};
@@ -617,7 +714,7 @@ public class Compiler : MonoBehaviour{
             }
         }
 
-        Debug.Log(arrayToString(sections.ToArray(), 0));
+        //Debug.Log(arrayToString(sections.ToArray(), 0));
         
         var numValues = new List<float>();
         var operators = new List<string>();
@@ -628,11 +725,12 @@ public class Compiler : MonoBehaviour{
 
         //simplify condition by finding/evaluating numerical expressions within
         //store as list of values and operators
-        Debug.Log(sections.Count);
+        //Debug.Log(sections.Count);
         for(int i = 0; i < sections.Count; i++){
             string section = sections[i];
-            Debug.Log(section);
-            bool isConditionOperator = ReservedConstants.comparisonOperators.Contains(section);
+            //Debug.Log(section);
+            bool isConditionOperator = ReservedConstants.comparisonOperators.Contains(section) 
+                || ReservedConstants.comparisonOperators.Contains(section);
 
             if(isConditionOperator || i == sections.Count - 1){
                 //checks if condition operator
@@ -668,7 +766,7 @@ public class Compiler : MonoBehaviour{
             float b = numValues[i + 1];
             string op = operators[i];
 
-            Debug.Log(a + " " + op + " " + b);
+            //Debug.Log(a + " " + op + " " + b);
             switch(op){
                 case "<":
                     boolValues.Add(a < b);
@@ -769,8 +867,11 @@ public class Compiler : MonoBehaviour{
     }
 
     public void Exterminatus(){
+        hasError = false;
+        hasArgError = false;
+        braceDepth = 0;
         //Debug.LogAssertion("Declaring Exterminatus");
-        clearDictionaries();
+        clearDictionaries(true);
         EditorSaveLoad.Instance.SaveEditorState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -782,18 +883,21 @@ public class Compiler : MonoBehaviour{
         return true;
     }
 
-    public void clearDictionaries(){
+    public void clearDictionaries(bool clearConditions){
         allVars.Clear();
         intVars.Clear();
         strVars.Clear();
         boolVars.Clear();
-        conditionByIndex.Clear();
+
+        if(clearConditions){
+            conditionByIndex.Clear();
+        }
     }
 
     //called by anything that should stop execution
     //invalid direction errors, stepping on a trap etc
     public void terminateExecution(){
-        clearDictionaries();
+        clearDictionaries(true);
         Invoke("killTimer", Globals.Instance.timePerStep);
         Debug.Log("Execution terminated");
     }

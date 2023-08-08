@@ -11,26 +11,44 @@ public class CodeFormatter {
         string tempString = "";
         bool previousCharOperator = false;
         bool inArrayIndexer = false;
+        bool inLiteral = false;
 
         //goes through the line char by char
         for(int i = 0; i < line.Length; i++){
             char currentChar = line[i];
             bool isOperator = ReservedConstants.allOperators.Contains(currentChar.ToString());
             
+            //if inArrayIndexer, spaces are ignored
             if(currentChar == '['){
                 inArrayIndexer = true;
             } else if(currentChar == ']'){
                 inArrayIndexer = false;
             }
 
-            if((currentChar == ' ' || isOperator || previousCharOperator) && !inArrayIndexer){
+            //if inLiteral, spaces are replaced with ^
+            if(inLiteral){
+                if(currentChar == ' '){
+                    tempString += '^';
+                }
+            }
+
+            if((currentChar == ' ' || isOperator || previousCharOperator) && !inArrayIndexer && !inLiteral){
                 if(!string.IsNullOrEmpty(tempString)){
                     sections.Add(tempString);
                 }
                 tempString = "";
             }
+
             if(isOperator || currentChar != ' '){
                 tempString += currentChar;
+            }
+
+            if(currentChar == '\"' && !inLiteral){
+                inLiteral = true;
+            } else if(currentChar == '\"' && inLiteral){
+                inLiteral = false;
+                sections.Add(tempString);
+                tempString = "";
             }
 
             if(i == line.Length - 1){
@@ -46,7 +64,7 @@ public class CodeFormatter {
         //iterate through sections, looking for array var calls
         if(sections.Count > 0){
             for(int i = 0; i < sections.Count; i++){
-                if((sections[i].Contains("[") && sections[i].Contains("]")) && !ReservedConstants.varTypes.Contains(sections[i])){
+                if(sections[i].Contains("[") && sections[i].Contains("]") && !ReservedConstants.varTypes.Contains(sections[i])){
                     //get substring of everything between "[]"
                     string indexString = Compiler.GetSubstring(sections[i], sections[i].IndexOf("[") + 1, sections[i].IndexOf("]"));
 

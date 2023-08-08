@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class ReservedConstants{
     public static readonly string[] keywords = {
-        
+        "int",
+        "int[]",
+        "string",
+        "bool",
+        "while",
+        "if",
+        "else",
+        "Bot"
     };
 
     public static readonly string[] compoundOperators = {
@@ -19,7 +26,7 @@ public class ReservedConstants{
         ">=",
         "==",
         "!=",
-        "//"
+        "//",
     };
 
     public static readonly string[] varTypes = {
@@ -29,15 +36,22 @@ public class ReservedConstants{
         "bool"
     };
 
+    public static readonly string[] arrVarTypes = {
+        "int[]"
+    };
+
     public static readonly string[] comparisonOperators = {
-        "&&",
-        "||",
         "<",
         "<=",
         "==",
         ">=",
         ">",
         "!="
+    };
+
+    public static readonly string[] booleanOperators ={
+        "&&",
+        "||"
     };
 
     public const string mathOperators = "+-*/";

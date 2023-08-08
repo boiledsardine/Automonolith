@@ -1,7 +1,7 @@
 {
     "Items": [
         {
-            "editorContent": "int[] wah = {1,2,3*3,4,5}\n\nwah[3] *= 4\n\nBot.say(wah[3])"
+            "editorContent": "int[] wah = {5,\n6 + 8\n,7,(10+\n6) * 2,\n3\n}\n\nwah[7] = 999;\n\nBot.say(wah[9]);"
         },
         {
             "editorContent": "//Press the button\n\n//Move next to the yellow button\n//Then turn right\n//Then interact with it\n//Make your way next to the exit\n//Then face it and interact with it \n\nBot.moveUp(3);\nBot.turnRight();\nBot.interact();\nBot.moveUp();\nBot.moveRight(3);\nBot.interact();"

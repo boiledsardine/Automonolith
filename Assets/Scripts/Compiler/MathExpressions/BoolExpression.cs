@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BoolExpression {
     public enum Element{ And, Or, StartGroup, EndGroup, Value }
@@ -18,9 +20,9 @@ public class BoolExpression {
     }
 
     public bool EvaluateGroup(List<bool> groupValues, List<Element> groupElements){
-        foreach(Element e in groupElements){
+        /*foreach(Element e in groupElements){
             Debug.Log(e);
-        }
+        }*/
 
         int valueIndex = 0;
         //calculate AND operations first

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +51,6 @@ public class StringValue{
 
         strTexts = new List<string>();
         elements = new List<MathExpression>();
-
         expression = processLiteral(expression);
 
         string[] sectionArr = expression.Split(' ');
@@ -76,18 +76,35 @@ public class StringValue{
     //gotta fix that somehow
     //or not
     private string processLiteral(string expression){
+        List<string> expressionArr = expression.Split(' ').ToList();
+
+        //iterate through tokens, looking for variables
+        //if found variable, replace its position with a literal of its value
+        for(int i = 0; i < expressionArr.Count; i++){
+            if(Compiler.Instance.strVars.ContainsKey(expressionArr[i])){
+                expressionArr.Insert(i, '\"' + Compiler.Instance.strVars[expressionArr[i]] + '\"');
+                expressionArr.RemoveAt(i + 1);
+            }
+        }
+
+        expression = Compiler.arrayToString(expressionArr.ToArray(), 0);
+
         char[] charArray = expression.ToCharArray();
         bool isLiteral = false;
         string substring = "";
         foreach(char c in charArray){
-            if(c == '\"' && isLiteral == false){
+            if(c == '\"' && !isLiteral){
                 isLiteral = true;
                 substring += c;
-            } else if(c == '\"' && isLiteral == true){
+            } else if(c == '\"' && isLiteral){
                 isLiteral = false;
                 substring += c;
             } else if(c == ' '){
-                substring += '^';
+                if(isLiteral){
+                    substring += '^';
+                } else {
+                    substring += c;
+                }
             } else {
                 substring += c;
             }
