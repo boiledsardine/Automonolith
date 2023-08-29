@@ -39,7 +39,6 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         panelAnimator.SetBool("isOpen", false);
         leftSprite.GetComponent<Image>().enabled = false;
         rightSprite.GetComponent<Image>().enabled = false;
-        Debug.Log("End of conversation");
         Invoke("disableCanvas", 0.25f);
     }
 

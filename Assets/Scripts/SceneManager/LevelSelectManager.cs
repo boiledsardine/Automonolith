@@ -15,6 +15,7 @@ public class LevelSelectManager : MonoBehaviour{
     public LevelDetails levelDetailsObject;
     private List<LevelDetail> levelDetails;
     public Button[] buttonArr;
+    public int levelOffset = 2;
 
     void Awake(){
         if(Instance == null){
@@ -22,12 +23,18 @@ public class LevelSelectManager : MonoBehaviour{
         } else {
             Destroy(gameObject);
         }
+
+        //resets timescale changes from closed levels
+        Time.timeScale = 1;
     }
 
     void Start(){
         levelDetails = levelDetailsObject.levelDetails;
         
         for(int i = 0; i < buttonArr.Length; i++){
+            var levelButton = buttonArr[i].GetComponent<LevelSelectButton>();
+            levelButton.levelIndex = i;
+            levelButton.sceneToLoad = i + levelOffset;
             if(LevelSaveLoad.Instance.savedLevels[i].isUnlocked){
                 buttonArr[i].interactable = true; 
             }

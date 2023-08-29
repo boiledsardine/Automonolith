@@ -50,7 +50,7 @@ public class QuizLevel1 : MonoBehaviour{
     }
 
     void StartQuiz(){
-        QuizManager.Instance.startQuiz(quiz);
+        QuizManager.Instance.startQuiz(quiz,5);
     }
 
     public void QuizEnd(){

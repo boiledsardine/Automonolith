@@ -24,6 +24,16 @@ public class StringExpression{
                 for(int i = stringStartIndex + 1; i < stringEndIndex; i++){
                     if(literal[i] == '^'){
                         sentence += ' ';
+                    } else if(literal[i] == 'あ'){
+                        sentence += '{';
+                    } else if(literal[i] == 'え'){
+                        sentence += '}';
+                    } else if(literal[i] == 'い'){
+                        sentence += '[';
+                    } else if(literal[i] == 'お'){
+                        sentence += ']';
+                    } else if(literal[i] == 'け'){
+                        sentence += ',';
                     } else {
                         sentence += literal[i];
                     }

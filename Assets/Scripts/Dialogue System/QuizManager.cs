@@ -30,11 +30,17 @@ public class QuizManager : DialogueSystemBase{
         //do nothing
     }
 
-    public void startQuiz(Quiz quizToLoad){
+    public void startQuiz(Quiz quizToLoad, int questionCount){
         dialogueCanvas.gameObject.SetActive(true);
 
+        List<QuizItem> quizRnd = new List<QuizItem>();
         foreach(QuizItem qq in quizToLoad.quizBlocks){
-            quizItems.Enqueue(qq);
+            quizRnd.Add(qq);
+        }
+        quizRnd.Shuffle();
+
+        for(int i = 0; i < questionCount; i++){
+            quizItems.Enqueue(quizRnd[i]);
         }
 
         Debug.Log(quizItems.Count);

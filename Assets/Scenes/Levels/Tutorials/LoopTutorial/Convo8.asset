@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo8
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Energy acceptors generate a steady stream of power once they're full of cubes
+      from a generator. So if you fill that acceptor up...
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - The door opens and this lesson is concluded. But I need to make a non-infinite
+      loop to make sure G4wain can actually walk to the button.
+    - Because if the loop is infinite, G4wain will continue feeding the acceptor
+      cubes even though the exit is already open.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Yeah, you got it. Make a finite loop and get G4wain outta here. Also, I've
+      re-enabled the pathfinding algorithm. You can use MoveTo() again.

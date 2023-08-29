@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 
 public class SaveGenerator : MonoBehaviour{
-    public int saveCounts = 10;
+    public int saveCounts;
 
     public List<LevelInfo> savedLevels = new List<LevelInfo>();
     public List<EditorState> editorStates = new List<EditorState>();

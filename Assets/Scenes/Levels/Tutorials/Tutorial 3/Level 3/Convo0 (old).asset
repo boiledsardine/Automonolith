@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo0 (old)
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - When exactly can we get started on exploring the Monolith?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Just one more lesson, I promise. Then we can get on to the fun stuff.
+    - Anyway, variables! Much like in math, variables in programming are containers
+      that store data values!
+    - You can invoke a variable simply by using its name in your program. Once G4wain
+      reads the program, he substitutes that variable's place in the code with the
+      value it stores.
+    - What you see is exactly that - "x + 10", but what G4wain sees is "30 + 10".
+      For now, let's see you invoke a variable.
+    - For example, you have the variable "x" which contains the numeric value 30.
+      Then you type in something like "x + 10".
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - See those buttons? Three of them are booby trapped. You have to make G4wain
+      find the correct button and step on it. Step on the wrong and one pop goes
+      the robot!
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -8907812512055693227, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - So how am I supposed to find the right one?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Trial and error is certainly an option. But if you don't want to put in the
+      guesswork, use variables instead. I've taken the liberty of setting up a variable
+      called "num".
+    - '"num" contains the number of steps up G4wain should take to reach the corret
+      button. All you have to do is pass it as an argument.'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - So, I have to type in "Bot.moveUp(num);" to get G4wain to the right spot then
+      have him move right to press the correct button?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - That's right. Now get to it.

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo4
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - 'To change a variable''s value, use this syntax:
+
+      variableName = value
+
+      Of
+      course, this works only if variableName has been declared beforehand.'
+    - For this one, it's the same deal as the last - only one of the buttons is safe
+      and the variable I gave you will show you which one it is.
+    - But the catch is that variable is intentionally wrong. So you'll have to change
+      its value through assignment. The real number is hidden in that green wall
+      panel.
+    - 'Only G4wain can read it, though. But how? Use this method: "Bot.readInt();"
+
+'
+    - "If used next to a green wall panel, readInt() will return a number which should
+      be stored in a variable immediately.\r"
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - 'So if I want to get the value of the wall panel storing an unknown value,
+      I should use:
+
+      varName = Bot.readInt();'
+    - But, using a method as a value for a variable?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Correct. There's a whole thing about methods with return types, but I figured
+      I wouldn't keep you here longer. It's in the enyclopedia if you want to read
+      about it.
+    - Now get to it!

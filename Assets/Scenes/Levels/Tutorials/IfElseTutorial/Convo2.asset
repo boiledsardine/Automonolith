@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Alright, else statements! Else statements come after if statements and, unlike
+      if statements, don't take conditions.
+    - 'Instead, their code executes automatically if the condition of the if statement
+      before it is false. Write one like this after an if statement:'
+    - "else\n{\n  //executed if the if statement is false\n}"
+    - The else statement only executes if the if statement before it is false. If
+      the if statement before it is true, then the else block is skipped.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - 'Alright, so as an example, I have an if statement and an else statement like
+      these:'
+    - "if(5 > 10)\r\n{\r\n  Bot.say(\"5 is greater than 10!\");\r\n}"
+    - "else\r\n{\r\n  Bot.say(\"5 is not greater than 10!\");\r\n}"
+    - Since 5 > 10 is false, the first Bot.say() command is skipped, and so the the
+      executed command is the code in the else block...
+    - And G4wain says "5 is not greater than 10!". But if the condition was true,
+      the first command runs and the second is skipped?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 6903694227769077350, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Pretty much. Why don't you try? Here, the  path G4wain takes depends on the
+      condition you pass.
+    - 'Here''s a hint: G4wain has to reach the right side. Try passing a condition
+      so that the else block is reached.'

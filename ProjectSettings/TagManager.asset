@@ -9,6 +9,8 @@ TagManager:
   - Tile
   - Interactable
   - WallPanel
+  - Vox
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Walls
   - Tiles
   - WallPanel
-  - 
+  - Holdable
   - 
   - 
   - 

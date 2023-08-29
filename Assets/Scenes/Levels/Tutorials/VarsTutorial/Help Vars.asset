@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e992c02bdb92cd640adeb653ce9d10fb, type: 3}
+  m_Name: Help Vars
+  m_EditorClassIdentifier: 
+  articleBlocks:
+  - articleName: Variables and Data Types
+    articleText: "Variables are containers for storing values, each with its own
+      data type. A data type is a classification of a value, like how numbers and
+      words are different from one another. There are different data types in C#:\r\n\r\nint
+      - stores integers (whole numbers) such as 123 or -789.\r\ndouble - stores decimals
+      such as 20.52 or -20.52.\r\nchar - stores single characters such as 'A' or
+      'B'. Char values must be surrounded by single quotes (').\r\nstring - stores
+      text, such as \"Hello World!\". String values must be surrounded by double
+      quotes (\").\r\nbool - stores a true or false value\r\n\r\nVariables can be
+      called in code by using their identifier, or their name. Much like in math,
+      a variable is replaced by the value it represents. For example:\r\n\r\nint
+      num1 = 50;\r\nint num2 = num + 100;\r\n\r\nThe first line creates a variable
+      with the name num1 and a value of 50. The second variable creates a variable
+      with the name num2 and its value is the sum of 100 and the value of num, which
+      is 50. Which means num2 equals 150. Another example:\r\n\r\nstring text = \"Hello
+      World!\";\r\nBot.say(text);\r\n\r\nThe first line creates a variable called
+      text that stores the string \"Hello World!\". Once called by the say() method,
+      G4wain says the value of the text variable, which is \"Hello World!\".\r"
+  - articleName: Declaring and Assigning Variables
+    articleText: "Variables are containers for storing values, each with its own
+      data type. A data type is a classification of a value, like how numbers and
+      words are different from one another. There are different data types in C#:\r\n\r\nint
+      - stores integers (whole numbers) such as 123 or -789.\r\ndouble - stores decimals
+      such as 20.52 or -20.52.\r\nchar - stores single characters such as 'A' or
+      'B'. Char values must be surrounded by single quotes (').\r\nstring - stores
+      text, such as \"Hello World!\". String values must be surrounded by double
+      quotes (\").\r\nbool - stores a true or false value\r\n\r\nVariables can be
+      called in code by using their identifier, or their name. Much like in math,
+      a variable is replaced by the value it represents. For example:\r\n\r\nint
+      num1 = 50;\r\nint num2 = num + 100;\r\n\r\nThe first line creates a variable
+      with the name num1 and a value of 50. The second variable creates a variable
+      with the name num2 and its value is the sum of 100 and the value of num, which
+      is 50. Which means num2 equals 150. Another example:\r\n\r\nstring text = \"Hello
+      World!\";\r\nBot.say(text);\r\n\r\nThe first line creates a variable called
+      text that stores the string \"Hello World!\". Once called by the say() method,
+      G4wain says the value of the text variable, which is \"Hello World!\".\r\nTo
+      create a variable, you must declare it by specifying its type and assigning
+      a value with this syntax:\r\n\r\ntype varName = value;\r\n\r\nwhere type is
+      the data type of the variable, variableName is its unique identifier, and value
+      is the value it's meant to store. The equals sign (=) assigns values to a variable.\r\n\r\nExample:\r\nstring
+      greeting = \"Hello World!\";\r\n\r\nThis creates a string variable called greeting
+      that can store the text \"Hello World!\".\r\n\r\nYou can also declare a variable
+      without assigning the value, then assign the value later. For example:\r\n\r\nint
+      num;\r\nnum = 15;\r\n\r\nThe first line declares an empty int variable, the
+      second line assigns a value to it.\r\n\r\nTake note: assigning a new value
+      to an existing variable overwrites its previous value. For example:\r\n\r\nint
+      num = 20;\r\nnum = 30;\r\nBot.say(num);\r\n\r\nIn this example, num becomes
+      30. So if num is called by the say() method, G4wain says 30 instead of 20.\r"
+  - articleName: Arithmetic Operators
+    articleText: 'Much like in math, operators are used to perform operations on
+      variables and values. The arithmetic operators are:
+
+      
+
+      "+" for
+      addition,
+
+      "-" for subtraction,
+
+      "*" for multiplication,
+
+      "/"
+      for division,
+
+      "%" for modulus operations,
+
+      "++" for incrementing,
+
+      "--"
+      for decrementing.
+
+      
+
+      Here are some examples of how to use operators
+      in code:
+
+      
+
+      int sum = 100 + 200; //300
+
+      int difference
+      = 350 - 150; //200
+
+      int product = sum * 2; //600 (300 * 2)
+
+      int
+      quotient = difference / 2; //100 (200 / 2)
+
+      
+
+      Take note: code
+      follows the PEMDAS rule! It evaluates mathematical expressions in parentheses
+      first, then does multiplication, then division, then addition, then subtraction
+      in that order.
+
+      
+
+      The increment and decrement operators are special
+      - they''re used to operate on variables by increasing or decreasing their value
+      by one. For example:
+
+      
+
+      int x = 10;
+
+      x++; //x is now 11
+      (10 + 1)
+
+      x--; //x is now 10 (11 - 1)
+
+      
+
+      You''ve probably
+      never heard of Modulus operations before. Modulus (%) divides two values and
+      returns the remainder. For example:
+
+      
+
+      int x = 10 % 3; //1 (10/3
+      = 3 remainder 1)'
+  - articleName: Assignment Operators
+    articleText: 'Assignment operators are operators used to assign values to variables.
+      One such operator you''ve already seen is the assignment operator represented
+      by an equals sign (=). This simply assigns a value to a variable. For example:
+
+      
+
+      int
+      x = 10; //x is now 10
+
+      
+
+      The assignment operator can be combined
+      with arithmetic operators to perform an operation involving the variable''s
+      value and the given value. For example:
+
+      
+
+      int x = 10;
+
+      x
+      += 5; //x is now 15 (x = 10 + 5)
+
+      
+
+      int y = 20;
+
+      y -=
+      5; //y is now 15 (y = 20 - 5)
+
+      
+
+      This is because the arithmetic
+      assignment operators are used as shorthand for a potentially longer expression.
+      The above example "x += 5" can also be written as "x = x + 5". Below is a list
+      of arithmetic assignment operators:
+
+      
+
+      "+=" for adding and assigning:
+      "x += 5" is the same as "x = x + 5"
+
+      "-=" for subtracting and assigning:
+      "x -= 5" is the same as "x = x - 5"
+
+      "*=" for multiplying and assigning:
+      "x *= 5" is the same as "x = x * 5"
+
+      "/=" for dividing and assigning:
+      "x /= 5" is the same as "x = x / 5"
+
+      "%=" for doing a modulus operation
+      and assigning: "x %= 5" is the same as "x = x % 5"
+
+'
+  - articleName: Read()
+    articleText: 'The Bot.Read() and Bot.ReadInt() methods are unique to this game!
+
+
+
+      Bot.Read()
+      and Bot.ReadInt() let G4wain take the information from a nearby wall panel
+      and use it as a value or store it in a variable. It takes no arguments. Bot.Read()
+      is for strings, Bot.ReadInt() is for integers.
+
+
+
+      Wall panels hold either
+      string or int values and are color coded to show which one they are storing.
+      Green panels hold ints, blue panels hold strings.
+
+
+
+      Imagine G4wain is
+      standing next to a blue panel and uses Bot.Read(). This will happen:
+
+
+
+      //G4wain
+      is next to a blue panel
+
+      //the blue panel says "Hello World!"
+
+      string
+      text = Bot.Read(); //text now stores "Hello World!"
+
+      Bot.say(Bot.Read());
+      //G4wain says "Hello World!"
+
+
+
+      Bot.ReadInt() works the same but for
+      int values instead. Imagine G4wain is standing next to a green panel and uses
+      Bot.ReadInt(). These could happen:
+
+
+
+      //G4wain is next to a green panel
+
+      //the
+      green panel stores the number 10
+
+      int num = Bot.ReadInt(); //num is now
+      10
+
+      Bot.say(Bot.ReadInt()); //G4wain says 10'

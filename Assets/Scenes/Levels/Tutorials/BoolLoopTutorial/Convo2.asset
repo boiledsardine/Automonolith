@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 6903694227769077350, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - 'You now have a new set of operators to play with: comparison operators! A
+      comparison operator compares two values and outputs true or false.'
+    - 'Pop quiz: 5 is greater than 10, true or false?'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - False, obviously.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - 'And that''s how comparison operators work. Here, a list of comparison operators:
+
+      "=="
+      checks if two values are equal.
+
+      "!=" checks if two values are not equal.'
+    - '"<" checks if the first value is less than the second.
+
+      ">" checks if
+      the first value is greater than the second.'
+    - '"<=" checks if the first value is less than or equal to the second.
+
+      ">="
+      checks if the first value is greater than or equal to the second.'
+    - 'Fun fact: much like how you can assign arithmetic expressions to int variables,
+      you can also assign comparison expressions to bool variables!'
+    - Got them somewhat familiarized? Good. I've prepared more vox gates, the passwords
+      are the answers to the questions I put in the editor. Have fun~

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo0
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Right, now that G4wain can make decisions, it's time we tackled conditional
+      statements in code.
+    - Conditional statements like if, else, and if-else use booleans to execute or
+      skip blocks of code depending on whether or not the condition is true.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I see. What will I use this for?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Decision-making is a huge part of programming. There are times when you want
+      your code to do one thing or another based on its inputs.
+    - The if, else, and else-if statements enable that. We'll tackle those three
+      one-by-one, but conceptually, they're similar.
+    - 'Write an if statement like this:'
+    - "if(condition)\r\n{\r\n  //code to be executed if condition is true\r\n}\r"
+    - 'The condition can be a boolean value or a conditional statement like a comparison. '
+    - "For if statements, if the condition is true, the code between the {} runs.
+      If not, the whole block is skipped over.\r"
+    - Why don't you try it out? I've written an if statement here without a condition.
+      At the end of the code, G4wain will move up.
+    - You have to provide the condition needed to make G4wain move right first or
+      else he'll walk into a trap. Get to it!

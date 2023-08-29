@@ -28,15 +28,19 @@ public class ObjectiveManager : MonoBehaviour {
         primObj.text = string.Format(">{0}", primaryObjectiveText);
         
         if(hasSecondObjs){
-            secObjHeader.gameObject.SetActive(true);
-            secObj1.gameObject.SetActive(true);
+            secObjHeader.transform.gameObject.SetActive(true);
+            secObj1.transform.gameObject.SetActive(true);
             secObj1.text = string.Format(">{0}", secondObjective1Text);
             
-            if(secObj2 != null){
-                secObj2.gameObject.SetActive(true);
+            if(secObj2.text != null){
+                secObj2.transform.gameObject.SetActive(true);
                 secObj2.text = string.Format(">{0}", secondObjective2Text);
             }  
         }
+    }
+
+    void Start(){
+        levelIndex = LevelSaveLoad.Instance.indexHolder;
     }
 
     public bool PrimaryObjective(){

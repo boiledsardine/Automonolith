@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+//in retrospect i should've documented this spaghetti better
+//idk what's going on here tbh
+//some dark magic
+//and yet it's one of the more important parts of this whole mess
 public class FunctionProcessor {
     public List<List<ArgTypes>> argTypes;
     public int argsCount;
@@ -46,6 +50,7 @@ public class FunctionProcessor {
         if(argsCount > 0){
             string argsString = arrayToString(sections.ToArray(), 0);
             argsString = argsString.Replace(" , ", ",");
+            //Debug.LogWarning(argsString);
             string[] args = argsString.Split(',');
             
             foreach(string s in args){
@@ -58,7 +63,7 @@ public class FunctionProcessor {
             }
         }
 
-        //makes new list of string lists called typesInArgs
+        //makes new list of variableinfo lists called typesInArgs
         //checks each element in argsSections
         //if current element is a variable, adds its type to typesInArgs
         List<List<VariableInfo.Type>> typesInArgs = new List<List<VariableInfo.Type>>();
@@ -71,10 +76,7 @@ public class FunctionProcessor {
             }
         }
 
-        //Regex matching patterns
         //Emperor protects
-        string intPattern = @"^[0-9]+$";
-        string stringPattern = "^\".*\"$";
 
         //assigns passedArgs array a new array with length = how many arguments were found
         //iterate through passedArgs array
@@ -82,22 +84,35 @@ public class FunctionProcessor {
         passedArgs = new string[argsSections.Count];
         for(int i = 0; i < argsSections.Count; i++){
             argTypes.Add(new List<ArgTypes>());
+            string argument = Compiler.arrayToString(argsSections[i], 0);
 
-            for(int j = 0; j < argsSections[i].Length; j++){
-                string s = argsSections[i][j];
-                s = s.Trim();
-
-                if(Regex.IsMatch(s, intPattern) || typesInArgs[i].Contains(VariableInfo.Type.intVar)){
-                    argTypes[i].Add(ArgTypes.integer);
-                }
-                if(Regex.IsMatch(s, stringPattern) || typesInArgs[i].Contains(VariableInfo.Type.strVar)){
-                    argTypes[i].Add(ArgTypes.textstring);
-                }
-                if(typesInArgs[i].Contains(VariableInfo.Type.intVarArr)){
-                    argTypes[i].Add(ArgTypes.integer);
-                }
-                passedArgs[i] = arrayToString(argsSections[i].ToArray(), 0);
-            }
+            //somehow narrow down the expression to a single type
+            //maybe using the linechecker's enum system?
+            LineChecker lc = new LineChecker();
+            ValueType val = lc.CheckTypes(argument);
+            
+            if(val == ValueType.boolVal){
+                argTypes[i].Add(ArgTypes.truefalse);
+            } else if(val == ValueType.strVal){
+                argTypes[i].Add(ArgTypes.textstring);
+            } else if(val == ValueType.intVal){
+                argTypes[i].Add(ArgTypes.integer);
+            } else if(val == ValueType.intArr){
+                argTypes[i].Add(ArgTypes.intArray);
+            } else if(val == ValueType.strArr){
+                argTypes[i].Add(ArgTypes.stringArray);
+            } else if(val == ValueType.boolArr){
+                argTypes[i].Add(ArgTypes.boolArray);
+            } else if(val == ValueType.charVal){
+                argTypes[i].Add(ArgTypes.character);
+            } else if(val == ValueType.charArr){
+                argTypes[i].Add(ArgTypes.charArray);
+            } else if(val == ValueType.doubleVal){
+                argTypes[i].Add(ArgTypes.floatpoint);
+            } else if(val == ValueType.doubleArr){
+                argTypes[i].Add(ArgTypes.doubleArray);
+            } 
+            passedArgs[i] = arrayToString(argsSections[i].ToArray(), 0);
         }
     }
 
@@ -112,7 +127,7 @@ public class FunctionProcessor {
         return s;
     }
 
-    //replaces whitespaces in literals with '|'
+    //replaces whitespaces in literals with '^'
     //which is eventually replaced by StringExpression class
     //prevents shenanigans with anything that splits a string by whitespace
     //shenanigans being literals being split by space too and throwing errors everywhere
@@ -128,7 +143,7 @@ public class FunctionProcessor {
                 isLiteral = false;
                 substring += c;
             } else if(c == ' '){
-                substring += '|';
+                substring += '^';
             } else {
                 substring += c;
             }

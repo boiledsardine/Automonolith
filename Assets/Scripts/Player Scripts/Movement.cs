@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -141,9 +142,69 @@ public class Movement : MonoBehaviour, IMovement {
         }
     }
 
+    //waiting
+    public IEnumerator wait(){
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+    }
+
+    public IEnumerator moveTo(string tileName){
+        TileBase targetTile = null;
+
+        try{
+            targetTile = GameObject.Find(tileName).GetComponent<TileBase>();
+        } catch {
+            Compiler.Instance.addErr(string.Format("Line {0}: cannot find any tile named {1}! Make sure it is in uppercase!", Compiler.Instance.currentIndex + 1, tileName));
+            Compiler.Instance.errorChecker.writeError();
+            Compiler.Instance.killTimer();
+        }
+
+        if(targetTile != null){
+            List<TileBase> tileList = new List<TileBase>();
+            try {
+                tileList = Pathfinder.Instance.FindPath(envirScript.currentTile, targetTile);
+            } catch {
+                Compiler.Instance.addErr(string.Format("Line {0}: pathfinding functionality currently not available!", Compiler.Instance.currentIndex + 1));
+                Compiler.Instance.errorChecker.writeError();
+                Compiler.Instance.killTimer();
+            }
+
+            //go through the tileList figuring out the adjacency of each tile
+            //then queue em up
+            if(tileList.Count > 0){
+                List<char> directList = Pathfinder.Instance.GetDirections(tileList);
+                yield return StartCoroutine(MoveAlongPath(directList, 0));
+            } else {
+                Compiler.Instance.addErr(string.Format("Line {0}: cannot find a path to {1}!", Compiler.Instance.currentIndex + 1, tileName));                Compiler.Instance.errorChecker.writeError();
+                Compiler.Instance.errorChecker.writeError();
+                Compiler.Instance.killTimer();
+            }
+        }
+    }
+
+    private IEnumerator MoveAlongPath(List<char> directList, int index){
+        switch(directList[index]){
+            case 'n':
+                yield return StartCoroutine(moveUp());
+            break;
+            case 's':
+                yield return StartCoroutine(moveDown());
+            break;
+            case 'e':
+                yield return StartCoroutine(moveRight());
+            break;
+            case 'w':
+                yield return StartCoroutine(moveLeft());
+            break;
+        }
+
+        if(index != directList.Count - 1){
+            yield return MoveAlongPath(directList, index + 1);
+        }
+    }
+
     //Lerp'd coroutines        
     public IEnumerator Move(Vector3 moveDir){
-        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
         if(recurCount > 0){
             if(envirScript.neighborIsValid(direction) && !envirScript.checkForWalls(direction)){                
                 //moves any held object
@@ -167,14 +228,16 @@ public class Movement : MonoBehaviour, IMovement {
                 recurCount--;
                 yield return StartCoroutine(Move(moveDir));
             } else {
+                Compiler.Instance.addErr(string.Format("Line {0}: G4wain cannot move to the specified direction!", Compiler.Instance.currentIndex + 1));
                 Debug.LogAssertion("Invalid direction");
-                Compiler.Instance.terminateExecution();
+                Compiler.Instance.errorChecker.writeError();
+                Compiler.Instance.killTimer();
             }  
         }
     }
 
     public IEnumerator Rotate(Quaternion rotDir){
-        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
         
         float timeElapsed = 0;
         originRot = transform.rotation;

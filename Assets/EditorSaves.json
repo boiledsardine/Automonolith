@@ -1,13 +1,46 @@
 {
     "Items": [
         {
-            "editorContent": "int[] wah = {5,\n6 + 8\n,7,(10+\n6) * 2,\n3\n}\n\nwah[7] = 999;\n\nBot.say(wah[9]);"
+            "editorContent": ""
         },
         {
-            "editorContent": "//Press the button\n\n//Move next to the yellow button\n//Then turn right\n//Then interact with it\n//Make your way next to the exit\n//Then face it and interact with it \n\nBot.moveUp(3);\nBot.turnRight();\nBot.interact();\nBot.moveUp();\nBot.moveRight(3);\nBot.interact();"
+            "editorContent": ""
         },
         {
-            "editorContent": "Bot.moveLeft);"
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": "//don't change this\nint x = 10;\n\n//add 5 to x using +=\nx += 5;\nBot.say(x);\nBot.moveRight();\n\n//subtract 10 from x using -=\nx -= 10;\nBot.say(x);\nBot.moveRight();\n\n//multiply x by 20 using *=\nx *= 20;\nBot.say(x);\nBot.moveRight();\n\n//divide x by 2 using /=\nx /= 2;\nBot.say(x);\nBot.moveRight();"
+        },
+        {
+            "editorContent": "//use the moveTo() command\n//moveTo() takes string arguments\n//use coordinates as an argument\n//coordinates are typed like \"A3\" or \"B0\"  \n\nBot.moveTo(\"A2\");\nBot.moveTo(\"C1\");\nBot.moveTo(\"A3\");"
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": "//declare two bools\n//one should be true\n//other should be false\n//use this syntax:\n//bool varName = value;\n\n//pass the true boolean here\nBot.say();\nBot.moveRight();\n//pass the false boolean here\nBot.say();\nBot.moveRight();"
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
+        },
+        {
+            "editorContent": ""
         },
         {
             "editorContent": ""

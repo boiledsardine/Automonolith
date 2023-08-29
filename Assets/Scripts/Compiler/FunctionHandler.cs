@@ -15,14 +15,43 @@ public class FunctionHandler : MonoBehaviour{
         "turnDown",
         "turnLeft",
         "turnRight",
+        "moveTo",
+
         "hold",
         "drop",
         "interact",
         "say",
-        "write"
+        "dig",
+
+        "write",
+        
+        "read",
+        "readInt",
+        "readBool",
+        "ReadStringArr",
+        "ReadIntArr",
+        "ReadBoolArr",
+        "CheckCube",
+
+        "readChar",
+        "readCharArr",
+        "readDouble",
+        "readDoubleArr",
     };
 
-    [SerializeField] private TMPro.TMP_Text stepCount;
+    //add entry every time a new non-void function is added
+    public static readonly string[] nonVoids = {
+        "read",
+        "readInt",
+        "readBool",
+        "look",
+        "CheckCube",
+        "ReadStringArr",
+        "ReadIntArr",
+        "ReadBoolArr",
+    };
+
+    //[SerializeField] private TMPro.TMP_Text stepCount;
     private int steps = 0;
 
     Dictionary<string, VariableInfo> allVars;
@@ -39,6 +68,10 @@ public class FunctionHandler : MonoBehaviour{
 
     public bool hasError = false;
     private int lineIndex;
+
+    public string[] getPassedArgs{
+        get { return passedArgs; }
+    }
 
     public void initializeHandler(string functionLine, int lineIndex){
         steps = 0;
@@ -62,6 +95,7 @@ public class FunctionHandler : MonoBehaviour{
     }
 
     //TODO: make function that checks for argument errors
+    //checked at firstpass, no need to add writeError
     public bool checkArgErrors(){
         switch(sections[2]){
             case "moveUp": case "moveDown": case "moveLeft": case "moveRight":
@@ -70,7 +104,7 @@ public class FunctionHandler : MonoBehaviour{
                     return true;
                 }
                 if(argsCount == 1 && !(argTypes[0][0] == ArgTypes.integer)){
-                    addErr(string.Format("Line {0}: {1}() takes only integer arguments!", lineIndex, sections[2]));
+                    Compiler.Instance.addErr(string.Format("Line {0}: {1}() takes only integer arguments!", lineIndex, sections[2]));
                     return true;
                 }
             return false;
@@ -80,15 +114,25 @@ public class FunctionHandler : MonoBehaviour{
                     return true;
                 }
             return false;
-            case "hold": case "drop": case "interact":
+            case "hold": case "drop": case "interact": case "dig":
+            case "read": case "readInt": case "readBool": case "readChar": case "readDouble":
+            case "ReadIntArr": case "ReadStringArr": case "ReadBoolArr": case "ReadCharArr": case "ReadDoubleArr":
                 if(argsCount > 0){
                     addErr(string.Format("Line {0}: {1}() doesn't take arguments!", lineIndex, sections[2]));
                     return true;
                 }
             return false;
-            case "say":
-                if(argsCount != 1){
-                    addErr(string.Format("Line {0}: {1}() needs one argument!", lineIndex, sections[2]));
+            case "say": case "moveTo": case "CheckCube":
+                if(argsCount < 1){
+                    Compiler.Instance.addErr(string.Format("Line {0}: {1}() needs one argument!", lineIndex, sections[2]));
+                    return true;
+                } else if(argsCount > 1){
+                    Compiler.Instance.addErr(string.Format("Line {0}: {1}() takes only one argument!", lineIndex, sections[2]));
+                    return true;
+                }
+                if(argsCount == 1 && !(argTypes[0][0] == ArgTypes.integer || argTypes[0][0] == ArgTypes.truefalse || argTypes[0][0] == ArgTypes.textstring
+                    || argTypes[0][0] == ArgTypes.character || argTypes[0][0] == ArgTypes.floatpoint)){
+                    Compiler.Instance.addErr(string.Format("Line {0}: {1}() takes only integer, boolean, or string arguments!", lineIndex, sections[2]));
                     return true;
                 }
             return false;
@@ -97,12 +141,13 @@ public class FunctionHandler : MonoBehaviour{
                     addErr(string.Format("Line {0}: {1}() needs one argument!", lineIndex, sections[2]));
                     return true;
                 }
-                if(argsCount == 1  && !checkArgTypes(0, ArgTypes.textstring)){
-                    addErr(string.Format("Line {0}: {1}() takes only string arguments!", lineIndex, sections[2]));
+                if(argsCount == 1  && !(checkArgTypes(0, ArgTypes.textstring) || checkArgTypes(0, ArgTypes.integer))){
+                    addErr(string.Format("Line {0}: {1}() takes only string or int arguments!", lineIndex, sections[2]));
                     return true;
                 }
             return false;
             default:
+                Debug.LogAssertion("oopsie");
                 addErr(string.Format("Line {0}: oopsie", lineIndex, sections[2]));
             return true;
         }
@@ -115,6 +160,18 @@ public class FunctionHandler : MonoBehaviour{
             }
         }
         return true;
+    }
+
+    private bool checkArgAssigned(){
+        Debug.Log("Checking arg assignments");
+        foreach(string s in passedArgs){
+            if(allVars.ContainsKey(s) && !allVars[s].isSet){
+                Compiler.Instance.addErr(string.Format("Line {0}: cannot use variable {1} - it is unassigned!",
+                Compiler.Instance.currentIndex + 1, s));
+                return true;
+            }
+        }
+        return false;
     }
 
     private void addErr(string msg){
@@ -162,6 +219,12 @@ public class FunctionHandler : MonoBehaviour{
                     yield return StartCoroutine(playerMove.moveRight());
                 }
                 break;
+            case "moveTo":
+                if(argsCount == 1){
+                    string argVal = new StringExpression(passedArgs[0]).removeQuotations();
+                    yield return StartCoroutine(playerMove.moveTo(argVal));
+                }
+                break;
             
             //rotation functions
             case "turnUp":
@@ -188,21 +251,47 @@ public class FunctionHandler : MonoBehaviour{
                 yield return StartCoroutine(playerAct.interact());
                 break;
             case "say":
-                if(argTypes[0][0] == ArgTypes.textstring){
+                Debug.Log(passedArgs[0]);
+                if(argTypes[0][0] == ArgTypes.truefalse){
+                    string exp = BoolExpression.ProcessBool(passedArgs[0]);
+                    bool argVal = BoolExpression.GetConditionResult("( " + exp + " )");
+                    yield return StartCoroutine(playerAct.say(argVal.ToString()));
+                } else if(argTypes[0][0] == ArgTypes.textstring){
                     string argVal = new StringExpression(passedArgs[0]).removeQuotations();
                     yield return StartCoroutine(playerAct.say(argVal));
                 } else if(argTypes[0][0] == ArgTypes.integer){
                     int argVal = new IntExpression(passedArgs[0]).evaluate();
                     yield return StartCoroutine(playerAct.say(argVal.ToString()));
+                } else if(argTypes[0][0] == ArgTypes.character) {
+                    char argVal;
+                    if(Compiler.Instance.charVars.ContainsKey(passedArgs[0])){
+                        argVal = Compiler.Instance.charVars[passedArgs[0]];
+                    } else {
+                        argVal = passedArgs[0].Trim()[1];
+                    }
+                    yield return StartCoroutine(playerAct.say(argVal.ToString()));
+                } else if(argTypes[0][0] == ArgTypes.character) {
+                    //yield return StartCoroutine(playerAct.say(argVal.ToString()));
                 } else {
                     Debug.Log("what");
                 }
                 break;
-            case "write":
-                string writeArg = new StringExpression(passedArgs[0]).removeQuotations();
-                Debug.Log("Writing: " + writeArg);
-                yield return StartCoroutine(playerAct.write(writeArg));
-                break;
+            /*case "write":
+                if(argTypes[0][0] == ArgTypes.textstring){
+                    string writeArg = new StringExpression(passedArgs[0]).removeQuotations();
+                    Debug.Log("Writing: " + writeArg);
+                    yield return StartCoroutine(playerAct.write(writeArg));
+                } else if(argTypes[0][0] == ArgTypes.integer){
+                    int writeArg = new IntExpression(passedArgs[0]).evaluate();
+                    Debug.Log("Writing: " + writeArg);
+                    yield return StartCoroutine(playerAct.write(writeArg));
+                } else {
+                    Debug.Log("what");
+                }
+                break;*/
+            case "dig":
+                yield return StartCoroutine(playerAct.digTile());
+            break;
             default:
                 Debug.Log("oops");
                 break;
@@ -213,8 +302,8 @@ public class FunctionHandler : MonoBehaviour{
         Debug.LogAssertion("Function args are invalid");
     }
 
-    public void addStep(){
+    /*public void addStep(){
         steps++;
         stepCount.text = string.Format("Steps: {0}", steps.ToString());
-    }
+    }*/
 }

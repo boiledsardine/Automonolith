@@ -47,9 +47,6 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
             case Tutorial2Objectives.TurnInteract2:
                 StartTurnInteract2();
             break;
-            case Tutorial2Objectives.FinalStretch:
-                StartFinalStretch();
-            break;
         }
     }
 
@@ -79,8 +76,7 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
                     StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
                 } else {
                     objectiveText[1].color = Color.red;
-                    currentObjective = Tutorial2Objectives.ParamsFail;
-                    StartCoroutine(convoManager.StartDialogue(11, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
                 }
             break;
             case Tutorial2Objectives.TurnInteract:
@@ -142,14 +138,8 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
             break;
             case Tutorial2Objectives.AfterTurnInteract2:
                 if(timesPressed == convoManager.convos[9].LineCount()){
-                    StartFinalStretch();
+                    GameObject.Find("exit-point").GetComponent<IActivate>().activate();
                     timesPressed = 0;
-                }
-            break;
-            case Tutorial2Objectives.ParamsFail:
-                if(timesPressed == convoManager.convos[11].LineCount()){
-                    timesPressed = 0;
-                    currentObjective = Tutorial2Objectives.ParamsIntro;
                 }
             break;
             default:
@@ -205,7 +195,7 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
         objectiveText[0].text = ">Press the button";
         objectiveText[0].color = Color.black;
 
-        objectiveText[1].gameObject.SetActive(true);
+        objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use 5 lines or less";
         objectiveText[0].color = Color.black;
 
@@ -231,7 +221,7 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
         //set objective text
         objectiveText[0].text = ">Press the button";
         objectiveText[0].color = Color.black;
-        objectiveText[1].gameObject.SetActive(false);
+        objectiveText[1].transform.gameObject.SetActive(false);
 
         hintButton.convoToLoad = hints[3];
     }
@@ -259,7 +249,7 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
         hintButton.convoToLoad = hints[4];
     }
 
-    private void StartFinalStretch(){
+    /*private void StartFinalStretch(){
         //sets editor comments
         SetEditorComments(5);
 
@@ -280,7 +270,7 @@ public class TutorialManager2 : MonoBehaviour, IActivate{
         objectiveText[0].color = Color.black;
 
         hintButton.convoToLoad = hints[5];
-    }
+    }*/
 
     private void MoveCamera(Vector3 transformPos){
         cameraPivot.transform.position = transformPos;
@@ -316,6 +306,4 @@ public enum Tutorial2Objectives{
     AfterTurnInteract1,
     TurnInteract2,
     AfterTurnInteract2,
-    FinalStretch,
-    ParamsFail
 }

@@ -24,9 +24,54 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/reglevels/Level 2/Level02.unity
     guid: abd1368c09ead9847b82ce6e4a221525
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Level 3/Level03.unity
-    guid: dd92b84a1b1f2754285268c5dc29edee
+    path: Assets/Scenes/Levels/Tutorials/VarsTutorial/Tutorial 4.unity
+    guid: 78d13735bd5241d45b61f69f2236d472
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel1.unity
+    path: Assets/Scenes/Levels/Tutorials/StringsTutorial/StringsTutorial.unity
+    guid: ba41a24ad87fa1246b922abc08dbe4b0
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 3.unity
+    guid: bcbecd9e6ac791e4582ba28d7e4319fc
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 4.unity
+    guid: 0f65a62ebb86999408ceae7de26b8f47
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel 1.unity
     guid: b6f9105f93fb5104c90a989674f7f452
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutorials/BoolLoopTutorial/BoolLoopTutorial.unity
+    guid: 8f0643ac52505cd47a40538ebb57fb99
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutorials/LoopTutorial/LoopTutorial.unity
+    guid: 21d34f31e002fd746ac1e65479eb7d91
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 5.unity
+    guid: 5872974e59c27be4ca92fa8fb5d002f9
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 6.unity
+    guid: 1a9d831de1e822740b3a4207fd09424d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutorials/IfElseTutorial/IfElseTutorial.unity
+    guid: d1320a2eb1755f74bb82871ee8876b0f
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 7.unity
+    guid: bc33af245dac10240b8aedda105f6549
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 8.unity
+    guid: 3e24a9cc405da4046996618d40bca802
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Quiz Level 2.unity
+    guid: 84659984abc952646a386e67eaf6bbd5
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutorials/ArrayTutorial/ArrayTutorial.unity
+    guid: b4ec66b9a939b7649b7ac89956524069
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 9.unity
+    guid: 2f78522a5f4ab9449911db3fa11d41c3
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 10.unity
+    guid: 52014ece26c4f7243a1391333287954c
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Fakelevel/Quiz Level 3.unity
+    guid: 756e33273f71a2240b3a8cae49a6b824
   m_configObjects: {}

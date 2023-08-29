@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo9
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - There, now you've got a grasp of variables and operators. Oh right, I've forgotten
+      to mention the increment and decrement operators.
+    - 'They''re too short for their own stage anyway so I''ll just say it here: increment
+      (++) and decrement(--) are used like assignment operators.'
+    - 'They''re basically shorthand:
+
+      x++ is equal to x = x + 1
+
+      x--
+      is equal to x = x - 1.'
+    - Useful if you want to add or subtract 1 to a variable. But we'll touch on this
+      again way later so I'll just give them a mention now.
+    - Anyway, that's it for now!

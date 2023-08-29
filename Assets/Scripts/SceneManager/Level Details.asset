@@ -16,15 +16,101 @@ MonoBehaviour:
   - levelName: Basic Controls
     levelDesc: This is a tutorial for basic controls in Automonolith - camera controls
       and the buttons you'll be pressing for the game.
-  - levelName: Syntax and Methods
-    levelDesc: This is a tutorial for calling methods - a block of instructions which
-      tell the computer what to do.
+  - levelName: Using Methods
+    levelDesc: 'Now that you''re somewhat used to controlling your interface, how
+      about we learn how to use methids to give G4wain some commands?
+
+
+      -Morgan'
   - levelName: Level 1
     levelDesc: Reach the exit totem by moving pillars out of the way.
   - levelName: Level 2
     levelDesc: Reach the exit totem by getting the key and opening the gate blocking
       it.
+  - levelName: Integer Invocation
+    levelDesc: 'Now that you''ve gotten your mitts on a memory module, how about
+      we actually use it? I''ll teach you to use variables and how data types work.
+      Well, mostly integers. And some math.
+
+
+      -Morgan'
+  - levelName: String Incantation
+    levelDesc: 'Ints are one thing, but I did say there''s other data types. Let''s
+      do strings now, yeah? Ints and strings... these are what we''re using in the
+      monolith.
+
+
+      -Morgan'
   - levelName: Level 3
-    levelDesc: Reach the exit totem by opening both gates with the floor buttons.
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
   - levelName: Level 4
-    levelDesc: Arthur, G4wain, and Morgan are faced with a test.
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Nimue's Trial I
+    levelDesc: 'I have noticed your traversal of this monument to the Asarel. I,
+      Nimue, guardian spirit of this place shall test your ability to command your
+      automaton and control its memory.
+
+
+      -Nimue'
+  - levelName: True or False?
+    levelDesc: 'Remember when we talked about data types? Yeah, we''ll be tackling
+      another one. Trust me, this one''s important to these next few floors. Especially
+      since it helps G4wain make decisions.
+
+
+      -Morgan'
+  - levelName: Rite of Repetition
+    levelDesc: 'Floors will get a bit more complex from now on. And repetitive. Here
+      we''ll tackle loops - code that repeats code! This one might be a bit tricky
+      though, so just bear with me for a while.
+
+
+      -Morgan'
+  - levelName: Level 5
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Level 6
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Calling Shots
+    levelDesc: 'This floor''s bound to be full of unknowns. So how about we talk
+      about making decisions with the if, else-if, and else statements? Conditional
+      statements, the cornerstone of decision-making in programs.
+
+
+      -Morgan'
+  - levelName: Level 7
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Level 8
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Nimue's Trial II
+    levelDesc: 'You have done well to make it this far. But unless you prove to me
+      your grasp of looping and decision-making, I cannot allow your further passage.
+      So prove yourself to me, Arthur of Calot.
+
+
+      -Nimue'
+  - levelName: Box of Stuff
+    levelDesc: 'Hey, G4wain''s memory module got upgraded! Now he can use arrays.
+      What are arrays, you ask? Basically a collection of values in a single variable.
+      We''ll do some really basic stuff with them here.
+
+
+      -Morgan'
+  - levelName: Level 9
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Level 10
+    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
+      it.
+  - levelName: Nimue's Trial III
+    levelDesc: 'Your efforts are impressive, Arthur of Calot. It has been ages since
+      one has reached these chambers. Come, then, and I shall appraise your understanding
+      of arrays.
+
+
+      -Nimue'

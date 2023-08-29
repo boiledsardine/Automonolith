@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo0
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Looks like the upgrades Nimue made to G4wain will let him use variables and
+      data types.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Variables? Data types?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Variables are for storing data and values. Think of it like a piece of memory
+      that's holding a certain number or word at a time.
+    - Data types refer to the type a value has. This determines what variables it
+      can go into and what operations you can do with it.
+    - In programming, numbers and words are not the same and trying to put a word
+      where a number should go can cause an error.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I see. If I'm getting this right, each variable has a data type which determines
+      what I can put in it.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - 'Right. You''ve been working with one data type so far: integers. Remember
+      the numbers you put in the move() functions? Those numbers aren''t variables
+      though, since they''re not stored in memory.'
+    - Now I get to teach you how variables work, so I set up a spot to learn.
+    - See that grid of tiles? The buttons are hiding traps. Only one safe path exists.
+      Now because I'm so generous, I'll tell you where to step! But the data you
+      seek is stored in these variables three.
+    - '"num1", "num2", and "num3". To use the data stored in a variable, you have
+      to call it. Use its name where you intend its stored data to go. Like as an
+      argument to a method.'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - So if I want to use the value of "num1" in a moveUp() command, I have to type
+      "Bot.moveUp(num1);"?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Don't you catch on quickly? Get to it.

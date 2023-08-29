@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - I'm starting to see a pattern here.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Patterns are what loops are best suited for, after all.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - "This is a lot simpler than before, yet works on the same principle. \n"
+    - "You see a pattern you can repeat, you use a loop so you don't write as much
+      code as it you'd need without a loop.\r"
+    - Finish this under a certain amount of lines and we'll continue.

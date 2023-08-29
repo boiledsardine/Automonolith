@@ -53,8 +53,6 @@ public class DialogueManager : DialogueSystemBase{
 
     public void loadDialogue(){
         Dialogue dialogue = dialogueBlocks.Dequeue();
-
-        Debug.Log("Starting conversation with " + dialogue.npcName);
         dialogueLines.Clear();
 
         npcHighlight(dialogue);

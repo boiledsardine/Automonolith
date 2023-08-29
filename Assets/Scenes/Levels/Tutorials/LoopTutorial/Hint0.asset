@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Hint0
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - I already made a barebones declaration of a while loop for you. All you need
+      to do is fill it in.
+    - Put a condition between the "()". It could be a boolean like true or false,
+      or a comparison like "5 < 10", as long as it equates to true or false.
+    - Put the code you want to repeat between the curly braces - "{}". Code outside
+      the curly braces won't repeat.

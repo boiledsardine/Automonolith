@@ -34,24 +34,19 @@ public class Positioning : MonoBehaviour{
 
     //puts small object down
     //keeps small object over player's head if target tile is null
-    public void release(){
-        TileBase releaseTile = null;
-        try{
-            releaseTile = playerCharacter.GetComponent<CommandControl.Environment>().tileFront;
-        } catch (NullReferenceException){
-            Debug.LogWarning("Target tile is null!");
-            floatScript.amplitude = 0f;
-            floatScript.posOffset = transform.position;
-        }
+    public void release(TileBase releaseTile){
+        //fire raycast to find releasetile?        
+        float distance = Globals.Instance.distancePerTile;
+        Vector3 origin = GameObject.Find("PlayerCharacter").transform.position;
+        Vector3 fwd = GameObject.Find("PlayerCharacter").transform.TransformDirection(Vector3.back);
+
+        floatScript.amplitude = 0f;
+        floatScript.posOffset = transform.position;
         
-        if(releaseTile != null){
-            Vector3 releasePoint = releaseTile.transform.position;
-            if(floatScript != null){
-                floatScript.posOffset = new Vector3(releasePoint.x,
-                (releasePoint.y + yOffset), releasePoint.z);
-            }
-        } else {
-            Compiler.Instance.terminateExecution();
+        Vector3 releasePoint = releaseTile.transform.position;
+        if(floatScript != null){
+            floatScript.posOffset = new Vector3(releasePoint.x,
+            releasePoint.y + yOffset, releasePoint.z);
         }
     }
 }

@@ -28,9 +28,6 @@ public class MoveNugget : MonoBehaviour{
             case Tutorial2Objectives.TurnInteract2:
                 gameObject.transform.position = tpLocs[4].transform.position;
             break;
-            case Tutorial2Objectives.FinalStretch:
-                gameObject.transform.position = tpLocs[5].transform.position;
-            break;
         }
     }
 }

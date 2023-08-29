@@ -23,6 +23,7 @@ public class EditorSaveLoad : MonoBehaviour{
 
     void Start(){
         editorSave = Application.dataPath + "/EditorSaves.json";
+        levelIndex = LevelSaveLoad.Instance.indexHolder;
 
         LoadEditorState();
     }  

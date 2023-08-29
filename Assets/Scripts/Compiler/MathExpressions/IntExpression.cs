@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class IntExpression{
@@ -27,14 +29,28 @@ public class IntExpression{
             MathExpression elem = groupElements[i];
             if(elem == MathExpression.Value){
                 valueIndex++;
-            } else if(elem == MathExpression.Multiply || elem == MathExpression.Divide){
+            } else if(elem == MathExpression.Multiply || elem == MathExpression.Divide || elem == MathExpression.Modulo){
                 int valueA = groupValues[valueIndex - 1];
                 int valueB = groupValues[valueIndex];
                 
                 if(elem == MathExpression.Multiply){
                     groupValues[valueIndex - 1] = valueA * valueB;
+                } else if(elem == MathExpression.Divide) {
+                    try{
+                        groupValues[valueIndex - 1] = valueA / valueB;
+                    } catch {
+                        Compiler.Instance.addErr(string.Format("Line {0}: cannot divide by zero!", Compiler.Instance.currentIndex + 1));
+                        Compiler.Instance.errorChecker.writeError();
+                        Compiler.Instance.killTimer();
+                    }
                 } else {
-                    groupValues[valueIndex - 1] = valueA / valueB;
+                    try{
+                        groupValues[valueIndex - 1] = valueA % valueB;
+                    } catch {
+                        Compiler.Instance.addErr(string.Format("Line {0}: cannot divide by zero!", Compiler.Instance.currentIndex + 1));
+                        Compiler.Instance.errorChecker.writeError();
+                        Compiler.Instance.killTimer();
+                    }
                 }
 
                 groupValues.RemoveAt(valueIndex);
@@ -101,7 +117,7 @@ public class IntExpression{
             }
 
             if(currentDepth != 0){
-                Debug.Log("Unmatched bracket");
+                //Debug.Log("Unmatched bracket");
                 return;
             }
             
@@ -206,6 +222,9 @@ public class IntValue{
                 break;
             case "/":
                 elements.Add(MathExpression.Divide);
+                break;
+            case "%":
+                elements.Add(MathExpression.Modulo);
                 break;
             case "(":
                 elements.Add(MathExpression.StartGroup);

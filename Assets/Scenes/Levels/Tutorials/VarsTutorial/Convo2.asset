@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - It goes without saying that you can't use a variable that doesn't exist yet.
+      It's going to be like trying to remember a memory you don't have.
+    - So how does one create variables, you ask? It's called declaration. And it's
+      a rather straightforward process.
+    - 'Use this syntax:
+
+      type variableName = value'
+    - 'type is a data type such as an int (a number) or string (a word),
+
+      variableName
+      is whatever name you want to call the vairable (like x or y),'
+    - 'and value is the varaible''s, well, value.
+
+      The equals sign means you''re
+      trying to assign the value on the right to the variable on the left.'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - 'So if I want to create a varaible called myNum that stores the number 10,
+      I type:
+
+      int myNum = 10;
+
+      Is that it?'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - 'Right. Also note that there''s rules to naming variables: it cannot start
+      with a number, and it can only have alphanumeric characters and/or underscores.'
+    - Just follow those rules for naming variables and you can go crazy with names.
+      "xX_MorganRulez_Xz" is valid, "420Arthur" isn't.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -8907812512055693227, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Patting yourself on the back already?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Right, back to this here stage. Five buttons, four traps. The int (short for
+      integer - a numerical value) stored in that green panel on the wall will tell
+      you which one is safe.
+    - Now get to it!

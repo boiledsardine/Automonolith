@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e992c02bdb92cd640adeb653ce9d10fb, type: 3}
+  m_Name: Help Bools
+  m_EditorClassIdentifier: 
+  articleBlocks:
+  - articleName: Booleans
+    articleText: 'Booleans (bool data types) are values which can store either true
+      or false, which are essential to loops and conditional statements - important
+      features of a program.
+
+      
+
+      As shown prior in the Variables entry,
+      bools are declared with the bool keyword and can only take the values true
+      or false. For example:
+
+      
+
+      bool thisIsTrue = true;
+
+      bool
+      thisIsFalse = false;
+
+      
+
+      You can also assign boolean expressions
+      to bool variables. Boolean expressions compare two values or variables and
+      return either true or false based on the result of the comparison. These are
+      useful for conditional testing, especially for loops and if-else statements.
+      For example:
+
+      
+
+      int x = 10;
+
+      int y = 5;
+
+      bool xIsGreater
+      = x > y; //true
+
+      
+
+      In this example, xIsGreater is true because
+      10 > 5.
+
+      
+
+      Boolean expressions use their own unique operators
+      called comparison and logical operators, which will be covered in the next
+      article.
+
+'
+  - articleName: Comparison Operators
+    articleText: 'Boolean expressions are expressions that use comparison and logical
+      operators to evaluate two values and return either true or false, based on
+      the result of the evaluation. For example: "5 > 10" is a boolean expression
+      since it compares the values 5 and 10 with the ">" operator. Below is a list
+      of comparison operators:
+
+      
+
+      "==": Equal to - is true when two
+      values are the same. For example, "5 == 5" is true as both sides are the same.
+
+      "!=":
+      Not equal - is true when two values are different. For example, "5 != 10" is
+      true as both sides are different values.
+
+      ">": Greater than - is true
+      when the left side is greater than the right side. For example, "10 > 5" is
+      true.
+
+      "<": Less than - is true when the left side is less than the
+      right side. For example, "5 < 10" is true.
+
+      ">=": Greater than or equal
+      to - is true when the left side is greater than or equal to the right side.
+      For example, "10 >= 5" is true.
+
+      "<=": Less than or equal to - is true
+      when the left side is less than or equal to the right side. For example, "5
+      <= 5" is true.
+
+      
+
+      Comparison operators are used only with numerical
+      values such as int and double. The equal and not equal comparison operators
+      can be used with other data types, provided that both data types are the same.
+      For example:
+
+      
+
+      bool myBool = "string" != "string"; //false -
+      both are the same
+
+      
+
+      This game will be using int comparisons
+      almost exclusively, however.
+
+'
+  - articleName: Logical Operators
+    articleText: 'Along with comparison operators, boolean expressions use logical
+      operators to compare two true or false values. Below is a list of logical operators:
+
+      
+
+      "&&"
+      AND - returns true if both statements are true. For example, "5 < 10 && 10
+      > 5" is true as both "5 < 10" and "10 > 5" are true.
+
+      "||" OR - returns
+      true if one of the statements are true. For example, "true || false" is true
+      as one of the statements is true.
+
+      "!" NOT - reverses the value of the
+      statement it follows. This operates on one value only. For example, "!(5 <
+      10)" is false as "5 < 10" is true but the "!" operator reverses its value,
+      making it false.
+
+      
+
+      Here is a truth table of logic:
+
+      AND:
+
+      True
+      && True = True
+
+      True && False = False
+
+      False && True = False
+
+      False
+      && False = False
+
+      
+
+      OR:
+
+      True || True = True
+
+      True
+      || False = True
+
+      False || True = True
+
+      False || False = False
+
+      
+
+      NOT:
+
+      !True
+      = False
+
+      !False = True
+
+'

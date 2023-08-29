@@ -1,0 +1,321 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e992c02bdb92cd640adeb653ce9d10fb, type: 3}
+  m_Name: Help VarBasic
+  m_EditorClassIdentifier: 
+  articleBlocks:
+  - articleName: Variables and Data Types
+    articleText: 'Variables are containers for storing values, each with its own
+      data type. A data type is a classification of a value, like how to us numbers
+      and words are different from one another. There are different data types in
+      C#:
+
+
+
+      int - stores integers (whole numbers) such as 123 or -789.
+
+      double
+      - stores decimals such as 20.52 or -20.52.
+
+      char - stores single characters
+      such as ''A'' or ''B''. Char values must be surrounded by single quotes ('').
+
+      string
+      - stores text, such as "Hello World!". String values must be surrounded by
+      double quotes (").
+
+      bool - stores a true or false value
+
+
+
+      Variables
+      can be called in code by using their identifier, or their name. Much like in
+      math, a variable is replaced by the value it represents. For example:
+
+
+
+      int
+      num1 = 50;
+
+      int num2 = num + 100;
+
+
+
+      The first line creates a variable
+      with the name num1 and a value of 50. The second variable creates a variable
+      with the name num2 and its value is the sum of 100 and the value of num, which
+      is 50. Which means num2 equals 150. Another example:
+
+
+
+      string text =
+      "Hello World!";
+
+      Bot.say(text);
+
+
+
+      The first line creates a variable
+      called text that stores the string "Hello World!". Once called by the say()
+      method, G4wain says the value of the text variable, which is "Hello World!".'
+  - articleName: Declaring and Assigning Variables
+    articleText: 'To create a variable, you must declare it by specifying its type
+      and assigning a value with this syntax:
+
+
+
+      type varName = value;
+
+
+
+      where
+      type is the data type of the variable, variableName is its unique identifier,
+      and value is the value it''s meant to store. The equals sign (=) assigns values
+      to a variable.
+
+
+
+      Example:
+
+      string greeting = "Hello World!";
+
+
+
+      This
+      creates a string variable called greeting that can store the text "Hello World!".
+
+
+
+      You
+      can also declare a variable without assigning the value, then assign the value
+      later. For example:
+
+
+
+      int num;
+
+      num = 15;
+
+
+
+      The first line
+      declares an empty int variable, the second line assigns a value to it.
+
+
+
+      Take
+      note: assigning a new value to an existing variable overwrites its previous
+      value. For example:
+
+
+
+      int num = 20;
+
+      num = 30;
+
+      Bot.say(num);
+
+
+
+      In
+      this example, num becomes 30. So if num is called by the say() method, G4wain
+      says 30 instead of 20.'
+  - articleName: Arithmetic Operators
+    articleText: 'Much like in math, operators are used to perform operations on
+      variables and values. The arithmetic operators are:
+
+
+
+      "+" for addition,
+
+      "-"
+      for subtraction,
+
+      "*" for multiplication,
+
+      "/" for division,
+
+      "%"
+      for modulus operations,
+
+      "++" for incrementing,
+
+      "--" for decrementing.
+
+
+
+      Here
+      are some examples of how to use operators in code:
+
+
+
+      int sum = 100 +
+      200; //300
+
+      int difference = 350 - 150; //200
+
+      int product = sum
+      * 2; //600 (300 * 2)
+
+      int quotient = difference / 2; //100 (200 / 2)
+
+
+
+      Take
+      note: code follows the PEMDAS rule! It evaluates mathematical expressions in
+      parentheses first, then does multiplication, then division, then addition,
+      then subtraction in that order.
+
+
+
+      The increment and decrement operators
+      are special - they''re used to operate on variables by increasing or decreasing
+      their value by one. For example:
+
+
+
+      int x = 10;
+
+      x++; //x is now
+      11 (10 + 1)
+
+      x--; //x is now 10 (11 - 1)
+
+
+
+      You''ve probably never
+      heard of Modulus operations before. Modulus (%) divides two values and returns
+      the remainder. For example:
+
+
+
+      int x = 10 % 3; //1 (10/3 = 3 remainder
+      1)
+
+
+
+      Because arithmetic operators do math, they can only be used for
+      operations involving int values or variables. Using "+" to add a bool and a
+      string will throw an error.'
+  - articleName: Basic Controls
+    articleText: 'Guide G4wain by writing a short program with code.
+
+
+      The
+      spacebar opens the Code Editor. While it is open, you can type your program
+      into it. Press the green Play button in the lower right to start your program.
+
+
+      Press
+      escape to close the Code Editor. The Code Editor will also close once you press
+      the Play button.
+
+
+      Take note that pressing the Play button resets G4wain''s
+      position and the level''s state to the beginning, so you have to write code
+      that completely lists instructions for G4wain to navigate the level from start
+      to finish.'
+  - articleName: Basic Syntax
+    articleText: 'To get G4wain to do anything, write instructions in the form of
+      code.
+
+
+
+      Each instruction must be written on its own line, and each line
+      must be closed with a semicolon. The semicolon indicates the end of a line
+      and instructs G4wain to read the instructions in the next line.
+
+
+
+      To
+      make G4wain do things, such as move, you have to use methods. Methods are blocks
+      of code that perform certain actions. To use methods, you must first specify
+      from where those methods are coming from. To access the methods G4wain knows,
+      refer to it with "Bot.".
+
+
+
+      After writing "Bot.", you can use the methods
+      G4wain has access to, such as movement methods. Like so:
+
+
+
+      Bot.moveUp();
+
+      Bot.moveRight();
+
+
+
+      Take
+      note: using "Bot." to and its methods is unique to this game! Real C# code
+      calls methods the same way (e.g. "Console.WriteLine()") but uses different
+      words. If you ever want to continue learning, it''s up to you to figure this
+      out!'
+  - articleName: Methods
+    articleText: 'Bot has a set of methods it could perform to navigate the Monolith.
+
+
+
+      G4wain
+      has the moveUp, moveDown, moveLeft, and moveRight methods which you''ll use
+      to instruct G4wain to move in a certain direction. To call a method, use that
+      method''s name and add "()" at the end.
+
+
+
+      For example:
+
+
+
+      Bot.moveRight();
+
+      Bot.moveDown();
+
+      Bot.moveLeft();
+
+
+
+      Because
+      the code is executed line-by-line, the code above will make G4wain move right
+      one space, down one space, and left one space.'
+  - articleName: Arguments
+    articleText: 'Arguments are values you pass into methods. Some methods require
+      arguments, some don''t, and some can function with or without an argument.
+
+
+      Arguments
+      are written within the () at the end of a method. If a method requires multiple
+      arguments, values are separated by a comma.
+
+
+      For example:
+
+      Bot.moveUp(3);
+
+
+      This
+      will make G4wain move up 3 spaces instead of 1 - and using only one line of
+      code instead of the usual three!
+
+
+      Take note that there are some methods
+      that require arguments or else they wouldn''t know what to do.
+
+
+      For
+      example:
+
+
+      Bot.say("Hello World!") //G4wain will say "Hello World!"
+
+      Bot.say()
+      //G4wain won''t know what to say - this is an error!'

@@ -13,6 +13,8 @@ public class LevelSaveLoad : MonoBehaviour{
     public string editorSave;
     public int saveCounts = 10;
 
+    public int indexHolder;
+
     void Awake(){
         if(Instance == null){
             Instance = this;
@@ -20,34 +22,11 @@ public class LevelSaveLoad : MonoBehaviour{
         } else {
             Destroy(gameObject);
         }
-
+        
         levelSave = Application.dataPath + "/SaveLevels.json";
         editorSave = Application.dataPath + "/EditorSaves.json";
 
-        GenerateSaveFiles();
-    }
-
-    void GenerateSaveFiles(){
-        //check for save files
-        //generate new ones if they don't exist
-        if(!File.Exists(levelSave)){
-            for(int i = 0; i < saveCounts; i++){
-                AddLevelSaveEntry();
-            }
-        }
-
-        if(!File.Exists(editorSave)){
-            for(int i = 0; i < saveCounts; i++){
-                AddEditorSaveEntry();
-            }
-        }
-
         LoadLevelInfo();
-
-        if(!savedLevels[0].isUnlocked){
-            savedLevels[0].isUnlocked = true;
-            SaveLevels();
-        }
     }
 
     public void AddLevelSaveEntry(){
@@ -114,12 +93,14 @@ public class LevelSaveLoad : MonoBehaviour{
     //called when the main menu is opened
     public void LoadLevelInfo(){
         if(!File.Exists(levelSave)){
+            Debug.LogAssertion("NO SAVE FILES?");
             return;
         }
 
         string content = File.ReadAllText(levelSave);
 
         if(string.IsNullOrEmpty(content) || content == "{}"){
+            Debug.LogAssertion("Empty save entry");
             return;
         }
 

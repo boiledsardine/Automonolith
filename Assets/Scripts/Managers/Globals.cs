@@ -16,7 +16,7 @@ public class Globals : MonoBehaviour{
 
     //time for all objects to move in seconds
     //default: 0.5f
-    [SerializeField] private float _timeToMove = 0.5f;
+    [SerializeField] private float _timeToMove = 0.25f;
     
     //time for all objects to rotate in seconds
     //default: 0.5f
@@ -35,6 +35,8 @@ public class Globals : MonoBehaviour{
     //should always be half the distance per tile
     //default: 50f
     [SerializeField] private float _distancePerObject = 50f;
+
+    [SerializeField] private float _pickupYFixedPos = 140f;
 
     //getters and setters
     public float timeToMove{
@@ -56,6 +58,12 @@ public class Globals : MonoBehaviour{
     public float distancePerObject{
         get { return _distancePerObject; }
     }
+
+    public float pickupYFixedPos{
+        get { return _pickupYFixedPos; }
+    }
+
+    public int moveIndex = 0;
     
     //TODO: TT2 function for 1.5x and 2x
     //low prio

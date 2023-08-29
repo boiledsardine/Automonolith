@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo0
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - Rows of vox gates again. Which means...
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 6903694227769077350, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Yep, more data types. This time, we're covering booleans! Booleans store a
+      value that is either true or false.
+    - Since it stores a true or false value, it acts as an on-or-off switch for things
+      that require conditions, like loops which we'll cover later.
+    - 'But for now, let''s cover how booleans work. Use the bool type to declare
+      a boolean, like so:
+
+      bool myBool = true;'
+    - Also, I've made it so now the say() method takes booleans as arguments. For
+      this one, declare two booleans and use their values to open the vox gates.

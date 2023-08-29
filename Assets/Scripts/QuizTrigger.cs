@@ -7,6 +7,6 @@ public class QuizTrigger : MonoBehaviour{
     [SerializeField] private Canvas dialogueCanvas;
     public void startDialogue(){
         dialogueCanvas.gameObject.SetActive(true);
-        QuizManager.Instance.startQuiz(quiz);
+        //QuizManager.Instance.startQuiz(quiz);
     }
 }

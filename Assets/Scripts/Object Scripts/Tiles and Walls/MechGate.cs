@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class MechGate : GateBase, IActivate{
     public void activate(){
-        StartCoroutine(openGate());
+        gameObject.layer = 0;
+        var animator = GetComponent<Animator>();
+        animator.SetBool("isOpen", true);
+        //StartCoroutine(openGate());
     }
 
     public void deactivate(){
-        StartCoroutine(closeGate());
+        gameObject.layer = 6;
+        var animator = GetComponent<Animator>();
+        animator.SetBool("isOpen", false);
+        //StartCoroutine(closeGate());
     }
 }
