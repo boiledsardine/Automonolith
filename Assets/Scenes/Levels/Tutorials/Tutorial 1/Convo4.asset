@@ -24,6 +24,8 @@ MonoBehaviour:
       editor. If you bring your mouse over one of the methods, it'll show a tooltip
       about that method.
     - The tooltip contains what values the method requires, an example, and its description.
+      And that <color=#447343>olive green</color> text in the editor? Those are comments,
+      readable to you but not the computer.
     - Anyway, even if you've written down some code, G4wain won't do anything until
       you tell him to start. To do that, click the green play button in the lower
       right corner of the screen.
@@ -33,7 +35,6 @@ MonoBehaviour:
     - Your goal is to get G4wain close to the exit totem (it's that floating slab
       thing with the green arrow) and tell him to touch it.
     - Sometimes you'll have to do some other things first, but for now, just get
-      G4wain to touch the exit totem.
-    - For now, type "Bot.moveRight();", "Bot.moveDown();", and "Bot.interact();"
-      on separate lines and hit the play button. Nothing else in the editor but that,
-      capisce?
+      G4wain to reach the exit point.
+    - For now, I've typed in what you need to succeed. Just hit the green play button
+      and then we'll get to talking about how to actually command G4wain.

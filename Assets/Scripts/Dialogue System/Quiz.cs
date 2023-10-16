@@ -5,6 +5,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Quiz", menuName = "Quiz")]
 public class Quiz : ScriptableObject{
+    public Conversation startConvo, passConvo, failConvo;
+    public int threshold1, threshold2, threshold3, items;
     public List<QuizItem> quizBlocks;
 }
 

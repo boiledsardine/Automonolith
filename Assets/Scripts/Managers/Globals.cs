@@ -20,7 +20,7 @@ public class Globals : MonoBehaviour{
     
     //time for all objects to rotate in seconds
     //default: 0.5f
-    [SerializeField] private float _timeToRotate = 0.5f;
+    [SerializeField] private float _timeToRotate = 0.25f;
 
     //time for each in-game step to occur
     //default: 0.25f

@@ -18,4 +18,6 @@ public class LevelDetail{
     
     [TextArea(3, 10)]
     public string levelDesc; 
+    public bool isTutorial;
+    public bool isQuiz;
 }

@@ -14,6 +14,7 @@ public class CodeFormatter {
         bool inLiteral = false;
         bool inCharLiteral = false;
 
+        int squareDepth = 0;
         //goes through the line char by char
         for(int i = 0; i < line.Length; i++){
             char currentChar = line[i];
@@ -23,8 +24,12 @@ public class CodeFormatter {
             //if inArrayIndexer, spaces are ignored
             if(currentChar == '['){
                 inArrayIndexer = true;
+                squareDepth++;
             } else if(currentChar == ']'){
-                inArrayIndexer = false;
+                squareDepth--;
+                if(squareDepth <= 0){
+                    inArrayIndexer = false;
+                }
             }
 
             //if inLiteral, spaces are replaced with ^
@@ -104,35 +109,6 @@ public class CodeFormatter {
 
             lastAddedSection = sections[i];
         }
-
-        //look for signs
-        //if positive or negative sign
-        //check next character until it hits a non-whitespace
-        //check backwards until it hits a non-whitespace
-        //if operator behind and value ahead, is sign
-        //if value behind and value ahead, is operator
-        //if value behind and operator ahead, is operator
-        //if operator behind and operator ahead, is operator
-
-        //if sign, check next token
-        //if matches number regex, merge sign and value into one token
-
-        /*List<string> strArr = formattedLine.Split(' ').ToList();
-        for(int i = 0; i < strArr.Count; i++){
-            if(strArr[i] == "+" || strArr[i] == "-"){
-                int signIndex = i;
-                bool isSign = false;
-                //check last token
-                if(ReservedConstants.allMathOperators.Contains(strArr[signIndex - 1])){
-                    //is an operator
-                    isSign = true;
-                }
-                //check next token
-                if(isSign){
-                    if()
-                }
-            }
-        }*/
         return formattedLine;
     }
 }

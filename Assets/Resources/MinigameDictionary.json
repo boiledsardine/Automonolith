@@ -1,0 +1,184 @@
+{
+    "Items": [
+        {
+            "keyword": "int",
+            "description": "A keyword used to declare int variables, which are whole numbers."
+        },
+        {
+            "keyword": "char",
+            "description": "A keyword used to declar char variables, which hold only a single character between apostrophes."
+        },
+        {
+            "keyword": "string",
+            "description": "A keyword used to declare string variables, which are text values between quotation marks."
+        },
+        {
+            "keyword": "bool",
+            "description": "A keyword used to declare bool variables, which hold either true or false."
+        },
+        {
+            "keyword": "double",
+            "description": "A keyword used to declare double variables, which hold a decimal number."
+        },
+        {
+            "keyword": "true",
+            "description": "A value used in boolean logic, it's true!"
+        },
+        {
+            "keyword": "false",
+            "description": "A value used in boolean logic, no falsehoods here."
+        },
+        {
+            "keyword": "=",
+            "description": "The assignment operator assigns the value on the right to the variable on the left."
+        },
+        {
+            "keyword": ";",
+            "description": "The semicolon denotes a complete statement or line of code."
+        },
+        {
+            "keyword": "//",
+            "description": "A comment marker - everything to the right of it it isn't read by the machine as code."
+        },
+        {
+            "keyword": "+",
+            "description": "An arithmetic operator which adds two values."
+        },
+        {
+            "keyword": "-",
+            "description": "An arithmetic operator which subtracts two values."
+        },
+        {
+            "keyword": "*",
+            "description": "An arithmetic operator which multiplies two values."
+        },
+        {
+            "keyword": "/",
+            "description": "An arithmetic operator which divides two values."
+        },
+        {
+            "keyword": "%",
+            "description": "An arithmetic operator which returns the remainder of a division between two values."
+        },
+        {
+            "keyword": "++",
+            "description": "An arithmetic operator which increments a variable by 1 and assigns the sum to that variable."
+        },
+        {
+            "keyword": "--",
+            "description": "An arithmetic operator which decrements a variable by 1 and assigns the difference to that variable"
+        },
+        {
+            "keyword": "+=",
+            "description": "Adds the value on the right to the variable on the left then assigns the result to the variable."
+        },
+        {
+            "keyword": "-=",
+            "description": "Subtracts the value on the right from the variable on the left then assigns the result to the variable."
+        },
+        {
+            "keyword": "*=",
+            "description": "Multiplies the value on the right with the variable on the left then assigns the result to the variable."
+        },
+        {
+            "keyword": "/=",
+            "description": "Divides the value on the right and the variable on the left then assigns the result to the variable."
+        },
+        {
+            "keyword": "%=",
+            "description": "Performs a modulo operation with two values and assigns the result to the variable on the left."
+        },
+        {
+            "keyword": "{",
+            "description": "The open curly brace denotes the start of a block of code for if-else or loop statements."
+        },
+        {
+            "keyword": "}",
+            "description": "The closed curly brace denotes the end of a block of code for if-else or loop statements."
+        },
+        {
+            "keyword": "(",
+            "description": "The open parenthesis comes after functions and contains arguments or could be used in a math expression,"
+        },
+        {
+            "keyword": ")",
+            "description": "The closed parenthesis closes a parenthesis pair,"
+        },
+        {
+            "keyword": "[",
+            "description": "The open square brace is used for declaring arrays or calling an array's elements."
+        },
+        {
+            "keyword": "]",
+            "description": "The closed square accompanies the open square brace, closing the pair."
+        },
+        {
+            "keyword": "if",
+            "description": "A conditional statement! This triggers if the condition given to it is true."
+        },
+        {
+            "keyword": "else",
+            "description": "A conditional statement! This triggers if the condition given to the if statement before it is false."
+        },
+        {
+            "keyword": "while",
+            "description": "A looping statement! This starts a loop as long as the condition given to it is true."
+        },
+        {
+            "keyword": "new",
+            "descritption": "A keyword used to create new things, like arrays."
+        },
+        {
+            "keyword": "<",
+            "description": "A comparison operator that evaluates as true if the left number is less than the right number."
+        },
+        {
+            "keyword": "<=",
+            "description": "A comparison operator that evaluates as true if the left number is less than or equal to the right number."
+        },
+        {
+            "keyword": ">",
+            "description": "A comparison operator that evaluates as true if the left number is more than the right number."
+        },
+        {
+            "keyword": ">=",
+            "description": "A comparison operator that evaluates as true if the left number is more than or equal to the right number."
+        },
+        {
+            "keyword": "==",
+            "description": "A comparison operator that evaluates as true if the value on the left is equal to the value on the right."
+        },
+        {
+            "keyword": "!=",
+            "description": "A comparison operator that evaluates as true if the value on the left is NOT equal to the value on the right."
+        },
+        {
+            "keyword": "&&",
+            "description": "A boolean operator that evlauates as true if both bool values it compares are true."
+        },
+        {
+            "keyword": "||",
+            "description": "A boolean operator that evlauates as true if one of the two bool values it compares is true."
+        },
+        {
+            "keyword": "!",
+            "description": "A boolean operator that inverts the value of the boolean after it, turning true into false vice-versa."
+        },
+        {
+            "keyword": "Console",
+            "description": "The Console class in C# contains methods used in outputting data to the terminal."
+        },
+        {
+            "keyword": ".",
+            "description": "The dot is used to access a class's variables and methods."
+        },
+        {
+            "keyword": "WriteLine",
+            "description": "A method that prints its parameters to the console or terminal so that the programmer can read it."
+        },
+        {
+            "keyword": "Length",
+            "description": "An array property that tells you how many elements are in an array."
+        }
+    ]
+}

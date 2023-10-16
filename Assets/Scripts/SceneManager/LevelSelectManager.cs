@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelSelectManager : MonoBehaviour{
-    public static LevelSelectManager Instance;
+    public static LevelSelectManager Instance { get; private set; }
     public int sceneToLoad;
     public Canvas loadCanvas;
     public Slider loadBar;
@@ -14,8 +14,10 @@ public class LevelSelectManager : MonoBehaviour{
     public Texture starActive, starInactive;
     public LevelDetails levelDetailsObject;
     private List<LevelDetail> levelDetails;
-    public Button[] buttonArr;
+    public List<Button> buttonArr;
+    public GameObject buttonGroupContainer;
     public int levelOffset = 2;
+    public bool loadCutscene = false;
 
     void Awake(){
         if(Instance == null){
@@ -29,14 +31,33 @@ public class LevelSelectManager : MonoBehaviour{
     }
 
     void Start(){
+        var buttonHolders = buttonGroupContainer.GetChildren();
+        foreach(GameObject buttonHolder in buttonHolders){
+            buttonArr.Add(buttonHolder.transform.GetChild(0).gameObject.GetComponent<Button>());
+        }
+
+        buttonGroupContainer.GetComponent<ResizeScrollObject>().Resize();
         levelDetails = levelDetailsObject.levelDetails;
         
-        for(int i = 0; i < buttonArr.Length; i++){
+        int levelCounter = 1;
+        for(int i = 0; i < buttonArr.Count; i++){
             var levelButton = buttonArr[i].GetComponent<LevelSelectButton>();
             levelButton.levelIndex = i;
             levelButton.sceneToLoad = i + levelOffset;
             if(LevelSaveLoad.Instance.savedLevels[i].isUnlocked){
                 buttonArr[i].interactable = true; 
+            }
+            var levelButtonText = buttonArr[i].gameObject.transform.GetChild(0).gameObject.GetComponent<TMPro.TMP_Text>();
+            levelButtonText.text = levelDetails[i].levelName;
+
+            var decoText = buttonArr[i].gameObject.transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>();
+            if(levelDetails[i].isTutorial){
+                decoText.text = "Tutorial";
+            } else if(levelDetails[i].isQuiz){
+                decoText.text = "Quiz";
+            } else {
+                decoText.text = "Level " + levelCounter;
+                levelCounter++;
             }
         }
     }
@@ -64,9 +85,15 @@ public class LevelSelectManager : MonoBehaviour{
         }
     }
 
+    //called by play button
     public void loadScene(){
-        loadCanvas.gameObject.SetActive(true);
-        StartCoroutine(loadAsync(sceneToLoad));
+        //if level has associated story scene, run that first
+        if(loadCutscene){
+            SceneManager.LoadScene("Story Scene");
+        } else {
+            loadCanvas.gameObject.SetActive(true);
+            StartCoroutine(loadAsync(sceneToLoad));
+        }
     }
 
     public IEnumerator loadAsync(int sceneIndex){

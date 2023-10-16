@@ -20,5 +20,4 @@ MonoBehaviour:
     lines:
     - 'You got it. Oh, quick note: an if statement doesn''t have to be followed by
       an else statement, but an else statement always needs an if statement.'
-    - Anyway, if and else are useful if you're checking only one condition. But what
-      if you have two conditions?
+    - With this in mind, how about a little do-it-yourself this time?

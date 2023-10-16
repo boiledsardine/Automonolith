@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 4
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: 0872935d36e6f0f4fb17b3a47d90cea4, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Variables 1
+  levelDesc: 'This one was about operators, if I recall. Only I couldn''t remember
+    which operator goes where.
+
+
+    -Merlin'
+  levelGoal: Supply the correct operator to satisfy the line's comment's requirement!
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Ahh, this page was for my notes on arithmetic and assignment operators... I
+      remember the results of the equations, but not the operators.
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Hm, yes, that looks correct.
+  mainText: 'int x = 10;
+
+    int y = 5;
+
+
+    int num1 = x _ y; //15
+
+    int num2
+    = x _ y; //50
+
+    int num3 = x _ y; //2
+
+
+    num1 _ y; //3
+
+    num2 _ x; //40
+
+    num3
+    _ y; //7'
+  hidWords:
+  - hiddenText: +
+    correctAnswers:
+    - +
+    mistakeMessage: '4: There should be an arithmetic operator here... what would
+      make x and y equal 15?'
+  - hiddenText: '*'
+    correctAnswers:
+    - '*'
+    mistakeMessage: '5: There should be an arithmetic operator here... what would
+      make x and y equal 50?'
+  - hiddenText: /
+    correctAnswers:
+    - /
+    mistakeMessage: '6: There should be an arithmetic operator here... what would
+      make x and y equal 2?'
+  - hiddenText: /=
+    correctAnswers:
+    - /=
+    mistakeMessage: '8: There should be an assignment operator here... which one
+      will make num1 and y equal 3 then assign it to num1 at the same time?'
+  - hiddenText: -=
+    correctAnswers:
+    - -=
+    mistakeMessage: '9: There should be an assignment operator here... which one
+      will make num2 and x equal 40 then assign it to num2 at the same time?'
+  - hiddenText: +=
+    correctAnswers:
+    - +=
+    mistakeMessage: '10: There should be an assignment operator here... which one
+      will make num3 and y equal 7 then assign it to num3 at the same time?'
+  wordBank:
+  - +
+  - '*'
+  - /
+  - /=
+  - -=
+  - +=
+  levelDictionary:
+  - keyword: x
+    description: A variable! This one stores the int value 10.
+  - keyword: y
+    description: A variable! This one stores the int value 5.
+  - keyword: num1
+    description: A variable! You should assign it a value.
+  - keyword: num2
+    description: A variable! You should assign it a value.
+  - keyword: num3
+    description: A variable! You should assign it a value.
+  - keyword: 15
+    description: The supposed result of an arithmetic operation with x and y.
+  - keyword: 50
+    description: The supposed result of an arithmetic operation with x and y.
+  - keyword: 2
+    description: The supposed result of an arithmetic operation with x and y.
+  - keyword: 3
+    description: The supposed result of an arithmetic operation with num1 and y and
+      immediately assigned to num1.
+  - keyword: 40
+    description: The supposed result of an arithmetic operation with num2 and x and
+      immediately assigned to num2.
+  - keyword: 7
+    description: The supposed result of an arithmetic operation with num3 and y and
+      immediately assigned to num3.

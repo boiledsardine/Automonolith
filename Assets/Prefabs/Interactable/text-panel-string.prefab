@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6845528106028076998}
   - component: {fileID: 5395351591042149024}
   - component: {fileID: 2179650090809461182}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: text-panel-string
   m_TagString: WallPanel
   m_Icon: {fileID: 0}
@@ -72,6 +72,8 @@ MonoBehaviour:
   panelType: 0
   isTalking: 0
   speechbubble: {fileID: 0}
+  randomize: 0
+  valueRange: 
 --- !u!33 &5395351591042149024
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -109,4 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundObject: {fileID: 0}
-  isActivated: 0
+  latch: 0
+  latchActive: 0
+  latchColor: {fileID: 2100000, guid: 09dba54bac99dfb4fa52d52be64430a6, type: 2}

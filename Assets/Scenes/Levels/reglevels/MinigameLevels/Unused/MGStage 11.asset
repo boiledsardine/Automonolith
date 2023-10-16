@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 11
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: facc2d61b6c22c848bc6656c2acec874, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Loops 2
+  levelDesc: '[Name and description pending]'
+  levelGoal: '11: This is a test goal!'
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Test open dialogue
+    - Accounting for multiple lines
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - And multiple speakers
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Minigame test complete
+  mainText: 'Test
+
+    a: ___
+
+    b: ___
+
+    c: ___
+
+    d: ___
+
+    e: ___'
+  hidWords:
+  - hiddenText: test-a
+    dictionaryText: Test-a dictionary text
+    mistakeMessage: '2: I don''t think ___ belongs there'
+  - hiddenText: test-b
+    dictionaryText: Test-b dictionary text
+    mistakeMessage: '3: I don''t think ___ belongs there'
+  - hiddenText: test-c
+    dictionaryText: Test-c dictionary text
+    mistakeMessage: '4: I don''t think ___ belongs there'
+  - hiddenText: test-d
+    dictionaryText: Test-d dictionary text
+    mistakeMessage: '5: I don''t think ___ belongs there'
+  - hiddenText: test-e
+    dictionaryText: Test-e dictionary text
+    mistakeMessage: '6: I don''t think ___ belongs there'

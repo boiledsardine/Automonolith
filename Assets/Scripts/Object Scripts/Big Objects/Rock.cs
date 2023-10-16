@@ -10,12 +10,4 @@ public class Rock : ObjectBase{
         envirScript = GetComponent<ObjectEnvironment>();
         isMovable = true;
     }
-
-    private void Update(){
-        if(isHeld && envirScript.tileUnder != null){
-            envirScript.tileUnder.isOccupied = false;
-        } else if(!isHeld && envirScript.tileUnder != null) {
-            envirScript.tileUnder.isOccupied = true;
-        }
-    }
 }

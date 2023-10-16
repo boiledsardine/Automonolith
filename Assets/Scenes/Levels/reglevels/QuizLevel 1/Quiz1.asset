@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2e6422ecfe85147a7b2436171f42b7, type: 3}
   m_Name: Quiz1
   m_EditorClassIdentifier: 
+  startConvo: {fileID: 11400000, guid: ca4e668104e35e447a88b0627475acaf, type: 2}
+  passConvo: {fileID: 11400000, guid: 4745db6ebfc7d5b41b39acd2161bea47, type: 2}
+  failConvo: {fileID: 11400000, guid: c1e382138e957634c9c37f3b40feade8, type: 2}
+  threshold1: 5
+  threshold2: 7
+  threshold3: 10
+  items: 10
   quizBlocks:
   - question: What do you put at the end of a line of code to denote a complete statement?
     npcName: Nimue
@@ -85,53 +92,84 @@ MonoBehaviour:
     - 20
     - 30
     correctAnswer: 2
-  - question: TEST1
+  - question: 'What would be the best data type for the following value:
+
+
+      "Hello
+      world!"'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
     hasChoice: 1
     choices:
-    - 10
-    - 20
-    - 30
+    - string
+    - int
+    - bool
+    correctAnswer: 0
+  - question: 'What would be the best data type for the following value:
+
+
+      100'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - char
+    - double
+    - int
     correctAnswer: 2
-  - question: TEST2
+  - question: 'What would be the final value of num?
+
+
+      int num = 10;
+
+      num
+      *= 2;'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
     hasChoice: 1
     choices:
-    - 10
+    - 12
     - 20
-    - 30
-    correctAnswer: 2
-  - question: TEST3
+    - 10
+    correctAnswer: 1
+  - question: 'What would be the value of num?
+
+
+      int x = 10;
+
+      int y =
+      4;
+
+      int z = 2;
+
+      int num = x * (y / z);'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
     hasChoice: 1
     choices:
-    - 10
     - 20
     - 30
-    correctAnswer: 2
-  - question: TEST4
+    - 40
+    correctAnswer: 0
+  - question: 'Which of these variables is declared correctly?
+
+
+      int my_Num
+      = "100";
+
+      string 99stringVar = "text";
+
+      int num2 = 5;'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
     hasChoice: 1
     choices:
-    - 10
-    - 20
-    - 30
-    correctAnswer: 2
-  - question: TEST5
-    npcName: Nimue
-    showNpc: 0
-    npcSprite: {fileID: 0}
-    hasChoice: 1
-    choices:
-    - 10
-    - 20
-    - 30
+    - my_Num
+    - 99stringVar
+    - num2
     correctAnswer: 2

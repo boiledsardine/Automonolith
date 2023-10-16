@@ -14,15 +14,17 @@ public class LineChecker{
     int groupEndIndex = 0;
     ErrorChecker errorChecker;
     string[] globalSections;
-    string strPattern = @"^[A-Za-z_]+$";
+    //string strPattern = @"^[A-Za-z_]+$";
     string alphaNumPattern = @"^[A-Za-z_0-9]+$";
     bool isCondLoop = false;
+    string nextLine;
 
-    public LineChecker(string inputLine, int index, ErrorChecker err){
+    public LineChecker(string inputLine, string nextLine, int index, ErrorChecker err){
         allVars = Compiler.Instance.allVars;
         lineIndex = index;
         errorChecker = err;
         line = inputLine;
+        this.nextLine = nextLine;
         globalSections = line.Split(' ');
     }
 
@@ -65,20 +67,29 @@ public class LineChecker{
                     hasError = true;
                     return;
                 }
-                Debug.LogAssertion(Flags.Instance.arrayElements.Count);
-                if(Flags.Instance.isExpectingArrayCount && Flags.Instance.arrayElements.Count == Flags.Instance.expectedIndexCount){
-                    addErr(string.Format("Line {0}: an array with {1} elements is expected!", Flags.Instance.indexOfArrayInitializer + 1, Flags.Instance.expectedIndexCount));
+                if(Flags.Instance.isExpectingArrayCount && Flags.Instance.arrayElements.Count != Flags.Instance.expectedIndexCount){
+                    addErr(string.Format("Line {0}: an array with {1} elements is expected! Make sure your array has that many elements or change the value between the []!", Flags.Instance.indexOfArrayInitializer + 1, Flags.Instance.expectedIndexCount));
                     Flags.Instance.isExpectingArrayCount = false;
                     hasError = true;
                     return;
                 }
-                Flags.Instance.arrayElements.Clear();
 
                 if(!CheckSemicolon(sections)){
                     hasError = true;
                     return;
                 }
+                
+                if(!Flags.Instance.hasArrayError){
+                    lineType = LineType.assignArray;
+                }
+                Flags.Instance.ResetFlags();
             }
+        }
+        //check for an access modifier
+        else if(ReservedConstants.accessModifiers.Contains(sections[0])){
+            addErr(string.Format("Line {0}: access modifiers are part of OOP, which isn't covered by this game!", lineIndex));
+            hasError = true;
+            return;
         }
         //checks for a conditional statement
         else if(sections[0] == "if" || sections[0] == "else"){
@@ -98,7 +109,7 @@ public class LineChecker{
                         if(CheckLoopOrCondition(sections, lineIndex, "elseif")){
                             lineType = LineType.conditional;
                         } else {
-                            addErr(string.Format("Line {0}: 'if' should follow 'else' if you're trying to make an else-if statement!", lineIndex));
+                            //addErr(string.Format("Line {0}: 'if' should follow 'else' if you're trying to make an else-if statement!", lineIndex));
                             hasError = true;
                             return;
                         }
@@ -129,8 +140,14 @@ public class LineChecker{
         }
         //checks for an array declaration
         else if(ReservedConstants.arrVarTypes.Contains(sections[0])){
+            Flags.Instance.arrName = sections[1];
+            
+            Flags.Instance.arrayElements.Clear();
+
+
             if(!checkInitialize(sections, true)){
                 hasError = true;
+                Flags.Instance.hasArrayError = true;
                 return;
             }
 
@@ -143,15 +160,15 @@ public class LineChecker{
                     return;
                 }
             }
+            
+            Flags.Instance.isArray = true;
+            Flags.Instance.isExpectingBrace = true;
 
             //check if next token is a semicolon
             //if yes, immediately break out or else reach the next part
             if(sections[2] == ";"){
                 return;
             }
-
-            Flags.Instance.isArray = true;
-            Flags.Instance.isExpectingBrace = true;
 
             if(sections[0] == "int[]"){
                 Flags.Instance.arrType = ValueType.intVal;
@@ -205,10 +222,18 @@ public class LineChecker{
                     return;
                 }
             }
+
+            //check if the variable is actually a data type
+            else if(ReservedConstants.varTypes.Contains(sections[0])){
+                addErr(string.Format("Line {0}: was expecting a variable name after the data type {1}! Try this: {1} varName = value.", lineIndex, sections[0]));
+                hasError = true;
+                return;
+            }
+
             //check if the variable exists
             else if(!allVars.ContainsKey(sections[0])){
                 Debug.LogAssertion("non extant var");
-                addErr(string.Format("Line {0}: the name '{1}' does not exist or was improperly declared!", lineIndex, sections[0]));
+                addErr(string.Format("Line {0}: the name '{1}' does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, sections[0]));
                 hasError = true;
                 return;
             }
@@ -228,7 +253,8 @@ public class LineChecker{
         }
         //default for all
         else {
-            addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements!", lineIndex));
+            Debug.LogAssertion("erroneous: " + line);
+            addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements! This is an invalid line!", lineIndex));
             hasError = true;
             return;
         }
@@ -250,7 +276,7 @@ public class LineChecker{
         if(dotLeft == "Bot"){
             //check if dotRight exists
             if(dotRight == null || dotRight == ")" || dotRight == "(" || dotRight == ";" || ReservedConstants.allOperators.Contains(dotRight)){
-                addErr(string.Format("Line {0}: identifier expected after the '.'!", lineIndex));
+                addErr(string.Format("Line {0}: identifier expected after the '.'! Add a function name after the dot, check the editor's bottom section!", lineIndex));
                 return false;
             }
             //pass it to the function checker
@@ -259,14 +285,14 @@ public class LineChecker{
         //check if dotLeft is a type
         else if(ReservedConstants.varTypes.Contains(dotLeft)){
             if(dotRight == null || dotRight == ")" || dotRight == "(" || dotRight == ";" || ReservedConstants.allOperators.Contains(dotRight)){
-                addErr(string.Format("Line {0}: identifier expected after the '.'!", lineIndex));
+                addErr(string.Format("Line {0}: identifier expected after the '.'! Add a variable or function name after the dot!", lineIndex));
                 return false;
             }
             if((dotLeft == "int" || dotLeft == "int[]") && ReservedConstants.intFields.Contains(dotRight)){
                 if(ReservedConstants.intFields.Contains(dotRight)){
                     addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, "int", dotRight));
                 } else {
-                    addErr(string.Format("Line {0}: {1} does not have a definition for {2}!", lineIndex, "int", dotRight));
+                    addErr(string.Format("Line {0}: {1} does not have a definition for {2}! Maybe try something else or check your spelling.", lineIndex, "int", dotRight));
                 }
             }
 
@@ -274,7 +300,7 @@ public class LineChecker{
                 if(ReservedConstants.stringFields.Contains(dotRight)){
                     addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, "string", dotRight));
                 } else {
-                    addErr(string.Format("Line {0}: {1} does not have a definition for {2}!", lineIndex, "string", dotRight));
+                    addErr(string.Format("Line {0}: {1} does not have a definition for {2}! Maybe try something else or check your spelling.", lineIndex, "string", dotRight));
                 }
             }
             
@@ -282,7 +308,7 @@ public class LineChecker{
                 if(ReservedConstants.boolFields.Contains(dotRight)){
                     addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, "bool", dotRight));
                 } else {
-                    addErr(string.Format("Line {0}: {1} does not have a definition for {2}!", lineIndex, "bool", dotRight));
+                    addErr(string.Format("Line {0}: {1} does not have a definition for {2}! Maybe try something else or check your spelling.", lineIndex, "bool", dotRight));
                 }
             }
             //then throw an error anyway
@@ -291,12 +317,12 @@ public class LineChecker{
         //check if dotLeft is an extant variable
         else if(isValidVarName(dotLeft)){
             if(dotRight == null || dotRight == ")" || dotRight == "(" || dotRight == ";" || ReservedConstants.allOperators.Contains(dotRight)){
-                addErr(string.Format("Line {0}: identifier expected after the '.'!", lineIndex));
+                addErr(string.Format("Line {0}: identifier expected after the '.'! Add a variable or function name after the dot!", lineIndex));
                 return false;
             }
             if(Compiler.Instance.allVars.ContainsKey(dotLeft)){
                 if(dotRight == null){
-                    addErr(string.Format("Line {0}: identifier expected after the '.'!", lineIndex));
+                    addErr(string.Format("Line {0}: identifier expected after the '.'! Add a variable or function name after the dot!", lineIndex));
                     return false;
                 }
 
@@ -316,7 +342,7 @@ public class LineChecker{
                         addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, VarTypeToString(type), dotRight));
                         return false;
                     } else {
-                        addErr(string.Format("Line {0}: {1} does not have a definition for '{2}'!", lineIndex, VarTypeToString(type), dotRight));
+                        addErr(string.Format("Line {0}: {1} does not have a definition for '{2}'! Maybe try something else or check your spelling.", lineIndex, VarTypeToString(type), dotRight));
                         return false;
                     }
                 } else {
@@ -325,7 +351,7 @@ public class LineChecker{
                         if(ReservedConstants.intFields.Contains(dotRight)){
                             addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, VarTypeToString(type), dotRight));
                         } else {
-                            addErr(string.Format("Line {0}: {1} does not have a definition for {2}!", lineIndex, VarTypeToString(type), dotRight));
+                            addErr(string.Format("Line {0}: {1} does not have a definition for {2}! Maybe try something else or check your spelling.", lineIndex, VarTypeToString(type), dotRight));
                         }
                     }
 
@@ -333,7 +359,7 @@ public class LineChecker{
                        if(ReservedConstants.stringFields.Contains(dotRight)){
                             addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, VarTypeToString(type), dotRight));
                         } else {
-                            addErr(string.Format("Line {0}: {1} does not have a definition for {2}!", lineIndex, VarTypeToString(type), dotRight));
+                            addErr(string.Format("Line {0}: {1} does not have a definition for {2}! Maybe try something else or check your spelling.", lineIndex, VarTypeToString(type), dotRight));
                         }
                     }
                     
@@ -341,13 +367,13 @@ public class LineChecker{
                         if(ReservedConstants.boolFields.Contains(dotRight)){
                             addErr(string.Format("Line {0}: {1} has a definition for {2}, but for now, G4wain cannot use it.", lineIndex, VarTypeToString(type), dotRight));
                         } else {
-                            addErr(string.Format("Line {0}: {1} does not have a definition for {2}!", lineIndex, VarTypeToString(type), dotRight));
+                            addErr(string.Format("Line {0}: {1} does not have a definition for {2}! Maybe try something else or check your spelling.", lineIndex, VarTypeToString(type), dotRight));
                         }
                     }
                     return false;
                 }
             } else {
-                addErr(string.Format("Line {0}: variable \'{1}\' does not exist or was improperly declared!", lineIndex, dotLeft));
+                addErr(string.Format("Line {0}: variable \'{1}\' does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, dotLeft));
             }
         }
         //go here if dotLeft isn't a type, Bot, or a variable
@@ -403,25 +429,25 @@ public class LineChecker{
         }
 
         if(!ReservedConstants.varTypes.Contains(sections[0])){
-            addErr(string.Format("Line {0}: {1} is not a valid data type!", lineIndex, sections[0]));
+            addErr(string.Format("Line {0}: {1} is not a valid data type! The only valid data types G4wain can use are int, string, and bool!", lineIndex, sections[0]));
             isCorrect = false;
             typeError = true;
         }
 
         if(sections.Length == 1){
-            addErr(string.Format("Line {0}: identifier expected!", lineIndex));
+            addErr(string.Format("Line {0}: identifier expected! Add a valid variable name after the {1}!", lineIndex, sections[0]));
             isCorrect = false;
         }
 
         if(!isValidVarName(sections[1])){
             isCorrect = false;
         } else if(allVars.ContainsKey(sections[1])){
-            addErr(string.Format("Line {0}: {1} is already defined!", lineIndex, sections[1]));
+            addErr(string.Format("Line {0}: {1} is already defined! Give this variable another name.", lineIndex, sections[1]));
             isCorrect = false;
         }
 
         if(sections.Length == 2){
-            addErr(string.Format("Line {0}: ';' or '=' expected!", lineIndex));
+            addErr(string.Format("Line {0}: ';' or '=' expected! Check that the statement is closed with a semicolon or the variable assigned a value.", lineIndex));
             isCorrect = false;
         }
 
@@ -443,7 +469,7 @@ public class LineChecker{
                 switch(sections[0]){
                     case "int":
                         if(CheckTypes(expression) != ValueType.intVal){
-                            addErr(string.Format("Line {0}: provided value is not an int!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not an int! Ints are whole numbers.", lineIndex));
                             //force creation of empty variable
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.intVar, true));
                             Compiler.Instance.intVars.Add(sections[1], 0);
@@ -452,7 +478,7 @@ public class LineChecker{
                         break;
                     case "string":
                         if(CheckTypes(expression) != ValueType.strVal){
-                            addErr(string.Format("Line {0}: provided value is not a string!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a string! Strings are text enclosed by '\"'.", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.strVar, true));
                             Compiler.Instance.strVars.Add(sections[1], "");
                             return false;
@@ -460,7 +486,7 @@ public class LineChecker{
                     break;
                     case "bool":
                         if(CheckTypes(expression) != ValueType.boolVal){
-                            addErr(string.Format("Line {0}: provided value is not a bool!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a bool! Bools are either true or false.", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.boolVar, true));
                             Compiler.Instance.boolVars.Add(sections[1], false);
                             return false;
@@ -468,7 +494,7 @@ public class LineChecker{
                     break;
                     case "char":
                         if(CheckTypes(expression) != ValueType.charVal){
-                            addErr(string.Format("Line {0}: provided value is not a char!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a char! Chars are single characters enclosed by '''.", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.boolVar, true));
                             Compiler.Instance.charVars.Add(sections[1], 'a');
                             return false;
@@ -476,7 +502,7 @@ public class LineChecker{
                     break;
                     case "double":
                         if(CheckTypes(expression) != ValueType.doubleVal){
-                            addErr(string.Format("Line {0}: provided value is not a double!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a double! Doubles are decimal numbers.", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.boolVar, true));
                             Compiler.Instance.doubleVars.Add(sections[1], 0.0);
                             return false;
@@ -484,7 +510,7 @@ public class LineChecker{
                     break;
                     case "int[]":
                         if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.intArr){
-                            addErr(string.Format("Line {0}: provided value is not an int array!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not an int array! Int arrays are a list of whole numbers between {{}} and separated by commas! Like this: {{1, 2, 3}}", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.intVarArr, true));
                             Compiler.Instance.intArrs.Add(sections[1], new int[0]);
                             return false;
@@ -492,7 +518,7 @@ public class LineChecker{
                     break;
                     case "string[]":
                         if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.strArr){
-                            addErr(string.Format("Line {0}: provided value is not a string array!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a string array! String arrays are a list of strings between {{}} and separated by commas! Like this: {{\"a\", \"b\", \"c\"}}", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.strVarArr, true));
                             Compiler.Instance.strArrs.Add(sections[1], new string[0]);
                             return false;
@@ -500,7 +526,7 @@ public class LineChecker{
                     break;
                     case "bool[]":
                         if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.boolArr){
-                            addErr(string.Format("Line {0}: provided value is not a bool array!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a bool array! Bool arrays are a list of bools between {{}} and separated by commas! Like this: {{true, false, 3 < 5}}", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.boolVarArr, true));
                             Compiler.Instance.boolArrs.Add(sections[1], new bool[0]);
                             return false;
@@ -508,7 +534,7 @@ public class LineChecker{
                     break;
                     case "char[]":
                         if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.charArr){
-                            addErr(string.Format("Line {0}: provided value is not a char array!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a char array! Char arrays are a list of chars between {{}} and separated by commas! Like this: {{'a', 'b', 'c'}}", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.charVarArr, true));
                             Compiler.Instance.charArrs.Add(sections[1], new char[0]);
                             return false;
@@ -516,7 +542,7 @@ public class LineChecker{
                     break;
                     case "double[]":
                         if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.doubleArr){
-                            addErr(string.Format("Line {0}: provided value is not a double array!", lineIndex));
+                            addErr(string.Format("Line {0}: provided value is not a double array! Double arrays are a list of doubles between {{}} and separated by commas! Like this: {{1.2, 2.3, 3.4}}", lineIndex));
                             Compiler.Instance.allVars.Add(sections[1], new VariableInfo(VariableInfo.Type.doubleVarArr, true));
                             Compiler.Instance.doubleArrs.Add(sections[1], new double[0]);
                             return false;
@@ -525,19 +551,23 @@ public class LineChecker{
                 }
                 lineType = LineType.varAssign;
             }
+        } else if(!typeError && sections[2] == "("){
+            addErr(string.Format("Line {0}: G4wain doesn't support creating functions yet!", lineIndex));
+            return false;
         } else if(!typeError) {
             //check next token - should be a semicolon
             if(sections[2] == ";" && sections.Length == 3){
                 lineType = LineType.varInitialize;
             } else if(sections[2] == ";" && sections.Length > 3) {
-                addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[3]));
+                Debug.LogAssertion("unexpected token");
+                addErr(string.Format("Line {0}: unexpected token {1}! There shouldn't be anything after the semicolon!", lineIndex, sections[3]));
                 
                 //still allows initialization but is technically an error
                 //just so everything else that comes after that calls a techincally correct variable doesn't throw an error
                 lineType = LineType.varInitialize;
                 return false;
             } else {
-                addErr(string.Format("Line {0}: unexpected token {1}, expected \";\"!", lineIndex, sections[2]));
+                addErr(string.Format("Line {0}: unexpected token {1}, expected ';'! Replace the {1} with a semicolon!", lineIndex, sections[2]));
                 return false;
             }
         }
@@ -563,27 +593,28 @@ public class LineChecker{
                 string expression = Compiler.arrayToString(sections, 2);
                 if(Compiler.Instance.intVars.ContainsKey(sections[0])){
                     if(CheckTypes(expression) != ValueType.intVal){
-                        addErr(string.Format("Line {0}: provided value is not an int!", lineIndex));
+                        addErr(string.Format("Line {0}: provided value is not an int! Ints are whole numbers!", lineIndex));
                         return false;
                     }
                 } else if(Compiler.Instance.strVars.ContainsKey(sections[0])){
                     if(CheckTypes(expression) != ValueType.strVal){
-                        addErr(string.Format("Line {0}: provided value is not a string!", lineIndex));
+                        addErr(string.Format("Line {0}: provided value is not a string! Strings are text enclosed by '\"'.", lineIndex));
                         return false;
                     }
                 } else if(Compiler.Instance.boolVars.ContainsKey(sections[0])){
                     if(CheckTypes(expression) != ValueType.boolVal){
-                        addErr(string.Format("Line {0}: provided value is not a bool!", lineIndex));
+                        addErr(string.Format("Line {0}: provided value is not a bool! Bools are either true or false.", lineIndex));
                         return false;
                     }
                 } else if(Compiler.Instance.intArrs.ContainsKey(sections[0])){
+                    Flags.Instance.arrName = sections[0];
                     if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.intArr){
-                        addErr(string.Format("Line {0}: provided value is not an int array!", lineIndex));
+                        addErr(string.Format("Line {0}: provided value is not an int array! Int arrays are a list of whole numbers between {{}} and separated by commas! Like this: {{1, 2, 3}}", lineIndex));
                         return false;
                     } else if(string.IsNullOrEmpty(expression)){
                         //check next line if array initializer
-                        if(Compiler.Instance.getCodeLines[lineIndex] == "{"){
-                            addErr(string.Format("Line {0}: in assigning previously-declared int arrays, make sure to add \"new int[]\" before the initializer!", lineIndex));
+                        if(nextLine == "{"){
+                            addErr(string.Format("Line {0}: in assigning previously-declared int arrays, make sure to add \"new int[]\" before the initializer, like this: new int[] {{1, 2, 3}}!", lineIndex));
                             return false;
                         }
                     } else if(expression == ";"){
@@ -591,13 +622,14 @@ public class LineChecker{
                         return false;
                     }
                 } else if(Compiler.Instance.strArrs.ContainsKey(sections[0])){
+                    Flags.Instance.arrName = sections[0];
                     if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.strArr){
-                        addErr(string.Format("Line {0}: provided value is not a string array!", lineIndex));
+                        addErr(string.Format("Line {0}: provided value is not a string array! String arrays are a list of strings between {{}} and separated by commas! Like this: {{\"a\", \"b\", \"c\"}}", lineIndex));
                         return false;
                     } else if(string.IsNullOrEmpty(expression)){
                         //check next line if array initializer
-                        if(Compiler.Instance.getCodeLines[lineIndex] == "{"){
-                            addErr(string.Format("Line {0}: in assigning previously-declared string arrays, make sure to add \"new string[]\" before the initializer!", lineIndex));
+                        if(nextLine == "{"){
+                            addErr(string.Format("Line {0}: in assigning previously-declared string arrays, make sure to add \"new string[]\" before the initializer, like this: new string[] {{\"a\", \"b\", \"c\"}}", lineIndex));
                             return false;
                         }
                     } else if(expression == ";"){
@@ -605,13 +637,14 @@ public class LineChecker{
                         return false;
                     }
                 } else if(Compiler.Instance.boolArrs.ContainsKey(sections[0])){
+                    Flags.Instance.arrName = sections[0];
                     if(!string.IsNullOrEmpty(expression) && CheckTypes(expression) != ValueType.boolArr){
-                        addErr(string.Format("Line {0}: provided value is not a bool array!", lineIndex));
+                        addErr(string.Format("Line {0}: provided value is not a bool array! Bool arrays are a list of bools between {{}} and separated by commas! Like this: {{true, false, 3 < 5}}", lineIndex));
                         return false;
                     } else if(string.IsNullOrEmpty(expression)){
                         //check next line if array initializer
-                        if(Compiler.Instance.getCodeLines[lineIndex] == "{"){
-                            addErr(string.Format("Line {0}: in assigning previously-declared bool arrays, make sure to add \"new bool[]\" before the initializer!", lineIndex));
+                        if(nextLine == "{"){
+                            addErr(string.Format("Line {0}: in assigning previously-declared bool arrays, make sure to add \"new bool[]\" before the initializer, like this: new bool[] {{true, false, 3 < 5}}", lineIndex));
                             return false;
                         }
                     } else if(expression == ";"){
@@ -621,16 +654,16 @@ public class LineChecker{
                 }
                 
             } else if(sections[1] == ";"){
-                addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements!", lineIndex));
+                //addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements!", lineIndex));
                 return false;
             } else {
                 Debug.LogAssertion("unexpected token");
-                addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[1]));
+                addErr(string.Format("Line {0}: unexpected token {1}! {1} doesn't belong here. Make sure the syntax you used is correct.", lineIndex, sections[1]));
                 return false;
             }
         } else {
             Debug.LogAssertion("non extant error");
-            addErr(string.Format("Line {0}: the name {1} does not exist or was improperly declared!", lineIndex, varName));
+            addErr(string.Format("Line {0}: the name {1} does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, varName));
             return false;
         }
         return true;
@@ -642,18 +675,20 @@ public class LineChecker{
         if(sections[botIndex + 1] == "."){
             //checks if function name exists in list of valid functions
             if(!FunctionHandler.builtInFunctions.Contains(sections[botIndex + 2])){
-                addErr(string.Format("Line {0}: Bot has no definition for {1}!", lineIndex, sections[botIndex + 2]));
+                addErr(string.Format("Line {0}: Bot has no definition for {1}! Make sure that you're using a function that G4wain can use - check the bottom section of the editor! The word will be colored <color=#cadaa9>pale yellow</color> if it's a valid function!", lineIndex, sections[botIndex + 2]));
                 isCorrect = false;
             }
-            if(sections[botIndex + 3] != "("){
+
+            if(sections.Length < botIndex + 4 || sections[botIndex + 3] != "("){
                 //name is valid but no parentheses
-                addErr(string.Format("Line {0}: {1} is a method - add \"()\" after it!", lineIndex, sections[botIndex + 2]));
+                addErr(string.Format("Line {0}: {1} is a method - add \"()\" after it, like this: {1}()!", lineIndex, sections[botIndex + 2]));
                 isCorrect = false;
+                return false;
             }
 
             //checks parenthesis depth
             if(!CheckDepth(sections)){
-                isCorrect = false;
+                return false;
             }
             
             //check expression validity
@@ -675,7 +710,7 @@ public class LineChecker{
             }
 
         } else {
-            addErr(string.Format("Line {0}: unexpected token {1}, was expecting a \".\"!", lineIndex, sections[botIndex + 1]));
+            addErr(string.Format("Line {0}: unexpected token {1}, was expecting a \".\"! Put a '.' where the {1} is!", lineIndex, sections[botIndex + 1]));
             return false;
         }
         return isCorrect;
@@ -684,18 +719,26 @@ public class LineChecker{
     private bool CheckNew(string[] sections, int statementMinLength){
         string afterNew = "";
         if(sections.Length < statementMinLength){
-            addErr(string.Format("Line {0}: enter a data type after new and add () or [] after it!", lineIndex));
+            addErr(string.Format("Line {0}: enter a data type after new and add () or [] after it, like this: new int[]!", lineIndex));
             return false;
         }
         if(sections.Length >= statementMinLength){
-            afterNew = sections[statementMinLength - 1];
+            int afterNewIndex = statementMinLength - 1;
+            afterNew = sections[afterNewIndex];
             if(afterNew.Contains("[") && afterNew.Contains("]")){
                 afterNew = Compiler.GetSubstring(afterNew, 0, afterNew.IndexOf("[")) + "[]";
             }
             if(!ReservedConstants.varTypes.Contains(afterNew)){
-                addErr(string.Format("Line {0}: enter a data type after new and add () or [] after it!", lineIndex));
+                addErr(string.Format("Line {0}: enter a data type after new and add () or [] after it, like this: new int[]!", lineIndex));
                 return false;
             }
+
+            /*string afterAfterNew = afterNewIndex + 1 < sections.Length ? sections[afterNewIndex + 1]: null;
+            Debug.Log(Compiler.arrayToString(sections, 0));
+            if(!(afterAfterNew == null || afterAfterNew == ";")){
+                addErr(string.Format("Line {0}: ';' expected after the array type!", lineIndex));
+                return false;
+            }*/
         }
         if(sections.Length >= statementMinLength + 1 && sections[statementMinLength] == "("){
             addErr(string.Format("Line {0}: constructors are used in Object-Oriented Programming (OOP), something G4wain cannot fully do!", lineIndex));
@@ -706,9 +749,9 @@ public class LineChecker{
             string indexString = Compiler.GetSubstring(sections[x], sections[x].IndexOf("[") + 1, sections[x].IndexOf("]"));
             if(string.IsNullOrEmpty(indexString)){
                 //check for an initializer
-                if(Compiler.Instance.getCodeLines[lineIndex] != "{"){
+                if(nextLine != "{"){
                     //no initializer, error
-                    addErr(string.Format("Line {0}: array creation must have an array size between the [] or an initializer with values between {{}}!", lineIndex));
+                    addErr(string.Format("Line {0}: array creation must have an int value between the [] or an array literal with values between {{}}, like this: new int[3]!", lineIndex));
                     return false;
                 }
 
@@ -744,26 +787,26 @@ public class LineChecker{
                 string formattedLine = CodeFormatter.Format(indexString);
                 int index = new IntExpression(formattedLine).evaluate();
                 //check for an initializer
-                if(Compiler.Instance.getCodeLines[lineIndex] == "{"){
+                if(nextLine == "{"){
                     //set mode to array initialization and count the elements in the initalizer
                     //set mode to array initialization
                     Flags.Instance.isArray = true;
                     Flags.Instance.isExpectingBrace = true;
 
                     string s = "";
-                    if(sections[x] == "int[]"){
+                    if(sections[x].Contains("int[")){
                         Flags.Instance.arrType = ValueType.intVal;
                         s = "intArr";
-                    } else if(sections[x] == "string[]"){
+                    } else if(sections[x].Contains("string[")){
                         Flags.Instance.arrType = ValueType.strVal;
                         s = "stringArr";
-                    } else if(sections[x] == "bool[]"){
+                    } else if(sections[x].Contains("bool[")){
                         Flags.Instance.arrType = ValueType.boolVal;
                         s = "boolArr";
-                    } else if(sections[x] == "char[]"){
+                    } else if(sections[x].Contains("char[")){
                         Flags.Instance.arrType = ValueType.charVal;
                         s = "charArr";
-                    } else if(sections[x] == "double[]"){
+                    } else if(sections[x].Contains("double[")){
                         Flags.Instance.arrType = ValueType.doubleVal;
                         s = "doubleArr";
                     }
@@ -826,9 +869,8 @@ public class LineChecker{
 
     private bool CheckLoopOrCondition(string[] sections, int lineIndex, string type){
         //check the next line for a "{"
-        string nextLine = Compiler.Instance.getCodeLines.Length > 1 ? Compiler.Instance.getCodeLines[lineIndex] : null;
         if(nextLine != "{"){
-            addErr(string.Format("Line {0}: was expecting a '{{' after the condition!", lineIndex));
+            addErr(string.Format("Line {0}: was expecting a '{{' after the condition! Like this: if(condition){{", lineIndex));
             hasError = true;
             return false;
         }
@@ -849,11 +891,11 @@ public class LineChecker{
         }
 
         if(sections.Length < secLength){
-            addErr(string.Format("Line {0}: was expecting a '('!", lineIndex));
+            addErr(string.Format("Line {0}: was expecting a '('! Add a '(' after the if or while keyword!", lineIndex));
             return false;
         }
         if(sections[groupIndex] != "("){
-            addErr(string.Format("Line {0}: was expecting a '('", lineIndex));
+            addErr(string.Format("Line {0}: was expecting a '(' Add a '(' after the if or while keyword!", lineIndex));
             return false;
         }
 
@@ -865,7 +907,7 @@ public class LineChecker{
         int startIndex = line.IndexOf("(") + 1;
         string argString = line.Substring(startIndex, line.LastIndexOf(")") - (startIndex)).Trim();
         if(string.IsNullOrEmpty(argString)){
-            addErr(string.Format("Line {0}: conditional statements cannot be empty!", lineIndex));
+            addErr(string.Format("Line {0}: conditional statements cannot be empty! There has to be a bool or boolean expression between the '()' after the if or while word!", lineIndex));
             return false;
         }
         //check argument string validity
@@ -877,7 +919,7 @@ public class LineChecker{
         string expression = Compiler.arrayToString(globalSections, groupIndex + 1);
         expression = expression.Substring(0, expression.LastIndexOf(")")).Trim();
         if(CheckTypes(expression) != ValueType.boolVal){
-            addErr(string.Format("Line {0}: conditional statements must be a boolean!", lineIndex));
+            addErr(string.Format("Line {0}: conditional statements must be a boolean! Bools are either true or false. Examples: true, false, 3 < 5", lineIndex));
             return false;
         }
         return true;
@@ -885,6 +927,8 @@ public class LineChecker{
 
     //checks numerical expression validity
     private bool checkExpression(string[] sections, int index, bool notEmpty){
+        //Debug.Log(Compiler.arrayToString(sections, 0));
+
         bool isCorrect = true;
         bool isExpectingValue = true;
         //everything else should be part of the expression
@@ -899,6 +943,7 @@ public class LineChecker{
             
             if(ReservedConstants.mathOperators.Contains(sections[i])){
                 if(sections[i - 1] == "=" && !(sections[i] == "+" || sections[i] == "-")){
+                    Debug.LogAssertion("Unexpected token");
                     addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, sections[i]));
                     isCorrect = false;
                 } else {
@@ -921,6 +966,7 @@ public class LineChecker{
 
                 //check for an internal function call
                 else if(sections[i] == "Bot"){
+                    Debug.LogAssertion(Compiler.arrayToString(sections, i));
                     if(!checkBotCall(sections, i)){
                         return false;
                     }
@@ -949,7 +995,6 @@ public class LineChecker{
                     secList.Insert(i, insert);
                     sections = secList.ToArray();
                     globalSections = sections;
-                    Debug.LogWarning(Compiler.arrayToString(secList.ToArray(), 0));
                 }
 
                 //check for dot syntax
@@ -958,7 +1003,6 @@ public class LineChecker{
                         return false;
                     }
                     sections = globalSections;
-                    Debug.LogWarning(Compiler.arrayToString(sections.ToArray(), 0));
                     continue;
                 }
                 else if(ReservedConstants.varTypes.Contains(sections[i])){
@@ -970,7 +1014,7 @@ public class LineChecker{
                 //check char format
                 else if(Regex.IsMatch(sections[i], @"^\'.*\'$")){
                     if(sections[i].Length == 2){
-                        addErr(string.Format("Line {0}: char literals cannot be empty!", lineIndex));
+                        addErr(string.Format("Line {0}: char literals cannot be empty! Put a character between the ''!", lineIndex));
                         isCorrect = false;
                     }
                     if(sections[i].Length > 3){
@@ -990,7 +1034,8 @@ public class LineChecker{
                     if(allVars.ContainsKey(sections[i])){
                         //check if variable is assigned
                         if(!allVars[sections[i]].isSet){
-                            addErr(string.Format("Line {0}: cannot use variable {1} - it is unassigned!", lineIndex, sections[i]));
+                            Debug.LogAssertion("Missing variable");
+                            addErr(string.Format("Line {0}: cannot use variable {1} - it is unassigned! Assign it a value first with the '=' operator (syntax: variable = value)!", lineIndex, sections[i]));
                             isCorrect = false;
                         }
                         //isExpectingValue = false;
@@ -999,7 +1044,11 @@ public class LineChecker{
                             continue;
                         }
                     } else {
-                        addErr(string.Format("Line {0}: the name {1} does not exist or was improperly declared!", lineIndex, sections[i]));
+                        if(sections[i].Contains("`")){
+                            return false;   
+                        }
+
+                        addErr(string.Format("Line {0}: the name {1} does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, sections[i]));
                         return false;
                     }
                 } else {
@@ -1017,6 +1066,12 @@ public class LineChecker{
         return isCorrect;
     }
 
+    private bool IsValue(ValueType val){
+        return val == ValueType.intVal || val == ValueType.strVal || val == ValueType.boolVal || val == ValueType.voidVal
+            || val == ValueType.intArr || val == ValueType.strArr || val == ValueType.boolArr || val == ValueType.charVal
+            || val == ValueType.charArr || val == ValueType.doubleVal || val == ValueType.doubleArr || val == ValueType.nonExistVar;
+    }
+
     private bool CheckSequence(string[] sections, int index, bool zeroArgs){
         string expressionString = Compiler.arrayToString(sections, index);
         string[] expSections = expressionString.Split(' ');
@@ -1032,12 +1087,17 @@ public class LineChecker{
         for(int i = 0; i < expSections.Length; i++){
             //int wah = 9 10;
             ValueType val = values[i];
-            if(val == ValueType.intVal || val == ValueType.strVal || val == ValueType.boolVal || val == ValueType.voidVal
-            || val == ValueType.intArr || val == ValueType.strArr || val == ValueType.boolArr || val == ValueType.charVal
-            || val == ValueType.charArr || val == ValueType.doubleVal || val == ValueType.doubleArr || val == ValueType.nonExistVar){
+            if(IsValue(val)){
                 if(!expectValue){
                     Debug.LogAssertion("unexpected value - sequence");
-                    addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                    if(i > 0){
+                        ValueType valBefore = values[i - 1];
+                        if(IsValue(valBefore)){
+                            addErr(string.Format("Line {0}: unexpected token '{1}'; was expecting an operator, a ',' (if you're passing multiple arguments into a function), or a ')' to close a group!", lineIndex, expSections[i]));       
+                        } else if(valBefore == ValueType.endGroup){
+                            addErr(string.Format("Line {0}: unexpected token '{1}'; was expecting an operator or a ')' to close a group!", lineIndex, expSections[i]));       
+                        }
+                    }
                     return false;
                 }
 
@@ -1050,7 +1110,18 @@ public class LineChecker{
             } else if(val == ValueType.negateOp){
                 if(!expectNegate){
                     Debug.LogAssertion("unexpected value - negation");
-                    addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                    if(i > 0){
+                        ValueType valBefore = values[i - 1];
+                        if(IsValue(valBefore)){
+                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator, a ',' (if you're passing multiple arguments into a function), or a ')' to close a group!", lineIndex, expSections[i]));
+                        } else if(valBefore == ValueType.negateOp){
+                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting a value or a group (enclosed by '()')!", lineIndex, expSections[i]));
+                        } else if(valBefore == ValueType.endGroup){
+                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator or a ')' to close a group!", lineIndex, expSections[i]));
+                        }
+                    } else {
+                        addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                    }
                 }
 
                 expectValue = true;
@@ -1066,7 +1137,16 @@ public class LineChecker{
                         //do nothing
                     } else {
                         Debug.LogAssertion("unexpected operator");
-                        addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                        if(i < 0){
+                            ValueType valBefore = values[i - 1];
+                            if(valBefore == ValueType.mathOp || valBefore == ValueType.cmprOp || valBefore == ValueType.boolOp || valBefore == ValueType.negateOp){
+                                addErr(string.Format("Line {0}: unexpected token {1}; was expecting a value or a group (enclosed by '()') after the '{2}' operator!", lineIndex, expSections[i], expSections[i - 1]));
+                            } else if(valBefore == ValueType.startGroup || valBefore == ValueType.comma) {
+                                addErr(string.Format("Line {0}: unexpected token {1}; was expecting a value or a group (enclosed by '()') after the '{2}'!", lineIndex, expSections[i], expSections[i - 1]));
+                            } 
+                        } else {
+                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting a value or a group (enclosed by '()') as the first token of the expression!", lineIndex, expSections[i]));
+                        }
                         return false;
                     }
                 }
@@ -1080,7 +1160,16 @@ public class LineChecker{
             } else if(val == ValueType.startGroup){
                 if(!expectStartGroup){
                     Debug.LogAssertion("unexpected startgroup");
-                    addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                    if(i > 0){
+                        ValueType valBefore = values[i - 1];
+                        if(valBefore == ValueType.endGroup){
+                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator, a ',' to separate arguments in a function, or a ')' to close a group!", lineIndex, expSections[i]));
+                        } else if(IsValue(valBefore)){
+                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator, a ',' to separate arguments in a function, or a ')' to close a group!", lineIndex, expSections[i]));
+                        }
+                    } else {
+                        addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                    }
                     return false;
                 }
 
@@ -1097,7 +1186,16 @@ public class LineChecker{
             } else if(val == ValueType.endGroup){
                 if(!expectEndGroup){
                     Debug.LogAssertion("unexpected endgroup");
-                    addErr(string.Format("Line {0}: unexpected ')'!", lineIndex));
+                    if(i > 0){
+                        ValueType valBefore = values[i - 1];
+                        if(valBefore == ValueType.mathOp || valBefore == ValueType.cmprOp || valBefore == ValueType.boolOp || valBefore == ValueType.negateOp){
+                            addErr(string.Format("Line {0}: unexpected token ')'; was expecting a value or a group (enclosed by '()')!", lineIndex));        
+                        } else if(valBefore == ValueType.comma){
+                            addErr(string.Format("Line {0}: unexpected token ')'; was expecting a value or a group (enclosed by '()')!", lineIndex));
+                        }
+                    } else {
+                        addErr(string.Format("Line {0}: unexpected token ')'; was expecting a value or a group (enclosed by '()') as the first token of the expression!", lineIndex));
+                    }
                     return false;
                 }
 
@@ -1112,13 +1210,24 @@ public class LineChecker{
             } else if(val == ValueType.comma){
                 if(!expectComma){
                     Debug.LogAssertion("unexpected comma!");
-                    addErr(string.Format("Line {0}: unexpected comma; was expecting a value, '!', or '('!", lineIndex));
+                    if(i > 0){
+                        ValueType valBefore = values[i];
+                        if(valBefore == ValueType.mathOp || valBefore == ValueType.cmprOp || valBefore == ValueType.boolOp || valBefore == ValueType.negateOp){
+                            addErr(string.Format("Line {0}: unexpected comma; was expecting a value or a group (enclosed by '()')!", lineIndex));
+                        } else if(valBefore == ValueType.startGroup){
+                            addErr(string.Format("Line {0}: unexpected comma; was expecting a value or a group (enclosed by '()')!", lineIndex));
+                        } else if(valBefore == ValueType.comma){
+                            addErr(string.Format("Line {0}: unexpected comma; was expecting a value or a group (enclosed by '()')!", lineIndex));
+                        }
+                    } else {
+                        addErr(string.Format("Line {0}: unexpected token ','; was expecting a value or a group (enclosed by '()') as the first token of the expression!", lineIndex));
+                    }
                     return false;
                 }
                 if(depth > 0 && isCondLoop){
                     //needs nuance - function args or conditional?
                     Debug.LogAssertion("Commas cannot be between () in an argument!");
-                    addErr(string.Format("Line {0}: commas cannot be in an expression!", lineIndex));
+                    addErr(string.Format("Line {0}: commas cannot be in a conditional expression - commas are for separating items in an array literal or arguments in a function call!", lineIndex));
                 }
 
                 expectValue = true;
@@ -1127,10 +1236,11 @@ public class LineChecker{
                 expectStartGroup = true;
                 expectEndGroup = false;
                 expectNegate = true;
-            } else if(val != ValueType.semicolon) {
+            } 
+            else if(val != ValueType.semicolon) {
                 //unexpected
                 Debug.LogAssertion("semicolon error!");
-                addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));
+                addErr(string.Format("Line {0}: unexpected token {1}! Was expecting a semicolon here instead!", lineIndex, expSections[i]));
                 return false;
             }
         }
@@ -1196,7 +1306,7 @@ public class LineChecker{
 
     //TODO: errors for this one
     private List<ValueType> EvaluateList(List<ValueType> values, List<string> expTokens){
-        Debug.Log(Compiler.arrayToString(expTokens.ToArray(), 0));
+        //Debug.Log(Compiler.arrayToString(expTokens.ToArray(), 0));
         while(values.Contains(ValueType.mathOp)){
             for(int i = values.Count - 1; i >= 0; i--){
                 if(values[i] == ValueType.mathOp){
@@ -1239,7 +1349,34 @@ public class LineChecker{
                         break;
                     } else {
                         //type mismatch error
+                        Debug.LogAssertion("type mismatch for math operator");
                         addErr(string.Format("Line {0}: can't use operator {1} for types {2} and {3}! {1} operates on numerical types only!",
+                                lineIndex, expTokens[i], ValueToString(a), ValueToString(b)));
+                        hasError = true;
+                        values.RemoveRange(i - 1, 3);
+                        values.Insert(i - 1, ValueType.mismatch);
+                        expTokens.RemoveRange(i - 1, 3);
+                        expTokens.Insert(i - 1, "???");
+                        return values;
+                    }
+                }
+            }
+        }
+        while(values.Contains(ValueType.assignOp)){ 
+            for(int i = values.Count - 1; i >= 0; i--){
+                if(values[i] == ValueType.assignOp){
+                    ValueType a = i > 0 ? values[i - 1] : ValueType.blank;
+                    ValueType b = i < values.Count ? values[i + 1] : ValueType.blank;
+
+                    if(a == ValueType.intVal && b == ValueType.intVal){
+                        values.RemoveRange(i - 1, 3);
+                        values.Insert(i - 1, ValueType.intVal);
+                        expTokens.RemoveRange(i - 1, 3);
+                        expTokens.Insert(i - 1, "0");
+                        break;
+                    } else {
+                        //type mismatch error
+                        addErr(string.Format("Line {0}: can't use operator {1} for types {2} and {3}!",
                                 lineIndex, expTokens[i], ValueToString(a), ValueToString(b)));
                         hasError = true;
                         values.RemoveRange(i - 1, 3);
@@ -1260,7 +1397,7 @@ public class LineChecker{
                         values.RemoveAt(i);
                         break;
                     } else {
-                        addErr(string.Format("Line {0}: can't use operator {1} for type {2}! {1} only works on bools!",
+                        addErr(string.Format("Line {0}: can't use operator {1} for type {2}! {1} only works on bool values!",
                                 lineIndex, expTokens[i], ValueToString(a)));
                         Debug.LogAssertion("type mismatch for negation operator");
                         values.RemoveRange(i, 2);
@@ -1294,7 +1431,7 @@ public class LineChecker{
                             expTokens.RemoveRange(i - 1, 3);
                             expTokens.Insert(i - 1, "false");
                         }
-                        addErr(string.Format("Line {0}: can't use operator {1} for types {2} and {3}! {1} compares the same data types!",
+                        addErr(string.Format("Line {0}: can't use operator {1} for types {2} and {3}! {1} only compares two values of the same data type, such as two ints!",
                                 lineIndex, expTokens[i], ValueToString(a), ValueToString(b)));
                         values.RemoveRange(i - 1, 3);
                         values.Insert(i - 1, ValueType.mismatch);
@@ -1319,7 +1456,7 @@ public class LineChecker{
                         values.Insert(i - 1, ValueType.boolVal);
                         break;
                     } else {
-                        addErr(string.Format("Line {0}: can't use operator {1} for types {2} and {3}! {1} is for booleans only!",
+                        addErr(string.Format("Line {0}: can't use operator {1} for types {2} and {3}! {1} is for bool values only!",
                                 lineIndex, expTokens[i], ValueToString(a), ValueToString(b)));
                         values.RemoveRange(i - 1, 3);
                         values.Insert(i - 1, ValueType.mismatch);
@@ -1373,7 +1510,9 @@ public class LineChecker{
                 valTypes.Add(ValueType.voidVal);
             } else if(s == "!"){
                 valTypes.Add(ValueType.negateOp);
-            } else if(isValidVarName(s) && !Compiler.Instance.allVars.ContainsKey(s)){
+            } else if(ReservedConstants.assignmentOperators.Contains(s)){
+                valTypes.Add(ValueType.assignOp);
+            }else if(isValidVarName(s) && !Compiler.Instance.allVars.ContainsKey(s)){
                 valTypes.Add(ValueType.nonExistVar);
             } else {
                 valTypes.Add(ValueType.none);
@@ -1391,7 +1530,7 @@ public class LineChecker{
 
         //check for semicolons
         if(arrElems.Contains(";")){
-            addErr(string.Format("Line {0}: Semicolons cannot be inside arrays!", lineIndex));
+            addErr(string.Format("Line {0}: Semicolons cannot be inside arrays, only values of the appropriate type and commas to separate elements can be inside arrays!", lineIndex));
             return false;
         }
 
@@ -1424,6 +1563,7 @@ public class LineChecker{
             return false;
         }
 
+        Flags.Instance.arrayElements = arrElems.ToList();
         return true;
     }
 
@@ -1432,14 +1572,14 @@ public class LineChecker{
         //if it doesn't, array wasn't declared
         string varName = variable.Substring(0, variable.IndexOf(ReservedConstants.arrayIndexSeparator));
         if(!allVars.ContainsKey(varName)){
-            addErr(string.Format("Line {0}: array \"{1}\" does not exist or was improperly declared!", lineIndex, varName));
+            addErr(string.Format("Line {0}: array \"{1}\" does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, varName));
             hasError = true;
             return false;
         }
 
         //now check if array is assigned
         if(!allVars[varName].isSet){
-            addErr(string.Format("Line {0}: array \"{1}\" hasn't been assigned yet!", lineIndex, varName));
+            addErr(string.Format("Line {0}: array \"{1}\" hasn't been assigned yet! Assign it a value with the new keyword or by initializing it on the same statement it was declared in!", lineIndex, varName));
             hasError = true;
             return false;
         }
@@ -1447,7 +1587,7 @@ public class LineChecker{
         //now check if it exists
         //if it doesn't, index is out of bounds
         if(!allVars.ContainsKey(variable)){
-            addErr(string.Format("Line {0}: array index is out of the array's bounds!", lineIndex));
+            addErr(string.Format("Line {0}: array index is out of the array's bounds! Check that the index you're using is within bounds (number of elements in the array minus one)!", lineIndex));
             hasError = true;
             return false;
         }
@@ -1463,8 +1603,8 @@ public class LineChecker{
     //or include anything other than alphanumeric and semicolon
     //not that the limited editor will allow special chars anyway
     private bool isValidVarName(string varName){
-        if(ReservedConstants.keywords.Contains(varName)){            
-            addErr(string.Format("Line {0}: {1} is an invalid name - variable names cannot be reserved words!", lineIndex, varName));
+        if(ReservedConstants.keywords.Contains(varName)){
+            addErr(string.Format("Line {0}: {1} is an invalid name - variable names cannot be reserved words! A word will be colored <color=#26bcc9>navy blue</color> if it's a reserved word.", lineIndex, varName));
             hasError = true;
             return false;
         }
@@ -1478,8 +1618,8 @@ public class LineChecker{
 
         foreach(char c in varName.ToCharArray()){
             if(!Regex.IsMatch(c.ToString(), @"^[a-zA-Z0-9_`]$")){
-                Debug.LogAssertion("unexpected character error");
-                addErr(string.Format("Line {0}: unexpected character {1} detected!", lineIndex, c));
+                Debug.LogAssertion("unexpected character in: " + varName);
+                addErr(string.Format("Line {0}: unexpected character {1} in variable name {2}! Variable names can only contain alphanumeric characters and '_'!", lineIndex, c, varName));
                 hasError = true;
                 return false;
             }
@@ -1500,11 +1640,11 @@ public class LineChecker{
         }
 
         if(parenthesisDepth > 0){
-            addErr(string.Format("Line {0}: line has an unclosed parenthesis pair!", lineIndex));
+            addErr(string.Format("Line {0}: this line has an unclosed parenthesis pair!", lineIndex));
             return false;
         }
         if(parenthesisDepth < 0){
-            addErr(string.Format("Line {0}: line has an unopened parenthesis pair!", lineIndex));
+            addErr(string.Format("Line {0}: this line has an unopened parenthesis pair!", lineIndex));
             return false;
         }
         return true;
@@ -1541,6 +1681,7 @@ public enum LineType{
     loopBreak,
     openBrace,
     closeBrace,
+    assignArray,
     none
 }
 
@@ -1558,6 +1699,7 @@ public enum ValueType{
     mathOp,
     cmprOp,
     boolOp,
+    assignOp,
     startGroup,
     endGroup,
     comma,

@@ -52,7 +52,7 @@ public class FunctionHandler : MonoBehaviour{
     };
 
     //[SerializeField] private TMPro.TMP_Text stepCount;
-    private int steps = 0;
+    //private int steps = 0;
 
     Dictionary<string, VariableInfo> allVars;
     Dictionary<string, int> intVars;
@@ -74,7 +74,7 @@ public class FunctionHandler : MonoBehaviour{
     }
 
     public void initializeHandler(string functionLine, int lineIndex){
-        steps = 0;
+        //steps = 0;
 
         this.allVars = Compiler.Instance.allVars;
         this.intVars = Compiler.Instance.intVars;
@@ -130,11 +130,11 @@ public class FunctionHandler : MonoBehaviour{
                     Compiler.Instance.addErr(string.Format("Line {0}: {1}() takes only one argument!", lineIndex, sections[2]));
                     return true;
                 }
-                if(argsCount == 1 && !(argTypes[0][0] == ArgTypes.integer || argTypes[0][0] == ArgTypes.truefalse || argTypes[0][0] == ArgTypes.textstring
+                /*if(argsCount == 1 && !(argTypes[0][0] == ArgTypes.integer || argTypes[0][0] == ArgTypes.truefalse || argTypes[0][0] == ArgTypes.textstring
                     || argTypes[0][0] == ArgTypes.character || argTypes[0][0] == ArgTypes.floatpoint)){
                     Compiler.Instance.addErr(string.Format("Line {0}: {1}() takes only integer, boolean, or string arguments!", lineIndex, sections[2]));
                     return true;
-                }
+                }*/
             return false;
             case "write":
                 if(argsCount != 1){
@@ -148,7 +148,6 @@ public class FunctionHandler : MonoBehaviour{
             return false;
             default:
                 Debug.LogAssertion("oopsie");
-                addErr(string.Format("Line {0}: oopsie", lineIndex, sections[2]));
             return true;
         }
     }
@@ -251,7 +250,6 @@ public class FunctionHandler : MonoBehaviour{
                 yield return StartCoroutine(playerAct.interact());
                 break;
             case "say":
-                Debug.Log(passedArgs[0]);
                 if(argTypes[0][0] == ArgTypes.truefalse){
                     string exp = BoolExpression.ProcessBool(passedArgs[0]);
                     bool argVal = BoolExpression.GetConditionResult("( " + exp + " )");
@@ -276,19 +274,6 @@ public class FunctionHandler : MonoBehaviour{
                     Debug.Log("what");
                 }
                 break;
-            /*case "write":
-                if(argTypes[0][0] == ArgTypes.textstring){
-                    string writeArg = new StringExpression(passedArgs[0]).removeQuotations();
-                    Debug.Log("Writing: " + writeArg);
-                    yield return StartCoroutine(playerAct.write(writeArg));
-                } else if(argTypes[0][0] == ArgTypes.integer){
-                    int writeArg = new IntExpression(passedArgs[0]).evaluate();
-                    Debug.Log("Writing: " + writeArg);
-                    yield return StartCoroutine(playerAct.write(writeArg));
-                } else {
-                    Debug.Log("what");
-                }
-                break;*/
             case "dig":
                 yield return StartCoroutine(playerAct.digTile());
             break;

@@ -106,9 +106,7 @@ MonoBehaviour:
       
 
       This game will be using int comparisons
-      almost exclusively, however.
-
-'
+      almost exclusively, however.'
   - articleName: Logical Operators
     articleText: 'Along with comparison operators, boolean expressions use logical
       operators to compare two true or false values. Below is a list of logical operators:
@@ -164,6 +162,4 @@ MonoBehaviour:
       !True
       = False
 
-      !False = True
-
-'
+      !False = True'

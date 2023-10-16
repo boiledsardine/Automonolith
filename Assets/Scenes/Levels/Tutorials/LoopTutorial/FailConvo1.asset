@@ -18,4 +18,4 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 6903694227769077350, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
     lines:
-    - Nope. Used too many lines. Try again. Use a loop.
+    - Nope. Used too many statements. Try again. Use a loop.

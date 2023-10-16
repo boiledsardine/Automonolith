@@ -13,15 +13,10 @@ MonoBehaviour:
   m_Name: FailConvo2
   m_EditorClassIdentifier: 
   dialogueBlocks:
-  - npcName: test
-    showNpc: 0
-    npcPos: 0
-    npcSprite: {fileID: 0}
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
     lines:
-    - test
-  - npcName: test
-    showNpc: 0
-    npcPos: 0
-    npcSprite: {fileID: 0}
-    lines:
-    - fail 2
+    - Nope, the array "arr" isn't declared. You could reset the code or create a
+      variable named "arr". Matey.

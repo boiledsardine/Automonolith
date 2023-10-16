@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 7
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: e9f9e96b8e8163f49b6da67c3efea9c5, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Conditions 1
+  levelDesc: 'I used to teach, once. I used a small program to determine which students
+    passed and which ones didn''t.
+
+
+    -Merlin'
+  levelGoal: Complete the program that outputs a letter grade based on the value
+    of numGrade.
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - I used to teach, you know. I wrote this program to help me give out pass-or-fail
+      grades based on the student's grade percent.
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - I know you're thinking it would've been simple to just do this without using
+      code, but if you do the same thing hundreds of times you're bound to make a
+      mistake somewhere.
+  mainText: "if(numGrade _ 90) {\n  student.GiveGrade(_);\n}\nelse if(numGrade _
+    75) {\n  student.GiveGrade(_);\n}\nelse {\n  student.GiveGrade(_);\n}"
+  hidWords:
+  - hiddenText: '>='
+    correctAnswers: []
+    mistakeMessage: '2: I don''t think ___ belongs there'
+  - hiddenText: '"High Pass"'
+    correctAnswers: []
+    mistakeMessage: '3: I don''t think ___ belongs there'
+  - hiddenText: '>='
+    correctAnswers: []
+    mistakeMessage: '4: I don''t think ___ belongs there'
+  - hiddenText: '"Pass"'
+    correctAnswers: []
+    mistakeMessage: '5: I don''t think ___ belongs there'
+  - hiddenText: '"Fail"'
+    correctAnswers: []
+    mistakeMessage: '6: I don''t think ___ belongs there'
+  wordBank: []
+  levelDictionary:
+  - keyword: GiveGrade
+    description: A function that gives a student a the grade passed as an argument.

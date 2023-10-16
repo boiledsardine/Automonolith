@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo 6
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - What if you declare an array without assigning it an array literal at the moment
+      of declaration? You can't just assign a new value to it easily. You have to
+      use the new keyword.
+    - 'To use the new keyword to create a new array, use the word "new" followed
+      by a data type with square braces after it. Like this:'
+    - 'int[] numArr; //has no values
+
+      numArr = { 3,4,5 }; //error
+
+      numArr
+      = new int[] { 3,4,5 }; //correct - uses the new keyword'
+    - 'That''s just for assigning array literals to a previously-declared but unassigned
+      array! There''s other ways to use the new keyword:'
+    - 'If you do something like this:
+
+      int[] numArrs = new int[3];
+
+      It''ll
+      create an array of 3 elements with default values. Zeroes for ints and blanks
+      for strings.'
+    - 'If you do something like this:
+
+      int[] numArrs = new int[];
+
+      This
+      is an error. New arrays have to have a number between the [] after the data
+      type.'
+    - 'Alternatively, there''s also this:
+
+      int[] numArrs = new int[3] { 1,2,3
+      };
+
+      Make sure your array has a number of elements equal to the number
+      inside the [].'
+    - The Monolith won't make you do any of this, but I figured it's good to know
+      just in case, you never know.
+    - Anyway, for this one, use the new keyword to assign an array literal to that
+      unassigned array. Fill it with the strings I provide you. Then use that array
+      to get to the exit.
+    - As always, check the encyclopedia if you're confused. Good luck!

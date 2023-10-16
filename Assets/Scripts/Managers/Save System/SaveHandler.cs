@@ -6,7 +6,7 @@ using UnityEngine;
 
 //Use to add new entries to the savefiles
 //Does nothing in-game
-//This is a dev tool
+//OBSOLETE
 public class SaveHandler : MonoBehaviour{
     public List<LevelInfo> savedLevels = new List<LevelInfo>();
     public List<EditorState> editorStates = new List<EditorState>();
@@ -22,7 +22,7 @@ public class SaveHandler : MonoBehaviour{
     }
 
     public void AddLevelSaveEntry(){
-        savedLevels.Add(new LevelInfo(false, false, false, false));
+        savedLevels.Add(new LevelInfo(false, false, false, false, false));
         
         string levelContent = JsonHelper.ToJson<LevelInfo>(savedLevels.ToArray(), true);
         File.WriteAllText(levelSave, levelContent);

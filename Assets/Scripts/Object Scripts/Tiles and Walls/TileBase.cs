@@ -41,7 +41,7 @@ public class TileBase : MonoBehaviour {
         GetTileNeighbors();
     }
 
-    void GetTileNeighbors(){
+    public void GetTileNeighbors(){
         int layermask = 1 << 7;
         int wallmask = 1 << 6;
         float distance = 100f;
@@ -146,7 +146,7 @@ public class TileBase : MonoBehaviour {
     //checks for occupants
     protected void OnTriggerEnter(Collider col){
         occupant = col.gameObject;
-        if(col.tag != "Player"){
+        if(!(col.tag == "Player" || col.tag == "Held Big")){
             isOccupied = true;
         }
     }

@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2e6422ecfe85147a7b2436171f42b7, type: 3}
+  m_Name: Quiz2
+  m_EditorClassIdentifier: 
+  startConvo: {fileID: 11400000, guid: ca4e668104e35e447a88b0627475acaf, type: 2}
+  passConvo: {fileID: 11400000, guid: 4745db6ebfc7d5b41b39acd2161bea47, type: 2}
+  failConvo: {fileID: 11400000, guid: c1e382138e957634c9c37f3b40feade8, type: 2}
+  threshold1: 5
+  threshold2: 7
+  threshold3: 10
+  items: 10
+  quizBlocks:
+  - question: "What will this program output?\n\nint num = 5;\nif(num < 5) {\n  Console.WriteLine(\"A\");\n}\nelse
+      if(num < 10) {\n  Console.WriteLine(\"B\");\n}\nelse {\n  Console.WriteLine(\"C\");\n}"
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - A
+    - B
+    - C
+    correctAnswer: 1
+  - question: 'What are the values of these boolean expressions?
+
+
+      bool bool1
+      = 5 > 10;
+
+      bool bool2 = 30 > 20;'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - true, false
+    - true, true
+    - false, true
+    correctAnswer: 2
+  - question: 'What are the values of these boolean expressions?
+
+
+      bool bool1
+      = true && false;
+
+      bool bool2 = true || false;'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - false, true
+    - true, true
+    - true, false
+    correctAnswer: 0
+  - question: 'What is this boolean operator called?
+
+
+      &&'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - OR
+    - NOT
+    - AND
+    correctAnswer: 2
+  - question: "What should the value of myVar be so the program outputs \"Option
+      2\"?\n\nbool myVar;\nif(myVar) {\n  Console.WriteLine(\"Option 1\");\n}\nelse
+      {\n  Console.WriteLine(\"Option 2\");\n}"
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - True
+    - False
+    - Insufficient information
+    correctAnswer: 0
+  - question: "What would be the final value of num after the while loop ends?\n\nint
+      num = 0;\nwhile(num < 5) {\n  num++;\n}"
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - 5
+    - 4
+    - 0
+    correctAnswer: 0
+  - question: "How many times will G4wain move left with the given while loop?\n\nint
+      num = 0;\nwhile(num < 3) {\n  Bot.moveLeft();\n  num++;\n}"
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - 0
+    - 3
+    - 4
+    correctAnswer: 1
+  - question: "How many times will this loop run?\n\nint num = 5;\nwhile(num < 10){\n 
+      DoSomething();\n}"
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - 5
+    - 4
+    - None of the above
+    correctAnswer: 2
+  - question: "What would be the final value of total after the while loop ends?\n\nint
+      num = 0;\nint total = 0;\n\nwhile(num < 5) {\n  total += 3;\n  num++;\n}"
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - 15
+    - 3
+    - 12
+    correctAnswer: 0
+  - question: 'Which of these keywords is used to start a loop?
+
+
+      A. bool
+
+      B.
+      while
+
+      C. loop'
+    npcName: Nimue
+    showNpc: 0
+    npcSprite: {fileID: 0}
+    hasChoice: 1
+    choices:
+    - A
+    - B
+    - C
+    correctAnswer: 1

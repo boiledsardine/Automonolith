@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 767078971068845105}
   - component: {fileID: 5741242639836172096}
   - component: {fileID: 8436555581366393899}
+  - component: {fileID: 106257186872888820}
   m_Layer: 6
   m_Name: VoxGate01
   m_TagString: Vox
@@ -95,7 +96,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9999998, y: 1, z: 1.1955938}
+  m_Size: {x: 0.9999998, y: 4.793314, z: 1.1955934}
   m_Center: {x: 1.8067196e-15, y: -0.00000030311728, z: 0.09779739}
 --- !u!114 &5741242639836172096
 MonoBehaviour:
@@ -111,6 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPosY: -135
   password: 
+  caseInsensitive: 0
+  errorColor:
+  - {fileID: 2100000, guid: ad88a58a5fc8231409d37d42b8695a3e, type: 2}
 --- !u!95 &8436555581366393899
 Animator:
   serializedVersion: 3
@@ -130,6 +134,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &106257186872888820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767078971068845119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7863529887a4b45ae37649757a6771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8928830959558328676
 GameObject:
   m_ObjectHideFlags: 0

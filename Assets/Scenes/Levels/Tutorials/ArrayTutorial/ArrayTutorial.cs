@@ -56,9 +56,18 @@ public class ArrayTutorial : TutorialBase, IActivate{
             case Objectives.NewDeclaration:
                 //check if only one array is used and it's the given variable
                 var ci = Compiler.Instance;
-                var cis = ci.strArrs["arr"];
-                bool failOne = !ci.allVars["arr"].isSet || !cis.Contains("Open") || !cis.Contains("Akeru") || !cis.Contains("Ouvrir");
-                bool failTwo = ci.strArrs.Count != 2 && !ci.allVars.ContainsKey("arr");
+                var cis = ci.allVars.ContainsKey("arr") ? ci.strArrs["arr"] : null;
+                bool failOne = false;
+                bool failTwo = false;
+                if(cis != null){
+                    failOne = !ci.allVars["arr"].isSet || !cis.Contains("Open") || !cis.Contains("Akeru") || !cis.Contains("Ouvrir");
+                    failTwo = ci.strArrs.Count != 2 && !ci.allVars.ContainsKey("arr");
+                } else {
+                    failOne = true;
+                    failTwo = true;
+                }
+                failOne = !ci.allVars["arr"].isSet || !cis.Contains("Open") || !cis.Contains("Akeru") || !cis.Contains("Ouvrir");
+                failTwo = ci.strArrs.Count != 2 && !ci.allVars.ContainsKey("arr");
 
                 if(failOne && failTwo){
                     objectiveText[0].color = successColor;
@@ -143,7 +152,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Find the real buttons";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
     }
 
     void StartLooping(){
@@ -154,7 +163,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Find the real buttons";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
     }
 
     void StartChangeIndex(){
@@ -165,11 +174,11 @@ public class ArrayTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Change the array's values";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     void StartNewDeclaration(){
@@ -180,15 +189,15 @@ public class ArrayTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Assign values to the given array";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
 
         objectiveText[2].transform.gameObject.SetActive(true);
         objectiveText[2].text = ">Use only the given array";
-        objectiveText[2].color = Color.black;
+        objectiveText[2].color = defaultColor;
     }
 
     public void deactivate(){

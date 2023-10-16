@@ -16,10 +16,14 @@ public class Movement : MonoBehaviour, IMovement {
     private Environment envirScript;
     private Interaction interScript;
 
+    Animator anim;
+
     private void Awake(){
         envirScript = gameObject.GetComponent<Environment>();
         interScript = gameObject.GetComponent<Interaction>();
         setFacing();
+
+        anim = GetComponent<Animator>();
     }
 
     //getters and setters
@@ -148,12 +152,19 @@ public class Movement : MonoBehaviour, IMovement {
     }
 
     public IEnumerator moveTo(string tileName){
+        yield return new WaitForSeconds(Globals.Instance.timePerStep * 2);
         TileBase targetTile = null;
+
+        //force global update of tile connections
+        TileBase[] tiles = FindObjectsOfType<TileBase>();
+        foreach(TileBase tile in tiles){
+            tile.GetTileNeighbors();
+        }
 
         try{
             targetTile = GameObject.Find(tileName).GetComponent<TileBase>();
         } catch {
-            Compiler.Instance.addErr(string.Format("Line {0}: cannot find any tile named {1}! Make sure it is in uppercase!", Compiler.Instance.currentIndex + 1, tileName));
+            Compiler.Instance.addErr(string.Format("Cannot find any tile named {0}! Make sure it is in uppercase!", tileName));
             Compiler.Instance.errorChecker.writeError();
             Compiler.Instance.killTimer();
         }
@@ -163,7 +174,7 @@ public class Movement : MonoBehaviour, IMovement {
             try {
                 tileList = Pathfinder.Instance.FindPath(envirScript.currentTile, targetTile);
             } catch {
-                Compiler.Instance.addErr(string.Format("Line {0}: pathfinding functionality currently not available!", Compiler.Instance.currentIndex + 1));
+                Compiler.Instance.addErr(string.Format("Pathfinding functionality currently not available!"));
                 Compiler.Instance.errorChecker.writeError();
                 Compiler.Instance.killTimer();
             }
@@ -172,9 +183,10 @@ public class Movement : MonoBehaviour, IMovement {
             //then queue em up
             if(tileList.Count > 0){
                 List<char> directList = Pathfinder.Instance.GetDirections(tileList);
+                //Pathfinder.Instance.ColorTiles(tileList);
                 yield return StartCoroutine(MoveAlongPath(directList, 0));
             } else {
-                Compiler.Instance.addErr(string.Format("Line {0}: cannot find a path to {1}!", Compiler.Instance.currentIndex + 1, tileName));                Compiler.Instance.errorChecker.writeError();
+                Compiler.Instance.addErr(string.Format("Cannot find a path to {0}!", tileName));
                 Compiler.Instance.errorChecker.writeError();
                 Compiler.Instance.killTimer();
             }
@@ -201,10 +213,13 @@ public class Movement : MonoBehaviour, IMovement {
             yield return MoveAlongPath(directList, index + 1);
         }
     }
-
+    
     //Lerp'd coroutines        
+    bool lastWalkLeft = false;
     public IEnumerator Move(Vector3 moveDir){
-        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
+        anim.SetBool("walk1", !lastWalkLeft);
+        anim.SetBool("walk2", lastWalkLeft);
         if(recurCount > 0){
             if(envirScript.neighborIsValid(direction) && !envirScript.checkForWalls(direction)){                
                 //moves any held object
@@ -220,24 +235,28 @@ public class Movement : MonoBehaviour, IMovement {
                     (timeElapsed / Globals.Instance.timeToMove));
                     timeElapsed += Time.deltaTime;
                     yield return null;
-                }
+                }         
                 transform.position = targetPos;
                 setFacing();
 
                 //tail recursion
                 recurCount--;
+                
+                lastWalkLeft = !lastWalkLeft;
                 yield return StartCoroutine(Move(moveDir));
             } else {
-                Compiler.Instance.addErr(string.Format("Line {0}: G4wain cannot move to the specified direction!", Compiler.Instance.currentIndex + 1));
+                Compiler.Instance.addErr(string.Format("G4wain cannot move to the specified direction!", Compiler.Instance.currentIndex + 1));
                 Debug.LogAssertion("Invalid direction");
                 Compiler.Instance.errorChecker.writeError();
                 Compiler.Instance.killTimer();
             }  
         }
+        anim.SetBool("walk1", false);
+        anim.SetBool("walk2", false);
     }
 
     public IEnumerator Rotate(Quaternion rotDir){
-        yield return new WaitForSeconds(Globals.Instance.timePerStep / 2);
+        yield return new WaitForSeconds(Globals.Instance.timePerStep);
         
         float timeElapsed = 0;
         originRot = transform.rotation;

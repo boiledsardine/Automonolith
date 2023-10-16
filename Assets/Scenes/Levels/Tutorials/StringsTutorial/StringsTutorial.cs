@@ -101,7 +101,7 @@ public class StringsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
     }
 
     void StartDeclare(){
@@ -112,11 +112,11 @@ public class StringsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use a string variable";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     void StartMoveTo(){
@@ -127,11 +127,11 @@ public class StringsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use 3 or less statements";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     public void deactivate(){}

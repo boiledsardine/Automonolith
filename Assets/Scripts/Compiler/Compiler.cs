@@ -1,5 +1,3 @@
-//BEHOLD, THE SAFB (slow as fuck, boi)
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,9 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CommandControl;
-using System.Text.RegularExpressions;
-using UnityEditor.Build;
-using Microsoft.SqlServer.Server;
 
 public class Compiler : MonoBehaviour{
     public static Compiler Instance { get; private set; }
@@ -22,8 +17,9 @@ public class Compiler : MonoBehaviour{
     //Text component truncates text that isn't on screen at the moment
     //InputField's text property stores all the text lines
     [SerializeField] private TMPro.TMP_Text tmpInput;
+    [SerializeField] private CodeEditor editorManager;
 
-    [SerializeField] private TMPro.TMP_Text lineCount;
+    [SerializeField] private TMPro.TMP_Text lineCount, stepCount;
     
     //External monobehaviour handler scripts
     public FunctionHandler functionHandler;
@@ -102,6 +98,8 @@ public class Compiler : MonoBehaviour{
 
     private bool isLooping = false;
     private int loopEndIndex = 0;
+    public int statementCount = 0;
+    public int moveCount = 0;
 
     public void Awake(){
         if(Instance == null){
@@ -110,9 +108,7 @@ public class Compiler : MonoBehaviour{
         } else {
             Destroy(gameObject);
         }
-    }
 
-    private void Start(){
         //Time.timeScale = 3;
         _allVars = new Dictionary<string, VariableInfo>();
         _intVars = new Dictionary<string, int>();
@@ -133,8 +129,17 @@ public class Compiler : MonoBehaviour{
         playerMove = GameObject.Find("PlayerCharacter").GetComponent<Movement>();
         functionHandler = gameObject.GetComponent<FunctionHandler>();
         errorChecker = gameObject.GetComponent<ErrorChecker>();
-    }
 
+        //this part here protects the compiler from the colorizer
+        //since the compiler used to take input directly from the editor's text component
+        //which is formatted by the colorizer
+        //now the compiler takes input from the editormanager's unformatted code
+        //this is here as a stopgap since fixing it the old fashioned way (reassigning gameobject refs) will take a lot of repetitive work
+        //and i'm lazy af
+        //maybe change it eventually
+        editorManager = GameObject.Find("EditorManager").GetComponent<CodeEditor>();
+    }
+    
     public void Run(){
         errorChecker.errorConvo.dialogueBlocks = new List<Dialogue>();
         hasError = false;
@@ -145,9 +150,15 @@ public class Compiler : MonoBehaviour{
     private void delayedRun(){
         if(isResetSuccessful()){
             linesCount = 0;
-            preprocessCode(tmpInput.text);
+            preprocessCode(editorManager.code);
             StartCoroutine(firstPass(0, codeLines.Length));
         }
+    }
+
+    void FormatCurlyBraces(){
+        //forces curly braces on their own lines
+        code = code.Replace("{", "\n{\n");
+        code = code.Replace("}", "\n}\n");
     }
 
     private void preprocessCode(string rawCode){
@@ -156,9 +167,7 @@ public class Compiler : MonoBehaviour{
         
         code = rawCode;
 
-        //forces curly braces on their own lines
-        code = code.Replace("{", "\n{\n");
-        code = code.Replace("}", "\n}\n");
+        //FormatCurlyBraces();
 
         //format lines
         string[] unformattedLines = code.Split('\n');
@@ -216,37 +225,59 @@ public class Compiler : MonoBehaviour{
             formattedLines.Add(formattedLine);
             processedCode += formattedLine + '\n';
         }
-        
-        //remove newlines before and after braces
-        for(int i = 0; i < formattedLines.Count; i++){
-            string s = formattedLines[i];
-            string beforeS = i == 0 ? "notempty" : formattedLines[i - 1];
-            string afterS = i == formattedLines.Count - 1 ? "notempty" : formattedLines[i + 1];
-
-            if(s == "{" || s == "}"){
-                if(string.IsNullOrEmpty(afterS)){
-                    formattedLines.RemoveAt(i + 1);
-                }
-                if(string.IsNullOrEmpty(beforeS)){
-                    formattedLines.RemoveAt(i - 1);
-                    i--;
-                }
-            }
-
-            if(s =="}"){
-                afterS = i == formattedLines.Count - 1 ? "notempty" : formattedLines[i + 1];
-                if(afterS == ";"){
-                    formattedLines[i] = "} ;";
-                    formattedLines.RemoveAt(i + 1);
-                }
-            }
-        }
 
         formattedLines.Add("");
         codeLines = formattedLines.ToArray();
 
+        //count non-empty lines
+        foreach(string s in codeLines){
+            if(!string.IsNullOrWhiteSpace(s)){
+                linesCount++;
+            }
+        }
+
+        lineCount.text = string.Format("Lines: {0}", linesCount);
+    }
+
+    List<ConditionBlocks> conditionBlocks = new List<ConditionBlocks>();
+    int conditionBlockDepth = 0;
+    void CreateConBlockSingle(string line, int index){
+        string firstSection = line.Split(' ')[0];
+        var condition = new ConditionBlocks(){
+            lineIndex = index,
+            depth = conditionBlockDepth
+        };
+
+        switch(firstSection){
+            case "if":
+                condition.type = ConditionBlocks.Type.If;
+                conditionBlocks.Add(condition);
+            break;
+            case "else":
+                //check next token if it's if or not
+                if(line.Split(' ').Length == 1){
+                    //else
+                    condition.type = ConditionBlocks.Type.Else;
+                    conditionBlocks.Add(condition);
+                } else {
+                    //there's something else in here
+                    if(line.Split(' ')[1] == "if"){
+                        condition.type = ConditionBlocks.Type.ElseIf;
+                        conditionBlocks.Add(condition);
+                    }
+                }
+            break;
+            case "{":
+                conditionBlockDepth++;
+            break;
+            case "}":
+                conditionBlockDepth--;
+            break;
+        }
+    }
+    
+    void CreateConBlockMultiple(){
         //create condition block info
-        List<ConditionBlocks> conditionBlocks = new List<ConditionBlocks>();
         int blockDepth = 0;
         for(int i = 0; i < codeLines.Length; i++){
             string section = codeLines[i].Split(' ')[0];
@@ -269,7 +300,7 @@ public class Compiler : MonoBehaviour{
                             condition.type = ConditionBlocks.Type.ElseIf;
                             conditionBlocks.Add(condition);
                         } else {
-                            //error
+                            //error; linechecker already catches this so no worries?
                         }
                     }
                 break;
@@ -283,17 +314,21 @@ public class Compiler : MonoBehaviour{
         }
 
         //create links between chained conditions
+        CreateConditionLinks();
+    }
+
+    void CreateConditionLinks(){
         for(int i = 0; i < conditionBlocks.Count; i++){
             var condition = conditionBlocks[i];
             conditionByIndex.Add(condition.lineIndex, condition);
             //find else/else if attached to this block
             if(condition.type == ConditionBlocks.Type.If || condition.type == ConditionBlocks.Type.ElseIf){
-                //redundant loop
-                //TODO: remove nesting for
+                //not as redundant as first thought
+                //loop makes sure else-ifs are attached to an if
                 for(int j = i + 1; j < conditionBlocks.Count; j++){
                     var nextCondition = conditionBlocks[j];
 
-                    //at same depth - continuation of chain
+                    //continuation of chain
                     if(nextCondition.depth == condition.depth){
                         //if starts a new chain
                         if(nextCondition.type == ConditionBlocks.Type.If){
@@ -304,127 +339,250 @@ public class Compiler : MonoBehaviour{
                         break;
                     }
 
-                    //out of scope - end of chain
+                    //diff depth, diff chain
                     else if(nextCondition.depth < condition.depth){
                         break;
                     }
                 }
             }
         }
+        
+        conditionBlocks.Clear();
+    }
 
-        //count non-empty lines
-        foreach(string s in codeLines){
-            if(!string.IsNullOrWhiteSpace(s)){
-                linesCount++;
+    private List<string> GetLineList(string currentLine){
+        //replace indices
+        currentLine = CheckForIndex(currentLine.Split(' '));
+        
+        //enforce curly brace on its own line, so firstpass can pass the separate lines into linechecker under the same lineindex
+        currentLine = currentLine.Replace("{", "\n{\n");
+        currentLine = currentLine.Replace("}", "\n}\n");
+        List<string> lines = currentLine.Split('\n').ToList();
+        
+        //remove newlines before and after braces
+        for(int i = 0; i < lines.Count; i++){
+            string s = lines[i];
+            string beforeS = i == 0 ? "notempty" : lines[i - 1];
+            string afterS = i == lines.Count - 1 ? "notempty" : lines[i + 1];
+
+            if(s == "{" || s == "}"){
+                if(string.IsNullOrEmpty(afterS)){
+                    lines.RemoveAt(i + 1);
+                }
+                if(string.IsNullOrEmpty(beforeS)){
+                    lines.RemoveAt(i - 1);
+                    i--;
+                }
+            }
+
+            if(s =="}"){
+                afterS = i == lines.Count - 1 ? "notempty" : lines[i + 1];
+                if(afterS == ";"){
+                    lines[i] = "} ;";
+                    lines.RemoveAt(i + 1);
+                }
             }
         }
 
-        lineCount.text = string.Format("Lines: {0}", linesCount);
+        return lines;
     }
 
     int braceDepth = 0;
     private IEnumerator firstPass(int lineIndex, int stopIndex){
         currentIndex = lineIndex;
-        
+
         string currentLine = codeLines[lineIndex];
         string[] sections = currentLine.Split(' ');
-
-        //replace indices
-        currentLine = CheckForIndex(sections);
-
-        //enable once everything is ready
-        LineChecker lineChecker = new LineChecker(currentLine, lineIndex + 1, errorChecker);
-        lineChecker.CheckLine();
-        LineType lineType = lineChecker.lineType;
         
-        //checks for the Read() functions
-        if(!lineChecker.hasError && sections.Length > 1 && (sections.Contains("read") || sections.Contains("readInt") || sections.Contains("readBool"))){
-            currentLine = CheckForRead(sections);
-            sections = currentLine.Split(' ');
-        }
+        List<string> lines = GetLineList(currentLine);
 
-        if(!lineChecker.hasError && sections.Length > 1 && (sections.Contains("ReadStringArr") || sections.Contains("ReadIntArr") || sections.Contains("ReadBoolArr"))){
-            currentLine = CheckForReadArray(sections);
-            sections = currentLine.Split(' ');
-        }
-        
-        //checks for the CheckCube() function
-        if(!lineChecker.hasError && sections.Length > 1 && sections.Contains("CheckCube")){
-            currentLine = CheckForCube(sections, true);
-            sections = currentLine.Split(' ');
-        }
+        try{
+            for(int i = 0; i < lines.Count; i++){
+                if(string.IsNullOrEmpty(lines[i])){
+                    continue;
+                }
+                
+                lines[i] = lines[i].Trim();
+                
+                //find next line
+                string nextLine = "";
+                if(i == lines.Count - 1){
+                    if(lineIndex + 1 == stopIndex){
+                        nextLine = null;
+                    } else {
+                        int num = lineIndex + 1;
+                        List<string> sList = GetLineList(codeLines[num]);
+                        while(sList.Count == 1 && string.IsNullOrEmpty(sList[0])){
+                            num++;
+                            if(num == stopIndex){
+                                break;
+                            }
+                            sList = GetLineList(codeLines[num]);
+                        }
 
-        //checks for an array length property
-        if(!lineChecker.hasError && sections.Length > 1 && sections.Contains("Length")){
-            currentLine = CheckForArrLength(sections);
-            sections = currentLine.Split(' ');
-        }
-        //Debug for figuring out lineTypes:
+                        foreach(string s in sList){
+                            if(string.IsNullOrEmpty(s)){
+                                continue;
+                            } else {
+                                nextLine = s;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    nextLine = lines[i + 1];
+                }
+                
+                LineChecker lineChecker = new LineChecker(lines[i], nextLine, lineIndex + 1, errorChecker);
+                lineChecker.CheckLine();
+                LineType lineType = lineChecker.lineType;
 
-        if(lineChecker.hasError){
-            this.hasError = true;
-        } else {
-            if(sections.Length > 1){
-                sections = semicolonRemover(sections);
-            }
-            currentLine = arrayToString(sections, 0);
-        }
+                //register current line as condition block if it is
+                CreateConBlockSingle(lines[i], lineIndex);
 
-        //track bracket depth
-        if(lineType == LineType.openBrace){
-            scopeList.Add(new Dictionary<string,string>());
-            nestedVars.Add(new List<string>());
-            braceDepth++;
-        } 
-        if(lineType == LineType.closeBrace){
-            int lastIndex = scopeList.Count - 1;
-            foreach(KeyValuePair<string,string> kv in scopeList[lastIndex]){
-                allVars.Remove(kv.Key);
-                switch(kv.Value){
-                    case "int":
-                        intVars.Remove(kv.Key);
-                    break;
-                    case "string":
-                        strVars.Remove(kv.Key);
-                    break;
-                    case "bool":
-                        boolVars.Remove(kv.Key);
-                    break;
+                //checks for the Read() functions
+                if(!lineChecker.hasError && sections.Length > 1 && (sections.Contains("read") || sections.Contains("readInt") || sections.Contains("readBool"))){
+                    lines[i] = CheckForRead(sections, true);
+                    sections = lines[i].Split(' ');
+                }
+
+                if(!lineChecker.hasError && sections.Length > 1 && (sections.Contains("ReadStringArr") || sections.Contains("ReadIntArr") || sections.Contains("ReadBoolArr"))){
+                    lines[i] = CheckForReadArray(sections, true);
+                    sections = lines[i].Split(' ');
+                }
+                
+                //checks for the CheckCube() function
+                if(!lineChecker.hasError && sections.Length > 1 && sections.Contains("CheckCube")){
+                    lines[i] = CheckForCube(sections, true);
+                    sections = lines[i].Split(' ');
+                }
+
+                //checks for an array length property
+                if(!lineChecker.hasError && sections.Length > 1 && sections.Contains("Length")){
+                    lines[i] = CheckForArrLength(sections);
+                    sections = lines[i].Split(' ');
+                }
+
+                if(lineChecker.hasError){
+                    this.hasError = true;
+                } else {
+                    if(sections.Length > 1){
+                        sections = semicolonRemover(sections);
+                    }
+                    currentLine = arrayToString(sections, 0);
+                }
+
+                //track bracket depth
+                //removes out of scope vars
+                if(lines[i] == "{"){
+                    scopeList.Add(new Dictionary<string,string>());
+                    nestedVars.Add(new List<string>());
+                    braceDepth++;
+                } 
+                if(lines[i] == "}"){
+                    int lastIndex = scopeList.Count - 1;
+                    foreach(KeyValuePair<string,string> kv in scopeList[lastIndex]){
+                        allVars.Remove(kv.Key);
+                        switch(kv.Value){
+                            case "int":
+                                intVars.Remove(kv.Key);
+                            break;
+                            case "string":
+                                strVars.Remove(kv.Key);
+                            break;
+                            case "bool":
+                                boolVars.Remove(kv.Key);
+                            break;
+                        }
+                    }
+                    scopeList.RemoveAt(lastIndex);
+                    braceDepth--;
+                }
+
+                //assign an array
+                if(!lineChecker.hasError && lineType == LineType.assignArray){
+                    AddStatementCount(false);
+                    AssignArray();
+                }
+
+                //declare a variable
+                if(!lineChecker.hasError && lineType == LineType.varInitialize){
+                    AddStatementCount(false);
+                    initializeVariable(currentLine);
+                }
+
+                //assign a non-array variable
+                if(!lineChecker.hasError && lineType == LineType.varAssign){
+                    AddStatementCount(false);
+                    assignVariable(currentLine);
+                }
+
+                //check statements
+                string first = lines[i].Split(' ')[0];
+                if(!lineChecker.hasError && lineType == LineType.functionCall && first == "Bot"){
+                    AddStatementCount(true);
+                }
+
+                if(!lineChecker.hasError && (first == "while" || first == "if" || first == "else")){
+                    AddStatementCount(false);
                 }
             }
-            scopeList.RemoveAt(lastIndex);
-            braceDepth--;
+        } catch {
+            Debug.LogAssertion("unspecified error");
         }
-
-        if(!lineChecker.hasError && lineType == LineType.varInitialize){
-            initializeVariable(currentLine);
-        }
-        if(!lineChecker.hasError && lineType == LineType.varAssign){
-            assignVariable(currentLine);
-        }
-
+        
         if((lineIndex + 1) >= codeLines.Length || (lineIndex + 1) == stopIndex){
-            if(braceDepth > 0){
-                Debug.LogWarning("Unclosed braces somewhere");
-                hasError = true;
-            }
-            if(braceDepth < 0){
-                Debug.LogWarning("Unopened braces somewhere");
-                hasError = true;
+            //reformat code to separate curly braces and create condition blocks
+            //merge codeLines into a single string delineated by newlines
+            string newCode = "";
+            foreach(string s in codeLines){
+                newCode += s.Trim() + "\n";
             }
 
-            //check if any else or elseif declarations don't have a preceding condition
-            foreach(KeyValuePair<int, ConditionBlocks> entry in conditionByIndex){
-                var con = entry.Value;
-                bool hasLastBlock = con.lastBlock != null;
-                if(con.type == ConditionBlocks.Type.ElseIf || con.type == ConditionBlocks.Type.Else){
-                    if(!hasLastBlock){
-                        //error
-                        Debug.LogWarning("Else/ElseIf cannot start a conditional chain");
-                        //hasError = true;
+            //enforce curlies on separate lines
+            newCode = newCode.Replace("{", "\n{\n");
+            newCode = newCode.Replace("}", "\n}\n");
+            List<string> newCodeLines = newCode.Split('\n').ToList();
+
+            //remove newlines before and after braces
+            for(int i = 0; i < newCodeLines.Count; i++){
+                string s = newCodeLines[i];
+                string beforeS = i == 0 ? "notempty" : newCodeLines[i - 1];
+                string afterS = i == newCodeLines.Count - 1 ? "notempty" : newCodeLines[i + 1];
+
+                if(s == "{" || s == "}"){
+                    if(string.IsNullOrEmpty(afterS)){
+                        newCodeLines.RemoveAt(i + 1);
+                    }
+                    if(string.IsNullOrEmpty(beforeS)){
+                        newCodeLines.RemoveAt(i - 1);
+                        i--;
+                    }
+                }
+
+                if(s =="}"){
+                    afterS = i == newCodeLines.Count - 1 ? "notempty" : newCodeLines[i + 1];
+                    if(afterS == ";"){
+                        newCodeLines[i] = "} ;";
+                        newCodeLines.RemoveAt(i + 1);
                     }
                 }
             }
+
+            codeLines = newCodeLines.ToArray();
+
+            //trim those lines
+            for(int i = 0; i < codeLines.Length; i++){
+                codeLines[i] = codeLines[i].Trim();
+            }
+
+            CreateConditionLinks();
+            OtherChecks();
+
+            //clear conByIndex dict and recreate it for secondPass
+            //which checks conByIndex for lineIndex keys
+            conditionByIndex.Clear();
+            CreateConBlockMultiple();
 
             if(hasError || hasArgError){
                 errorChecker.writeError();
@@ -433,10 +591,36 @@ public class Compiler : MonoBehaviour{
                 clearDictionaries(false);
                 scopeList.Clear();
                 braceDepth = 0;
-                StartCoroutine(secondPass(0, stopIndex));
+                StartCoroutine(secondPass(0, codeLines.Length));
             }
         } else {
             yield return StartCoroutine(firstPass(lineIndex + 1, stopIndex));
+        }
+    }
+    
+    void OtherChecks(){
+        if(braceDepth > 0){
+            Debug.LogAssertion("Unclosed braces somewhere");
+            addErr("Check that all brace pairs are properly closed!");
+            hasError = true;
+        }
+        if(braceDepth < 0){
+            Debug.LogAssertion("Unopened braces somewhere");
+            addErr("Check that all brace pairs are properly closed!");
+            hasError = true;
+        }
+
+        //check if any else or elseif declarations don't have a preceding condition
+        foreach(KeyValuePair<int, ConditionBlocks> entry in conditionByIndex){
+            var con = entry.Value;
+            bool hasLastBlock = con.lastBlock != null;
+            if(con.type == ConditionBlocks.Type.ElseIf || con.type == ConditionBlocks.Type.Else){
+                if(!hasLastBlock){
+                    //error
+                    addErr(string.Format("Line {0}: else/else if cannot start a conditional chain! It must be preceded by an if!", con.lineIndex + 1));
+                    hasError = true;
+                }
+            }
         }
     }
 
@@ -461,7 +645,11 @@ public class Compiler : MonoBehaviour{
         //replace indices
         currentLine = CheckForIndex(sections);
 
-        LineChecker lineChecker = new LineChecker(currentLine, lineIndex + 1, errorChecker);
+        currentLine = currentLine.Trim();
+
+        string nextLine = lineIndex + 1 == codeLines.Length ? null : codeLines[lineIndex + 1];
+
+        LineChecker lineChecker = new LineChecker(currentLine, nextLine, lineIndex + 1, errorChecker);
         lineChecker.CheckLine();
         LineType lineType = lineChecker.lineType;
 
@@ -476,12 +664,12 @@ public class Compiler : MonoBehaviour{
 
         //checks for the Read() functions
         if(!lineChecker.hasError && sections.Length > 1 && (sections.Contains("read") || sections.Contains("readInt") || sections.Contains("readBool"))){
-            currentLine = CheckForRead(sections);
+            currentLine = CheckForRead(sections, false);
             sections = currentLine.Split(' ');
         }
 
         if(!lineChecker.hasError && sections.Length > 1 && (sections.Contains("ReadStringArr") || sections.Contains("ReadIntArr") || sections.Contains("ReadBoolArr"))){
-            currentLine = CheckForReadArray(sections);
+            currentLine = CheckForReadArray(sections, false);
             sections = currentLine.Split(' ');
         }
 
@@ -524,6 +712,9 @@ public class Compiler : MonoBehaviour{
             braceDepth--;
         }
 
+        if(!lineChecker.hasError && lineType == LineType.assignArray){
+            AssignArray();
+        }
         if(lineType == LineType.varInitialize){
             initializeVariable(currentLine);
         }
@@ -535,7 +726,7 @@ public class Compiler : MonoBehaviour{
             functionHandler.initializeHandler(currentLine, lineIndex + 1);
             hasError = functionHandler.hasError;
             if(!functionHandler.hasError){
-                yield return StartCoroutine(functionHandler.runFunction());   
+                yield return StartCoroutine(functionHandler.runFunction());
             }
         }
 
@@ -579,7 +770,6 @@ public class Compiler : MonoBehaviour{
                 endOfChain = BlockEndLineIndex(condition.lineIndex) + 1;
             }
             condition.lastEval = runCondition;
-            //Debug.Log(runCondition);
             yield return StartCoroutine(HandleCondition(runCondition, lineIndex, stopIndex, endOfChain));
             yield break;
         }
@@ -636,8 +826,8 @@ public class Compiler : MonoBehaviour{
                 StartCoroutine(secondPass(loopEndIndex + 1, stopIndex));
                 yield break;
             } else {
-                //if you get here, means you used a break statement outside a loop
-                Debug.LogWarning("Uh oh!");
+                addErr(string.Format("Line {0}: No enclosing loop to break out of!", currentIndex + 1));
+                hasError = true;
             }
         }
 
@@ -645,6 +835,15 @@ public class Compiler : MonoBehaviour{
             Debug.LogWarning("Execution finished!");
         } else {
             yield return StartCoroutine(secondPass(lineIndex + 1, stopIndex));
+        }
+    }
+
+    private void AddStatementCount(bool addMoveCount){
+        statementCount++;
+
+        if(addMoveCount){
+            moveCount++;
+            stepCount.text = string.Format("Steps: {0}", moveCount);
         }
     }
    
@@ -750,6 +949,45 @@ public class Compiler : MonoBehaviour{
         }
     }
 
+    void AssignArray(){
+        string varName = Flags.Instance.arrName;
+        switch(Flags.Instance.arrType){
+            case ValueType.intVal:
+                List<int> intVals = new List<int>();
+                string[] intArrVals = Flags.Instance.arrayElements.ToArray();
+                for(int i = 0; i < intArrVals.Length; i++){
+                    var intArrEval = new IntExpression(intArrVals[i]);
+                    intVals.Add(intArrEval.evaluate());
+                }
+                intArrs[varName] = intVals.ToArray();
+                allVars[varName].isSet = true;
+                AddArray(varName, intArrs[varName]);
+            break;
+            case ValueType.strVal:
+                List<string> strVals = new List<string>();
+                string[] strArrVals = Flags.Instance.arrayElements.ToArray();
+                for(int i = 0; i < strArrVals.Length; i++){
+                    string strArrTxt = new StringExpression(strArrVals[i]).removeQuotations();
+                    strVals.Add(strArrTxt);
+                }
+                strArrs[varName] = strVals.ToArray();
+                allVars[varName].isSet = true;
+                AddArray(varName, strArrs[varName]);
+            break;
+            case ValueType.boolVal:
+                List<bool> boolVals = new List<bool>();
+                string[] boolArrVals = Flags.Instance.arrayElements.ToArray();
+                for(int i = 0; i < boolArrVals.Length; i++){
+                    var boolValEval = BoolExpression.GetConditionResult("( " + boolArrVals[i] + " )");
+                    boolVals.Add(boolValEval);
+                }
+                boolArrs[varName] = boolVals.ToArray();
+                allVars[varName].isSet = true;
+                AddArray(varName, boolArrs[varName]);
+            break;
+        }
+    }
+    
     private void assignVariable(string line){
         string[] sections = line.Split(' ');
         int opIndex = Array.IndexOf(sections, "=");
@@ -757,7 +995,6 @@ public class Compiler : MonoBehaviour{
         string varName = sections[opIndex - 1];
 
         string varType = opIndex != 1 ? sections[opIndex - 2] : null;
-        //it's this that's messing with the boolean expression
         string expression = arrayToString(sections, opIndex + 1);
 
         if(!string.IsNullOrWhiteSpace(varType)){
@@ -785,7 +1022,10 @@ public class Compiler : MonoBehaviour{
                 }
                 break;
             case VariableInfo.Type.intVarArr:
-                bool initializeArray = true;
+                if(string.IsNullOrEmpty(expression) || expression.Contains("{")){
+                    return;
+                }
+
                 //check if array was already assigned beforehand
                 if(allVars[varName].isSet){
                     ClearIntArray(varName);
@@ -795,14 +1035,25 @@ public class Compiler : MonoBehaviour{
                 if(sections.Length >= 4 && sections[opIndex + 1] == "new" && sections[opIndex + 2].Contains("int[")){
                     //get value between []
                     string s = sections[opIndex + 2];
-                    string indexString = GetSubstring(s, s.IndexOf("[") + 1, s.IndexOf("]"));
+                    if(!CheckBraceDepth(s)){
+                        hasError = true;
+                        return;
+                    }
+                    string indexString = GetSubstring(s, s.IndexOf("[") + 1, s.LastIndexOf("]"));
                     
                     if(!string.IsNullOrEmpty(indexString)){
                         //check if new is followed by initializer
                         //if not, initialize array with default values
                         if(codeLines[currentIndex + 1] != "{"){
-                            initializeArray = false;
-                            string formattedLine = CodeFormatter.Format(indexString);
+                            //format string within square brackets
+                            //make sure to replace things like read or length
+                            //pass it through the line checker again?
+                            string formattedLine = FormatStringInIndexBraces(indexString);
+
+                            if(formattedLine == null){
+                                return;
+                            }
+
                             int index = new IntExpression(formattedLine).evaluate();
                             intArrs[varName] = new int[index];
                         }
@@ -813,13 +1064,6 @@ public class Compiler : MonoBehaviour{
                 List<int> intVals = new List<int>();
                 if(intArrs.ContainsKey(expression)){
                     intVals = intArrs[expression].ToList();
-                    intArrs[varName] = intVals.ToArray();
-                } else if(initializeArray) {
-                    string[] arrVals = PrepareArray();
-                    for(int i = 0; i < arrVals.Length; i++){
-                        var intArrEval = new IntExpression(arrVals[i]);
-                        intVals.Add(intArrEval.evaluate());
-                    }
                     intArrs[varName] = intVals.ToArray();
                 }
                 allVars[varName].isSet = true;
@@ -839,7 +1083,6 @@ public class Compiler : MonoBehaviour{
                 allVars[varName].isSet = true;
                 break;
             case VariableInfo.Type.strVarArr:
-                bool initializeArray2 = true;
                 //check if array was already assigned beforehand
                 if(allVars[varName].isSet){
                     ClearStringArray(varName);
@@ -849,14 +1092,22 @@ public class Compiler : MonoBehaviour{
                 if(sections.Length >= 4 && sections[opIndex + 1] == "new" && sections[opIndex + 2].Contains("string[")){
                     //get value between []
                     string s = sections[opIndex + 2];
-                    string indexString = GetSubstring(s, s.IndexOf("[") + 1, s.IndexOf("]"));
+                    if(!CheckBraceDepth(s)){
+                        hasError = true;
+                        return;
+                    }
+                    string indexString = GetSubstring(s, s.IndexOf("[") + 1, s.LastIndexOf("]"));
                     
                     if(!string.IsNullOrEmpty(indexString)){
                         //check if new is followed by initializer
                         //if not, initialize array with default values
                         if(codeLines[currentIndex + 1] != "{"){
-                            initializeArray2 = false;
-                            string formattedLine = CodeFormatter.Format(indexString);
+                            string formattedLine = FormatStringInIndexBraces(indexString);
+
+                            if(formattedLine == null){
+                                return;
+                            }
+
                             int index = new IntExpression(formattedLine).evaluate();
                             strArrs[varName] = new string[index];
                         }
@@ -868,14 +1119,7 @@ public class Compiler : MonoBehaviour{
                 if(strArrs.ContainsKey(expression)){
                     strVals = strArrs[expression].ToList();
                     strArrs[varName] = strVals.ToArray();
-                } else if(initializeArray2) {
-                    string[] arrVals = PrepareArray();
-                    for(int i = 0; i < arrVals.Length; i++){
-                        string strArrTxt = new StringExpression(arrVals[i]).removeQuotations();
-                        strVals.Add(strArrTxt);
-                        strArrs[varName] = strVals.ToArray();
-                    }
-                }
+                } 
                 allVars[varName].isSet = true;
                 AddArray(varName, strArrs[varName]);
                 break;
@@ -886,7 +1130,6 @@ public class Compiler : MonoBehaviour{
                 allVars[varName].isSet = true;
                 break;
             case VariableInfo.Type.boolVarArr:
-                bool initializeArray3 = true;
                 //check if array was already assigned beforehand
                 if(allVars[varName].isSet){
                     ClearBoolArray(varName);
@@ -896,14 +1139,22 @@ public class Compiler : MonoBehaviour{
                 if(sections.Length >= 4 && sections[opIndex + 1] == "new" && sections[opIndex + 2].Contains("bool[")){
                     //get value between []
                     string s = sections[opIndex + 2];
-                    string indexString = GetSubstring(s, s.IndexOf("[") + 1, s.IndexOf("]"));
+                    if(!CheckBraceDepth(s)){
+                        hasError = true;
+                        return;
+                    }
+                    string indexString = GetSubstring(s, s.IndexOf("[") + 1, s.LastIndexOf("]"));
                     
                     if(!string.IsNullOrEmpty(indexString)){
                         //check if new is followed by initializer
                         //if not, initialize array with default values
                         if(codeLines[currentIndex + 1] != "{"){
-                            initializeArray3 = false;
-                            string formattedLine = CodeFormatter.Format(indexString);
+                            string formattedLine = FormatStringInIndexBraces(indexString);
+
+                            if(formattedLine == null){
+                                return;
+                            }
+
                             int index = new IntExpression(formattedLine).evaluate();
                             boolArrs[varName] = new bool[index];
                         }
@@ -915,19 +1166,12 @@ public class Compiler : MonoBehaviour{
                 if(boolArrs.ContainsKey(expression)){
                     boolVals = boolArrs[expression].ToList();
                     boolArrs[varName] = boolVals.ToArray();
-                } else if(initializeArray3) {
-                    string[] arrVals = PrepareArray();
-                    for(int i = 0; i < arrVals.Length; i++){
-                        var boolValEval = BoolExpression.GetConditionResult("( " + arrVals[i] + " )");
-                        boolVals.Add(boolValEval);
-                    }
-                    boolArrs[varName] = boolVals.ToArray();
                 }
                 allVars[varName].isSet = true;
                 AddArray(varName, boolArrs[varName]);
                 break;
             case VariableInfo.Type.charVar:
-                //check if indexer and part of a string first
+                //check if indexer and part of a string 
                 if(varName.Contains(ReservedConstants.arrayIndexSeparator)){
                     string charVarName = varName.Substring(0, varName.IndexOf(ReservedConstants.arrayIndexSeparator));
                     if(strVars.ContainsKey(charVarName)){
@@ -950,26 +1194,68 @@ public class Compiler : MonoBehaviour{
         }
     }
 
-    string[] PrepareArray(){
-        int arrayStartIndex = currentIndex + 2;
-        int arrayEndIndex = BlockEndLineIndex(currentIndex);
+    string FormatStringInIndexBraces(string indexString){
+        string formattedLine = CodeFormatter.Format(indexString);
+        string[] formatLineSections = formattedLine.Split(' ');
 
-        //iterate through lines, adding every entry into the array
-        //step 1: put all values in the same string, assuming they're on newlines
-        List<string> arrValTempString = new List<string>();
-        for(int i = arrayStartIndex; i < arrayEndIndex; i++){
-            arrValTempString.Add(codeLines[i]);
-        }
-        string arrayString = arrayToString(arrValTempString.ToArray(), 0).Trim();
-        
-        //step 2: isolate values from spaces and commas
-        string[] arrVals = arrayString.Split(' ');
-        arrVals = arrayToString(arrVals, 0).Split(',');
-        for(int i = 0; i < arrVals.Length; i++){
-            arrVals[i] = arrVals[i].Trim();
+        //replace indices
+        formattedLine = CheckForIndex(formatLineSections);
+        formattedLine = formattedLine.Trim();
+
+        if(!CheckBraceDepth(formattedLine)){
+            hasError = true;
+            return null;
         }
 
-        return arrVals;
+        LineChecker lc = new LineChecker(formattedLine, "", currentIndex + 1, errorChecker);
+
+        if(!lc.hasError && formatLineSections.Length > 1 && (formatLineSections.Contains("read") || formatLineSections.Contains("readInt") || formatLineSections.Contains("readBool"))){
+            formattedLine = CheckForRead(formatLineSections, false);
+            formatLineSections = formattedLine.Split(' ');
+        }
+
+        if(!lc.hasError && formatLineSections.Length > 1 && formatLineSections.Contains("Length")){
+            formattedLine = CheckForArrLength(formatLineSections);
+            formatLineSections = formattedLine.Split(' ');
+        }
+
+        if(lc.CheckTypes(formattedLine) != ValueType.intVal){
+            addErr(string.Format("Line {0}: use ints between the square braces!", currentIndex + 1));
+            hasError = true;
+            return null;
+        }
+
+        if(formattedLine.Contains("[") && formattedLine.Contains("]")){
+            addErr(string.Format("Line {0}: don't use more square braces pairs than necessary! Doing so makes the machine think you're initializing a collection literal.", currentIndex + 1));
+            hasError = true;
+            return null;
+        }
+
+        if(lc.hasError){
+            hasError = true;
+            return null;
+        }
+
+        return formattedLine;
+    }
+
+    bool CheckBraceDepth(string s){
+        int braceDepth = 0;
+        foreach(char c in s){
+            if(c == '['){
+                braceDepth++;
+            } else if(c == ']'){
+                braceDepth--;
+            }
+        }
+        if(braceDepth < 0){
+            addErr(string.Format("Line {0}: There is an unopened square brace in this line!", currentIndex + 1));
+            return false;
+        } else if(braceDepth > 0){
+            addErr(string.Format("Line {0}: There is an unclosed square brace in this line!", currentIndex + 1));
+            return false;
+        }
+        return true;
     }
 
     void AddArray(string varName, int[] varValues){
@@ -1036,20 +1322,37 @@ public class Compiler : MonoBehaviour{
         }
     }
 
+    //put this in linechecker somehow?
     private string CheckForIndex(string[] sections){
         for(int i = 0; i < sections.Length; i++){
+            if(!CheckBraceDepth(arrayToString(sections, 0))){
+                hasError = true;
+                return arrayToString(sections, 0);
+            }
             if(sections[i].Contains("[") && sections[i].Contains("]")){
                 //get substring of everything before "[]";
                 string indexId = GetSubstring(sections[i], 0, sections[i].IndexOf("["));
                 if(ReservedConstants.varTypes.Contains(indexId)){
                     return arrayToString(sections, 0);
                 }
+                
+                //get substring of everything before "[]"
+                string identifierString = GetSubstring(sections[i], 0, sections[i].IndexOf("["));
+                if(string.IsNullOrEmpty(identifierString)){
+                    addErr(string.Format("Line {0}: identifier expected before the []!", currentIndex + 1));
+                    return arrayToString(sections, 0);
+                }
 
                 //get substring of everything between "[]"
-                string indexString = GetSubstring(sections[i], sections[i].IndexOf("[") + 1, sections[i].IndexOf("]"));
+                string indexString = GetSubstring(sections[i], sections[i].IndexOf("[") + 1, sections[i].LastIndexOf("]"));
+
+                if(string.IsNullOrEmpty(indexString)){
+                    addErr(string.Format("Line {0}: in calling an array element with an index, the [] cannot be empty!", currentIndex + 1));
+                    return arrayToString(sections, 0);
+                }
 
                 //format index value string and evaluate to get the index number
-                string formattedLine = CodeFormatter.Format(indexString);
+                string formattedLine = FormatStringInIndexBraces(indexString);
                 int index = new IntExpression(formattedLine).evaluate();
 
                 //get the variable (array) name
@@ -1058,7 +1361,6 @@ public class Compiler : MonoBehaviour{
                 //now check if it exists
                 //if it doesn't, index is out of bounds
                 if(!allVars.ContainsKey(sections[i])){
-                    ///addErr(string.Format("Line {0}: array index is out of the array's bounds!", currentIndex + 1));
                     hasError = true;
                     killTimer();
                     errorChecker.writeError();
@@ -1068,7 +1370,7 @@ public class Compiler : MonoBehaviour{
         return arrayToString(sections, 0);
     }
 
-    private string CheckForRead(string[] sections){
+    private string CheckForRead(string[] sections, bool firstPass){
         //recur to check
         List<string> sectionList = sections.ToList();
         Dictionary<string, int> indices = new Dictionary<string, int>{
@@ -1125,29 +1427,46 @@ public class Compiler : MonoBehaviour{
             hasError = true;
         }
 
-        switch(funcType){
-            case "read":
-                sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
-                sectionList.Insert(botIndex, "\"" + playerAct.read() + "\"");
-            break;
-            case "readInt":
-                sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
-                sectionList.Insert(botIndex, playerAct.readInt().ToString());
-            break;
-            case "readBool":
-                sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
-                sectionList.Insert(botIndex, playerAct.readBool().ToString());
-            break;
+        if(firstPass){
+            switch(funcType){
+                case "read":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    sectionList.Insert(botIndex, "\"" + "string" + "\"");
+                break;
+                case "readInt":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    sectionList.Insert(botIndex, "1");
+                break;
+                case "readBool":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    sectionList.Insert(botIndex, "false");
+                break;
+            }
+        } else {
+            switch(funcType){
+                case "read":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    sectionList.Insert(botIndex, "\"" + playerAct.read() + "\"");
+                break;
+                case "readInt":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    sectionList.Insert(botIndex, playerAct.readInt().ToString());
+                break;
+                case "readBool":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    sectionList.Insert(botIndex, playerAct.readBool().ToString());
+                break;
+            }
         }
 
         string result = arrayToString(sectionList.ToArray(), 0);
         if(result.Contains("read") || result.Contains("readInt") || result.Contains("readBool")){
-            result = CheckForRead(result.Split(' '));
+            result = CheckForRead(result.Split(' '), firstPass);
         }
         return result;
     }
 
-    private string CheckForReadArray(string[] sections){
+    private string CheckForReadArray(string[] sections, bool firstPass){        
         //recur to check
         List<string> sectionList = sections.ToList();
         Dictionary<string, int> indices = new Dictionary<string, int>{
@@ -1204,7 +1523,26 @@ public class Compiler : MonoBehaviour{
             hasError = true;
         }
 
-        switch(funcType){
+        if(firstPass){
+            switch(funcType){
+                case "ReadStringArr":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    strArrs["$readArr"] = new string[999];
+                    sectionList.Insert(botIndex, "$readArr");
+                break;
+                case "ReadIntArr":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    intArrs["$readIntArr"] = new int[999];
+                    sectionList.Insert(botIndex, "$readIntArr");
+                break;
+                case "ReadBoolArr":
+                    sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
+                    boolArrs["$readBoolArr"] = new bool[999];
+                    sectionList.Insert(botIndex, "$readBoolArr");
+                break;
+            }
+        } else {
+            switch(funcType){
             case "ReadStringArr":
                 sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
                 strArrs["$readArr"] = playerAct.ReadStringArr();
@@ -1221,14 +1559,16 @@ public class Compiler : MonoBehaviour{
                 sectionList.Insert(botIndex, "$readBoolArr");
             break;
         }
+        }
 
         string result = arrayToString(sectionList.ToArray(), 0);
         if(result.Contains("ReadStringArr") || result.Contains("ReadIntArr") || result.Contains("ReadBoolArr")){
-            result = CheckForReadArray(result.Split(' '));
+            result = CheckForReadArray(result.Split(' '), firstPass);
         }
         return result;
     }
 
+    //artifact
     private string CheckForCube(string[] sections, bool isFirstPass){
         List<string> sectionList = sections.ToList();
 
@@ -1401,6 +1741,9 @@ public class Compiler : MonoBehaviour{
         hasError = false;
         hasArgError = false;
         braceDepth = 0;
+        statementCount = 0;
+        moveCount = 0;
+        stepCount.text = "Steps: 0";
         clearDictionaries(true);
         EditorSaveLoad.Instance.SaveEditorState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -1425,10 +1768,11 @@ public class Compiler : MonoBehaviour{
         boolArrs.Clear();
         charArrs.Clear();
         doubleArrs.Clear();
-        reserveDictionaries();
+
         if(clearConditions){
             conditionByIndex.Clear();
         }
+        reserveDictionaries();
     }
 
     public int reservedBools = 0;
@@ -1461,9 +1805,9 @@ public class Compiler : MonoBehaviour{
         /*foreach(var o in FindObjectsOfType<MonoBehaviour>()){
             o.StopAllCoroutines();
         }*/
-        functionHandler.StopAllCoroutines();
         playerAct.StopAllCoroutines();
         playerMove.StopAllCoroutines();
+        functionHandler.StopAllCoroutines();
         StopAllCoroutines();
     }
 

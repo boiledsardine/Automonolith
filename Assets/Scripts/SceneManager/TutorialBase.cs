@@ -7,6 +7,7 @@ public abstract class TutorialBase : MonoBehaviour{
     protected ConvoManager convoManager;
     protected GameObject cameraPivot;
     protected bool hintIsOpen = false;
+    protected Color defaultColor = Color.white;
 
     public GameObject[] stages;
     public int activeStage;

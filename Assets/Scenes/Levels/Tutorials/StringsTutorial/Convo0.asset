@@ -22,6 +22,7 @@ MonoBehaviour:
       for variables.
     - Now, we're dealing with strings. While ints are numbers, strings are text And
       to identify a value as a string, it has to be enclosed by quotation marks (").
+      Strings are colored <color=#ba744c>orange</color> in the editor when done right.
     - 'For example:
 
       string myString0 = "Hello";

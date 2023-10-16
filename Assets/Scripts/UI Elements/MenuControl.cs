@@ -7,9 +7,11 @@ public class MenuControl : MonoBehaviour{
     public static MenuControl Instance { get; private set; }
 
     [SerializeField] private Canvas menuCanvas;
+    [SerializeField] private Canvas optionsCanvas;
     [SerializeField] private Animator panelAnimator;
     [SerializeField] private Animator submenuAnimator;
     [SerializeField] private EditorSaveLoad saveLoad;
+    [SerializeField] private HelpManager fsHelp;
 
     private void Awake(){
         if(Instance == null){
@@ -37,19 +39,39 @@ public class MenuControl : MonoBehaviour{
 
     public void options(){
         //do something
+        //should open options submenu
+
+        optionsCanvas.gameObject.SetActive(true);
+        Animator panelAnim = optionsCanvas.transform.GetChild(0).transform.gameObject.GetComponent<Animator>();
+        panelAnim.SetBool("isOpen", true);
     }
 
     public void controls(){
         //do something
+        closeMenu();
+        fsHelp.openHelp();
     }
 
     public void exitGame(){
+        var currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Main Menu"){
+            Application.Quit();
+        }
+
+        var maptacks = GameObject.Find("Maptacks");
+        if(maptacks != null){
+            Destroy(maptacks);
+        }
+        
         closeMenu();
 
         //Saves editor state on exit
-        if(saveLoad != null){
+        if(saveLoad != null && currentScene.name != "mg-level"){
             saveLoad.SaveEditorState();
         }
+
+        LastSceneHolder.Instance.lastScene = SceneManager.GetActiveScene().buildIndex;
+        LastSceneHolder.Instance.lastSceneName = SceneManager.GetActiveScene().name;
 
         SceneManager.LoadScene("Main Menu");
 

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo0
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Now that you've gotten the hang of controlling how you see the Monolith, it's
+      time you learn how to actually control G4wain.
+    - To do that, you need to use what we call methods. Essentially blocks of code
+      that run only when called.
+    - There are many methods and you can even make your own, but for now, let's stick
+      to ones that G4wain knows.
+    - First, you have to call on G4wain to specify that you want to use the methods
+      he knows. To do that, type "Bot" and add a "." at the end.
+    - This will make sure that G4wain knows you want to access his methods.
+    - Next, remember those words at the bottom of the code editor? Those methods
+      are what G4wain can use. To use one of those methods, type its name and add
+      "()" at the end.
+    - 'Take note: you can only write one method per line of code. After you write
+      each line of code, close it with a semicolon.'
+    - G4wain won't recognize new lines as separate lines. The semicolon tells him
+      that he needs to read the next line of code, well, next.
+    - Always put a semicolon (;) at the end of your statements! Semicolons denote
+      a complete line of code. If you don't, the machine will throw a hissy fit about
+      it.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    lines:
+    - So if I want him to move up a space, for example, I type in "Bot.moveUp();"?
+      Then he'll do as I command?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - That's right. Why not try it now? Make G4wain move two spaces up and press
+      that button on the floor before we proceed.
+    - Type "Bot.moveUp();" twice. You'll notice the word "Bot" become <color=#40c1ac>teal</color>
+      when written right and the function name become <color=#cadaa9>pale yellow</color>
+      when spelled right.

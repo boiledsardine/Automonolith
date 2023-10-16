@@ -68,11 +68,3 @@ public class EditorSaveLoad : MonoBehaviour{
         }
     }
 }
-
-[System.Serializable]
-public class EditorState{
-    public EditorState(string editorContent){
-        this.editorContent = editorContent;
-    }
-    public string editorContent;
-}

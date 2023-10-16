@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Hint Level 3
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - 'Looks like that green panel randomizes. First, read its value and store it
+      in a variable using Bot.readInt(). Remember, for ints: int varName = value;'
+    - Then grab the pillar and move up a number of times based on your variable's
+      value. You can use a variable's value by calling its name in code!
+    - After that, use Bot.moveTo() to move to tile D0 and get the value of the blue
+      panel and store it in a string variable. Use the Bot.read() method.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Then just move to tile D3 and use Bot.say() to speak the password from the
+      blue panel! After that, you're good to go.

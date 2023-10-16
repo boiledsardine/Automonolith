@@ -11,6 +11,8 @@ TagManager:
   - WallPanel
   - Vox
   - Pickup
+  - Held Big
+  - Save Manager
   layers:
   - Default
   - TransparentFX

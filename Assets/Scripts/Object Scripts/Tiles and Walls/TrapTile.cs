@@ -36,8 +36,15 @@ public class TrapTile : TileBase {
             }
 
             Compiler.Instance.terminateExecution();
-            Destroy(col.gameObject);
+
+            occupant.GetComponent<Animator>().SetBool("ded", true);
+            Invoke("DestroyBot", 1f);
             isOccupied = false;
         }
+    }
+
+    void DestroyBot(){
+        var chara = GameObject.Find("PlayerCharacter");
+        Destroy(chara);
     }
 }

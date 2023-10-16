@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 6
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: e9f9e96b8e8163f49b6da67c3efea9c5, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Conditions 0
+  levelDesc: 'A lot of times I was indecisive. I could''ve flipped a coin to make
+    a decision, but, being me, I made a program do it for me instead.
+
+
+    -Merlin'
+  levelGoal: Make a program that decides between two options depending on the value
+    of a random number.
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - I don't look it, but I'm quite indecisive. I had this trinket once, a magic
+      8-ball. But I'd rather have something a lot lighter and less obvious.
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - The way this is now, it's more like a coin flip than a magic 8-ball, but it
+      fulfils a simmilar purpose.
+  mainText: "//note: randomNumber is an int with any value from 1 to 20.\n\n_(randomNumber
+    > 10_ {\n  _(\"Go#for#it\");\n_\n_ _\n  _(\"My#sources#say#no\");\n}"
+  hidWords:
+  - hiddenText: if
+    correctAnswers:
+    - if
+    mistakeMessage: '3: The program is supposed to make a decision, right? Something
+      that makes a decision is supposed to go in here...'
+  - hiddenText: )
+    correctAnswers:
+    - )
+    mistakeMessage: '3: The condition isn''t closed properly...'
+  - hiddenText: Console.Write
+    correctAnswers:
+    - Console.Write
+    mistakeMessage: '4: There should be a function here, something that provides
+      an output...'
+  - hiddenText: '}'
+    correctAnswers:
+    - '}'
+    mistakeMessage: '5: the code block isn''t closed properly...'
+  - hiddenText: else
+    correctAnswers:
+    - else
+    mistakeMessage: '6: The program is supposed to make a decision, right? Something
+      that makes a decision is supposed to go in here...'
+  - hiddenText: '{'
+    correctAnswers:
+    - '{'
+    mistakeMessage: '6: A block of code should be enclosed by something...'
+  - hiddenText: Console.Write
+    correctAnswers:
+    - Console.Write
+    mistakeMessage: '7: There should be a function here, something that provides
+      an output...'
+  wordBank:
+  - if
+  - )
+  - Console.Write
+  - '}'
+  - else
+  - '{'
+  - Console.Write
+  levelDictionary:
+  - keyword: randomNumber
+    description: An int variable! Its value could be anything from 1 to 20.
+  - keyword: 10
+    description: A constant value! This is kind of arbitrary.
+  - keyword: '"Go for it"'
+    description: The 8-ball program tells you to do it, you do it.
+  - keyword: '"My sources say no"'
+    description: You might want to reconsider if this comes up.

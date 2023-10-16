@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 3
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: 0872935d36e6f0f4fb17b3a47d90cea4, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Variables 0
+  levelDesc: 'It seems I need some help with declaring and initializing variables
+    this time...
+
+
+    -Merlin'
+  levelGoal: Make it so the variables are declared and initialized correctly!
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Ah, this one... I recall this being a page on declaring and initalizing variables...
+      but I forgot which goes where.
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Hm, yes, that looks correct. Thanks for helping with variable declaration.
+  mainText: '_ var1 = 10;
+
+    string var2 = _;
+
+    bool var3 = _;
+
+    double var4
+    = _;
+
+    _ var5 = ''E'';'
+  hidWords:
+  - hiddenText: int
+    correctAnswers:
+    - int
+    mistakeMessage: '1: A data type should go here... but what could store a whole
+      number?'
+  - hiddenText: '"text"'
+    correctAnswers:
+    - '"text"'
+    mistakeMessage: '2: A string value belongs here...'
+  - hiddenText: false
+    correctAnswers:
+    - false
+    mistakeMessage: '3: Remember, bools can store a true or false value.'
+  - hiddenText: 0.25
+    correctAnswers:
+    - 0.25
+    mistakeMessage: '4: Doubles are able to store decimal values, did you know?'
+  - hiddenText: char
+    correctAnswers:
+    - char
+    mistakeMessage: '5: A data type belongs here... but what type could store a single
+      character only?'
+  wordBank:
+  - int
+  - '"text"'
+  - false
+  - 0.25
+  - char
+  levelDictionary:
+  - keyword: var1
+    description: A variable name. Nothing more, nothing less.
+  - keyword: var2
+    description: A variable name. Nothing more, nothing less.
+  - keyword: var3
+    description: A variable name. Nothing more, nothing less.
+  - keyword: var4
+    description: A variable name. Nothing more, nothing less.
+  - keyword: var5
+    description: A variable name. Nothing more, nothing less.
+  - keyword: 10
+    description: A number. A whole number.
+  - keyword: '''E'''
+    description: A single letter between apostrophes.
+  - keyword: '"text"'
+    description: Some text between quotation marks. What type of value is it?
+  - keyword: 0.25
+    description: A decimal number. What type of variable could store such a value?

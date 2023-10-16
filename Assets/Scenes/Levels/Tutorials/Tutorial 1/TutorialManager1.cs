@@ -151,9 +151,9 @@ public class TutorialManager1 : MonoBehaviour{
         timesPressed++;
 
         if(currentObjective == 0 && timesPressed == 4){
-            objectiveText[0].gameObject.SetActive(true);
-            objectiveText[1].gameObject.SetActive(true);
-            objectiveText[2].gameObject.SetActive(true);
+            objectiveText[0].transform.gameObject.SetActive(true);
+            objectiveText[1].transform.gameObject.SetActive(true);
+            objectiveText[2].transform.gameObject.SetActive(true);
             
             objectiveText[0].text = obj1strings[0];
             objectiveText[1].text = obj1strings[1];
@@ -169,13 +169,13 @@ public class TutorialManager1 : MonoBehaviour{
         }
 
         if(currentObjective == 1 && timesPressed == 6){
-            objectiveText[2].gameObject.SetActive(false);
+            objectiveText[2].transform.gameObject.SetActive(false);
 
             objectiveText[0].text = obj2strings[0];
             objectiveText[1].text = obj2strings[1];
 
-            objectiveText[0].color = Color.black;
-            objectiveText[1].color = Color.black;
+            objectiveText[0].color = Color.white;
+            objectiveText[1].color = Color.white;
 
             timesPressed = 0;
             currentObjective++;
@@ -184,10 +184,10 @@ public class TutorialManager1 : MonoBehaviour{
         if(currentObjective == 2 && timesPressed == 4){
             hintButton.convoToLoad = hints[0]; 
             
-            objectiveText[1].gameObject.SetActive(false);
+            objectiveText[1].transform.gameObject.SetActive(false);
 
             objectiveText[0].text = obj3string;
-            objectiveText[0].color = Color.black;
+            objectiveText[0].color = Color.white;
 
             timesPressed = 0;
             currentObjective++;
@@ -200,9 +200,9 @@ public class TutorialManager1 : MonoBehaviour{
         if(currentObjective == 3 && timesPressed == 7){
             hintButton.convoToLoad = hints[1];
 
-            mainObjText.gameObject.SetActive(true);
+            mainObjText.transform.gameObject.SetActive(true);
             objectiveText[0].text = ">Finish the level";
-            objectiveText[0].color = Color.black;
+            objectiveText[0].color = Color.white;
             
             timesPressed = 0;
             currentObjective++;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -68,6 +69,24 @@ public class WallPanel : MonoBehaviour{
     public char[] storedCharArr{
         get { return _storedCharArr; }
         set { _storedCharArr = value; }
+    }
+
+    public bool randomize;
+    public int[] valueRange;
+    public string[] stringRange;
+
+    void Awake(){
+        if(randomize){
+            System.Random rnd = new System.Random();
+            switch(panelType){
+                case PanelType.intPanel:
+                    storedInt = valueRange[rnd.Next(valueRange.Length - 1)];
+                break;
+                case PanelType.stringPanel:
+                    storedText = stringRange[rnd.Next(stringRange.Length - 1)];
+                break;
+            }
+        }
     }
 
     void Update(){

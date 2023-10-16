@@ -64,7 +64,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0256939, z: 2.618763}
+  m_Size: {x: 2.3963084, y: 1.8857272, z: 2.6187627}
   m_Center: {x: 0, y: 1.1691077, z: -0.11562576}
 --- !u!114 &1569616789764655067
 MonoBehaviour:
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b02f657ae62e94f941888ab3e889a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverDistance: 45
+  hoverDistance: 100
   yOffset: 31.5
 --- !u!33 &1577389164965961983
 MeshFilter:

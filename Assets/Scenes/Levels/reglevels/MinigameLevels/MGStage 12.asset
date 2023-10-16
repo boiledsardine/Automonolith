@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 12
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: f1ea570830774bc40a7dc42227dccfe6, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Arrays 0
+  levelDesc: 'I seem to have made a mess of my notes... mind helping me sort them
+    into arrays?
+
+
+    -Merlin'
+  levelGoal: Organize the values into the correct arrays.
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Oh dear, you've found the less organized section of my notes. Since you're
+      here, could you help me out and sort out these values into their respective
+      arrays?
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Yes, everything looks like it's in its proper place.
+  mainText: 'string[] flavors = {_, _, _};
+
+
+    int[] primes;
+
+    primes = _ int[_]
+    {19, 23, 37};
+
+
+    string[] fruits = {"apple", "celery", "mango"};
+
+    fruits[_]
+    = _;'
+  hidWords:
+  - hiddenText: '"chocolate"'
+    correctAnswers:
+    - '"chocolate'''
+    - '"strawberry"'
+    - '"vanilla"'
+    mistakeMessage: '1: Try putting a string in there, a flavor of food, mayhap.'
+  - hiddenText: '"strawberry"'
+    correctAnswers:
+    - '"chocolate'''
+    - '"strawberry"'
+    - '"vanilla"'
+    mistakeMessage: '1: Try putting a string in there, a flavor of food, mayhap.'
+  - hiddenText: '"vanilla"'
+    correctAnswers:
+    - '"chocolate'''
+    - '"strawberry"'
+    - '"vanilla"'
+    mistakeMessage: '1: Try putting a string in there, a flavor of food, mayhap.'
+  - hiddenText: new
+    correctAnswers: []
+    mistakeMessage: '4: I have a feeling that a keyword of some sort goes here...'
+  - hiddenText: 3
+    correctAnswers:
+    - 
+    mistakeMessage: '4: Ah, this one needs an int between the square braces. One
+      that tells us the size of an arrray to be created...'
+  - hiddenText: 7
+    correctAnswers:
+    - 
+    mistakeMessage: '7: Ah, this one needs an int between the square braces. One
+      that tells us the index of an array element, perhaps...'
+  - hiddenText: '"orange"'
+    correctAnswers:
+    - 
+    mistakeMessage: '7: This one needs a value that''ll fit into the fruits array.
+      And it has to be a fruit, of course.'
+  wordBank: []
+  levelDictionary:
+  - keyword: flavors
+    description: The name of a string array. It should contain ice cream flavors.
+  - keyword: primes
+    description: The name of an int array. It should contain prime numbers.
+  - keyword: 19
+    description: A prime number, divisible only by 1 and itself!
+  - keyword: 23
+    description: A prime number, divisible only by 1 and itself!
+  - keyword: 37
+    description: A prime number, divisible only by 1 and itself!
+  - keyword: fruits
+    description: The name of a string array. It should contain types of fruit.
+  - keyword: '"apple"'
+    description: A string value. One a day keeps the doctor away!
+  - keyword: '"celery"'
+    description: A string value. Has a nice snapping sound to it.
+  - keyword: '"mango"'
+    description: A string value. Nice, sweet, and juicy.
+  - keyword: '"chcoolate"'
+    description: A string value. A classic.
+  - keyword: '"vanilla"'
+    description: A string value. It's not flavorless, it's got limitless potential!
+  - keyword: '"strawberry"'
+    description: A string value. Tart and tangy!
+  - keyword: 3
+    description: An int value.
+  - keyword: 7
+    description: An int value.
+  - keyword: '"orange"'
+    description: A string value. Just the right blend of sweet and sour.

@@ -7,25 +7,12 @@ using System.Linq;
 public class BoolExpression {
     public enum Element{ And, Or, StartGroup, EndGroup, Value }
 
-    List<bool> values;
-    List<Element> elements;
+    public BoolExpression(){}
 
-    public BoolExpression(List<bool> values, List<Element> elements){
-        this.values = values;
-        this.elements = elements;
-    }
-
-    public bool Evaluate(){
-        return EvaluateGroup(values, elements);
-    }
-
-    public bool EvaluateGroup(List<bool> groupValues, List<Element> groupElements){
-        /*foreach(Element e in groupElements){
-            Debug.Log(e);
-        }*/
-
+    public bool Evaluate(List<bool> groupValues, List<Element> groupElements){
         int valueIndex = 0;
         //calculate AND operations first
+        List<Element> elements = groupElements;
         for(int i = 0; i < elements.Count; i++){
             Element element = elements[i];
             if(element == Element.Value){
@@ -180,16 +167,11 @@ public class BoolExpression {
         int startIndex = line.IndexOf('(') + 1;
         int endIndex = line.LastIndexOf(')');
         string conditionString = Compiler.GetSubstring(line, startIndex, endIndex);
-        //Debug.Log(conditionString);
-        //Debug.Log(arrayToString(sections.ToArray(), 0));
 
         //check if currentString has a boolean variable or value
         //preprocess code to replace stuff
         //way this works is it can't take booleans as-is
         //so convert booleans to numerical comparisons that evaluate as true or false
-
-        //needs some way to distinguish between strings and int values
-        //maybe tryparse around the 220 block
         
         conditionString = ReplaceTrueFalse(conditionString);
         List<string> sections = conditionString.Split(' ').ToList();
@@ -203,10 +185,8 @@ public class BoolExpression {
 
         //simplify condition by finding/evaluating numerical expressions within
         //store as list of values and operators
-        //Debug.Log(sections.Count);
         for(int i = 0; i < sections.Count; i++){
             string section = sections[i];
-            //Debug.Log(section);
             bool isConditionOperator = ReservedConstants.comparisonOperators.Contains(section) ||
                 ReservedConstants.booleanOperators.Contains(section);
 
@@ -237,49 +217,42 @@ public class BoolExpression {
             int b = numValues[i + 1];
             string op = operators[i];
 
-            //Debug.Log(a + " " + op + " " + b);
             switch(op){
                 case "<":
                     boolValues.Add(a < b);
-                    boolOperators.Add(BoolExpression.Element.Value);
+                    boolOperators.Add(Element.Value);
                 break;
                 case "<=":
                     boolValues.Add(a <= b);
-                    boolOperators.Add(BoolExpression.Element.Value);
+                    boolOperators.Add(Element.Value);
                 break;
                 case ">":
                     boolValues.Add(a > b);
-                    boolOperators.Add(BoolExpression.Element.Value);
+                    boolOperators.Add(Element.Value);
                 break;
                 case ">=":
                     boolValues.Add(a >= b);
-                    boolOperators.Add(BoolExpression.Element.Value);
+                    boolOperators.Add(Element.Value);
                 break;
                 case "==":
                     boolValues.Add(a == b);
-                    boolOperators.Add(BoolExpression.Element.Value);
+                    boolOperators.Add(Element.Value);
                 break;
                 case "!=":
                     boolValues.Add(a != b);
-                    boolOperators.Add(BoolExpression.Element.Value);
+                    boolOperators.Add(Element.Value);
                 break;
                 case "&&":
-                    boolOperators.Add(BoolExpression.Element.And);
+                    boolOperators.Add(Element.And);
                 break;
                 case "||":
-                    boolOperators.Add(BoolExpression.Element.Or);
+                    boolOperators.Add(Element.Or);
                 break;
             }
         }
 
-        /*
-        for(int i = 0; i < numValues.Count; i++){
-            Debug.Log(numValues[i]);
-        }
-        */
-
-        var boolExpression = new BoolExpression(boolValues, boolOperators);
-        bool result = boolExpression.Evaluate();
+        BoolExpression boolEx = new BoolExpression();
+        bool result = boolEx.Evaluate(boolValues, boolOperators);
         return result;
     }
 }

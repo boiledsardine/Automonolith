@@ -9,7 +9,7 @@ public class Coordinate : MonoBehaviour{
         textMesh.text = gameObject.name[0].ToString();
     }
 
-    private void Update(){
+    private void LateUpdate(){
         transform.forward = Camera.main.transform.forward;
     }
 }

@@ -97,11 +97,11 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Declare two bool variables";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     void StartCompareOps(){
@@ -112,7 +112,7 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(false);
     }
@@ -125,7 +125,7 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
     }
 
     public void deactivate(){

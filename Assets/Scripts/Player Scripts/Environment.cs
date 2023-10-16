@@ -9,7 +9,6 @@ public class Environment : MonoBehaviour, IEnvironment {
     private TileBase _tileFront;
 
     private Movement moveScript;
-
     private void Awake(){
         moveScript = gameObject.GetComponent<Movement>();
     }
@@ -47,40 +46,40 @@ public class Environment : MonoBehaviour, IEnvironment {
                 if(tileUnder.neighborN != null && !tileUnder.neighborN.isOccupied){
                     return true;
                 } else if (tileUnder.neighborN == null){
-                    Debug.LogWarning("Destination is null");
+                    Debug.LogAssertion("Destination is null");
                     return false;
                 } else {
-                    Debug.LogWarning("Destination " + tileUnder.neighborN + " is occupied");
+                    Debug.LogAssertion("Destination " + tileUnder.neighborN + " is occupied");
                     return false;
                 }
             case 'S':
                 if(tileUnder.neighborS != null && !tileUnder.neighborS.isOccupied){
                     return true;
                 } else if (tileUnder.neighborS == null){
-                    Debug.LogWarning("Destination is null");
+                    Debug.LogAssertion("Destination is null");
                     return false;
                 } else {
-                    Debug.LogWarning("Destination " + tileUnder.neighborS + " is occupied");
+                    Debug.LogAssertion("Destination " + tileUnder.neighborS + " is occupied");
                     return false;
                 }
             case 'W':
                 if(tileUnder.neighborW != null && !tileUnder.neighborW.isOccupied){
                     return true;
                 } else if (tileUnder.neighborW == null){
-                    Debug.LogWarning("Destination is null");
+                    Debug.LogAssertion("Destination is null");
                     return false;
                 } else {
-                    Debug.LogWarning("Destination " + tileUnder.neighborW + " is occupied");
+                    Debug.LogAssertion("Destination " + tileUnder.neighborS + " is occupied");
                     return false;
                 }
             case 'E':
                 if(tileUnder.neighborE != null && !tileUnder.neighborE.isOccupied){
                     return true;
                 } else if (tileUnder.neighborE == null){
-                    Debug.LogWarning("Destination is null");
+                    Debug.LogAssertion("Destination is null");
                     return false;
                 } else {
-                    Debug.LogWarning("Destination " + tileUnder.neighborE + " is occupied");
+                    Debug.LogAssertion("Destination " + tileUnder.neighborE + " is occupied");
                     return false;
                 }
             default:
@@ -114,12 +113,13 @@ public class Environment : MonoBehaviour, IEnvironment {
     }
 
     private bool wallRaycast(Vector3 moveDir){
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 50, transform.position.z);
         int layerMask = 1 << 6;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         float distance = Globals.Instance.distancePerObject;
 
-        if(Physics.Raycast(transform.position, moveDir, distance, layerMask)){
-            Debug.LogWarning(gameObject.name + ": Wall found");
+        if(Physics.Raycast(pos, moveDir, distance, layerMask)){
+            Debug.LogAssertion(gameObject.name + ": Wall found");
             return true;
         } else {
             return false;

@@ -16,17 +16,26 @@ MonoBehaviour:
   - levelName: Basic Controls
     levelDesc: This is a tutorial for basic controls in Automonolith - camera controls
       and the buttons you'll be pressing for the game.
+    isTutorial: 1
+    isQuiz: 0
   - levelName: Using Methods
     levelDesc: 'Now that you''re somewhat used to controlling your interface, how
       about we learn how to use methids to give G4wain some commands?
 
 
       -Morgan'
+    isTutorial: 1
+    isQuiz: 0
   - levelName: Level 1
-    levelDesc: Reach the exit totem by moving pillars out of the way.
+    levelDesc: Use methods to reach the exit by moving G4wain and pushing the pillar
+      out of the way.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Level 2
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Use methods to reach the exit by moving G4wain and dragging the pillar
+      to the button.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Integer Invocation
     levelDesc: 'Now that you''ve gotten your mitts on a memory module, how about
       we actually use it? I''ll teach you to use variables and how data types work.
@@ -34,6 +43,8 @@ MonoBehaviour:
 
 
       -Morgan'
+    isTutorial: 1
+    isQuiz: 0
   - levelName: String Incantation
     levelDesc: 'Ints are one thing, but I did say there''s other data types. Let''s
       do strings now, yeah? Ints and strings... these are what we''re using in the
@@ -41,19 +52,25 @@ MonoBehaviour:
 
 
       -Morgan'
+    isTutorial: 1
+    isQuiz: 0
   - levelName: Level 3
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Store values in variables and use them to direct G4wain's movements
+      and open password-locked vox gates.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Level 4
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Store values in variables, perform a mathematical operation on them
+      to open the vox gate, and use the moveTo() method to move to a specific tile.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Nimue's Trial I
-    levelDesc: 'I have noticed your traversal of this monument to the Asarel. I,
-      Nimue, guardian spirit of this place shall test your ability to command your
-      automaton and control its memory.
+    levelDesc: 'Something''s watching us...
 
 
-      -Nimue'
+      -Morgan'
+    isTutorial: 0
+    isQuiz: 1
   - levelName: True or False?
     levelDesc: 'Remember when we talked about data types? Yeah, we''ll be tackling
       another one. Trust me, this one''s important to these next few floors. Especially
@@ -61,19 +78,8 @@ MonoBehaviour:
 
 
       -Morgan'
-  - levelName: Rite of Repetition
-    levelDesc: 'Floors will get a bit more complex from now on. And repetitive. Here
-      we''ll tackle loops - code that repeats code! This one might be a bit tricky
-      though, so just bear with me for a while.
-
-
-      -Morgan'
-  - levelName: Level 5
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
-  - levelName: Level 6
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    isTutorial: 1
+    isQuiz: 0
   - levelName: Calling Shots
     levelDesc: 'This floor''s bound to be full of unknowns. So how about we talk
       about making decisions with the if, else-if, and else statements? Conditional
@@ -81,12 +87,37 @@ MonoBehaviour:
 
 
       -Morgan'
+    isTutorial: 1
+    isQuiz: 0
+  - levelName: Level 5
+    levelDesc: Answer the questions of the watchers by performing operations with
+      comparison operators and getting boolean values.
+    isTutorial: 0
+    isQuiz: 0
+  - levelName: Level 6
+    levelDesc: Find the button that activates the teleporters by using if-else statements
+      to direct G4wain's movements.
+    isTutorial: 0
+    isQuiz: 0
+  - levelName: Rite of Repetition
+    levelDesc: 'Floors will get a bit more complex from now on. And repetitive. Here
+      we''ll tackle loops - code that repeats code! This one might be a bit tricky
+      though, so just bear with me for a while.
+
+
+      -Morgan'
+    isTutorial: 1
+    isQuiz: 0
   - levelName: Level 7
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Use the while loop to repeat a block of code and reach the exit with
+      as few methods written as possible.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Level 8
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Use a finite while loop to activate a dormant item acceptor then reach
+      the exit which it opens up.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Nimue's Trial II
     levelDesc: 'You have done well to make it this far. But unless you prove to me
       your grasp of looping and decision-making, I cannot allow your further passage.
@@ -94,6 +125,8 @@ MonoBehaviour:
 
 
       -Nimue'
+    isTutorial: 0
+    isQuiz: 1
   - levelName: Box of Stuff
     levelDesc: 'Hey, G4wain''s memory module got upgraded! Now he can use arrays.
       What are arrays, you ask? Basically a collection of values in a single variable.
@@ -101,12 +134,18 @@ MonoBehaviour:
 
 
       -Morgan'
+    isTutorial: 1
+    isQuiz: 0
   - levelName: Level 9
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Answer the watchers' questions by calling on array elements using
+      array indices.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Level 10
-    levelDesc: Reach the exit totem by getting the key and opening the gate blocking
-      it.
+    levelDesc: Reach the exit by using the given array to figure out the sequence
+      of buttons needed to activate the locked gate.
+    isTutorial: 0
+    isQuiz: 0
   - levelName: Nimue's Trial III
     levelDesc: 'Your efforts are impressive, Arthur of Calot. It has been ages since
       one has reached these chambers. Come, then, and I shall appraise your understanding
@@ -114,3 +153,5 @@ MonoBehaviour:
 
 
       -Nimue'
+    isTutorial: 0
+    isQuiz: 1

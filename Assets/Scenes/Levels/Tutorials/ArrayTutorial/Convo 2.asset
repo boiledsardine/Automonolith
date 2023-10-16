@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Convo 2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Arrays have a Length property that tells you how many elements are in that
+      array. You can use the resulting number in a while loop to go through each
+      element in order.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - And because the loop's incrementing the num variable, each time the code repeats
+      the say command, the next element in the array is called.
+    - 'Get an array''s length by calling its name followed by a dot and then the
+      word "Length". Like this:
+
+      int[] numArr = { 1,2,3,4,5 };
+
+      int arrayLength
+      = numArr.Length; //this is 5'
+    - 'You can use it in a while loop! Just use the length of the array in the loop''s
+      condition. Considering the same array from earlier, it goes like this:'
+    - 'int num = 0;
+
+      int arrayLength = numArr.Length; //this is 5
+
+      while(num
+      < arrayLength) {'
+    - "  Bot.say(nums[numArr]); //gets the element of numArr at index num\n  num++;\n}"
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Yep. Why don't you give it a try? This time, G4wain's got an array from the
+      string array panel (the red one). Loop through that array to find all the good
+      buttons.

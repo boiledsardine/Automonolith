@@ -20,7 +20,6 @@ public class ReservedConstants{
         "while",
         "if",
         "else",
-        "Bot",
         "new",
         "abstract",
         "as",
@@ -93,6 +92,14 @@ public class ReservedConstants{
         "volatile"
     };
 
+    public static readonly string[] accessModifiers = {
+        "public",
+        "private",
+        "protected",
+        "internal",
+        "virtual",
+    };
+
     public static readonly string[] compoundOperators = {
         "+=",
         "-=",
@@ -107,6 +114,14 @@ public class ReservedConstants{
         "//",
         "&&",
         "||"
+    };
+
+    public static readonly string[] assignmentOperators = {
+        "+=",
+        "-=",
+        "*=",
+        "/=",
+        "="
     };
 
     public static readonly string[] varTypes = {
@@ -151,13 +166,20 @@ public class ReservedConstants{
         "||"
     };
 
+    public static readonly string[] allOperatorsArr = {
+        "+", "-", "/", "*", "%",
+        "<", "<=", "==", ">=", ">", "!=",
+        "&&", "||",
+        "+=", "-=", "*=", "/=", "="
+    };
+
     public const string mathOperators = "+-*/%";
 
     public const string parentheses = "()";
     public const string allMathOperators = mathOperators + parentheses;
     const string comparisonString = "<>=";
     //const string textChars = "\"'";
-    const string specChars = "!.;,&|";
+    const string specChars = "!.;,&|{}";
     public const string arrayIndexSeparator = "`";
     public const string allOperators = allMathOperators + comparisonString + specChars;
     public static readonly string[] reserved = FunctionHandler.builtInFunctions.Concat(varTypes).ToArray();

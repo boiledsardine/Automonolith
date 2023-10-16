@@ -16,7 +16,10 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
     lines:
-    - Very good, you're making great progress with conditionals! Now for something
-      a little spicier...
+    - 'Nice! You''re doing pretty good. Quick aside: writing an if statement will
+      start a new chain of if/else-if/else statements.'
+    - 'And both chains are evaluated independently of each other. Anyway, on to the
+      next:'
+    - Now, let's have you do it yourself live.

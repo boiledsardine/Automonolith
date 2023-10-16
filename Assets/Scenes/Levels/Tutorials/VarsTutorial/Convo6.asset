@@ -71,4 +71,5 @@ MonoBehaviour:
       figure them out.
     - The "Bot.say()" method will make G4wain speak. It takes int and string arguments
       - so both numbers and words. But for now, you'll only be using numbers.
-    - Get to it!
+    - You'll notice the data type become <color=#2b6cc9>navy blue</color> in the
+      editor when it's spelled correctly. Get to it!

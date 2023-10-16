@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 13
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: f1ea570830774bc40a7dc42227dccfe6, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Arrays 1
+  levelDesc: 'Remember how I mentioned being a teacher once? This was something I
+    used to add up grades and get the mean.
+
+
+    -Merlin'
+  levelGoal: Create a program that loops through the studentGrades array and adds
+    up its elements' values, then gets the mean.
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Ah, another remnant from my teaching days. This one I used to get the averages
+      of student grades at the end of a grading period. Add the elements up, then
+      get the average.
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Ah, now I can get back to tormenting my students with a ton of tests. If I
+      had any students left...
+  mainText: "//note: the studentGrades array has unknown length and elements\n\nint
+    num = 0;\nint sum = 0;\nwhile(num < studentGrades._)\n  sum += studentGrades[_];\n 
+    num_;\n}\n\nint average = _ / _;\nConsole.WriteLine(_);"
+  hidWords:
+  - hiddenText: Length
+    correctAnswers: []
+    mistakeMessage: '5: Another int goes there, perhaps one that tells us how many
+      elements are in the array?'
+  - hiddenText: num
+    correctAnswers: []
+    mistakeMessage: '6: An int value goes here, one you need to call an element''s
+      index. Because it''s in a loop, you might want to use a variable that changes
+      with the loop.'
+  - hiddenText: ++
+    correctAnswers: []
+    mistakeMessage: '7: You need an operator here, one that increases the value of
+      the variable for the while loop''s condition.'
+  - hiddenText: sum
+    correctAnswers: []
+    mistakeMessage: '10: A value goes here. In case you don''t remember, the formula
+      for the average of a list of numbers is the sum over the number of elements.'
+  - hiddenText: studentGrades.Length
+    correctAnswers: []
+    mistakeMessage: '10: A value goes here. In case you don''t remember, the formula
+      for the average of a list of numbers is the sum over the number of elements.'
+  - hiddenText: average
+    correctAnswers: []
+    mistakeMessage: '11: A value goes here. You need to output the result of the
+      program to the console.'
+  wordBank: []
+  levelDictionary:
+  - keyword: num
+    description: An int variable! This is used by this program to count how many
+      loops the while loop should do.
+  - keyword: sum
+    description: An int variable! This tracks the sum of the array's elements.
+  - keyword: studentGrades
+    description: An int array. This contains a student's test scores. Its length
+      and its elements are unknown to you, but not the program.
+  - keyword: average
+    description: An int variable. Stores the mean value of the array's elements.

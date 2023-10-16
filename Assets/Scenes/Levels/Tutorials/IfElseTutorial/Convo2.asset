@@ -21,7 +21,8 @@ MonoBehaviour:
     - Alright, else statements! Else statements come after if statements and, unlike
       if statements, don't take conditions.
     - 'Instead, their code executes automatically if the condition of the if statement
-      before it is false. Write one like this after an if statement:'
+      before it is false. Like if, else becomes <color=#925bb3>magenta</color> when
+      written right. Write one like this after an if statement:'
     - "else\n{\n  //executed if the if statement is false\n}"
     - The else statement only executes if the if statement before it is false. If
       the if statement before it is true, then the else block is skipped.

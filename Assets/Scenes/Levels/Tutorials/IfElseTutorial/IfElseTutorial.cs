@@ -5,7 +5,6 @@ using UnityEngine;
 public class IfElseTutorial : TutorialBase, IActivate{
     public Objectives currentObjective;
     void Start(){
-        Time.timeScale = 5;
         switch(currentObjective){
             case Objectives.Start:
                 StartIf();
@@ -13,14 +12,14 @@ public class IfElseTutorial : TutorialBase, IActivate{
             case Objectives.Else:
                 StartElse();
             break;
+            case Objectives.PlayElse:
+                StartPlayElse();
+            break;
             case Objectives.ElseIf:
                 StartElseIf();
             break;
-            case Objectives.CheckCube:
-                StartCheckCube();
-            break;
-            case Objectives.LoopIf:
-                StartLoopIf();
+            case Objectives.PlayElseIf:
+                StartPlayElseIf();
             break;
         }
     }
@@ -31,8 +30,8 @@ public class IfElseTutorial : TutorialBase, IActivate{
             case Objectives.If:
                 //check for an if statement
                 bool ifFound = false;
-                for(int i = 0; i < Compiler.Instance.getCodeLines.Length; i++){
-                    if(ci.conditionByIndex.ContainsKey(i) && ci.conditionByIndex[i].type == ConditionBlocks.Type.If){
+                foreach(KeyValuePair<int,ConditionBlocks> kv in ci.conditionByIndex){
+                    if(kv.Value.type == ConditionBlocks.Type.If){
                         ifFound = true;
                     }
                 }
@@ -52,8 +51,8 @@ public class IfElseTutorial : TutorialBase, IActivate{
             case Objectives.Else:
                 //check for an else statement
                 bool elseFound = false;
-                for(int i = 0; i < Compiler.Instance.getCodeLines.Length; i++){
-                    if(ci.conditionByIndex.ContainsKey(i) && ci.conditionByIndex[i].type == ConditionBlocks.Type.Else){
+                foreach(KeyValuePair<int,ConditionBlocks> kv in ci.conditionByIndex){
+                    if(kv.Value.type == ConditionBlocks.Type.Else){
                         elseFound = true;
                     }
                 }
@@ -70,11 +69,32 @@ public class IfElseTutorial : TutorialBase, IActivate{
                     Compiler.Instance.terminateExecution();
                 }
             break;
+            case Objectives.PlayElse:
+                //check for an else statement
+                bool elseFound2 = false;
+                foreach(KeyValuePair<int,ConditionBlocks> kv in ci.conditionByIndex){
+                    if(kv.Value.type == ConditionBlocks.Type.Else){
+                        elseFound2 = true;
+                    }
+                }
+                if(elseFound2){
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = successColor;
+                    currentObjective = Objectives.AfterPlayElse;
+                    StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                    Compiler.Instance.terminateExecution();
+                } else {
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = Color.red;
+                    StartCoroutine(convoManager.StartFailDialogue(1, dialogueInvokeTime));
+                    Compiler.Instance.terminateExecution();
+                }
+            break;
             case Objectives.ElseIf:
                 //check for an else-if statmenet                
                 bool elseIfFound = false;
-                for(int i = 0; i < Compiler.Instance.getCodeLines.Length; i++){
-                    if(ci.conditionByIndex.ContainsKey(i) && ci.conditionByIndex[i].type == ConditionBlocks.Type.ElseIf){
+                foreach(KeyValuePair<int,ConditionBlocks> kv in ci.conditionByIndex){
+                    if(kv.Value.type == ConditionBlocks.Type.ElseIf){
                         elseIfFound = true;
                     }
                 }
@@ -82,7 +102,7 @@ public class IfElseTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = Objectives.AfterElseIf;
-                    StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(7, dialogueInvokeTime));
                     Compiler.Instance.terminateExecution();
                 } else {
                     objectiveText[0].color = successColor;
@@ -91,17 +111,26 @@ public class IfElseTutorial : TutorialBase, IActivate{
                     Compiler.Instance.terminateExecution();
                 }
             break;
-            case Objectives.CheckCube:
-                objectiveText[0].color = successColor;
-                currentObjective = Objectives.AfterCheckCube;
-                StartCoroutine(convoManager.StartDialogue(7, dialogueInvokeTime));
-                Compiler.Instance.terminateExecution();
-            break;
-            case Objectives.LoopIf:
-                objectiveText[0].color = successColor;
-                currentObjective = Objectives.AfterLoopIf;
-                StartCoroutine(convoManager.StartDialogue(9, dialogueInvokeTime));
-                Compiler.Instance.terminateExecution();
+            case Objectives.PlayElseIf:
+                //check for an else-if statmenet                
+                bool elseIfFound2 = false;
+                foreach(KeyValuePair<int,ConditionBlocks> kv in ci.conditionByIndex){
+                    if(kv.Value.type == ConditionBlocks.Type.ElseIf){
+                        elseIfFound2 = true;
+                    }
+                }
+                if(elseIfFound2){
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = successColor;
+                    currentObjective = Objectives.AfterPlayElseIf;
+                    StartCoroutine(convoManager.StartDialogue(9, dialogueInvokeTime));
+                    Compiler.Instance.terminateExecution();
+                } else {
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = Color.red;
+                    StartCoroutine(convoManager.StartFailDialogue(2, dialogueInvokeTime));
+                    Compiler.Instance.terminateExecution();
+                }
             break;
         }
     }
@@ -127,23 +156,23 @@ public class IfElseTutorial : TutorialBase, IActivate{
             break;
             case Objectives.AfterElse:
                 if(timesPressed == convoManager.convos[3].LineCount()){
+                    StartPlayElse();
+                    timesPressed = 0;
+                }
+            break;
+            case Objectives.AfterPlayElse:
+                if(timesPressed == convoManager.convos[5].LineCount()){
                     StartElseIf();
                     timesPressed = 0;
                 }
             break;
             case Objectives.AfterElseIf:
-                if(timesPressed == convoManager.convos[5].LineCount()){
-                    StartCheckCube();
-                    timesPressed = 0;
-                }
-            break;
-            case Objectives.AfterCheckCube:
                 if(timesPressed == convoManager.convos[7].LineCount()){
-                    StartLoopIf();
+                    StartPlayElseIf();
                     timesPressed = 0;
                 }
             break;
-            case Objectives.AfterLoopIf:
+            case Objectives.AfterPlayElseIf:
                 if(timesPressed == convoManager.convos[9].LineCount()){
                     timesPressed = 0;
                     GameObject.Find("exit-point").GetComponent<IActivate>().activate();
@@ -163,11 +192,11 @@ public class IfElseTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use an if statement";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     void StartElse(){
@@ -178,49 +207,56 @@ public class IfElseTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use an else statement";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
+    }
+
+    void StartPlayElse(){
+        StartStage(2);
+
+        //set enum mode
+        currentObjective = Objectives.PlayElse;
+
+        //set objective text
+        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].color = defaultColor;
+
+        objectiveText[1].transform.gameObject.SetActive(true);
+        objectiveText[1].text = ">Use an else statement";
+        objectiveText[1].color = defaultColor;
     }
 
     void StartElseIf(){
-        StartStage(2);
+        StartStage(3);
 
         //set enum mode
         currentObjective = Objectives.ElseIf;
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use an else if statement";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
-    void StartCheckCube(){
-        StartStage(3);
-
-        //set enum mode
-        currentObjective = Objectives.CheckCube;
-
-        //set objective text
-        objectiveText[1].transform.gameObject.SetActive(false);
-        objectiveText[0].text = ">Put the cube in the proper acceptor";
-        objectiveText[0].color = Color.black;
-    }
-
-    void StartLoopIf(){
+    void StartPlayElseIf(){
         StartStage(4);
 
         //set enum mode
-        currentObjective = Objectives.LoopIf;
+        currentObjective = Objectives.PlayElseIf;
 
         //set objective text
-        objectiveText[0].text = ">Put the cubes in the proper acceptors";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].color = defaultColor;
+
+        objectiveText[1].transform.gameObject.SetActive(true);
+        objectiveText[1].text = ">Use an else if statement";
+        objectiveText[1].color = defaultColor;
     }
 
     public void deactivate(){}
@@ -231,11 +267,11 @@ public class IfElseTutorial : TutorialBase, IActivate{
         AfterIf,
         Else,
         AfterElse,
+        PlayElse,
+        AfterPlayElse,
         ElseIf,
         AfterElseIf,
-        CheckCube,
-        AfterCheckCube,
-        LoopIf,
-        AfterLoopIf
+        PlayElseIf,
+        AfterPlayElseIf
     }
 }

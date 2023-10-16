@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Level 8 Hint
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - Use a finite while loop to fill the acceptor and open the mech gate. Remember,
+      you have to use a value that changes over time like a variable.
+    - The condition of the while loop will be a comparison of that variable and the
+      number of repetitions you want the while loop to do.
+    - 'Remember that the value of the variable should be adjusted at the end of the
+      loop. Here, I''ll help you out with a step-by-step list:'
+    - '1. Create an int variable with a value of 0
+
+      2. Create a while loop
+      with a condition that checks if the variable is less than the number above
+      the acceptor'
+    - 3. Increment the variable by 1 at the end of the looped code block

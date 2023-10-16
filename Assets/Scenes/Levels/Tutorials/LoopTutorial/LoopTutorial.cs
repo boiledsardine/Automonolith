@@ -36,7 +36,7 @@ public class LoopTutorial : TutorialBase, IActivate{
                 }
 
                 //check line count
-                if(Compiler.Instance.linesCount <= 8){
+                if(Compiler.Instance.moveCount <= 5){
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterInfLoop1;
@@ -50,7 +50,7 @@ public class LoopTutorial : TutorialBase, IActivate{
             break;
             case LoopObjectives.InfLoop2:
                 //check line count
-                if(Compiler.Instance.linesCount <= 5){
+                if(Compiler.Instance.moveCount <= 3){
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterInfLoop2;
@@ -69,7 +69,7 @@ public class LoopTutorial : TutorialBase, IActivate{
             break;
             case LoopObjectives.Acceptor1:
                 //check line count
-                if(Compiler.Instance.linesCount <= 10){
+                if(Compiler.Instance.moveCount <= 5){
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterAcceptor;
@@ -83,7 +83,7 @@ public class LoopTutorial : TutorialBase, IActivate{
             break;
             case LoopObjectives.Acceptor2:
                 //check line count
-                if(Compiler.Instance.linesCount <= 15){
+                if(Compiler.Instance.moveCount <= 6){
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterAcceptor2;
@@ -154,11 +154,11 @@ public class LoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Press the button repeatedly";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
-        objectiveText[1].text = ">Use 8 lines or less";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].text = ">Use 5 commands or less";
+        objectiveText[1].color = defaultColor;
     }
 
     void StartInfLoop2(){
@@ -169,11 +169,11 @@ public class LoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Press the button repeatedly";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
-        objectiveText[1].text = ">Use 5 lines or less";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].text = ">Use 3 commands or less";
+        objectiveText[1].color = defaultColor;
     }
 
     void StartFixedLoop(){
@@ -184,11 +184,11 @@ public class LoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Stand on the button for a while";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
-        objectiveText[1].text = ">Use 10 lines or less";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].text = ">Use 5 commands or less";
+        objectiveText[1].color = defaultColor;
     }
 
     void StartAcceptor1(){
@@ -199,11 +199,11 @@ public class LoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Fill the Acceptor";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
-        objectiveText[1].text = ">Use 10 lines or less";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].text = ">Use 5 commands or less";
+        objectiveText[1].color = defaultColor;
     }
 
     void StartAcceptor2(){
@@ -216,11 +216,11 @@ public class LoopTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
-        objectiveText[1].text = ">Use 15 lines or less";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].text = ">Use 6 commands or less";
+        objectiveText[1].color = defaultColor;
     }
 
     bool successTime = false;
@@ -228,7 +228,7 @@ public class LoopTutorial : TutorialBase, IActivate{
         if(!successTime){
             return;
         }
-        if(Compiler.Instance.linesCount <= 10){
+        if(Compiler.Instance.moveCount <= 5){
             objectiveText[0].color = successColor;
             objectiveText[1].color = successColor;
             currentObjective = LoopObjectives.AfterFixedLoop;

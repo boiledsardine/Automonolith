@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FloorButton : ButtonBase, IActivator{
-    private bool _isActivated = false;
     private Material currentMaterial;
     public bool isTrap = false;
-    public bool latch = false;
-    bool latchActive = false;
-    public Material latchColor;
-
-    public bool isActivated{
-        get { return _isActivated; }
-        set { _isActivated = value; }
-    }
 
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player"){
@@ -38,7 +29,7 @@ public class FloorButton : ButtonBase, IActivator{
             boundObject.GetComponent<IActivate>().deactivate();
         }
     }
-
+    
     public bool IsActive(){
         return isActivated;
     }

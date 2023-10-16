@@ -185,31 +185,29 @@ MonoBehaviour:
       "x /= 5" is the same as "x = x / 5"
 
       "%=" for doing a modulus operation
-      and assigning: "x %= 5" is the same as "x = x % 5"
-
-'
+      and assigning: "x %= 5" is the same as "x = x % 5"'
   - articleName: Read()
     articleText: 'The Bot.Read() and Bot.ReadInt() methods are unique to this game!
 
-
+      
 
       Bot.Read()
       and Bot.ReadInt() let G4wain take the information from a nearby wall panel
       and use it as a value or store it in a variable. It takes no arguments. Bot.Read()
       is for strings, Bot.ReadInt() is for integers.
 
+      
 
+      Wall panels
+      hold either string or int values and are color coded to show which one they
+      are storing. Green panels hold ints, blue panels hold strings.
 
-      Wall panels hold either
-      string or int values and are color coded to show which one they are storing.
-      Green panels hold ints, blue panels hold strings.
+      
 
+      Imagine
+      G4wain is standing next to a blue panel and uses Bot.Read(). This will happen:
 
-
-      Imagine G4wain is
-      standing next to a blue panel and uses Bot.Read(). This will happen:
-
-
+      
 
       //G4wain
       is next to a blue panel
@@ -222,20 +220,21 @@ MonoBehaviour:
       Bot.say(Bot.Read());
       //G4wain says "Hello World!"
 
+      
 
+      Bot.ReadInt() works the same
+      but for int values instead. Imagine G4wain is standing next to a green panel
+      and uses Bot.ReadInt(). These could happen:
 
-      Bot.ReadInt() works the same but for
-      int values instead. Imagine G4wain is standing next to a green panel and uses
-      Bot.ReadInt(). These could happen:
+      
 
+      //G4wain is next
+      to a green panel
 
+      //the green panel stores the number 10
 
-      //G4wain is next to a green panel
+      int
+      num = Bot.ReadInt(); //num is now 10
 
-      //the
-      green panel stores the number 10
-
-      int num = Bot.ReadInt(); //num is now
-      10
-
-      Bot.say(Bot.ReadInt()); //G4wain says 10'
+      Bot.say(Bot.ReadInt()); //G4wain
+      says 10'

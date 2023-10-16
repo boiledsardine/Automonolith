@@ -68,19 +68,6 @@ MonoBehaviour:
       computer then skips every else and else if statement in the same chain after.\r\n\r\nTake
       note: creating an if block statement of an else-if statement creates a new
       chain of if-else statements which are separately evaluated."
-  - articleName: CheckCube()
-    articleText: "The Bot.CheckCube() method is unique to this game!\r\n\r\nBot.CheckCube()
-      lets G4wain check the color of a cube he's holding. You can only use this while
-      G4wain's holding a cube, or else it'll make a runtime error.\r\n\r\nCheckCube()
-      takes string arguments which can either be \"red\", \"green\", or \"blue\".
-      It is true when the color between the () is the same as the color of the cube.\r\n\r\nImagine
-      G4wain is holding a blue cube and you use CheckCube(). This will happen:\r\n\r\n//G4wain's
-      holding a blue cube\r\nbool isBlue = Bot.CheckCube(\"blue\"); //this is true\r\nbool
-      isRed = Bot.CheckCube(\"red\"); //this is false\r\n\r\nBecause CheckCube()
-      returns a boolean value, you can also use a complete CheckCube() method as
-      a condition for if-else statements!\r\n\r\n//G4wain's holding a blue cube\r\nif(Bot.CheckCube(\"blue\"))\r\n{\r\n 
-      Bot.say(\"Blue!\");\r\n}\r\nelse if(Bot.CheckCube(\"red\"))\r\n{\r\n  Bot.say(\"Red!\");\r\n}\r\nelse\r\n{\r\n 
-      Bot.say(\"Green!\");\r\n}\r\n//G4wain says blue"
   - articleName: Booleans
     articleText: 'Booleans (bool data types) are values which can store either true
       or false, which are essential to loops and conditional statements - important

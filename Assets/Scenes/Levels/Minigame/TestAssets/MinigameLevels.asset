@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8bb5d524a509849a062c3a94d580aa, type: 3}
+  m_Name: MinigameLevels
+  m_EditorClassIdentifier: 
+  levelDetails:
+  - levelName: Methods 0
+    levelDesc: Name and description pending
+  - levelName: Methods 1
+    levelDesc: Name and description pending
+  - levelName: Methods 2
+    levelDesc: Name and description pending
+  - levelName: Variables 0
+    levelDesc: Name and description pending
+  - levelName: Variables 1
+    levelDesc: Name and description pending
+  - levelName: Variables 2
+    levelDesc: Name and description pending
+  - levelName: Conditions 0
+    levelDesc: Name and description pending
+  - levelName: Conditions 1
+    levelDesc: Name and description pending
+  - levelName: Conditions 2
+    levelDesc: Name and description pending
+  - levelName: Loops 0
+    levelDesc: Name and description pending
+  - levelName: Loops 1
+    levelDesc: Name and description pending
+  - levelName: Loops 2
+    levelDesc: Name and description pending
+  - levelName: Arrays 0
+    levelDesc: Name and description pending
+  - levelName: Arrays 1
+    levelDesc: Name and description pending
+  - levelName: Arrays 2
+    levelDesc: Name and description pending

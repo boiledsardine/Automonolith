@@ -15,14 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Tutorials/Tutorial 1/Level 1.unity
     guid: 7410dac2b96b45345b1640b538cc313e
   - enabled: 1
-    path: Assets/Scenes/Levels/Tutorials/Tutorial 2/Level 2.unity
+    path: Assets/Scenes/Levels/Tutorials/MethodsTutorial/Tutorial 2.unity
     guid: 681c9836a2b50c54ea4987df474766a1
   - enabled: 1
     path: Assets/Scenes/Levels/reglevels/Level 1/Level01.unity
     guid: a1795ac360d1f0741a0f28f17e68c001
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Level 2/Level02.unity
-    guid: abd1368c09ead9847b82ce6e4a221525
+    path: Assets/Scenes/Levels/reglevels/Level 2/Level 2.unity
+    guid: c641d6feeb006f14682891e2f632b8fe
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorials/VarsTutorial/Tutorial 4.unity
     guid: 78d13735bd5241d45b61f69f2236d472
@@ -30,11 +30,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Tutorials/StringsTutorial/StringsTutorial.unity
     guid: ba41a24ad87fa1246b922abc08dbe4b0
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 3.unity
-    guid: bcbecd9e6ac791e4582ba28d7e4319fc
+    path: Assets/Scenes/Levels/reglevels/Level 3/Level 3.unity
+    guid: 7bf83a4a5f849df4bbab7364686f540c
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 4.unity
-    guid: 0f65a62ebb86999408ceae7de26b8f47
+    path: Assets/Scenes/Levels/reglevels/Level 4/Level 4.unity
+    guid: b40e982ede1faf74a88a196685456427
   - enabled: 1
     path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel 1.unity
     guid: b6f9105f93fb5104c90a989674f7f452
@@ -42,36 +42,45 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Tutorials/BoolLoopTutorial/BoolLoopTutorial.unity
     guid: 8f0643ac52505cd47a40538ebb57fb99
   - enabled: 1
-    path: Assets/Scenes/Levels/Tutorials/LoopTutorial/LoopTutorial.unity
-    guid: 21d34f31e002fd746ac1e65479eb7d91
-  - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 5.unity
-    guid: 5872974e59c27be4ca92fa8fb5d002f9
-  - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 6.unity
-    guid: 1a9d831de1e822740b3a4207fd09424d
-  - enabled: 1
     path: Assets/Scenes/Levels/Tutorials/IfElseTutorial/IfElseTutorial.unity
     guid: d1320a2eb1755f74bb82871ee8876b0f
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 7.unity
-    guid: bc33af245dac10240b8aedda105f6549
+    path: Assets/Scenes/Levels/reglevels/Level 5/Level 5.unity
+    guid: 9a195142a16f1074b9ce5380e1206440
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 8.unity
-    guid: 3e24a9cc405da4046996618d40bca802
+    path: Assets/Scenes/Levels/reglevels/Level 6/Level 6.unity
+    guid: 30058fce83e3a2143aabdb865b247c13
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Quiz Level 2.unity
-    guid: 84659984abc952646a386e67eaf6bbd5
+    path: Assets/Scenes/Levels/Tutorials/LoopTutorial/LoopTutorial.unity
+    guid: 21d34f31e002fd746ac1e65479eb7d91
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Level 7/Level 7.unity
+    guid: 16db8b93464844e49bc90dbbad0c2bcd
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/Level 8/Level 8.unity
+    guid: 0ad975fca752a194bb3d97af77ab307c
+  - enabled: 1
+    path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel 2.unity
+    guid: b7ed3872363ceda4e97268727562f120
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorials/ArrayTutorial/ArrayTutorial.unity
     guid: b4ec66b9a939b7649b7ac89956524069
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 9.unity
-    guid: 2f78522a5f4ab9449911db3fa11d41c3
+    path: Assets/Scenes/Levels/reglevels/Level 9/Level 9.unity
+    guid: 049c6eadbebc7a04aa154b3f8ddeab40
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Level 10.unity
-    guid: 52014ece26c4f7243a1391333287954c
+    path: Assets/Scenes/Levels/reglevels/Level 10/Level 10.unity
+    guid: 9fae3145f66823345908f1e3ae00f529
   - enabled: 1
-    path: Assets/Scenes/Levels/reglevels/Fakelevel/Quiz Level 3.unity
-    guid: 756e33273f71a2240b3a8cae49a6b824
+    path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel 3.unity
+    guid: da1103c35bf56c54581449b797c91a2d
+  - enabled: 1
+    path: Assets/Scenes/Testing Grounds/MGT-01/mg-level.unity
+    guid: 284feff588e4c2345a713df571b67b2e
+  - enabled: 1
+    path: Assets/Scenes/Story Scene.unity
+    guid: 40ff66323a6f3b9408d6f693c9448e2d
+  - enabled: 0
+    path: Assets/Scenes/Testing Grounds/Submenu Test.unity
+    guid: 7189d7b9f479c584fb89a6db1cd1cf70
   m_configObjects: {}

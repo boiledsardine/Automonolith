@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 0
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: b2a360eb9314f6d4ead484ff8864d267, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Methods 0
+  levelDesc: 'Hello. You''re willing to help me out, are you? First, I''d like to
+    see what you can do.
+
+
+    -Merlin'
+  levelGoal: 'Arrange the methods so they execute in order: put coffee in cup, boil
+    water, pour hot water, and stir.'
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - These are the fragments of my memory. Pieces of code broken up and left with
+      huge gaps. Your task, dear Arthur, is to drag those pieces back to where they
+      belong then press Submit() once done.
+    - I could tell you when something is in the wrong place, but I cannot tell you
+      exactly what should belong in what slot. Now, let's start with something simple.
+    - Ah, brewing coffee. A simple thing to do, and yet, I cannot remember how exactly
+      to do it. I really am senile. Help me put together how to make a cup of coffee
+      step by step.
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Indeed, I remember now. Yes, that's how it's done. Well, I hope we can continue
+      helping each other out from now on.
+  mainText: '_();
+
+    _();
+
+    _();
+
+    _();'
+  hidWords:
+  - hiddenText: AddCoffee
+    correctAnswers: []
+    mistakeMessage: '2: I don''t think ___ belongs there'
+  - hiddenText: BoilWater
+    correctAnswers: []
+    mistakeMessage: '3: I don''t think ___ belongs there'
+  - hiddenText: AddHotWater
+    correctAnswers: []
+    mistakeMessage: '4: I don''t think ___ belongs there'
+  - hiddenText: StirCup
+    correctAnswers: []
+    mistakeMessage: '5: I don''t think ___ belongs there'
+  wordBank: []
+  levelDictionary:
+  - keyword: AddCoffee
+    description: A method. This adds cofffee to an existing empty cup.
+  - keyword: BoilWater
+    description: A method. This gets water hot enough to brew.
+  - keyword: AddHotWater
+    description: A method. This adds hot water to a cup, empty or not.
+  - keyword: StirCup
+    description: A method. This stirs a mixture inside a given cup.

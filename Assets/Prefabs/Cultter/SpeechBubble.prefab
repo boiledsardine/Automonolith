@@ -96,8 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad60675195e21814db0698ff4742be61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yPos: 80
+  yPos: 125
   destroyTime: 5
+  followMode: 0
+  boundObject: {fileID: 0}
 --- !u!1 &5970168903122427943
 GameObject:
   m_ObjectHideFlags: 0

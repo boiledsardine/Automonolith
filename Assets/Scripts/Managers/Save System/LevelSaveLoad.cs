@@ -11,8 +11,6 @@ public class LevelSaveLoad : MonoBehaviour{
     public List<EditorState> editorStates = new List<EditorState>();
     public string levelSave;
     public string editorSave;
-    public int saveCounts = 10;
-
     public int indexHolder;
 
     void Awake(){
@@ -27,20 +25,6 @@ public class LevelSaveLoad : MonoBehaviour{
         editorSave = Application.dataPath + "/EditorSaves.json";
 
         LoadLevelInfo();
-    }
-
-    public void AddLevelSaveEntry(){
-        savedLevels.Add(new LevelInfo(false, false, false, false));
-        
-        string levelContent = JsonHelper.ToJson<LevelInfo>(savedLevels.ToArray(), true);
-        File.WriteAllText(levelSave, levelContent);
-    }
-
-    public void AddEditorSaveEntry(){
-        editorStates.Add(new EditorState(""));
-
-        string editorContent = JsonHelper.ToJson<EditorState>(editorStates.ToArray(), true);
-        File.WriteAllText(editorSave, editorContent);
     }
     
     //called after level success
@@ -78,6 +62,14 @@ public class LevelSaveLoad : MonoBehaviour{
 
         //saves everything
         SaveLevels();
+    }
+
+    public void EndStorySceneSave(int levelIndex){
+        var lvl = savedLevels[levelIndex];
+
+        savedLevels[levelIndex] = new LevelInfo(lvl.isUnlocked, lvl.star1, lvl.star2, lvl.star3, true);
+
+        SaveLevels();        
     }
 
     public void OpenNextLevel(int nextLevelIndex){
@@ -121,15 +113,4 @@ public class LevelSaveLoad : MonoBehaviour{
             }
         }
     }
-}
-
-[System.Serializable]
-public class LevelInfo{
-    public LevelInfo(bool isUnlocked, bool star1, bool star2, bool star3){
-        this.isUnlocked = isUnlocked;
-        this.star1 = star1;
-        this.star2 = star2;
-        this.star3 = star3;
-    }
-    public bool isUnlocked, star1, star2, star3;
 }

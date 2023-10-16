@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fade542aecfe3364b9d821bc75bf0d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundObject: {fileID: 0}
+  boundObject: {fileID: 6389142727374675955}
   isTrap: 0
   latch: 0
   latchColor: {fileID: 0}

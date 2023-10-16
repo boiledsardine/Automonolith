@@ -141,7 +141,7 @@ public class VarsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Find the safest route";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
     }
 
     void StartIntDeclare(){
@@ -152,11 +152,11 @@ public class VarsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Find the safe button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Declare a variable";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     void StartIntAssign(){
@@ -167,10 +167,10 @@ public class VarsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Find the safe button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].text = ">Reassign the given variable";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     void StartMathOps(){
@@ -181,7 +181,7 @@ public class VarsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(false);
     }
@@ -194,11 +194,11 @@ public class VarsTutorial : TutorialBase, IActivate{
 
         //set objective text
         objectiveText[0].text = ">Reach the button";
-        objectiveText[0].color = Color.black;
+        objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use only the given variable";
-        objectiveText[1].color = Color.black;
+        objectiveText[1].color = defaultColor;
     }
 
     public void deactivate(){

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Hint Level 2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    lines:
+    - This should be straightforward. First, use Bot.moveRight() to move near the
+      stone pillar. Then use Bot.hold() to grab it.
+    - Once that's done, move G4wain so that he drags the pillar to the button there.
+      Left, then down. After that, release the block and move to the exit.
+    - You could use arguments with your methods so you don't write the same command
+      over and over. Bot.moveRight(2) will make G4wain move right twice.
+    - Just apply that logic to G4wain's movement and you're good to go.

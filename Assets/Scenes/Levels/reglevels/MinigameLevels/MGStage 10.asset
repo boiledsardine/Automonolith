@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
+  m_Name: MGStage 10
+  m_EditorClassIdentifier: 
+  help: {fileID: 11400000, guid: facc2d61b6c22c848bc6656c2acec874, type: 2}
+  hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
+  levelName: Loops 1
+  levelDesc: This was a sample program I wrote when I was first messing around with
+    loops. It prints out the multiples of a number in sequence.
+  levelGoal: Complete the program that prints out a number's mulitples!
+  startConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - This thing prints out the mulitples of a given number through a loop. Now I
+      could've just done this by hand, yes, but where's the fun in that?
+  passConvo:
+  - npcName: Merlin
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    lines:
+    - Yes, good. Supplying it with the proper inputs will give you the multiples
+      of a certain digit up to a certain number.
+  mainText: "//input's value is a random number\nint input;\n\nint num = 0;\n\nwhile(_
+    _ _){\n  int product = _ * input;\n  Console.WriteLine(product);\n  num_;\n}"
+  hidWords:
+  - hiddenText: num
+    correctAnswers: []
+    mistakeMessage: '3: You''re comparing values here. The first space in this line
+      should contain something that changes over time.'
+  - hiddenText: <
+    correctAnswers: []
+    mistakeMessage: '3: You''re comparing values here. The second space in this line
+      should contain something that can do a comparison and return true for a few
+      runs so the loop can proceed.'
+  - hiddenText: input
+    correctAnswers: []
+    mistakeMessage: '3: You''re comparing values here. The last space in this line
+      should contain something that doesn''t change over time.'
+  - hiddenText: num
+    correctAnswers: []
+    mistakeMessage: '5: Looks like a math operation. Perhaps a value or variable
+      of some kind goes in here, one that multiplies the given number by the number
+      of loops already done.'
+  - hiddenText: ++
+    correctAnswers: []
+    mistakeMessage: '9: The end of the loop, where the value of the condition in
+      the variable must change. Since you''re going upward, consider incrementtation.'
+  wordBank: []
+  levelDictionary:
+  - keyword: product
+    description: An int variable! This one stores the product of a multiplication
+      operation.
+  - keyword: input
+    description: An int variable! This one could be any value.

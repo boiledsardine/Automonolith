@@ -10,15 +10,31 @@ public class ObjectEnvironment : MonoBehaviour, IEnvironment{
         set { _tileUnder = value; }
     }
 
+    void Update(){
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 200, transform.position.z);
+        Debug.DrawRay(origin, Vector3.down * 100, Color.blue);
+    }
+
+    void Start(){
+        tileUnder = GetTileUnder();
+    }
+
     public bool neighborIsValid(char direction){
+        tileUnder = GetTileUnder();
         switch(direction){
             case 'N':
                 if(tileUnder.neighborN != null && !tileUnder.neighborN.isOccupied){
                     return true;
                 } else if (tileUnder.neighborN == null){
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object there - there's no tile!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination is null");
                     return false;
                 } else {
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object to the destination tile - it's already occupied!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination " + tileUnder.neighborN + " is occupied");
                     return false;
                 }
@@ -26,9 +42,15 @@ public class ObjectEnvironment : MonoBehaviour, IEnvironment{
                 if(tileUnder.neighborS != null && !tileUnder.neighborS.isOccupied){
                     return true;
                 } else if (tileUnder.neighborS == null){
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object there - there's no tile!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination is null");
                     return false;
                 } else {
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object to the destination tile - it's already occupied!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination " + tileUnder.neighborS + " is occupied");
                     return false;
                 }
@@ -36,9 +58,15 @@ public class ObjectEnvironment : MonoBehaviour, IEnvironment{
                 if(tileUnder.neighborW != null && !tileUnder.neighborW.isOccupied){
                     return true;
                 } else if (tileUnder.neighborW == null){
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object there - there's no tile!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination is null");
                     return false;
                 } else {
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object to the destination tile - it's already occupied!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination " + tileUnder.neighborW + " is occupied");
                     return false;
                 }
@@ -46,9 +74,15 @@ public class ObjectEnvironment : MonoBehaviour, IEnvironment{
                 if(tileUnder.neighborE != null && !tileUnder.neighborE.isOccupied){
                     return true;
                 } else if (tileUnder.neighborE == null){
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object there - there's no tile!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination is null");
                     return false;
                 } else {
+                    Compiler.Instance.addErr(string.Format("Line {0}: can't move held object to the destination tile - it's already occupied!", Compiler.Instance.currentIndex + 1));
+                    Compiler.Instance.errorChecker.writeError();
+                    Compiler.Instance.killTimer();
                     Debug.LogWarning("Destination " + tileUnder.neighborE + " is occupied");
                     return false;
                 }
@@ -57,8 +91,17 @@ public class ObjectEnvironment : MonoBehaviour, IEnvironment{
         }
     }
 
+    public TileBase GetTileUnder(){
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 200, transform.position.z);
+        if(Physics.Raycast(origin, Vector3.down, out RaycastHit hit, Globals.Instance.distancePerTile, 1 << 7)){
+            return hit.transform.gameObject.GetComponent<TileBase>();
+        } else {
+            return null;
+        }
+    }
+
     public void OnTriggerEnter(Collider other){
-        tileUnder = other.gameObject.GetComponent<TileBase>();
+        //tileUnder = other.gameObject.GetComponent<TileBase>();
     }
 
     public bool checkForWalls(char direction){
@@ -82,6 +125,9 @@ public class ObjectEnvironment : MonoBehaviour, IEnvironment{
         float distance = Globals.Instance.distancePerObject;
 
         if(Physics.Raycast(transform.position, moveDir, distance, layerMask)){
+            Compiler.Instance.addErr(string.Format("Line {0}: can't move held objects through walls!", Compiler.Instance.currentIndex + 1));
+            Compiler.Instance.errorChecker.writeError();
+            Compiler.Instance.killTimer();
             Debug.LogWarning(gameObject.name + ": Wall found");
             return true;
         } else {

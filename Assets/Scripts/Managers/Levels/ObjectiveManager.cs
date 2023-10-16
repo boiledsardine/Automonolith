@@ -17,6 +17,8 @@ public class ObjectiveManager : MonoBehaviour {
     public bool hasSecondObjs;
     public Color successColor = new Color(100f, 200f, 50f, 255f);
     public bool exitTouched = false;
+    public ObjectiveBase objScript;
+    public Conversation failDialogue;
 
     public void Awake(){ 
         if(Instance == null){
@@ -82,36 +84,47 @@ public class ObjectiveManager : MonoBehaviour {
     }
 
     public void Update(){
-        if(PrimaryObjective()){
-            primObj.color = successColor;
-        }
-        if(SecondObjective1()){
-            secObj1.color = successColor;
-        }
-        if(SecondObjective2()){
-            secObj2.color = successColor;
+        if(objScript == null){
+            if(PrimaryObjective()){
+                primObj.color = successColor;
+            }
+            if(SecondObjective1()){
+                secObj1.color = successColor;
+            }
+            if(SecondObjective2()){
+                secObj2.color = successColor;
+            }
         }
     }
     
     public void LevelComplete(){
-        if(PrimaryObjective()){
+        var maptacks = GameObject.Find("Maptacks");
+        if(maptacks != null){
+            Destroy(maptacks);
+        }
+        if(objScript == null && PrimaryObjective()){
             //save editor state
             EditorSaveLoad.Instance.SaveEditorState();
             //save level
             SaveLevel(PrimaryObjective(), SecondObjective1(), SecondObjective2());
-            //then return to main menu
-            SceneManager.LoadScene("Main Menu");
-            //destroy persistents
-            DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
-            foreach(DontDestroy obj in persistents){
-                Destroy(obj.gameObject);
-            }
+            //open postlevel
+            PostlevelCanvas.Instance.OpenCanvas();
+            PostlevelCanvas.Instance.SetStars(PrimaryObjective(), SecondObjective1(), SecondObjective2());
+        } else if(objScript != null && objScript.IsComplete()){
+            //save editor state
+            EditorSaveLoad.Instance.SaveEditorState();
+            //save level
+            SaveLevel(objScript.Objective1(), objScript.Objective2(), objScript.Objective3());
+            //open postlevel
+            PostlevelCanvas.Instance.OpenCanvas();
+            PostlevelCanvas.Instance.SetStars(objScript.Objective1(), objScript.Objective2(), objScript.Objective3());
         } else {
-            Debug.Log("Objective isn't complete!");
+            DialogueManager.Instance.startDialogue(failDialogue);
         }
     }
 
     public void SaveLevel(bool goal1, bool goal2, bool goal3){
+        LastSceneHolder.Instance.SetLastScene();
         LevelSaveLoad.Instance.EndLevelSave(levelIndex, goal1, goal2, goal3, true);
     }
 

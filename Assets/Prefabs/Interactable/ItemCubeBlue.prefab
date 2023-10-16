@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b02f657ae62e94f941888ab3e889a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverDistance: 85
+  hoverDistance: 135
   yOffset: 67.5
 --- !u!65 &7183450933960300465
 BoxCollider:

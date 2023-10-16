@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5394676450801871969}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0029701171, w: 0.9999956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.34}
 --- !u!65 &4076247008726481504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.5, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 0.9999998, y: 5.041014, z: 1}
+  m_Center: {x: 9.519696e-10, y: 1.7034155, z: 0}
 --- !u!114 &2204259165873543919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,11 +59,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa458820f1718d147910b3aaecaefa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g: 0
+  h: 0
+  previousTile: {fileID: 0}
+  gridLocation: {x: 0, y: 0}
+  isDirtTile: 0
   _isOccupied: 0
   _neighborN: {fileID: 0}
   _neighborE: {fileID: 0}
   _neighborS: {fileID: 0}
   _neighborW: {fileID: 0}
+  isActive: 0
+  isHidden: 0
+  trapMesh: {fileID: 0}
+  trapMats: {fileID: 0}
+  tileMesh: {fileID: 0}
+  tileMats: {fileID: 0}
 --- !u!33 &8629864528548795371
 MeshFilter:
   m_ObjectHideFlags: 0

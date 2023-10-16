@@ -20,7 +20,8 @@ public class Positioning : MonoBehaviour{
     }
 
     private void Update(){
-        if(GetComponent<ObjectBase>().isHeld){
+        playerCharacter = GameObject.Find("PlayerCharacter");
+        if(playerCharacter != null && GetComponent<ObjectBase>().isHeld){
             relocate();
         }
     }
@@ -35,10 +36,7 @@ public class Positioning : MonoBehaviour{
     //puts small object down
     //keeps small object over player's head if target tile is null
     public void release(TileBase releaseTile){
-        //fire raycast to find releasetile?        
-        float distance = Globals.Instance.distancePerTile;
-        Vector3 origin = GameObject.Find("PlayerCharacter").transform.position;
-        Vector3 fwd = GameObject.Find("PlayerCharacter").transform.TransformDirection(Vector3.back);
+        //fire raycast to find releasetile?
 
         floatScript.amplitude = 0f;
         floatScript.posOffset = transform.position;

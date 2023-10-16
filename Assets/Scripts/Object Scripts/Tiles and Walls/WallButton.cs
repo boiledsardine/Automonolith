@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallButton : ButtonBase, IActivate{
-    [SerializeField] private bool isActivated = false;
-    
+public class WallButton : ButtonBase, IActivate, IActivator{
     public void activate(){
-        if(isActivated){
+        if(latch){
+            latchActive = true;
+            GetComponent<MeshRenderer>().material = latchColor;
+        }
+        if(isActivated && !latch){
             deactivate();
         } else {
             isActivated = true;
@@ -17,5 +19,9 @@ public class WallButton : ButtonBase, IActivate{
     public void deactivate(){
         isActivated = false;
         boundObject.GetComponent<IActivate>().deactivate();
+    }
+
+    public bool IsActive(){
+        return isActivated;
     }
 }

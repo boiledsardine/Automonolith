@@ -68,9 +68,7 @@ public class StringValue{
         for(int i = 0; i < sectionArr.Length; i++){
             string currentSection = sectionArr[i];
 
-            if(ReservedConstants.mathOperators.Contains(currentSection)){
-                addOperatorElement(currentSection);
-            } else if (strVars.ContainsKey(currentSection)){
+            if (strVars.ContainsKey(currentSection)){
                 strTexts.Add(strVars[currentSection]);
             } else {
                 strTexts.Add(currentSection);
@@ -120,28 +118,5 @@ public class StringValue{
             }
         }
         return substring;
-    }
-
-    private void addOperatorElement(string currentSection){
-        switch(currentSection){
-            case "+":
-                elements.Add(MathExpression.Add);
-                break;
-            case "-":
-                elements.Add(MathExpression.Subtract);
-                break;
-            case "*":
-                elements.Add(MathExpression.Multiply);
-                break;
-            case "/":
-                elements.Add(MathExpression.Divide);
-                break;
-            case "(":
-                elements.Add(MathExpression.StartGroup);
-                break;
-            case ")":
-                elements.Add(MathExpression.EndGroup);
-                break;
-        }
     }
 }

@@ -25,7 +25,6 @@ public class MultiActivate : MonoBehaviour, IActivate{
             activatorBools.Add(obj.GetComponent<IActivator>().IsActive());
         }
         bool allActive = !activatorBools.Contains(false);
-        Debug.LogWarning("activator: " + allActive);
         return allActive;
     }
 }

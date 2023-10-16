@@ -18,7 +18,7 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
     lines:
-    - 'Nice! You''re doing pretty good. Quick aside: writing an if statement will
-      start a new chain of if/else-if/else statements.'
-    - 'And both chains are evaluated independently of each other. Anyway, on to the
-      next:'
+    - And there you go. Remember, else statements run when the if statement before
+      it fails to go off!
+    - Anyway, if and else are useful if you're checking only one condition. But what
+      if you have two conditions?

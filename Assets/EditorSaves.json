@@ -1,28 +1,28 @@
 {
     "Items": [
         {
-            "editorContent": ""
+            "editorContent": "//this is a comment\n//comments are marked with a double slash\n//these aren't processed as instructions\n//they're here so you can read them\n\n//type the following, but remove the double slash\n//Bot.moveRight();\n//Bot.moveDown(); \nBot.moveRight(); \nBot.moveDown();\n\nint bruh = 3 + -4\n;"
         },
         {
-            "editorContent": ""
+            "editorContent": "//Step on the button\n\n//try typing these without the double slash:\n//Bot.moveUp();\n//Bot.moveUp();\n\nbot. test    "
         },
         {
-            "editorContent": ""
+            "editorContent": "Bot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\n//Bot.moveUp(2);\nBot.moveDown();"
         },
         {
-            "editorContent": ""
+            "editorContent": "//move right and hold the pillar\nBot.moveRight();\nBot.hold();\n//then drag it to the button\nBot.moveLeft();\nBot.moveDown(3);\n//release then move to the exit point\nBot.drop();\nBot.moveUp();\nBot.moveRight(2); "
         },
         {
-            "editorContent": "//don't change this\nint x = 10;\n\n//add 5 to x using +=\nx += 5;\nBot.say(x);\nBot.moveRight();\n\n//subtract 10 from x using -=\nx -= 10;\nBot.say(x);\nBot.moveRight();\n\n//multiply x by 20 using *=\nx *= 20;\nBot.say(x);\nBot.moveRight();\n\n//divide x by 2 using /=\nx /= 2;\nBot.say(x);\nBot.moveRight();"
+            "editorContent": "//don't change these\nint x = 10;\nint y = 5;\n\n//add x and y\nBot.say(x _ y);\nBot.moveRight();\n\n//subtract y from x\nBot.say(x _ y);\nBot.moveRight();\n\n\n//multiply x by y\nBot.say(x _ y);\nBot.moveRight();\n\n\n//divide x by y\nBot.say(x _ y);\nBot.moveRight();"
         },
         {
-            "editorContent": "//use the moveTo() command\n//moveTo() takes string arguments\n//use coordinates as an argument\n//coordinates are typed like \"A3\" or \"B0\"  \n\nBot.moveTo(\"A2\");\nBot.moveTo(\"C1\");\nBot.moveTo(\"A3\");"
+            "editorContent": "//use the moveTo() command\n//moveTo() takes string arguments\n//use coordinates as an argument\n//coordinates are typed like \"A3\" or \"B0\"v\n\nBot.moveTo(\"A2\");\nBot.moveTo(\"C1\");\nBot.moveTo(\"A3\");"
         },
         {
-            "editorContent": ""
+            "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//Bot.moveTo(\"B2\");\n\n//move the pillar up by the value in the variable\n//then push it to the right button\nBot.moveRight();\nBot.hold();\nBot.moveUp(num);\nBot.moveRight();\nBot.drop();\n\n//move to the tile of the blue panel (D0)\n//and get the string variable from the blue panel\nBot.moveTo(\"D0\");\nstring str = Bot.read();\n\n//move to in front of the vox gate (D3)\n//and say the value of your string variable\nBot.moveTo(\"D3\");\nBot.say(str);\nBot.moveUp(); "
         },
         {
-            "editorContent": ""
+            "editorContent": "//get the string within the blue panel\nstring strVar = Bot.read();\n\n//get the values of the green panels and add them\n//then speak it to the Vox gate\nBot.moveTo(\"B0\");\nint num1 = Bot.readInt();\nBot.moveTo(\"B2\");\nnum1 += Bot.readInt();\nBot.moveTo(\"B1\");\nBot.say(num1);\n\n//use the string from the blue panel to move to a tile coordinate\n//and press the button on that tile\nBot.moveTo(strVar);\nBot.interact();"
         },
         {
             "editorContent": ""
@@ -31,37 +31,40 @@
             "editorContent": "//declare two bools\n//one should be true\n//other should be false\n//use this syntax:\n//bool varName = value;\n\n//pass the true boolean here\nBot.say();\nBot.moveRight();\n//pass the false boolean here\nBot.say();\nBot.moveRight();"
         },
         {
-            "editorContent": ""
+            "editorContent": "//make this true\r\nif(condition goes here)\r\n{\r\n  Bot.moveRight(2);\r\n}\r\nBot.moveUp(2);"
+        },
+        {
+            "editorContent": "int num1 = Bot.readInt();\nBot.moveRight();\nint num2 = Bot.readInt();\n\n//speak the answer to the question\n//and move right\n//speak the lesser of the two numbers\nif(num1 < num2){\n  Bot.say(num1);\n}\nelse{\n  Bot.say(num2);\n}\nBot.moveRight();\n\n//speak the greater of the two numbers\nif(num1 > num2){\n  Bot.say(num1);\n}\nelse{\n  Bot.say(num2);\n}\nBot.moveRight();\n//which is smaller: 10, or the sum of both numbers?   "
+        },
+        {
+            "editorContent": "//get the value of the green panel\n\n//if it's greater than 10, move left\n//if not, move right\n\n//get the value of the next green panel\n\n//if it's equal to 50, move up\n//if not, move down\n\n//get the value of the last green panel\n\n//if it's less than 100, move left\n//if it's more than 100, move right"
+        },
+        {
+            "editorContent": "int num = 0;\n\n//move between the acceptor and generator\n//take and drop cubes\n//use a loop that ends after running 5 times\n//use the num variable given to you!\nwhile(num < 5){\r\n  Bot.moveRight(2);\r\n  Bot.hold();\r\n  Bot.moveLeft(2);\r\n  Bot.drop();\r\n  num++;\r\n}\n\n//after the while loop, move to the exit button\n//you can write code outside the while loop's {}\n//it'll run after the loop ends\nBot.moveTo(\"C2\");"
+        },
+        {
+            "editorContent": "//use a while loop to reach the end\n//for each loop, grab the generated cube\n//and drop it in the nearest acceptor \n\nwhile(true){\n  Bot.moveRight(2);\n  Bot.turnUp();\n  Bot.hold();\n  Bot.turnDown();\n  Bot.drop(); \n}"
+        },
+        {
+            "editorContent": "//use a finite while loop to reach the end\n//drop cubes in the acceptor until it's full\n//the number above it will tell you how many loops you should do"
         },
         {
             "editorContent": ""
         },
         {
-            "editorContent": ""
+            "editorContent": "//this declares an unassigned array\nstring[] arr;\n\n//this assigns a new array to the declared array\n//give it three string elements:\n//\"Open\", \"Akeru\", and \"Ouvrir\"\narr = new string[]{\"Open\", \"Akeru\", \"Ouvrir\"};\n\n//these will move G4wain\n//first assign an array value to array arr\nBot.say(arr[0]);\nBot.moveRight();\n\nBot.say(arr[1]);\nBot.moveRight();\n\nBot.say(arr[2]);\nBot.moveRight();"
+        },
+        {
+            "editorContent": "int[] arr = Bot.ReadIntArr();\n\n\n//speak the answer to the question\n//and move right\n\n\n//speak the third element\n\n\n//speak the product of the first and fourth\n\n\n//speak the length of the array\n\n\n//speak the sum of the first three elements\n\n\n//speak the final element of the array "
+        },
+        {
+            "editorContent": "//the array's elements are coordinates\n//it tells you the activation order of the buttons\n\nstring[] arr = Bot.ReadStringArr();\n\n//if you want to loop through the array\n//you could use the array's Length property \n\nint num = 0;\nwhile(num < arr.Length){\n  Bot.moveTo(arr[num]);\n  num++;\n}\n\nBot.moveTo(\"F1\"); "
         },
         {
             "editorContent": ""
         },
         {
-            "editorContent": ""
-        },
-        {
-            "editorContent": ""
-        },
-        {
-            "editorContent": ""
-        },
-        {
-            "editorContent": ""
-        },
-        {
-            "editorContent": ""
-        },
-        {
-            "editorContent": ""
-        },
-        {
-            "editorContent": ""
+            "editorContent": "//this is a string array declaration\nstring[] arr = {\"D0\", \"C2\", \"A3\"};\n\n//you can call a specific element like this\n//remember that indices start at 0\n//so the first element is index 0, second is index 1, so on\nBot.moveTo(arr[0]);\n\n//move to the coordinates in the 2nd and 3rd elements \nBot.moveTo(arr[1]); \nBot.moveTo(arr[2]);"
         }
     ]
 }

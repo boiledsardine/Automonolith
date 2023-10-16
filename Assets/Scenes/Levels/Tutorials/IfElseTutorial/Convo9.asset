@@ -16,10 +16,11 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
     lines:
-    - Right, and you've gotten a hang of conditional statements. The next few floors
-      of the monolith will be using these, so keep these in mind!
-    - 'Don''t forget - if you''re stuck or need a refresher, you can always ask me
-      for a hint or consult your encyclopedia of code. '
-    - Let's wrap this up!
+    - And that's about it for conditionals for now. There's still this thing called
+      a switch statement, but we won't touch that for now.
+    - It should be in the encyclopedia if you want to check it out so go take a looksie
+      every now and then, okay?
+    - Anyway, you see how powerful decision-making is? The next few floors will have
+      changing variables too so look out for thos!

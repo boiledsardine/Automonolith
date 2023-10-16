@@ -10,16 +10,26 @@ public class QuizLevel1 : MonoBehaviour{
     public Quiz quiz;
     public int levelIndex;
     public QuizState state;
-    public int scoreThreshold1;
-    public int scoreThreshold2;
-    public int scoreThreshold3;
+    int scoreThreshold1, scoreThreshold2, scoreThreshold3;
 
     float dialogueInvokeTime = 0.5f;
 
     //triggers dialogue
-    void Start(){
+    void Awake(){
+        scoreThreshold1 = quiz.threshold1;
+        scoreThreshold2 = quiz.threshold2;
+        scoreThreshold3 = quiz.threshold3;
+        
         convoManager = GetComponent<ConvoManager>();
+
+        convoManager.convos[0] = quiz.startConvo;
+        convoManager.convos[1] = quiz.passConvo;
+        convoManager.convos[2] = quiz.failConvo;
+    }
+
+    void Start(){
         StartCoroutine(convoManager.StartDialogue(0, dialogueInvokeTime));
+        levelIndex = LevelSaveLoad.Instance.indexHolder;
     }
 
     public int timesPressed = 0;
@@ -50,7 +60,7 @@ public class QuizLevel1 : MonoBehaviour{
     }
 
     void StartQuiz(){
-        QuizManager.Instance.startQuiz(quiz,5);
+        QuizManager.Instance.startQuiz(quiz, quiz.items);
     }
 
     public void QuizEnd(){
@@ -78,7 +88,7 @@ public class QuizLevel1 : MonoBehaviour{
             checkTwo = true;
         }
 
-        if(QuizManager.Instance.quizScore == scoreThreshold3){
+        if(QuizManager.Instance.quizScore >= scoreThreshold3){
             checkThree = true;
         }
 
@@ -87,6 +97,13 @@ public class QuizLevel1 : MonoBehaviour{
         }
 
         LevelSaveLoad.Instance.EndLevelSave(levelIndex, checkOne, checkTwo, checkThree, openNext);
+
+        //destroy persistents
+        DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
+        foreach(DontDestroy obj in persistents){
+            Destroy(obj.gameObject);
+        }
+
         SceneManager.LoadScene("Main Menu");
     }
 
