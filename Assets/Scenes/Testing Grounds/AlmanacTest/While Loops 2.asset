@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: While Loops 2
+  m_EditorClassIdentifier: 
+  articleName: While Loops 2
+  articleText: To create a non-infinite loop, it's better to pass a boolean expression
+    as the while loop's condition instead of a constant true/false value. The boolean
+    expression must be able to change over time, meaning that it should use variables
+    which can be changed by the code within the loop itself. It's common to use a
+    variable that acts as a counter, and an increment or decrement statement within
+    the loop to change its value.
+  articleExample: "~int num = 0; //this variable is a counter`\r\n~while (num < 3)
+    //loop runs as long as num is less than 3`\r\n~{`\r\n ~Bot.say(num); //makes
+    G4wain say the current value of num.`\r\n  ~num++; //adds 1 to the value of num
+    every time the loop completes. This is important!`\r\n~}`\r\n\r\nEvery time the
+    loop runs, ~num` is increased by 1.\r\nAafter the first loop, ~num` becomes 1.\r\nAfter
+    the second loop, ~num` becomes 2.\r\nAfter the third loop, ~num` becomes 3.\r\nThe
+    fourth loop does not run becuase ~3 < 3` is false."

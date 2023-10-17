@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: If statements
+  m_EditorClassIdentifier: 
+  articleName: If statements
+  articleText: "There are four types of conditional statements in C#, used for decision-making
+    in programs: if, else, else if, and switch. For the sake of brevity, this game
+    will cover only the first three.\r\n\r\nThe syntax for an if statement is this:\r\n~if(condition)`\r\n~{`\r\n 
+    ~//code to be executed`\r\n~}`\r\n\r\nWhere ~condition` is a bool like ~true`
+    or ~false` or a boolean expression like ~5 < 10`."
+  articleExample: "~if(true)\r`\n~{\r`\n~  Bot.say(\"True!\"); //G4wain says \"True!\"\r`\n~}\r`\n~if(false)\r`\n~{\r`\n~ 
+    Bot.say(\"True!\"); //does not execute, condition is false`\n~}\r`"

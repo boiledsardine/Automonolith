@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Arrays
+  m_EditorClassIdentifier: 
+  articleName: Arrays
+  articleText: "Arrays are data structures that store multiple values in a single
+    variable, instead of using separate variables for each value, called elements.\r
+    To declare an array, define the variable's type with square brackets. So to declare
+    an array that holds strings, do this:\r\n\r\n~string[] stringArray;`\r\n\r\nThis
+    array doesn't store any elements yet. To do so, assign it an array literal, which
+    is a list of values separated by commas inside curly braces followed by a semicolon.\r\n\r\n~string[]
+    cakes = {\"chocolate\", \"red velvet\", \"confetti\"};`\n\r\nTo get the elements
+    of an array, it must be called with its index, a number unique to each element
+    of an array. The first element of an array is index 0, the second element is
+    index 1, so on. To use an array index, call the array's name followed by square
+    brackets (~[]`) with the index number inside them."
+  articleExample: '~string[] cakes = {"chocolate", "red velvet", "confetti"}; //creates
+    an array named cakes with "chocolate", "red velvet", and "confetti" as its elements`
+
+
+    ~Bot.say(cakes[0]);
+    //G4wain says "chocolate"`
+
+    ~Bot.say(cakes[1]); //G4wain says "red velvet"`
+
+    ~Bot.say(cakes[2]);
+    //G4wain says "confetti"`
+
+    ~Bot.say(cakes[3]); //error: cakes[3] is looking
+    for a 4th element in an array with 3 elements`'

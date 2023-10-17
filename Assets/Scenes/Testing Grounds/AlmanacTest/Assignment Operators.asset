@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Assignment Operators
+  m_EditorClassIdentifier: 
+  articleName: Assignment Operators
+  articleText: "Assignment operators are operators used to assign values to variables.
+    One such operator you've already seen is the assignment operator represented
+    by an equals sign (=). The assignment operator can be combined with arithmetic
+    operators to perform an operation involving the variable's value and the given
+    value, shorthand for a longer expression. Here's a list of assignment operators:\r\n\r\n\"~+=`\":
+    \"~x += 5`\" is the same as \u201C~x = x + 5`\"\r\n\"~-=`\": \"~x -= 5`\" is
+    the same as \u201C~x = x - 5`\"\r\n\"~*=`\": \"~x *= 5`\" is the same as \u201C~x
+    = x * 5`\"\r\n\"~/=`\": \"~x /= 5`\" is the same as \"~x = x / 5`\""
+  articleExample: '~int x = 10;`
+
+    ~x += 5; //x is now 15 (x = x + 5)`
+
+    ~x
+    -= 10; //x is now 5 (x = x - 10)`
+
+    ~x *= 4; //x is now 20 (x = x * 4)`
+
+    ~x
+    /= 2; //x is now 10 (x = x / 2)`'

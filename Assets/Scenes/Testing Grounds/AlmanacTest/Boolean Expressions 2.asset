@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Boolean Expressions 2
+  m_EditorClassIdentifier: 
+  articleName: Boolean Expressions 2
+  articleText: 'Logical operators compare two bool values and return either true
+    or false based on the comparison. Here is a list of logical operators:
+
+    
+
+    "&&"
+    AND - returns true if both statements are true.
+
+    "||" OR - returns true
+    if one of the statements are true.
+
+    "!" NOT - reverses the value of the
+    statement it follows. This operates on one value only.
+
+    
+
+    Here is a
+    truth table of logic:
+
+    
+
+    AND:
+
+    ~True && True = True`
+
+    ~True
+    && False = False`
+
+    ~False && True = False`
+
+    ~False && False = False`
+
+    
+
+    OR:
+
+    ~True
+    || True = True`
+
+    ~True || False = True`
+
+    ~False || True = True`
+
+    ~False
+    || False = False`
+
+    
+
+    NOT:
+
+    ~!True = False`
+
+    ~!False = True`'
+  articleExample: '~bool andTrue = 5 < 10 && 10 > 5; //true - both expressions are
+    true`
+
+    ~bool andFalse = 5 < 10 && false; //false - only one is true`
+
+    ~bool
+    orTrue = true || false; //true - one of the values is true`
+
+    ~bool orFalse
+    = false || false; //false - none of the values is true`
+
+    ~bool isFalse =
+    !(5 < 10); //false - 5 < 10 is true, but ! inverts it`'

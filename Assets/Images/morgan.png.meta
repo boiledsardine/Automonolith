@@ -4,28 +4,28 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 5927882187559961596
-    second: morgan_neutral
+    second: old_morgan_neutral
   - first:
       213: -2264094948481321240
-    second: morgan_smile
+    second: old_morgan_smile
   - first:
       213: 8524817111056730432
-    second: morgan_2
+    second: old_morgan_2
   - first:
       213: -8746551012230393353
-    second: morgan_closedSmile
+    second: old_morgan_closedSmile
   - first:
       213: -2739792643492509466
-    second: morgan_closedSmug
+    second: old_morgan_closedSmug
   - first:
       213: 6903694227769077350
-    second: morgan_left
+    second: old_morgan_left
   - first:
       213: 1560857905190486289
-    second: morgan_6
+    second: old_morgan_6
   - first:
       213: 2091111571507873192
-    second: morgan_7
+    second: old_morgan_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -151,7 +151,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: morgan_neutral
+      name: old_morgan_neutral
       rect:
         serializedVersion: 2
         x: 0
@@ -172,7 +172,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_smile
+      name: old_morgan_smile
       rect:
         serializedVersion: 2
         x: 512
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_2
+      name: old_morgan_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -214,7 +214,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_closedSmile
+      name: old_morgan_closedSmile
       rect:
         serializedVersion: 2
         x: 1536
@@ -235,7 +235,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_closedSmug
+      name: old_morgan_closedSmug
       rect:
         serializedVersion: 2
         x: 0
@@ -256,11 +256,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_left
+      name: old_morgan_left
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 2
         width: 512
         height: 511
       alignment: 0
@@ -277,7 +277,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_6
+      name: old_morgan_6
       rect:
         serializedVersion: 2
         x: 1024
@@ -298,7 +298,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: morgan_7
+      name: old_morgan_7
       rect:
         serializedVersion: 2
         x: 1536

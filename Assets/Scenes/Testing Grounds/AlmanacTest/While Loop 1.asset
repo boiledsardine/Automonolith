@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: While Loop 1
+  m_EditorClassIdentifier: 
+  articleName: While Loops 1
+  articleText: "Loops execute a block of code as long as the condition given is true.
+    There are three types of loop: while, do/while, and for, but this game will cover
+    while loops only as it is the simplest of the three. Curly braces mark the lines
+    of code to be repeated. This is the syntax for a while loop:\r\n\r\n~while(condition)`\r\n~{`\r\n 
+    ~//code to be repeated`\r\n~}`\r\n\r\nWhere ~condition` is a bool like ~true`
+    or ~false` or a boolean expression like ~5 < 10`."
+  articleExample: "~while(5 < 10)\r`\n~{\r`\n~  Bot.say(\"Hello!\"); //G4wain says
+    hello over and over as long as the condition is true\r`\n~}\r`\n\nSince the condition
+    is always true, this loop will run infinitely."

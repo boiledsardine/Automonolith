@@ -16,14 +16,14 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - This corridor's a bit longer, and the button isn't at the end like usual. Instead,
       there's a trap at the end.
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Yep, it's so you could practice non-infinite loops. The loops you've been using
       up until now are infinite.
@@ -40,14 +40,14 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
     - Then the num variable will become 1, then 2, then 3, then 4, and then 5. "5
       < 5" is false, so the loop ends.
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - Precisely. Increment and decrement operators come in very handy here. "++"
       increases a variable by 1 while "--" decreases it by 1.
@@ -60,13 +60,13 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -8907812512055693227, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
     lines:
     - This is a bit complicated.
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 6903694227769077350, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - 'Yeah, loops aren''t exactly the cakewalk you''ve been having up until now. '
     - Buuut remember what I said about using the help I'm giving you and you should

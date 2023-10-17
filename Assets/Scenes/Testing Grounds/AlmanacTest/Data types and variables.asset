@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Data types and variables
+  m_EditorClassIdentifier: 
+  articleName: Data types and variables
+  articleText: "Variables are containers for storing values with their own data type,
+    such as integer, double, char, string, or bool. They can be called in code using
+    their identifier or name, and their value is replaced by the value of that variable.
+    This is a list of data types:\r\n\r\n~int` - stores whole numbers (e.g. ~10`)\r\n~double`
+    \u2013 stores numbers with decimals (e.g. ~123.543`).\r\n~char` - stores single
+    characters (e.g. ~'A'`). Values must be surrounded by single quotes (').\r\n~string`
+    - stores text (e.g. ~\"Hello World!\"`). Values must be surrounded by double
+    quotes (\").\r\n~bool` - stores a ~true` or ~false` value\r\n\r\nTo create a
+    variable, you must declare it by specifying its type and assigning a value with
+    this\r\nsyntax:\r\n\r\n~dataType varName = value`;\r\n\r\nWhere ~dataType` is
+    the type of variable, ~varName` is its unique identifier, and ~value` is the
+    value it's meant to store. The equals sign (~=`) assigns values to a variable."
+  articleExample: "~string text = \u201CHello World\u201D; //creates a string variable.`\r\n~char
+    letter = \u2018A\u2019; //creates a char variable.`\r\n~int num1 = 50; // creates
+    an int variable num1 with the value of 50.`\r\n~double decimal = 123.456; //creates
+    a double variable that stores a decimal.`\r\n~bool isTrue = true; //creates a
+    bool variable isTrue that is true.`\r\n\r\n~num1 = 10; //assigning a new value
+    to an existing variable overwrites its previous value`"

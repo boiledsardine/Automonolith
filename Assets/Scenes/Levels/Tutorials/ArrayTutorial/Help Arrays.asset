@@ -18,67 +18,66 @@ MonoBehaviour:
       variable, instead of using separate variables for each value, which are called
       elements.
 
-      
 
-      In C#, an array''s elements are given a number called
-      an index, and the index starts with 0. Programs start counting from 0, after
-      all.
 
-      
+      In C#, an array''s elements are given a number called an
+      index, and the index starts with 0. Programs start counting from 0, after all.
 
-      To declare an array, define the variable''s type with
-      square brackets. So to declare an array that holds strings, we type:
 
-      
-
-      string[]
-      stringArray;
-
-      
-
-      This array doesn''t store any elements yet. To
-      do so, assign it an array literal, which is a list of values separated by commas
-      inside curly braces followed by a semicolon. For example, we want to create
-      an array of even numbers and an array of cakes. Do the following:
-
-      
-
-      int[]
-      evenNumbers = {2, 4, 6, 8, 10};
-
-      string[] cake = {"chocolate", "red
-      velvet", "confetti"};
-
-      
-
-      We now have an array called evenNumbers
-      which stores the int values 2, 4, 6, 8, and 10, and an array called cake which
-      stores the strings "chocolate", "red velvet", and "confetti".
-
-      
 
       To
-      get the elements of an array, it must be called with its index. As stated before,
-      indices start with 0. So the first element of an array is index 0, the second
-      element is index 1, so on so forth. To use an array index, call the array''s
-      name followed by square brackets ([]) with the index number inside them. For
-      example:
+      declare an array, define the variable''s type with square brackets. So to declare
+      an array that holds strings, we type:
 
-      
 
-      string[] cakeFlavors = {"chocolate", "red velvet",
-      "confetti"};
 
-      Bot.say(cake[0]); //G4wain says "chocolate"
+      string[] stringArray;
 
-      
 
-      In
-      this example, the 0th element - the first element - of the array is called.
-      So G4wain says "chocolate". If we want him to say "red velvet", we call the
-      second element with cake[1], or cake[2] for "confetti".
 
-      
+      This
+      array doesn''t store any elements yet. To do so, assign it an array literal,
+      which is a list of values separated by commas inside curly braces followed
+      by a semicolon. For example, we want to create an array of even numbers and
+      an array of cakes. Do the following:
+
+
+
+      int[] evenNumbers = {2, 4, 6,
+      8, 10};
+
+      string[] cake = {"chocolate", "red velvet", "confetti"};
+
+
+
+      We
+      now have an array called evenNumbers which stores the int values 2, 4, 6, 8,
+      and 10, and an array called cake which stores the strings "chocolate", "red
+      velvet", and "confetti".
+
+
+
+      To get the elements of an array, it must
+      be called with its index. As stated before, indices start with 0. So the first
+      element of an array is index 0, the second element is index 1, so on so forth.
+      To use an array index, call the array''s name followed by square brackets ([])
+      with the index number inside them. For example:
+
+
+
+      string[] cakeFlavors
+      = {"chocolate", "red velvet", "confetti"};
+
+      Bot.say(cake[0]); //G4wain
+      says "chocolate"
+
+
+
+      In this example, the 0th element - the first element
+      - of the array is called. So G4wain says "chocolate". If we want him to say
+      "red velvet", we call the second element with cake[1], or cake[2] for "confetti".
+
+
 
       Take
       note: you cannot call an element outside the bounds of the array. The cakes
@@ -90,33 +89,33 @@ MonoBehaviour:
       name followed by the index of the element you want to change and assign a new
       value. For example, we have an array of board games:
 
-      
 
-      string[]
-      games = {"chess", "poker", "monopoly", "checkers"};
 
-      
+      string[] games
+      = {"chess", "poker", "monopoly", "checkers"};
 
-      We want
-      to change "poker" to another board game like scrabble or battleship. Simply
-      call the index of poker and assign a new value, like this:
 
-      
 
-      games[1]
-      = "scrabble";
+      We want to change "poker"
+      to another board game like scrabble or battleship. Simply call the index of
+      poker and assign a new value, like this:
 
-      
 
-      This replaces the value of the second element
-      in the games array, so now the array stores these values: "chess", "scrabble",
-      "monopoly", "checkers".
 
-      
+      games[1] = "scrabble";
 
-      But what if we want to assign an entirely
-      new array to games? Perhaps an array that can store 5 or 6 values? The ''new''
-      keyword is needed for that, which will be discussed later.'
+
+
+      This
+      replaces the value of the second element in the games array, so now the array
+      stores these values: "chess", "scrabble", "monopoly", "checkers".
+
+
+
+      But
+      what if we want to assign an entirely new array to games? Perhaps an array
+      that can store 5 or 6 values? The ''new'' keyword is needed for that, which
+      will be discussed later.'
   - articleName: Looping
     articleText: "Arrays are useful in that you can also loop through them, meaning
       you can get their elements one by one. To do this, you need the loop's Length
@@ -136,86 +135,83 @@ MonoBehaviour:
     articleText: 'You can declare an array without assigning its variable, like any
       other variable. Like this:
 
-      
 
       int[] numbers;
 
-      
 
-      The
-      array numbers is unassigned. To use it, it must be assigned an array value,
-      but you must use the ''new'' keyword. The ''new'' keyword should be followed
-      by the array''s data type and square braces with the size of the array between
-      the square braces. Like so:
+      The array numbers
+      is unassigned. To use it, it must be assigned an array value, but you must
+      use the ''new'' keyword. The ''new'' keyword should be followed by the array''s
+      data type and square braces with the size of the array between the square braces.
+      Like so:
 
-      
 
-      //creates an array with 3 empty
-      elements
 
-      numbers = new int[3];
+      //creates an array with 3 empty elements
 
-      
+      numbers =
+      new int[3];
+
+
 
       //this is an error
 
-      //there
-      needs to be a number between the []
+      //there needs to be a number
+      between the []
 
       numbers = new int[];
 
-      
 
-      This
-      kind of assignment will create an array with the given size (in this case,
-      3) but all its elements are empty or 0. To use the ''new'' keyword to create
-      an array with values, do the following:
 
-      
+      This kind of assignment
+      will create an array with the given size (in this case, 3) but all its elements
+      are empty or 0. To use the ''new'' keyword to create an array with values,
+      do the following:
 
-      //creates an array
-      with 3,4,5
 
-      //and assigns it to numbers
 
-      numbers = new int[]
+      //creates an array with 3,4,5
+
+      //and assigns
+      it to numbers
+
+      numbers = new int[] {1,2,3};
+
+
+
+      Notice how you don''t
+      need to specify the size of the array between the square braces when you''re
+      doing it this way. You still could, but then you''ll need to provide an array
+      literal with the same size as the one you specified:
+
+
+
+      //creates an
+      array with size 3
+
+      //and assigns its value
+
+      numbers = new int[3]
       {1,2,3};
 
-      
 
-      Notice how you don''t need to specify the size of
-      the array between the square braces when you''re doing it this way. You still
-      could, but then you''ll need to provide an array literal with the same size
-      as the one you specified:
 
-      
-
-      //creates an array with size 3
-
-      //and
-      assigns its value
-
-      numbers = new int[3] {1,2,3};
-
-      
-
-      The
-      easiest way to create an array is by simply just assigning its value at the
-      same time you declare it. This is only useful if you want to change the entire
-      array in one go, but this game won''t make you do that. This is here for sake
-      of explanation.'
+      The easiest way to create an array is by simply just assigning
+      its value at the same time you declare it. This is only useful if you want
+      to change the entire array in one go, but this game won''t make you do that.
+      This is here for sake of explanation.'
   - articleName: ReadArray()
     articleText: 'The ReadIntArr() and ReadStringArr() methods are unique to this
       game!
 
-      
 
-      Bot.ReadIntArr() and Bot.ReadStringArr() are used like
-      Bot.ReadInt() and Bot.ReadString(), but for arrays instead of singular values.
-      Use them to get an array from a wall panel and store it in an array variable.
-      Panels with int arrays are yellow and panels with string arrays are red.
 
-      
+      Bot.ReadIntArr() and Bot.ReadStringArr() are used like Bot.ReadInt()
+      and Bot.ReadString(), but for arrays instead of singular values. Use them to
+      get an array from a wall panel and store it in an array variable. Panels with
+      int arrays are yellow and panels with string arrays are red.
+
+
 
       Imagine
       G4wain is standing next to a yellow panel and uses Bot.ReadIntArr(). This will
@@ -231,35 +227,34 @@ MonoBehaviour:
 
       Bot.say(nums[0]); //G4wain says 7
 
-      Bot.say(nums[1]);
-      //G4wain says 8
+      Bot.say(nums[1]); //G4wain
+      says 8
 
       Bot.say(nums[2]); //G4wain says 9
 
-      
 
-      Imagine
-      G4wain is standing next to a yellow panel and uses Bot.ReadStringArr(). This
-      will happen:
 
-      //G4wain is next to a red panel
+      Imagine G4wain is
+      standing next to a yellow panel and uses Bot.ReadStringArr(). This will happen:
 
-      //the red panel
-      stores {"peanut","walnut","chestnut"}
+      //G4wain
+      is next to a red panel
 
-      string[] nuts = Bot.ReadStringArr();
-      //{"peanut","walnut","chestnut"} is now stored in nuts
+      //the red panel stores {"peanut","walnut","chestnut"}
 
-      Bot.say(nuts[0]);
-      //G4wain says "peanut"
+      string[]
+      nuts = Bot.ReadStringArr(); //{"peanut","walnut","chestnut"} is now stored
+      in nuts
 
-      Bot.say(nuts[1]); //G4wain says "walnut"
+      Bot.say(nuts[0]); //G4wain says "peanut"
 
-      Bot.say(nuts[2]);
-      //G4wain says "chestnut"
+      Bot.say(nuts[1]);
+      //G4wain says "walnut"
 
-      
+      Bot.say(nuts[2]); //G4wain says "chestnut"
 
-      The game will handle assigning arrays
-      itself at the start of a level that requires arrays to make thinsg easier,
-      though this is here if you ever need it.'
+
+
+      The
+      game will handle assigning arrays itself at the start of a level that requires
+      arrays to make thinsg easier, though this is here if you ever need it.'

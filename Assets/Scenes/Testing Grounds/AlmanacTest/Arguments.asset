@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Arguments
+  m_EditorClassIdentifier: 
+  articleName: Arguments
+  articleText: 'Arguments are values you pass into methods. Some methods require
+    arguments, some don''t, and some can function with or without an argument.
+
+
+
+    Arguments
+    are written within the () at the end of a method. If a method requires multiple
+    arguments, values are separated by a comma. Take note that there are some methods
+    that require arguments or else they wouldn''t know what to do, like the ~Bot.say()`
+    method. You can check which methods need arguments in the methods panel in the
+    bottom of the editor.'
+  articleExample: '~Bot.moveUp(); //G4wain moves up one space`
+
+    ~Bot.moveUp(3);
+    //G4wain moves up three spaces`
+
+
+    ~Bot.turnRight(3); //error: this method
+    doesn''t take arguments`
+
+
+    ~Bot.say("Hello World!") //G4wain will say "Hello
+    World!"`
+
+    ~Bot.say() //error: this method requires arguments`'

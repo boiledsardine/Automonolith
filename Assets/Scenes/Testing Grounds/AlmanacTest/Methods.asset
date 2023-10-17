@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Methods
+  m_EditorClassIdentifier: 
+  articleName: Methods
+  articleText: '~Bot` has a set of methods it could perform to navigate the Monolith.
+    The ~Bot` class and its methods (~moveUp`, ~moveDown()`, etc.) are unique to
+    this game! You won''t be using them in real code.
+
+
+
+    G4wain has the ~moveUp`,
+    ~moveDown`, ~moveLeft`, and ~moveRight` methods which you''ll use to instruct
+    G4wain to move in a certain direction. To call a method, use that method''s name
+    and add "~()"` at the end.
+
+
+    You can check out what other methods G4wain
+    can use in the methods panel in the bottom half of the editor.'
+  articleExample: '~Bot.moveRight(); //G4wain moves east`
+
+    ~Bot.moveDown(); //G4wain
+    moves south`
+
+    ~Bot.turnRight(); //G4wain turns to face east`
+
+    ~Bot.hold();
+    //G4wain holds an object`
+
+    ~Bot.drop(); //G4wain stops holding a held object`'

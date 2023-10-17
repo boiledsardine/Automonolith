@@ -412,7 +412,7 @@ public class CodeEditor : MonoBehaviour{
                 color = theme.conditionalColor;
             } else if(section == "while"){
                 color = theme.loopColor;
-            } else if(ReservedConstants.allOperatorsArr.Contains(section)){
+            } else if(ReservedConstants.allOperatorsArr.Contains(section) || ReservedConstants.specChars.Contains(section)){
                 color = theme.operatorColor;
             } else if(section == "(" || section == ")"){
                 color = theme.braceColor1;
@@ -447,6 +447,7 @@ public class CodeEditor : MonoBehaviour{
             nonSpace = 0;
             int colorIndex = 0;
             int startIndex = -1;
+            bool isLiteral = false;
 
             for(int i = 0; i <= line.Length; i++){
                 if(nonSpace == stringStartIndices[colorIndex]){
@@ -465,7 +466,15 @@ public class CodeEditor : MonoBehaviour{
 
                 if(i < line.Length){
                     char c = line[i];
-                    if(c != ' '){
+
+                    if((c == '\"' || c == '\'') && !isLiteral){
+                        isLiteral = true;
+                    } else if((c == '\"' || c == '\'') && isLiteral){
+                        isLiteral = false;
+                    }
+
+                    //this is the condition causing the error
+                    if(c != ' ' || (c == ' ' && isLiteral)){
                         nonSpace++;
                     }
                 }
@@ -479,7 +488,7 @@ public class CodeEditor : MonoBehaviour{
             line = line.Insert(stringEndIndices[i], "</color>");
             line = line.Insert(stringStartIndices[i], "<color=#" + colorString + ">");
         }
-
+        
         return line;
     }
 }

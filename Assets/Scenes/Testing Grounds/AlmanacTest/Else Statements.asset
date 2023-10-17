@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Else Statements
+  m_EditorClassIdentifier: 
+  articleName: Else statements
+  articleText: "Else statements are executed if a preceeding if statement fails to
+    execute because the condition given to it is false. Unlike if statements, else
+    statements don't take a condition.\r\n\r\nThe syntax for an else statement is
+    this:\r\n~else`\r\n~{`\r\n  ~//code to be executed`\r\n~}`\r\n\r\nThis follows
+    an if statement or comes at the end of a chain of else-if statements."
+  articleExample: "~bool myBool = false;\r`\n~if(myBool)\r`\n~{\r`\n~ Bot.say(\"True!\");
+    //This is skipped - myBool is false\r`\n~}\r`\n~else\r`\n~{\r`\n~ Bot.say(\"False!\");
+    //G4wain says \"False!\" as the if statement before did not execute\r`\n~}`"

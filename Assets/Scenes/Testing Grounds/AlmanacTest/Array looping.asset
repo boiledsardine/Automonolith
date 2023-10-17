@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Array looping
+  m_EditorClassIdentifier: 
+  articleName: Array looping
+  articleText: 'Arrays are useful in that you can also loop through them, meaning
+    you can get their elements one by one. To do this, you need the loop''s Length
+    property. The Length property specifies how many elements are in an array and
+    can be acquired by calling the array''s name and putting "~.Length`" after it.
+
+
+    ~int[]
+    numbers = {1,2,3,4,5,6,7};`
+
+    ~int numbersLength = numbers.Length; //7`
+
+    ~Bot.say(numbers.Length);
+    //G4wain says 7`
+
+
+    Array numbers has 7 elements, so its length is 7. You
+    can store it in a variable or use it as a value. This is useful for loops, as
+    you can use it as an upper bound for how many times a loop should run.'
+  articleExample: "~string[] coords = {\"A0\", \"B1\", \"C2\", \"D3\"};`\n~int num
+    = 0;`\n~int coordsLength = coords.Length; //4`\n~while(num < coordsLength)`\n~{`\n 
+    ~Bot.MoveTo(coords[num]);`\n  ~num++;`\n~}`\n\n~//The 1st loop will move G4wain
+    to coords[0] - A0\r`\n~//The 2nd loop will move G4wain to coords[1] - B1\r`\n~//The
+    3rd loop will move G4wain to coords[2] - C2\r`\n~//The 4th loop will move G4wain
+    to coords[3] - D3`"

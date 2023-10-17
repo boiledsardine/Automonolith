@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Basics
+  m_EditorClassIdentifier: 
+  articleName: Bascis
+  articleText: 'Guide G4wain by writing a short program with code.
+
+    
+
+    Each
+    instruction must be written on its own line, and each line must be closed with
+    a semicolon. The semicolon indicates the end of a line and instructs G4wain to
+    read the instructions in the next line.
+
+
+    To make G4wain do things, such
+    as move, you have to use methods. Methods are blocks of code that perform certain
+    actions. To use methods, you must first specify from where those methods are
+    coming from. To access the methods G4wain knows, refer to it with "Bot.".
+
+
+    After
+    writing "~Bot.`", you can use the methods G4wain has access to, such as movement
+    methods.'
+  articleExample: '//text in olive green is a comment
+
+    //comments are not read
+    as instructions
+
+
+    ~Bot.moveUp(); //G4wain moves up`
+
+    ~Bot.moveRight();
+    //G4wain moves right`
+
+    ~Bot.moveDown(); //G4wain moves down`
+
+    ~Bot.moveLeft();
+    //G4wain moves left`
+
+
+    ~Bot.hold(); //G4wain holds an object`
+
+    ~Bot.drop();
+    //G4wain stops holding a held object`'

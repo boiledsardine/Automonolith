@@ -4,19 +4,19 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 3207679657460903351
-    second: arthur_neutral
+    second: old_arthur_neutral
   - first:
       213: -8907812512055693227
-    second: arthur_staffclose
+    second: old_arthur_staffclose
   - first:
       213: 5097129605200609062
-    second: arthur_eyeswide
+    second: old_arthur_eyeswide
   - first:
       213: -1018686373385036869
-    second: arthur_eyesclosed
+    second: old_arthur_eyesclosed
   - first:
       213: -8640580854354238499
-    second: arthur_staffraised
+    second: old_arthur_staffraised
   - first:
       213: 4650979332208477554
     second: arthur_5
@@ -157,7 +157,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arthur_neutral
+      name: old_arthur_neutral
       rect:
         serializedVersion: 2
         x: 0
@@ -178,7 +178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arthur_staffclose
+      name: old_arthur_staffclose
       rect:
         serializedVersion: 2
         x: 409
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arthur_eyeswide
+      name: old_arthur_eyeswide
       rect:
         serializedVersion: 2
         x: 818
@@ -220,7 +220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arthur_eyesclosed
+      name: old_arthur_eyesclosed
       rect:
         serializedVersion: 2
         x: 1227
@@ -241,7 +241,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arthur_staffraised
+      name: old_arthur_staffraised
       rect:
         serializedVersion: 2
         x: 1636

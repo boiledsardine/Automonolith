@@ -179,7 +179,7 @@ public class ReservedConstants{
     public const string allMathOperators = mathOperators + parentheses;
     const string comparisonString = "<>=";
     //const string textChars = "\"'";
-    const string specChars = "!.;,&|{}";
+    public const string specChars = "!.;,&|{}";
     public const string arrayIndexSeparator = "`";
     public const string allOperators = allMathOperators + comparisonString + specChars;
     public static readonly string[] reserved = FunctionHandler.builtInFunctions.Concat(varTypes).ToArray();

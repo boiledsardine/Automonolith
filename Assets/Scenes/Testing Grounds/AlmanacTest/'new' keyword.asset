@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: '''new'' keyword'
+  m_EditorClassIdentifier: 
+  articleName: The 'new' keyword
+  articleText: 'The easiest way to create an array is by simply just assigning its
+    value at the same time you declare it. This is useful if you want to change the
+    entire array in one go, but this game won''t make you do that. This is here for
+    sake of explanation.
+
+    
+
+    You can declare an array without assigning its
+    variable, like any other variable.
+
+    
+
+    ~int[] numbers;`
+
+
+    The array
+    ~numbers` is unassigned. To use it, it must be assigned an array value, but you
+    must use the ''~new`'' keyword. The ''~new`'' keyword should be followed by the
+    array''s data type and square braces with the size of the array between the square
+    braces.
+
+
+    This kind of assignment will create an array with the given size
+    (in this case, 3) but all its elements are empty or 0. To use the ''~new`'' keyword
+    to create an array with values, check example 2.
+
+
+    Notice how you don''t
+    need to specify the size of the array between the square braces when you''re
+    doing it this way. You still could, but then you''ll need to provide an array
+    literal with the same size as the one you specified. Check example 3.'
+  articleExample: '~//example 1`
+
+    ~//creates an array with 3 empty elements`
+
+    ~numbers
+    = new int[3];`
+
+
+    ~//this is an error`
+
+    ~//there needs to be a number
+    between the []`
+
+    ~numbers = new int[];`
+
+
+    ~//example 2`
+
+    ~//creates
+    an array with {1,2,3} and assigns it to numbers`
+
+    ~numbers = new int[] {1,2,3};`
+
+
+    ~//example
+    3`
+
+    ~//creates an array with size 3 and assigns {1,2,3} to numbers`
+
+    ~numbers
+    = new int[3] {1,2,3};`'

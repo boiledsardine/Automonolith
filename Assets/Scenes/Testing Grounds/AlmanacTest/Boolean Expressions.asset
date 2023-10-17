@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
+  m_Name: Boolean Expressions
+  m_EditorClassIdentifier: 
+  articleName: Boolean Expressions 1
+  articleText: "Boolean expressions can also be assigned to bool variables. It compares
+    two values or variables and\r return either true or false based on the result
+    of the comparison. It is used for conditional testing,\r especially for loops
+    and if-else statements. Boolean expressions use comparison or logical operators.
+    Here is a list of comparison operators: \r\n\r\n\"~==`\": Equal to - is true
+    when two values are the same.\r\n\"~!=`\": Not equal - is true when two values
+    are different.\r\n\"~>`\": Greater than - is true when the left side is greater
+    than the right side.\r\n\"~<`\": Less than - is true when the left side is less
+    than the right side.\r\n\"~>=`\": Greater than or equal to - is true when the
+    left side is greater than or equal to the right\r\nside.\r\n\"~<=`\": Less than
+    or equal to - is true when the left side is less than or equal to the right side."
+  articleExample: '~int x = 10;`
+
+    ~int y = 5;`
+
+
+    ~bool isEqual = x == y;
+    //false`
+
+    ~bool notEqual = x != y; //true`
+
+    ~bool xIsGreater = x > y;
+    //true`
+
+    ~bool xIsLesser = x < y; // false`
+
+    ~bool xIsGreaterOrEqual
+    = x <= y; //true`
+
+    ~bool xIsGreaterOrLesser = x >= y; //false`'
