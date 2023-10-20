@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Story 1
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - So, this is the Automonolith, hm? All the texts and treatises written about
+      it... I'd have thought it would be... grander.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - It's old. Ancient, even. Without its caretakers, time would've been free to
+      ravage it. And time has not been kind to it at all.
+    - It's supposed to be more impressive on the inside. A marvel of Akashic engineering,
+      with systems meant to outlast their civilization... who knows what secrets
+      are waiting inside?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
+    lines:
+    - '*Arthur coughs a bit before clearing his throat.*'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - With any luck, a way to treat my condition.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - For the last time, Arthur, getting old isn't a condition.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 5687993070f80cc44a99d6414785ec99, type: 3}
+    lines:
+    - It's not about age!
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - But it would be great if the rumors were true... that the ancient Akasha figured
+      out a way to extend one's lifespan. Hopefully there's a lead to that rumor
+      somewhere in here.
+    - Anyway, adventurer groups and scholars couldn't get too far in, not without
+      the Monolith's automatic defenses activating and disposing of the intruders.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - But you've got something they didn't have, did you?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Yes, G4wain. Its core was originally from a servitor golem found in the Monolith's
+      lower floors.
+    - It took a while to figure out how to make it serve my needs, but with this,
+      hopefully the Monolith will treat G4wain as one of its own.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Hopefully. If not, at least you're not the one on the business end of some
+      ancient weapon. Now, ready to get started?

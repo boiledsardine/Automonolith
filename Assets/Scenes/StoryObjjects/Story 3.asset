@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Story 3
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Fascinating, this memory module. I don't believe this one has been documented
+      before.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Arthur, what are you doing?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Running experiments with the memory module we extracted not long ago. I figured
+      it had a deeper purpose than simply committing variables into memory for future
+      use.
+    - If my theory about it is correct, it holds the memories of the machine we took
+      it from... memories that reach way back to the time when the Akasha were still
+      around and the Monolith was at its heyday.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - '*Morgan looks intrigued, yet there is a hint of apprehension on her features.*'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Have you made any progress?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Somewhat. I've figured out how to pull information out of the module that isn't
+      related to variables, but I've yet to decipher that information into something
+      I can read.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Hey, maybe you shouldn't be fiddling with that too much. What happens if you
+      accidentally break it?
+    - G4wain won't be able to navigate the Monolith anymore, especially the rooms
+      that need him to remember things.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - 'You may have a point. Perhaps I''ll get to work deciphering what I''ve extracted
+      from the module. Who knows what secrets of the Akasha it might tell me? '
+    - But for now, I need to know more to start that process. We're continuing the
+      expedition.

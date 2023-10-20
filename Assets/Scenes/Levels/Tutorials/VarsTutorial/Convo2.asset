@@ -20,19 +20,17 @@ MonoBehaviour:
     lines:
     - It goes without saying that you can't use a variable that doesn't exist yet.
       It's going to be like trying to remember a memory you don't have.
-    - So how does one create variables, you ask? It's called declaration. And it's
-      a rather straightforward process.
-    - 'Use this syntax:
+    - 'So how does one create variables, you ask? It''s called declaration. And it''s
+      a rather straightforward process. Use this syntax:
 
-      type variableName = value'
-    - 'type is a data type such as an int (a number) or string (a word),
-
-      variableName
-      is whatever name you want to call the vairable (like x or y),'
-    - 'and value is the varaible''s, well, value.
-
-      The equals sign means you''re
-      trying to assign the value on the right to the variable on the left.'
+      ~dataType variableName
+      = value`'
+    - ~dataType` is a data type such as an ~int` (a number) or ~string` (a word),
+      ~variableName` is whatever name you want to call the vairable (like x or y),
+      and value is the varaible's, well, value.
+    - The equals sign means you're trying to assign the value on the right to the
+      variable on the left. You'll notice the data type become <color=#2b6cc9>navy
+      blue</color> in the editor when it's spelled correctly.
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
@@ -41,7 +39,7 @@ MonoBehaviour:
     - 'So if I want to create a varaible called myNum that stores the number 10,
       I type:
 
-      int myNum = 10;
+      ~int myNum = 10;`
 
       Is that it?'
   - npcName: Morgan

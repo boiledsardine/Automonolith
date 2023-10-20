@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Story 8
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Now I really am curious. How is it you know so much about the Monolith and
+      its technology?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Hm? What's this all of a sudden?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - I've translated the scribblings of the Ancient Akasha in my spare time and
+      none of this is mentioned anywhere in their fragments of lore.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - You've demonstrated familiarity with Akashic artifacts that haven't been studied
+      in-depth by the Great Scholars, even those that have only been recently discovered
+      by this expedition.
+    - You've been right about them so far, and yet, I couldn't find a scrap of lore
+      about any of these devices in the fragmented records of Akashic history or
+      the Grand Library.
+    - I doubt you're guessing either, given that you've been 100% correct so far.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Oh well, guess there's no helping it.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Reason I know so much about the Monolith? I watched as it was being built,
+      after all. And to answer a past question of yours about why I shut up around
+      NImue? Her and I go way back.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
+    lines:
+    - You... were around when the Monolith was built? That must have been millennia
+      ago!
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Hard to believe but it's true.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - How o-
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 0f26000b080884f468865936f865aac8, type: 3}
+    lines:
+    - If the next thing that comes out of your mouth is "How old are you exactly",
+      I'm pushing you out of the nearest window.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
+    lines:
+    - ...
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - 'At least answer me this: is it true the Akasha had the means to cure my condition? '
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - ...Yes. And it should be somewhere in here. So, how about these questions end
+      for now and we continue this expedition?

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 8
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: e9f9e96b8e8163f49b6da67c3efea9c5, type: 2}
+  help: {fileID: 0}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
   levelName: Conditions 2
   levelDesc: '[Name and description pending]'
@@ -21,7 +21,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Test open dialogue
     - Accounting for multiple lines
@@ -51,17 +51,19 @@ MonoBehaviour:
     e: ___'
   hidWords:
   - hiddenText: test-a
-    dictionaryText: Test-a dictionary text
+    correctAnswers: []
     mistakeMessage: '2: I don''t think ___ belongs there'
   - hiddenText: test-b
-    dictionaryText: Test-b dictionary text
+    correctAnswers: []
     mistakeMessage: '3: I don''t think ___ belongs there'
   - hiddenText: test-c
-    dictionaryText: Test-c dictionary text
+    correctAnswers: []
     mistakeMessage: '4: I don''t think ___ belongs there'
   - hiddenText: test-d
-    dictionaryText: Test-d dictionary text
+    correctAnswers: []
     mistakeMessage: '5: I don''t think ___ belongs there'
   - hiddenText: test-e
-    dictionaryText: Test-e dictionary text
+    correctAnswers: []
     mistakeMessage: '6: I don''t think ___ belongs there'
+  wordBank: []
+  levelDictionary: []

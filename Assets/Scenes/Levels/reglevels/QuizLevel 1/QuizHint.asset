@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
-  m_Name: StoryTest 3
+  m_Name: QuizHint
   m_EditorClassIdentifier: 
   dialogueBlocks:
-  - npcName: Test
-    showNpc: 0
-    npcPos: 0
-    npcSprite: {fileID: 0}
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
     lines:
-    - '[L3 Story dialogue test]'
+    - Sorry, can't help you here. It's a test, after all.

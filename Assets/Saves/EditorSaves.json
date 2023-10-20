@@ -1,22 +1,22 @@
 {
     "Items": [
         {
-            "editorContent": "//this is a comment\n//comments are marked with a double slash\n//these aren't processed as instructions\n//they're here so you can read them\n\n//type the following, but remove the double slash\n//Bot.moveRight();\n//Bot.moveDown(); \nBot.moveRight(); \nBot.moveDown();\n\nint bruh = 3 + -4\n;"
+            "editorContent": "//this is a comment\n//comments are marked with a double slash\n//these aren't processed as instructions\n//they're here so you can read them\n//for now, press the play button\n\nBot.moveRight();\nBot.moveDown();"
         },
         {
-            "editorContent": "//Step on the button\n\n//try typing these without the double slash:\n//Bot.moveUp();\n//Bot.moveUp();\n\nbot. test    "
+            "editorContent": "//Grab the pillar\n//Then move it to the button\n\n//Turn to face the pillar\n//Then hold it\n//Then move up twice\n//Then let it go\n//Use \"Bot.drop();\" to release\nBot.turnRight();\nBot.hold();\nBot.moveUp();\nBot.moveUp();\nBot.drop();\nBot.moveUp();\nBot.moveUp();\n"
         },
         {
-            "editorContent": "Bot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\n//Bot.moveUp(2);\nBot.moveDown();"
+            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft();\nBot.moveLeft();\nBot.moveDown();\nBot.moveDown();\nBot.moveRight();\nBot.hold();\nBot.moveRight();\nBot.moveRight();\nBot.moveRight();\nBot.drop();\nBot.moveDown();\n"
         },
         {
-            "editorContent": "//move right and hold the pillar\nBot.moveRight();\nBot.hold();\n//then drag it to the button\nBot.moveLeft();\nBot.moveDown(3);\n//release then move to the exit point\nBot.drop();\nBot.moveUp();\nBot.moveRight(2); "
+            "editorContent": "//move right and hold the pillar\nBot.moveRight();\nBot.hold();\n//then drag it to the button\nBot.moveLeft();\nBot.moveDown(3);\n//release then move to the exit point\nBot.drop();\nBot.moveUp();\nBot.moveRight(2);\n"
         },
         {
-            "editorContent": "//don't change these\nint x = 10;\nint y = 5;\n\n//add x and y\nBot.say(x _ y);\nBot.moveRight();\n\n//subtract y from x\nBot.say(x _ y);\nBot.moveRight();\n\n\n//multiply x by y\nBot.say(x _ y);\nBot.moveRight();\n\n\n//divide x by y\nBot.say(x _ y);\nBot.moveRight();"
+            "editorContent": "//declare a variable called num\n//syntax goes:\n//int num = value\n\nBot.moveRight(num);\nBot.moveUp();"
         },
         {
-            "editorContent": "//use the moveTo() command\n//moveTo() takes string arguments\n//use coordinates as an argument\n//coordinates are typed like \"A3\" or \"B0\"v\n\nBot.moveTo(\"A2\");\nBot.moveTo(\"C1\");\nBot.moveTo(\"A3\");"
+            "editorContent": "//use a string!\n//strings are words surrounded by \"\"\n//a gate's password floats above it\n//pay attention to capitalization\n\nBot.say(\"Hello World\");\nBot.moveRight();\nBot.say(\"Open Sesame\");\nBot.moveRight();"
         },
         {
             "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//Bot.moveTo(\"B2\");\n\n//move the pillar up by the value in the variable\n//then push it to the right button\nBot.moveRight();\nBot.hold();\nBot.moveUp(num);\nBot.moveRight();\nBot.drop();\n\n//move to the tile of the blue panel (D0)\n//and get the string variable from the blue panel\nBot.moveTo(\"D0\");\nstring str = Bot.read();\n\n//move to in front of the vox gate (D3)\n//and say the value of your string variable\nBot.moveTo(\"D3\");\nBot.say(str);\nBot.moveUp(); "
@@ -40,7 +40,7 @@
             "editorContent": "//get the value of the green panel\n\n//if it's greater than 10, move left\n//if not, move right\n\n//get the value of the next green panel\n\n//if it's equal to 50, move up\n//if not, move down\n\n//get the value of the last green panel\n\n//if it's less than 100, move left\n//if it's more than 100, move right"
         },
         {
-            "editorContent": "int num = 0;\n\n//move between the acceptor and generator\n//take and drop cubes\n//use a loop that ends after running 5 times\n//use the num variable given to you!\nwhile(num < 5){\r\n  Bot.moveRight(2);\r\n  Bot.hold();\r\n  Bot.moveLeft(2);\r\n  Bot.drop();\r\n  num++;\r\n}\n\n//after the while loop, move to the exit button\n//you can write code outside the while loop's {}\n//it'll run after the loop ends\nBot.moveTo(\"C2\");"
+            "editorContent": "//I've written the skeleton of a while loop for you\n//it's missing a condiion and the code it'll repeat\n//that's where you come in\n\nwhile() //missing condition\n{\n  //code goes here\n}"
         },
         {
             "editorContent": "//use a while loop to reach the end\n//for each loop, grab the generated cube\n//and drop it in the nearest acceptor \n\nwhile(true){\n  Bot.moveRight(2);\n  Bot.turnUp();\n  Bot.hold();\n  Bot.turnDown();\n  Bot.drop(); \n}"

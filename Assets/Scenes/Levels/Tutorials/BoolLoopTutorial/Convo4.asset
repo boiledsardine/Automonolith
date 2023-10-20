@@ -16,34 +16,33 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Last set of operators, promise. Logic operators determine the logic between
       two boolean values. Logic in this context meaning AND, OR, and NOT.
     - '"&&" represents an AND operation and is true only if both boolean values are
-      true.'
-    - '"||" represents an OR operation and is true if one of the boolean values is
-      true.'
+      true. "||" represents an OR operation and is true if one of the boolean values
+      is true.'
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
-    - So "true && true" is true because both values are true while "true || false"
+    - So "~true && true`" is true because both values are true while "~true || false`"
       is still true because one of them is true.
     - Hm. I ought to note the truth table in my notes to predict what the "&&" and
       "||" operators will output...
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - 'Right. Anyway, the NOT operator is an exclamation mark (!). It goes before
       a boolean value and inverts its value. Like so:'
-    - '!true;
+    - '~!true;`
 
-      !(5 > 10);
+      ~!(5 > 10);`
 
-      Nomally they''d be true and false, but because
-      of "!", they''re actually false and true.'
+      Nomally they''d be true and false, but
+      because of "!", they''re actually false and true.'
     - Now, same deal as before. Get to it!

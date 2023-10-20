@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8961cabd2a47e478f0896c73ce8de1, type: 3}
+  m_Name: AGroup 5 Loops
+  m_EditorClassIdentifier: 
+  entries:
+  - {fileID: 11400000, guid: bd8c8e826f926c4489d086553584b1cb, type: 2}
+  - {fileID: 11400000, guid: 64a7e413ee805944eb21cd111cccab42, type: 2}
+  - {fileID: 11400000, guid: 39baa3bf09422744489a60fb519a1ea2, type: 2}
+  - {fileID: 11400000, guid: a89b5cefe3e4075469808276a433d056, type: 2}

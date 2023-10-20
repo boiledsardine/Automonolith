@@ -12,30 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 0
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: b2a360eb9314f6d4ead484ff8864d267, type: 2}
+  help: {fileID: 11400000, guid: 8778a3fc63cacf2468297959849836ef, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Methods 0
+  levelName: Methodical
   levelDesc: 'Hello. You''re willing to help me out, are you? First, I''d like to
     see what you can do.
 
 
     -Merlin'
-  levelGoal: 'Arrange the methods so they execute in order: put coffee in cup, boil
-    water, pour hot water, and stir.'
+  levelGoal: Arrange the words to form complete method calls.
   startConvo:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - These are the fragments of my memory. Pieces of code broken up and left with
       huge gaps. Your task, dear Arthur, is to drag those pieces back to where they
       belong then press Submit() once done.
+    - You can click the words here, either on the editor or the word bank at the
+      bottom of the screen. Doing so reveals some information about them on the dictionary
+      on the right hand side of the screen. Use it to your advantage.
     - I could tell you when something is in the wrong place, but I cannot tell you
       exactly what should belong in what slot. Now, let's start with something simple.
-    - Ah, brewing coffee. A simple thing to do, and yet, I cannot remember how exactly
-      to do it. I really am senile. Help me put together how to make a cup of coffee
-      step by step.
+    - You've been working with methods recently, I hear. In programming, you'll be
+      using them a lot. So why not start with seeing if you can call one properly?
   passConvo:
   - npcName: Merlin
     showNpc: 1
@@ -44,33 +45,77 @@ MonoBehaviour:
     lines:
     - Indeed, I remember now. Yes, that's how it's done. Well, I hope we can continue
       helping each other out from now on.
-  mainText: '_();
+  mainText: '//Put here a method to output text to a console
 
-    _();
+    Console._ _ _ _;
 
-    _();
 
-    _();'
+    //Put
+    here a method to move your robot one space left
+
+    Bot _ moveLeft _ _ ;'
   hidWords:
-  - hiddenText: AddCoffee
+  - hiddenText: WriteLine
     correctAnswers: []
-    mistakeMessage: '2: I don''t think ___ belongs there'
-  - hiddenText: BoilWater
+    mistakeMessage: '2: A dot tells the code to look inside the object on its left
+      side. What goes on the right of the dot is a name belonging to that object,
+      like a variable or a method. That being said, a method name should go here.'
+  - hiddenText: (
     correctAnswers: []
-    mistakeMessage: '3: I don''t think ___ belongs there'
-  - hiddenText: AddHotWater
+    mistakeMessage: '2: What comes after a method''s name? A form of punctuation
+      that opens groups and allows the method to take arguments.'
+  - hiddenText: '"Hello World!"'
     correctAnswers: []
-    mistakeMessage: '4: I don''t think ___ belongs there'
-  - hiddenText: StirCup
-    correctAnswers: []
-    mistakeMessage: '5: I don''t think ___ belongs there'
-  wordBank: []
+    mistakeMessage: '2: Arguments are values passed into methods for them to do things.
+      Some need methods, some don''t - the method on this line can do either, but
+      for now I need you to give it an argument anyway.'
+  - hiddenText: )
+    correctAnswers:
+    - ()
+    mistakeMessage: '2:  You have to close the method''s arguments somehow. There''s
+      a punctuation mark set aside for it...'
+  - hiddenText: ;
+    correctAnswers:
+    - ()
+    mistakeMessage: '2:  You have to close a complete line of code somehow. There''s
+      a punctuation mark set aside for it...'
+  - hiddenText: .
+    correctAnswers:
+    - ()
+    mistakeMessage: '4: You need a punctuation mark here of some kind to tell the
+      machine to look inside the "Bot" class and get one of the methods it contains.
+
+      Classes
+      and member methosd are part of a whole mess about object orientation which
+      we wouldn''t bother with today.'
+  - hiddenText: (
+    correctAnswers:
+    - ()
+    mistakeMessage: '4: What comes after a method''s name? A form of punctuation
+      that opens groups and allows the method to take arguments.'
+  - hiddenText: '   '
+    correctAnswers:
+    - ()
+    mistakeMessage: '4: Remember what I said about methods sometimes requiring arguments
+      and sometimes not?'
+  - hiddenText: )
+    correctAnswers:
+    - ()
+    mistakeMessage: '4:  You have to close the method''s arguments somehow. There''s
+      a punctuation mark set aside for it...'
+  wordBank:
+  - ;
+  - AddCoffee
+  - AddHotWater
+  - ()
+  - StirCup
   levelDictionary:
-  - keyword: AddCoffee
-    description: A method. This adds cofffee to an existing empty cup.
-  - keyword: BoilWater
-    description: A method. This gets water hot enough to brew.
-  - keyword: AddHotWater
-    description: A method. This adds hot water to a cup, empty or not.
-  - keyword: StirCup
-    description: A method. This stirs a mixture inside a given cup.
+  - keyword: Console
+    description: A System class in C#. Has methods you need to do things with the
+      console.
+  - keyword: WriteLine
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: '"Hello World!"'
+    description: A string value! Could be used as an argument.
+  - keyword: '   '
+    description: This is empty.

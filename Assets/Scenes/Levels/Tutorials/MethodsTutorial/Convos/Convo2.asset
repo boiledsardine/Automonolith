@@ -16,10 +16,11 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - Why don't you try commanding G4wain to get to the button yourself this time?
     - 'Remember: much like us, G4wain will read your code line-by-line, so he''ll
       do whatever commands you give him sequentially. Make sure to sequence your
       instructions correctly!'
-    - And if you need help, remember that you can click the Hint or Help buttons.
+    - And if you need help, remember that you can click the Hint or Help buttons
+      or check the encyclopedia.

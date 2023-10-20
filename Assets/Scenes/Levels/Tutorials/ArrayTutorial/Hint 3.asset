@@ -16,22 +16,22 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - This one, I've only declared an array but didn't initialize it. You can edit
       the code so that you assign it an array literal in the first line or you can
       use the new keyword.
-    - 'new dataType[array length]
+    - '~new dataType[array length]`
 
-      Where dataType is the type like string or
-      int and array length is how many elements you want in that array. Or not if
-      you''re using an array literal anyway.'
+      Where ~dataType` is the type like string
+      or int and array length is how many elements you want in that array. Or not
+      if you''re using an array literal anyway.'
     - 'You can then attach an array literal after the proper use of the new array
       keywords, like this:
 
-      int[] numArr;
+      ~int[] numArr;`
 
-      numArr = new int[] { 3, 4,
-      5 };'
+      ~numArr = new int[] { 3,
+      4, 5 };`'
     - Try it out. If you get confused, you can check the encyclopedia. It's talked
       about more in-depth there.

@@ -16,10 +16,9 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - See, it's doable. I know loops are a bit more complicated than what you're
-      used to, but if you ever need help...
-    - just remember that you can ask me for hints or consult the encyclopedia for
-      assistance on loops.
+      used to, but if you ever need help, just remember that you can ask me for hints
+      or consult the encyclopedia for assistance on loops.
     - Now, let's do another one. Something simpler.

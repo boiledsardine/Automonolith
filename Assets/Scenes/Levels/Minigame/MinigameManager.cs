@@ -27,6 +27,7 @@ public class MinigameManager : MonoBehaviour{
     public HelpManager helpManager;
     public DialogueTrigger hintDialogue;
     public Sprite merlin;
+    public ColorizerTheme theme;
     readonly string[] specialChars = {
         ";",
         "{",
@@ -55,8 +56,7 @@ public class MinigameManager : MonoBehaviour{
 
 
     void Start(){
-        helpManager.helpArticle = stageInfo.help;
-        hintDialogue.convoToLoad = stageInfo.hint;
+        helpManager.almGroup = stageInfo.help;
 
         dsList = new List<DragSlot>();
         
@@ -96,6 +96,8 @@ public class MinigameManager : MonoBehaviour{
         string result = "";
         var linesArr = text.Split('\n');
         for(int i = 0; i < linesArr.Length; i++){
+            linesArr[i] = CodeColorizer.Colorize("~" + linesArr[i] + "`", false, theme);
+
             if(string.IsNullOrWhiteSpace(linesArr[i])){
                 result += "\n";
                 continue;
@@ -112,9 +114,9 @@ public class MinigameManager : MonoBehaviour{
                 string[] spacedWord = currentWord.Split(' ');
 
                 for(int k = 0; k < spacedWord.Length; k++){
-                    //dev note: # is replaced by spaces by the formatter
-                    //want to put spaces in a token? (like in strings) - use # in the scriptable object
-                    spacedWord[k] = spacedWord[k].Replace("#", " ");
+                    //dev note: ^ is replaced by spaces by the formatter
+                    //want to put spaces in a token? (like in strings) - use ^ in the scriptable object
+                    spacedWord[k] = spacedWord[k].Replace("^", " ");
                     if(Regex.IsMatch(spacedWord[k], @"^_+$")){
                         string hiddenWord = stageInfo.hidWords[currWordIndex].hiddenText;
                         //string hiddenWord = "___";

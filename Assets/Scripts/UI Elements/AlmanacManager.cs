@@ -4,18 +4,50 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class AlmanacManager : MonoBehaviour{
     public TMP_Text titleText, mainText, exampleText;
-    public AlmanacEntry[] entries;
+    public AlmanacGroup[] groups;
+    List<AlmanacEntry> entries;
+    List<string> addedEntries;
     public Animator helpPanelAnim;
     public Canvas helpCanvas;
     public GameObject buttonContainer;
     public GameObject almanacButton;
     public ColorizerTheme theme;
+    public ScrollRect scrollView;
 
     void Start(){
-        for(int i = 0; i < entries.Length; i++){
+        string content = File.ReadAllText(Application.dataPath + "/Saves/SaveLevels.json");
+
+        if(string.IsNullOrEmpty(content) || content == "{}"){
+            Debug.LogAssertion("Empty save entry");
+            return;
+        }
+
+        var savedLevels = JsonHelper.FromJson<LevelInfo>(content).ToList();
+        
+        entries = new List<AlmanacEntry>();
+        addedEntries = new List<string>();
+
+        //tutorial level indices: 0, 1 / 4, 5 / 9, 10 / 13 / 17
+        AddEntries(groups[0]);
+        if(savedLevels[4].isUnlocked){
+            AddEntries(groups[1]);
+        }
+        if(savedLevels[9].isUnlocked){
+            AddEntries(groups[2]);
+            AddEntries(groups[3]);
+        }
+        if(savedLevels[13].isUnlocked){
+            AddEntries(groups[4]);
+        }
+        if(savedLevels[17].isUnlocked){
+            AddEntries(groups[5]);
+        }
+
+        for(int i = 0; i < entries.Count; i++){
             var almButton = Instantiate(almanacButton);
             var textObj = almButton.transform.GetChild(0);
             textObj.gameObject.GetComponent<TMP_Text>().text = entries[i].articleName;
@@ -26,14 +58,23 @@ public class AlmanacManager : MonoBehaviour{
             almButton.transform.localScale = new Vector3(1,1,1);
         }
         buttonContainer.GetComponent<ResizeScrollObject>().Resize();
-        OpenHelp();
+        //scrollView.FocusOnItem(buttonContainer.transform.GetChild(0).GetComponent<RectTransform>());
+    }
+
+    void AddEntries(AlmanacGroup group){
+        foreach(AlmanacEntry entry in group.entries){
+            if(!addedEntries.Contains(entry.articleName)){
+                entries.Add(entry);
+                addedEntries.Add(entry.articleName);
+            }
+        }
     }
 
     public void LoadEntry(int index){
         Debug.Log(index);
         titleText.text = entries[index].articleName;
-        mainText.text = Format(entries[index].articleText);
-        exampleText.text = Format(entries[index].articleExample);
+        mainText.text = CodeColorizer.Colorize(entries[index].articleText, true, theme);
+        exampleText.text = CodeColorizer.Colorize(entries[index].articleExample, true, theme);
     }
 
     public void OpenHelp(){
@@ -48,151 +89,5 @@ public class AlmanacManager : MonoBehaviour{
 
     void DisableHelp(){
         helpCanvas.gameObject.SetActive(false);
-    }
-
-    string Format(string input){
-        input = input.Replace('“', '\"');
-        input = input.Replace('”', '\"');
-        input = input.Replace('‘', '\'');
-        input = input.Replace('’', '\'');
-        var textLines = input.Split('\n');
-        //find tagged groups
-        for(int i = 0; i < textLines.Length; i++){
-            string line = textLines[i];
-            while(line.Contains("~") && line.Contains("`")){
-                int start = line.IndexOf("~");
-                int end = line.IndexOf("`");
-                string text = GetSubstring(line, start + 1, end);
-                text = "<font=\"Cascadia\">" + ColorizeCode(text) + "</font>";
-                line = line.Replace(GetSubstring(line, start, end + 1), text);
-            }
-            textLines[i] = line;
-        }
-
-        string formattedEntry = "";
-        foreach(string s in textLines){
-            formattedEntry += s + "\n";
-        }
-        formattedEntry = formattedEntry.Trim();
-        return formattedEntry;
-    }
-
-    string GetSubstring(string input, int startIndex, int endIndex){
-        string s = "";
-        for(int i = startIndex; i < endIndex; i++){
-            s += input[i];
-        }
-        return s;
-    }
-    
-    string ArrayToString(string[] array){
-        string text = "";
-        foreach(string s in array){
-            text += s + " ";
-        }
-        text = text.Trim();
-        return text;
-    }
-
-    public string ColorizeCode(string line){
-        string[] specialWords = {"dataType"};
-
-        List<Color> colors = new List<Color>();
-        List<int> stringStartIndices = new List<int>();
-        List<int> stringEndIndices = new List<int>();
-
-        string[] sections = CodeFormatter.Format(line).Split(' ');
-        int nonSpace = 0;
-        bool isComment = false;
-
-        for(int i = 0; i < sections.Length; i++){
-            Color color = Color.clear;
-            string section = sections[i];
-
-            if(section == "//" || isComment){
-                color = theme.commentColor;
-                isComment = true;
-            } else if(section == "if" || section == "else"){
-                color = theme.conditionalColor;
-            } else if(section == "while"){
-                color = theme.loopColor;
-            } else if(ReservedConstants.allOperatorsArr.Contains(section) || ReservedConstants.specChars.Contains(section)){
-                color = theme.operatorColor;
-            } else if(section == "(" || section == ")"){
-                color = theme.braceColor1;
-            } else if(section == "{" || section == "}"){
-                color = theme.braceColor2;
-            } else if(section == "[" || section == "]"){
-                color = theme.braceColor3;
-            } else if(section.Contains("\"") || section.Contains("\'")){
-                color = theme.stringColor;
-            } else if(int.TryParse(section, out _) || float.TryParse(section.Replace('.', ','), out _)){
-                color = theme.numColor;
-            } else if(ReservedConstants.keywords.Contains(section) || specialWords.Contains(section)){
-                color = theme.keywordColor;  
-            } else if(section == "Bot"){
-                color = theme.botColor;
-            } else if(FunctionHandler.builtInFunctions.Contains(section)){
-                color = theme.funcColor;
-            } else {
-                color = theme.varColor;
-            }
-
-            if (color != Color.clear) {
-                colors.Add (color);
-                int endIndex = nonSpace + sections[i].Length;
-                stringStartIndices.Add(nonSpace);
-                stringEndIndices.Add(endIndex);
-            }
-            nonSpace += sections[i].Length;
-        }
-
-        if(colors.Count > 0){
-            nonSpace = 0;
-            int colorIndex = 0;
-            int startIndex = -1;
-            bool isLiteral = false;
-
-            for(int i = 0; i <= line.Length; i++){
-                if(nonSpace == stringStartIndices[colorIndex]){
-                    startIndex = i;
-                } else if(nonSpace == stringEndIndices[colorIndex]){
-                    stringStartIndices[colorIndex] = startIndex;
-                    stringEndIndices[colorIndex] = i;
-
-                    colorIndex++;
-                    if(colorIndex >= colors.Count){
-                        break;
-                    }
-                    i--;
-                    continue;
-                }
-
-                if(i < line.Length){
-                    char c = line[i];
-
-                    if((c == '\"' || c == '\'') && !isLiteral){
-                        isLiteral = true;
-                    } else if((c == '\"' || c == '\'') && isLiteral){
-                        isLiteral = false;
-                    }
-
-                    //this is the condition causing the error
-                    if(c != ' ' || (c == ' ' && isLiteral)){
-                        nonSpace++;
-                    }
-                }
-            }
-        }
-
-        for(int i = colors.Count - 1; i >= 0; i--){
-            var col = colors[i];
-            string colorString = ColorUtility.ToHtmlStringRGB(col);
-
-            line = line.Insert(stringEndIndices[i], "</color>");
-            line = line.Insert(stringStartIndices[i], "<color=#" + colorString + ">");
-        }
-
-        return line;
     }
 }

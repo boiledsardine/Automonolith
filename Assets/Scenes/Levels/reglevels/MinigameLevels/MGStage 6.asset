@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 6
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: e9f9e96b8e8163f49b6da67c3efea9c5, type: 2}
+  help: {fileID: 11400000, guid: 946e53e9ff483df43be91b85087694bd, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Conditions 0
+  levelName: Flipping Coins
   levelDesc: 'A lot of times I was indecisive. I could''ve flipped a coin to make
     a decision, but, being me, I made a program do it for me instead.
 
@@ -26,7 +26,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - I don't look it, but I'm quite indecisive. I had this trinket once, a magic
       8-ball. But I'd rather have something a lot lighter and less obvious.
@@ -39,7 +39,7 @@ MonoBehaviour:
     - The way this is now, it's more like a coin flip than a magic 8-ball, but it
       fulfils a simmilar purpose.
   mainText: "//note: randomNumber is an int with any value from 1 to 20.\n\n_(randomNumber
-    > 10_ {\n  _(\"Go#for#it\");\n_\n_ _\n  _(\"My#sources#say#no\");\n}"
+    > 10_ {\n  _(\"Go^for^it\");\n_\n_ _\n  _(\"My^sources^say^no\");\n}"
   hidWords:
   - hiddenText: if
     correctAnswers:
@@ -90,3 +90,10 @@ MonoBehaviour:
     description: The 8-ball program tells you to do it, you do it.
   - keyword: '"My sources say no"'
     description: You might want to reconsider if this comes up.
+  - keyword: Console.Write
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: Write
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: Console
+    description: A System class in C#. Has methods you need to do things with the
+      console.

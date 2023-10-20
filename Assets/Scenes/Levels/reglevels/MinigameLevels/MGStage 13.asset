@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 13
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: f1ea570830774bc40a7dc42227dccfe6, type: 2}
+  help: {fileID: 11400000, guid: 36d9ee59aaeb5794d9853a635818df0a, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Arrays 1
+  levelName: Sum of its Parts
   levelDesc: 'Remember how I mentioned being a teacher once? This was something I
     used to add up grades and get the mean.
 
@@ -26,7 +26,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Ah, another remnant from my teaching days. This one I used to get the averages
       of student grades at the end of a grading period. Add the elements up, then
@@ -80,3 +80,10 @@ MonoBehaviour:
       and its elements are unknown to you, but not the program.
   - keyword: average
     description: An int variable. Stores the mean value of the array's elements.
+  - keyword: Console.WriteLine
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: WriteLine
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: Console
+    description: A System class in C#. Has methods you need to do things with the
+      console.

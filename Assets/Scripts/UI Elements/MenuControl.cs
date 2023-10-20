@@ -11,7 +11,7 @@ public class MenuControl : MonoBehaviour{
     [SerializeField] private Animator panelAnimator;
     [SerializeField] private Animator submenuAnimator;
     [SerializeField] private EditorSaveLoad saveLoad;
-    [SerializeField] private HelpManager fsHelp;
+    [SerializeField] private AlmanacManager fsHelp;
 
     private void Awake(){
         if(Instance == null){
@@ -49,7 +49,7 @@ public class MenuControl : MonoBehaviour{
     public void controls(){
         //do something
         closeMenu();
-        fsHelp.openHelp();
+        fsHelp.OpenHelp();
     }
 
     public void exitGame(){

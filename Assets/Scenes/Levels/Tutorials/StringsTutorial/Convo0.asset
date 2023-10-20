@@ -16,7 +16,7 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - This one will be quick, promise. It's just us tackling a different data type
       for variables.
@@ -25,11 +25,11 @@ MonoBehaviour:
       Strings are colored <color=#ba744c>orange</color> in the editor when done right.
     - 'For example:
 
-      string myString0 = "Hello";
+      ~string myString0 = "Hello";`
 
       Strings can contain
       many words too:
 
-      string myString1 = "Hello world!";'
-    - Why don't you try? Use a string value as an argument to the say() method to
-      open that vox gate.
+      ~string myString1 = "Hello world!";`'
+    - Why don't you try? Use a string value as an argument to the ~say()` method
+      to open that vox gate.

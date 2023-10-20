@@ -16,61 +16,61 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - Alright, to help you out with your code if you ever forget anything, I got
       you this from the library. Ta-da, a book on code! It's a little old, but-
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Who are you calling old?
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
     lines:
     - ...did the book just talk?
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
     lines:
     - It sounded like it did.
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - And here I was having a nice nap until I heard someone refer to me as "old".
       What are you two staring at slackjawed about? Never seen a talking book before?
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
     - I've heard procedures existed to imbue books with sentience, but I've never
       actually seen one before.
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Hoh, then you're in for a treat. I am Merlin. Once a wizard myself, I've since
       put my consciousness in a book.
     - ' Originally, it was so I could stick around and impart my knowledge, but since
       it''s been ages since I''ve last had to recall that knowledge...'
-  - npcName: Arthur
+  - npcName: Morgan
     showNpc: 1
-    npcPos: 76
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
     lines:
     - Your pages are incomplete.
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Yes, that. This is shameful. But! Don't be so quick to disregard me yet. I
       still know some things, and I'd be happy to help you practice your coding by
@@ -79,28 +79,28 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
     - Hm. I'm in the middle of some important research myself...
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Oh, come on Arthur. Wouldn't hurt to give it a try. You can do it in between
       expeditions.
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - Oh, alright.
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Splendid! If you are up to assisting me, I'll point you towards some of my
       pages with easier entries. Let's start with methods, shall we?
-    - If you would simply click that book-looking button on the lower left, we could
-      begin. Of course, do this at your own leisure.
+    - If you would simply click that handsome, book-looking button on the lower left,
+      we could begin. Of course, do this at your own leisure.

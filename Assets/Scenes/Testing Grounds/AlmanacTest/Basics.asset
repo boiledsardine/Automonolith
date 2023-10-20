@@ -12,30 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
   m_Name: Basics
   m_EditorClassIdentifier: 
-  articleName: Bascis
+  articleName: Basics
   articleText: 'Guide G4wain by writing a short program with code.
 
-    
 
-    Each
-    instruction must be written on its own line, and each line must be closed with
-    a semicolon. The semicolon indicates the end of a line and instructs G4wain to
-    read the instructions in the next line.
-
-
-    To make G4wain do things, such
-    as move, you have to use methods. Methods are blocks of code that perform certain
-    actions. To use methods, you must first specify from where those methods are
-    coming from. To access the methods G4wain knows, refer to it with "Bot.".
+    Each instruction
+    must be written on its own line, and each line must be closed with a semicolon.
+    The semicolon indicates the end of a line and instructs G4wain to read the instructions
+    in the next line.
 
 
-    After
-    writing "~Bot.`", you can use the methods G4wain has access to, such as movement
-    methods.'
-  articleExample: '//text in olive green is a comment
+    To make G4wain do things, such as move, you have to use
+    methods. Methods are blocks of code that perform certain actions. To use methods,
+    you must first specify from where those methods are coming from. To access the
+    methods G4wain knows, refer to it with "Bot.".
 
-    //comments are not read
-    as instructions
+
+    After writing "~Bot.`",
+    you can use the methods G4wain has access to, such as movement methods.'
+  articleExample: '~//text in olive green is a comment`
+
+    ~//comments are not
+    read as instructions`
 
 
     ~Bot.moveUp(); //G4wain moves up`

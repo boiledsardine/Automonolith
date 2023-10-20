@@ -16,10 +16,17 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
-    - How do you open a door? With a key, of course. Move G4wain next to the key
-      with a movement method, then make him turn to face the key. That's his right.
-    - Once G4wain is facing the key, use "Bot.hold();" to pick it up, then turn north
-      (up) to face the gate. After that just use "Bot.interact();" to open it and
-      then move G4wain onto the button.
+    - For this one, move G4wain next to the button on the wall, then turn him so
+      he faces it. After that, use "Bot.interact();" to press the button. That should
+      open the gate. Then it's just a matter of getting G4wain to the button with
+      move methods.
+    - 'I''ll give you your first two moves:
+
+      ~Bot.moveUp(2);`
+
+      ~Bot.turnRight();`
+
+      Then
+      interact with the wall button and move to the floor button.'

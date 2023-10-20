@@ -58,9 +58,9 @@
         },
         {
             "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
+            "star1": true,
+            "star2": true,
+            "star3": true,
             "sceneWatched": false
         },
         {

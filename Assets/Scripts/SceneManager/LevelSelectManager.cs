@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class LevelSelectManager : MonoBehaviour{
     public static LevelSelectManager Instance { get; private set; }
@@ -18,6 +19,9 @@ public class LevelSelectManager : MonoBehaviour{
     public GameObject buttonGroupContainer;
     public int levelOffset = 2;
     public bool loadCutscene = false;
+    public ScrollRect levelSelectScroll;
+    public Color disabledColor = new Color(200,200,200,128);
+    public int[] levelsWithCutscene;
 
     void Awake(){
         if(Instance == null){
@@ -45,12 +49,23 @@ public class LevelSelectManager : MonoBehaviour{
             levelButton.levelIndex = i;
             levelButton.sceneToLoad = i + levelOffset;
             if(LevelSaveLoad.Instance.savedLevels[i].isUnlocked){
-                buttonArr[i].interactable = true; 
+                buttonArr[i].interactable = true;
+                buttonArr[i].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
+                buttonArr[i].transform.GetChild(1).GetComponent<Button>().interactable = true;
+                buttonArr[i].transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>().color = Color.white;
+            } else {
+                buttonArr[i].interactable = false; 
+                buttonArr[i].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = disabledColor;
+                buttonArr[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
+                buttonArr[i].transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>().color = disabledColor;
+            }
+            if(levelsWithCutscene.Contains(i)){
+                buttonArr[i].gameObject.GetComponent<LevelSelectButton>().hasCutscene = true;
             }
             var levelButtonText = buttonArr[i].gameObject.transform.GetChild(0).gameObject.GetComponent<TMPro.TMP_Text>();
             levelButtonText.text = levelDetails[i].levelName;
 
-            var decoText = buttonArr[i].gameObject.transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>();
+            var decoText = buttonArr[i].transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>();
             if(levelDetails[i].isTutorial){
                 decoText.text = "Tutorial";
             } else if(levelDetails[i].isQuiz){
@@ -60,6 +75,13 @@ public class LevelSelectManager : MonoBehaviour{
                 levelCounter++;
             }
         }
+
+        //focus on last button
+        /*if(LastSceneHolder.Instance.lastScene < 23 && LastSceneHolder.Instance.lastScene > 1){
+            int indexOfButton = LastSceneHolder.Instance.lastScene - levelOffset;
+            var focusedButtonRect = buttonGroupContainer.transform.GetChild(indexOfButton).GetComponent<RectTransform>();
+            levelSelectScroll.FocusOnItem(focusedButtonRect);
+        }*/
     }
 
     public void loadLevelDetails(int levelIndex){

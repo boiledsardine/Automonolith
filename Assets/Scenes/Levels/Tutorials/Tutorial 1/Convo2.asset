@@ -16,17 +16,16 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Now that you've got the hang of camera controls, let's move on to what else
       is in your display.
-    - Look at the upper right, two new buttons showed up.
-    - The lightbulb button is the Hints button. Use it when you're stuck with a puzzle
-      and I might be able to help you out.
+    - Look at the upper right, two new buttons showed up. The "!" button is the Hints
+      button. Use it when you're stuck with a puzzle and I might be able to help
+      you out.
     - The question mark button is the Help button. Clicking it opens an encyclopedia
       - written by moi, you're welcome. Reference it if you need help with writing
       code.
     - In case you're wondering, that last button is the menu button. But I suppose
-      you didn't need me to tell you that.
-    - Anyway, click the Hints and Help button once each and we'll get on to the next
-      topic.
+      you didn't need me to tell you that. Anyway, click the Hints and Help button
+      once each and we'll get on to the next topic.

@@ -16,7 +16,7 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - This is the code editor. While it's open, you can type in anything you want
       but remember that G4wain can only understand certain things.
@@ -32,9 +32,7 @@ MonoBehaviour:
     - Take note - once G4wain starts moving, he won't take any new commands that
       you type into the editor so you have to think several steps ahead to guide
       G4wain's steps correctly.
-    - Your goal is to get G4wain close to the exit totem (it's that floating slab
-      thing with the green arrow) and tell him to touch it.
-    - Sometimes you'll have to do some other things first, but for now, just get
-      G4wain to reach the exit point.
+    - Your goal is to get G4wain to the button directly below the exit totem (it's
+      that floating slab thing with the green arrow on it).
     - For now, I've typed in what you need to succeed. Just hit the green play button
       and then we'll get to talking about how to actually command G4wain.

@@ -14,8 +14,8 @@ public class SaveHandler : MonoBehaviour{
     public string editorSave;
 
     void Start(){
-        levelSave = Application.dataPath + "/SaveLevels.json";
-        editorSave = Application.dataPath + "/EditorSaves.json";
+        levelSave = Application.dataPath + "/Saves/SaveLevels.json";
+        editorSave = Application.dataPath + "/Saves/EditorSaves.json";
 
         LoadSaveFiles();
         DebugListCount();

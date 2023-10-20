@@ -16,13 +16,13 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - I've already given three variables there. All you need to do is call their
       names to use their values as arguments.
     - 'The variable num1 equals 3, right? If you want to use it to move up, type:
 
-      Bot.moveUp(num1);
+      ~Bot.moveUp(num1);`
 
       And
       so on, so forth.'

@@ -75,36 +75,15 @@ public class QuizLevel1 : MonoBehaviour{
 
     //saves data
     public void LevelComplete(){
-        bool checkOne = false;
-        bool checkTwo = false;
-        bool checkThree = false;
-        bool openNext = false;
-
-        if(QuizManager.Instance.quizScore >= scoreThreshold1){
-            checkOne = true;
-        }
-
-        if(QuizManager.Instance.quizScore >= scoreThreshold2){
-            checkTwo = true;
-        }
-
-        if(QuizManager.Instance.quizScore >= scoreThreshold3){
-            checkThree = true;
-        }
-
-        if(state == QuizState.Pass){
-            openNext = true;
-        }
+        bool checkOne = QuizManager.Instance.quizScore >= scoreThreshold1;
+        bool checkTwo = QuizManager.Instance.quizScore >= scoreThreshold2;
+        bool checkThree = QuizManager.Instance.quizScore >= scoreThreshold3;
+        bool openNext = state == QuizState.Pass;
 
         LevelSaveLoad.Instance.EndLevelSave(levelIndex, checkOne, checkTwo, checkThree, openNext);
 
-        //destroy persistents
-        DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
-        foreach(DontDestroy obj in persistents){
-            Destroy(obj.gameObject);
-        }
-
-        SceneManager.LoadScene("Main Menu");
+        PostlevelCanvas.Instance.OpenCanvas();
+        PostlevelCanvas.Instance.SetStars(checkOne, checkTwo, checkThree);
     }
 
     public enum QuizState{

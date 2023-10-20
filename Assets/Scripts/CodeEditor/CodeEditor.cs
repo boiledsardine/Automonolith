@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using CodeEditorComponents;
 
 public class CodeEditor : MonoBehaviour{
+    public static CodeEditor Instance { get; private set; }
     const string tabString = "  ";
 
     //please for the love of god don't add $ or ^ or `
@@ -31,6 +32,14 @@ public class CodeEditor : MonoBehaviour{
     public ScrollRect scrollView;
     bool keyPressed = false;
     public bool takeInputs = false;
+
+    void Awake(){
+        if(Instance == null){
+            Instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start(){
         code = editorMainText.text;
@@ -77,6 +86,34 @@ public class CodeEditor : MonoBehaviour{
         }
     }
 
+    public void AddLine(string input){
+        List<string> codeLines = code.Split('\n').ToList();
+        string currentLine = codeLines[lineIndex];
+
+        codeLines[lineIndex] = currentLine.Insert(charIndex, input);
+        charIndex += input.Length;
+        
+        currentLine = codeLines[lineIndex];
+        int lineMaxIndex = currentLine.Length;
+        if(charIndex == lineMaxIndex){
+            codeLines[lineIndex] += "\n";
+        } else {
+            string lastLine = currentLine.Substring(0, charIndex);
+            string nextLine = currentLine.Substring(charIndex, lineMaxIndex - charIndex);
+            codeLines.Insert(lineIndex, lastLine);
+            codeLines[lineIndex + 1] = nextLine;
+        }
+
+        charIndex = 0;
+        lineIndex++;
+    
+        code = "";
+        foreach(string s in codeLines){
+            code += s + "\n";
+        }
+        code = code.Substring(0, code.Length - 1);
+    }
+
     private void KeyPress(){
         //triggers on legal character entry
         //or for a ctrl+C or ctrl+R combo
@@ -95,34 +132,6 @@ public class CodeEditor : MonoBehaviour{
                         code += s + "\n";
                     }
                     code = code.Substring(0, code.Length - 1);
-
-                    //automatically add closing braces/quotes
-                    /*
-                    if(!(c == '(' || c == '{' || c == '[' || c == '\"' || c == '\'')){
-                        return;
-                    }
-
-                    codeLines = code.Split('\n');
-                    currentLine = codeLines[lineIndex];
-
-                    if(c == '('){
-                        codeLines[lineIndex] = currentLine.Insert(charIndex, ")");
-                    } else if(c == '{'){
-                        codeLines[lineIndex] = currentLine.Insert(charIndex, "}");
-                    } else if(c == '['){
-                        codeLines[lineIndex] = currentLine.Insert(charIndex, "]");
-                    } else if(c == '\"'){
-                        codeLines[lineIndex] = currentLine.Insert(charIndex, "\"");
-                    } else if(c == '\''){
-                        codeLines[lineIndex] = currentLine.Insert(charIndex, "\'");
-                    }
-
-                    code = "";
-                    foreach(string s in codeLines){
-                        code += s + "\n";
-                    }
-                    code = code.Substring(0, code.Length - 1);
-                    */
                     keyPressed = true;
                 }
                 //return/enter
@@ -383,113 +392,13 @@ public class CodeEditor : MonoBehaviour{
 
         string[] lines = code.Split('\n');
         for(int i = 0; i < lines.Length; i++){
-            colorizedCode += ColorizeCode(lines[i]);
+            colorizedCode += CodeColorizer.ColorizeCode(lines[i], theme);
             if(i != lines.Length - 1){
                 colorizedCode += '\n';
             }
         }
 
         return colorizedCode;
-    }
-
-    public string ColorizeCode(string line){
-        List<Color> colors = new List<Color>();
-        List<int> stringStartIndices = new List<int>();
-        List<int> stringEndIndices = new List<int>();
-
-        string[] sections = CodeFormatter.Format(line).Split(' ');
-        int nonSpace = 0;
-        bool isComment = false;
-
-        for(int i = 0; i < sections.Length; i++){
-            Color color = Color.clear;
-            string section = sections[i];
-
-            if(section == "//" || isComment){
-                color = theme.commentColor;
-                isComment = true;
-            } else if(section == "if" || section == "else"){
-                color = theme.conditionalColor;
-            } else if(section == "while"){
-                color = theme.loopColor;
-            } else if(ReservedConstants.allOperatorsArr.Contains(section) || ReservedConstants.specChars.Contains(section)){
-                color = theme.operatorColor;
-            } else if(section == "(" || section == ")"){
-                color = theme.braceColor1;
-            } else if(section == "{" || section == "}"){
-                color = theme.braceColor2;
-            } else if(section == "[" || section == "]"){
-                color = theme.braceColor3;
-            } else if(section.Contains("\"") || section.Contains("\'")){
-                color = theme.stringColor;
-            } else if(int.TryParse(section, out _) || float.TryParse(section.Replace('.', ','), out _)){
-                color = theme.numColor;
-            } else if(ReservedConstants.keywords.Contains(section)){
-                color = theme.keywordColor;  
-            } else if(section == "Bot"){
-                color = theme.botColor;
-            } else if(FunctionHandler.builtInFunctions.Contains(section)){
-                color = theme.funcColor;
-            } else {
-                color = theme.varColor;
-            }
-
-            if (color != Color.clear) {
-                colors.Add (color);
-                int endIndex = nonSpace + sections[i].Length;
-                stringStartIndices.Add(nonSpace);
-                stringEndIndices.Add(endIndex);
-            }
-            nonSpace += sections[i].Length;
-        }
-
-        if(colors.Count > 0){
-            nonSpace = 0;
-            int colorIndex = 0;
-            int startIndex = -1;
-            bool isLiteral = false;
-
-            for(int i = 0; i <= line.Length; i++){
-                if(nonSpace == stringStartIndices[colorIndex]){
-                    startIndex = i;
-                } else if(nonSpace == stringEndIndices[colorIndex]){
-                    stringStartIndices[colorIndex] = startIndex;
-                    stringEndIndices[colorIndex] = i;
-
-                    colorIndex++;
-                    if(colorIndex >= colors.Count){
-                        break;
-                    }
-                    i--;
-                    continue;
-                }
-
-                if(i < line.Length){
-                    char c = line[i];
-
-                    if((c == '\"' || c == '\'') && !isLiteral){
-                        isLiteral = true;
-                    } else if((c == '\"' || c == '\'') && isLiteral){
-                        isLiteral = false;
-                    }
-
-                    //this is the condition causing the error
-                    if(c != ' ' || (c == ' ' && isLiteral)){
-                        nonSpace++;
-                    }
-                }
-            }
-        }
-
-        for(int i = colors.Count - 1; i >= 0; i--){
-            var col = colors[i];
-            string colorString = ColorUtility.ToHtmlStringRGB(col);
-
-            line = line.Insert(stringEndIndices[i], "</color>");
-            line = line.Insert(stringStartIndices[i], "<color=#" + colorString + ">");
-        }
-        
-        return line;
     }
 }
 

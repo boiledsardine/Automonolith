@@ -16,14 +16,12 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2739792643492509466, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - 'Try typing this exactly - mind the lines:
 
-      Bot.moveRight();
+      ~Bot.moveRight();`
 
-      Bot.moveDown();
-
-      Bot.interact();'
+      ~Bot.moveDown();`'
     - If you want me to do it for you instead, hit Ctrl + R while the code editor's
       open. But I'll do this for you just this once!

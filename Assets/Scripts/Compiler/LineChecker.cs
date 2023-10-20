@@ -254,7 +254,19 @@ public class LineChecker{
         //default for all
         else {
             Debug.LogAssertion("erroneous: " + line);
-            addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements! This is an invalid line!", lineIndex));
+            if(line.Length > 2 && line.Contains('(') && line.Contains(')')){
+                var sec = line.Split(' ');
+                int startIndex = Array.IndexOf(sec, "(");
+                if(startIndex > 0 && Compiler.Instance.allVars.ContainsKey(sec[startIndex - 1])){
+                    addErr(string.Format("Line {0}: {1} is not a function! '()' does not belong next to it!", lineIndex, sec[startIndex - 1]));
+                } else if(!Compiler.Instance.allVars.ContainsKey(sec[startIndex - 1])){
+                    addErr(string.Format("Line {0}: \'{1}\' does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, sec[startIndex - 1]));
+                } else {
+                    addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements! This is an invalid line!", lineIndex));    
+                }
+            } else {
+                addErr(string.Format("Line {0}: only assignment, call, increment, or decrement can be used as statements! This is an invalid line!", lineIndex));
+            }
             hasError = true;
             return;
         }
@@ -676,7 +688,7 @@ public class LineChecker{
             //checks if function name exists in list of valid functions
             if(!FunctionHandler.builtInFunctions.Contains(sections[botIndex + 2])){
                 addErr(string.Format("Line {0}: Bot has no definition for {1}! Make sure that you're using a function that G4wain can use - check the bottom section of the editor! The word will be colored <color=#cadaa9>pale yellow</color> if it's a valid function!", lineIndex, sections[botIndex + 2]));
-                isCorrect = false;
+                return false;
             }
 
             if(sections.Length < botIndex + 4 || sections[botIndex + 3] != "("){
@@ -951,7 +963,7 @@ public class LineChecker{
                 }
             }
 
-            if(isExpectingValue && Regex.IsMatch(sections[i], @"^[0-9]+$")){
+            if(isExpectingValue && (Regex.IsMatch(sections[i], @"^[0-9]+$") || Regex.IsMatch(sections[i], "^[0-9]+.?[0-9]*$"))){
                 isExpectingValue = false;
             }
 
@@ -1165,7 +1177,11 @@ public class LineChecker{
                         if(valBefore == ValueType.endGroup){
                             addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator, a ',' to separate arguments in a function, or a ')' to close a group!", lineIndex, expSections[i]));
                         } else if(IsValue(valBefore)){
-                            addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator, a ',' to separate arguments in a function, or a ')' to close a group!", lineIndex, expSections[i]));
+                            if(Compiler.Instance.allVars.ContainsKey(expSections[i - 1])){
+                                addErr(string.Format("Line {0}: {1} is not a function! '()' does not belong next to it!", lineIndex, expSections[i - 1]));
+                            } else {
+                                addErr(string.Format("Line {0}: unexpected token {1}; was expecting an operator, a ',' to separate arguments in a function, or a ')' to close a group!", lineIndex, expSections[i]));
+                            }
                         }
                     } else {
                         addErr(string.Format("Line {0}: unexpected token {1}!", lineIndex, expSections[i]));

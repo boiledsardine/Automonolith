@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 9
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: facc2d61b6c22c848bc6656c2acec874, type: 2}
+  help: {fileID: 11400000, guid: 45894f5175ebf184491cbf9b2e6ae080, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Loops 0
-  levelDesc: I made a program for a countdown, once. Help me remember how to use
+  levelName: Countdown
+  levelDesc: 'I made a program for a countdown, once. Help me remember how to use
     it.
+
+
+    -Merlin'
   levelGoal: Make a while loop that counts down to 0.
   startConvo:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - This was for a countdown. As I used to be incredibly busy, I had to portion
       my time well. The countdown helped me with it.
@@ -37,25 +40,35 @@ MonoBehaviour:
     _(seconds);\n  _ _;\n}\n\nAlarm();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 "
   hidWords:
   - hiddenText: while
-    correctAnswers: []
+    correctAnswers:
+    - while
     mistakeMessage: '4: A keyword belongs here. One that starts a loop, perhaps?'
   - hiddenText: '>'
-    correctAnswers: []
+    correctAnswers:
+    - '>'
     mistakeMessage: '4: On the second slot, an operator belongs here. Something that
       tells us if a number is greater than 0, perhaps?'
   - hiddenText: Console.WriteLine
-    correctAnswers: []
+    correctAnswers:
+    - Console.WriteLine
     mistakeMessage: '5: Parentheses says this is calling for a function. But which
       one prints outputs?'
   - hiddenText: seconds
-    correctAnswers: []
+    correctAnswers:
+    - seconds
     mistakeMessage: '6: The first slot on this line, I think a variable belongs here,
       but what? Perhaps something to keep track of the loops?'
   - hiddenText: --
-    correctAnswers: []
+    correctAnswers:
+    - --
     mistakeMessage: '6: The second slot here, an operator belongs here but what?
       Perhaps something that changes a value?'
-  wordBank: []
+  wordBank:
+  - while
+  - '>'
+  - Console.WriteLine
+  - seconds
+  - --
   levelDictionary:
   - keyword: seconds
     description: An int variable! It contains a random value. It could be anything

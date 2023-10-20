@@ -19,7 +19,7 @@ public class MinigameLoader : MonoBehaviour{
             Destroy(gameObject);
         }
         
-        minigameSave = Application.dataPath + "/MinigameSaves.json";
+        minigameSave = Application.dataPath + "/Saves/MinigameSaves.json";
 
         LoadLevelInfo();
     }

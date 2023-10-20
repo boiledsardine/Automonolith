@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 12
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: f1ea570830774bc40a7dc42227dccfe6, type: 2}
+  help: {fileID: 11400000, guid: 36d9ee59aaeb5794d9853a635818df0a, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Arrays 0
+  levelName: An Array for Every Value
   levelDesc: 'I seem to have made a mess of my notes... mind helping me sort them
     into arrays?
 
@@ -25,7 +25,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Oh dear, you've found the less organized section of my notes. Since you're
       here, could you help me out and sort out these values into their respective

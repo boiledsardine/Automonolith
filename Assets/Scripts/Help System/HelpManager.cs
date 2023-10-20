@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class HelpManager : MonoBehaviour{
     public Canvas helpCanvas;
-    public TMPro.TMP_Text articleTitle, articleText, pageNumbers;
+    public TMPro.TMP_Text articleTitle, articleText, articleExample, pageNumbers;
     public Button leftButton, rightButton;
     public Animator helpPanelAnim;
 
-    public HelpArticle helpArticle;
+    public AlmanacGroup almGroup;
     int currentIndex = 0;
     int lastLoadedIndex = 0;
+    public ColorizerTheme theme;
 
     public void openHelp(){
         helpCanvas.gameObject.SetActive(true);
@@ -31,9 +32,10 @@ public class HelpManager : MonoBehaviour{
     }
 
     public void loadArticle(int loadIndex){
-        articleTitle.text = helpArticle.articleBlocks[loadIndex].articleName;
-        articleText.text = helpArticle.articleBlocks[loadIndex].articleText;
-        pageNumbers.text = string.Format("{0} / {1}", loadIndex + 1, helpArticle.articleBlocks.Count);
+        articleTitle.text = almGroup.entries[loadIndex].articleName;
+        articleText.text = CodeColorizer.Colorize(almGroup.entries[loadIndex].articleText, true, theme);
+        articleExample.text = CodeColorizer.Colorize(almGroup.entries[loadIndex].articleExample, true, theme);
+        pageNumbers.text = string.Format("{0} / {1}", loadIndex + 1, almGroup.entries.Count);
 
         leftButton.interactable = true;
         rightButton.interactable = true;
@@ -42,7 +44,7 @@ public class HelpManager : MonoBehaviour{
             leftButton.interactable = false;
         }
 
-        if(loadIndex + 1 == helpArticle.articleBlocks.Count){
+        if(loadIndex + 1 == almGroup.entries.Count){
             rightButton.interactable = false;
         }
     }

@@ -16,13 +16,13 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -8907812512055693227, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - Another floor full of buttons. These are rigged with traps again, aren't they?
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Nah, G4wain's safe. For now. Anyway, you have to activate three specific buttons
       there, but which ones?  I could give you three variables...
@@ -31,19 +31,19 @@ MonoBehaviour:
     - Put simply, an array is a collection of stuff stored inside a single variable.
       One variable that holds multiple values!
     - You can declare an array by picking a data type like int and string and then
-      adding "[]" after it. Then you can give it an array literal - a list of things
+      adding "~[]`" after it. Then you can give it an array literal - a list of things
       between {} and separated by commas.
     - 'If I want to declare and initialize an array of ints, I''d do it like this:
 
 
-      int[]
-      numArray = { 1,2,3 };'
+      ~int[]
+      numArray = { 1,2,3 };`'
     - 'Of course, the elements of an array all have to be of the same type and of
       the type you chose! So you can''t put strings in an int[] or ints in a string[]. '
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - I see. But what if I want to use a specific element within the array? Storing
       multiple values is well and all, but I doubt I'll be using the whole array
@@ -51,42 +51,42 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Each element in an array has an index - a unique number for that element. They
       start at 0, so the first element of an array is at index 0, the second element
       is at index 1, and so on.
     - 'To use a specific element in an array, you have to call the array''s name
-      followed by square braces ([]) witih the index number between the braces. Like
-      so:'
-    - 'string[] fruits = {"apple", "orange", "mango"};
+      followed by square braces (~[]`) witih the index number between the braces.
+      Like so:'
+    - '~string[] fruits = {"apple", "orange", "mango"};`
 
-      Bot.say(fruits[0]);
-      //G4wain says "apple"
+      ~Bot.say(fruits[0]);
+      //G4wain says "apple"`
 
-      Bot.say(fruits[1]); //G4wain says "orange"
+      ~Bot.say(fruits[1]); //G4wain says "orange"`
 
-      Bot.say(fruits[2]);
-      //G4wain says "mango"'
+      ~Bot.say(fruits[2]);
+      //G4wain says "mango"`'
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -8907812512055693227, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
     - I see now. I assume I can use int variables and numerical expressions as array
       indices as well? Since they still evaluate to an int in the end.
     - 'To make G4wain say "apple" then "orange":
 
-      int num = 0;
+      ~int num = 0;`
 
-      Bot.say(fruits[num]);
+      ~Bot.say(fruits[num]);`
 
-      Bot.say(fruits[num
-      + 1]);'
+      ~Bot.say(fruits[num
+      + 1]);`'
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Correct. There's refreshers in the encyclopedia as always. For this one, I've
       already given you an array. All you have to do now is use its elements to get

@@ -16,19 +16,19 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Hey, what comes to your mind when you hear the word "variable"?
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -8907812512055693227, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - Mathematics?
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - Bingo. You can perform math in programming too using arithmetic operators.
       These work on integer values stored inside a variable or not.
@@ -38,38 +38,39 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
     - 'So if I want to add 5 and 10, I write "5 + 10". And if I want to multiply
       the variables x and y, I write "x * y"? '
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Pretty much. Remember to store it in a variable so you can use the result of
       the operation later. Int variables can take mathematical expressions as values.
-    - And if you call on it, it'll give you the result of the expression. For example,
-      "int num = 5 * 10" - num is equal to 50.
+    - 'And if you call on it, it''ll give you the result of the expression. For example:
+
+      ~int
+      num = 5 * 10; //num is equal to 50.`'
     - You can also pass mathematical expressions as arguments into a method that
-      takes numerical values. "Bot.moveUp(3 + 2)" will move G4wain up 5 spaces.
+      takes numerical values. "~Bot.moveUp(3 + 2)`" will move G4wain up 5 spaces.
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - Alright. So what am I looking at here?
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Those blue gates are Vox Gates. Unlike mechanical and key gates, they open
       only when the password is spoken.
     - These ones have numbers as their passwords. I know the passwords of course,
       but I figured I'll make you work for it and use the arithmetic operators to
       figure them out.
-    - The "Bot.say()" method will make G4wain speak. It takes int and string arguments
-      - so both numbers and words. But for now, you'll only be using numbers.
-    - You'll notice the data type become <color=#2b6cc9>navy blue</color> in the
-      editor when it's spelled correctly. Get to it!
+    - The "~Bot.say()`" method will make G4wain speak. It takes int and string arguments
+      - so both numbers and words. But for now, you'll only be using numbers. Get
+      to it!

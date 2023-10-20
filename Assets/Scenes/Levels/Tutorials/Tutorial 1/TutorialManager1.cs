@@ -15,7 +15,7 @@ public class TutorialManager1 : MonoBehaviour{
     private bool[] obj2bools = {false, false};
     private bool obj3bool = false;
     private int currentObjective = 0;
-    public Image[] buttonGroup1;
+    public Image[] buttonGroup1, buttonGroup1Children;
     public GameObject buttonGroup2;
     private bool hintPressed = false;
     private EditorToggle editorToggle;
@@ -166,9 +166,12 @@ public class TutorialManager1 : MonoBehaviour{
         if(currentObjective == 1 && timesPressed == 1){
             buttonGroup1[0].enabled = true;
             buttonGroup1[1].enabled = true;
+
+            buttonGroup1Children[0].enabled = true;
+            buttonGroup1Children[1].enabled = true;
         }
 
-        if(currentObjective == 1 && timesPressed == 6){
+        if(currentObjective == 1 && timesPressed == 4){
             objectiveText[2].transform.gameObject.SetActive(false);
 
             objectiveText[0].text = obj2strings[0];
@@ -181,7 +184,7 @@ public class TutorialManager1 : MonoBehaviour{
             currentObjective++;
         }
         
-        if(currentObjective == 2 && timesPressed == 4){
+        if(currentObjective == 2 && timesPressed == 3){
             hintButton.convoToLoad = hints[0]; 
             
             objectiveText[1].transform.gameObject.SetActive(false);

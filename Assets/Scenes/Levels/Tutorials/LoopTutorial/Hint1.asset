@@ -16,8 +16,16 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
-    - 'Make a while loop like we did last time. Remember:'
-    - "while(condition)\n{\n  //code to be looped\n}"
+    - 'Make a while loop like we did last time. Remember:
+
+      ~while(condition)`
+
+      ~{`
+
+      ~ 
+      //code to be looped`
+
+      ~}`'
     - Try moving right and up over and over and over and over and over again.

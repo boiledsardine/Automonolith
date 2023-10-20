@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Story 4
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - I've cracked it somewhat, but there's this one word that keeps coming up that
+      I couldn't translate.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Let me have a look...
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - '*Morgan stares at Arthur''s texts for a bit, as if she''s hesitating to read
+      it aloud. Finally, she speaks.*'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - '"Nimue".'
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - ' Nimue? Hm. The memory module mentions it a few times in relation to the duties
+      of the golem we extracted it from. Something about a... watcher?'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - That word more accurately translates to "overseer", actually. A guardian AI
+      the Akasha employed in their grander builds, like the Monolith.
+    - Designed to oversee all maintenance and defensive functions, as well as assist
+      Akashic residents and curate their works when necessary.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - I see. Which means this golem was more a servitor than a defender unit. And
+      here I'd hoped I'd see footage of the War of Enclaves, or of the Akashic civilization
+      at its peak.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - You've barely scratched the surface of the monolith, so plenty of discoveries
+      left to be made. WIth any luck, we wouldn't run into the Nimue system any time
+      soon.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Indeed. You're right, of course. Let us delve deeper, then.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - ...

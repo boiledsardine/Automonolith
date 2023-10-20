@@ -25,12 +25,14 @@ public class StoryManager : MonoBehaviour{
             Debug.LogAssertion("No cutscene");
             return;
         }
+        Debug.Log("running story");
         
-        dialogueCanvas.transform.gameObject.SetActive(true);
+        dialogueCanvas.gameObject.SetActive(true);
         DialogueManager.Instance.startDialogue(convoDict[sceneIndex]);
     }
 
     public void DialogueEnd(){
+        Debug.Log("ending dialogue");
         LevelSaveLoad.Instance.EndStorySceneSave(sceneIndex);
 
         Destroy(GameObject.Find("Essentials"));

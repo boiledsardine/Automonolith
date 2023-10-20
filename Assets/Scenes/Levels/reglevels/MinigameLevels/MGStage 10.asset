@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 10
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: facc2d61b6c22c848bc6656c2acec874, type: 2}
+  help: {fileID: 11400000, guid: 45894f5175ebf184491cbf9b2e6ae080, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Loops 1
-  levelDesc: This was a sample program I wrote when I was first messing around with
+  levelName: Listing Multiples
+  levelDesc: 'This was a sample program I wrote when I was first messing around with
     loops. It prints out the multiples of a number in sequence.
+
+
+    -Merlin'
   levelGoal: Complete the program that prints out a number's mulitples!
   startConvo:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - This thing prints out the mulitples of a given number through a loop. Now I
       could've just done this by hand, yes, but where's the fun in that?
@@ -66,3 +69,13 @@ MonoBehaviour:
       operation.
   - keyword: input
     description: An int variable! This one could be any value.
+  - keyword: Console.WriteLine
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: Console
+    description: A System class in C#. Has methods you need to do things with the
+      console.
+  - keyword: WriteLine
+    description: A function that prints its argument out to the console or terminal.
+  - keyword: num
+    description: An int variable! In this code segment, this is being used to count
+      loops.

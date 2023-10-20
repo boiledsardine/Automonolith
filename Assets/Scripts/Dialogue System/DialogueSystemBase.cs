@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     [SerializeField] protected Animator dialogueBoxAnimator;
     [SerializeField] protected Image leftSprite;
     [SerializeField] protected Image rightSprite;
+    [SerializeField] protected ColorizerTheme theme;
 
     public void Awake(){
         dialogueLines = new Queue<string>();
@@ -23,12 +25,41 @@ public abstract class DialogueSystemBase : MonoBehaviour{
 
     public abstract void startDialogue(Conversation convoToLoad);
 
-    public IEnumerator typeSentence(string sentence){
+    //issue: types out the tags
+    /*public IEnumerator typeSentence(string sentence){
         dialogueText.text = "";
+        bool inColorTag = false;
+        string endTag = "</color>";
+        List<char> charList = new List<char>();
         foreach(char letter in sentence.ToCharArray()){
-            dialogueText.text += letter;
+            if(inColorTag){
+                int insertIndex = charList.Count - endTag.Length;
+                charList.Insert(insertIndex, letter);
+                dialogueText.text = ListToString(charList);
+            } else if(!inColorTag && !(letter == '~' || letter == '`')){
+                charList.Insert(dialogueText.text.Length, letter);
+                dialogueText.text = ListToString(charList);
+            }
+
+            if(letter == '~'){
+                foreach(char c in CodeColorizer.Colorize("", false, theme)){
+                    charList.Add(c);
+                }
+                inColorTag = true;
+            } else if(letter == '`'){
+                inColorTag = false;
+            }
+            
             yield return null;
         }
+    }*/
+
+    string ListToString(List<char> cList){
+        string s = "";
+        foreach(char c in cList){
+            s += c;
+        }
+        return s;
     }
 
     //navigates to the next line on the list

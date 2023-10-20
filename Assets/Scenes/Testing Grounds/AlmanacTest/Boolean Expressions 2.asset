@@ -16,54 +16,49 @@ MonoBehaviour:
   articleText: 'Logical operators compare two bool values and return either true
     or false based on the comparison. Here is a list of logical operators:
 
-    
 
     "&&"
     AND - returns true if both statements are true.
 
-    "||" OR - returns true
-    if one of the statements are true.
+    "||" OR - returns true if
+    one of the statements are true.
 
-    "!" NOT - reverses the value of the
-    statement it follows. This operates on one value only.
+    "!" NOT - reverses the value of the statement
+    it follows. This operates on one value only.
 
-    
 
-    Here is a
-    truth table of logic:
+    Here is a truth table of logic:
 
-    
 
     AND:
 
-    ~True && True = True`
-
     ~True
-    && False = False`
+    && True = True`
+
+    ~True && False = False`
 
     ~False && True = False`
 
-    ~False && False = False`
+    ~False
+    && False = False`
 
-    
 
     OR:
 
-    ~True
-    || True = True`
+    ~True || True = True`
 
-    ~True || False = True`
+    ~True || False =
+    True`
 
     ~False || True = True`
 
-    ~False
-    || False = False`
+    ~False || False = False`
 
-    
 
     NOT:
 
-    ~!True = False`
+    ~!True
+    = False`
 
     ~!False = True`'
   articleExample: '~bool andTrue = 5 < 10 && 10 > 5; //true - both expressions are

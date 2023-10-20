@@ -14,16 +14,22 @@ public class SaveGenerator : MonoBehaviour{
     public List<EditorState> editorStates = new List<EditorState>();
     public List<MinigameState> minigameStates = new List<MinigameState>();
 
-    string levelSave, editorSave, minigameSave, etcSave;
+    string levelSave, editorSave, minigameSave, etcSave, saveDir;
     public bool unlockAllLevels, unlockAllMinigames;
 
     public void Awake(){
+        //check for directory
+        saveDir = Application.dataPath + "/Saves";
+        if(!Directory.Exists(saveDir)){
+            Directory.CreateDirectory(saveDir);
+        }
+        
         //check for save files
         //generate new ones if they don't exist
-        levelSave = Application.dataPath + "/SaveLevels.json";
-        editorSave = Application.dataPath + "/EditorSaves.json";
-        minigameSave = Application.dataPath + "/MinigameSaves.json";
-        etcSave = Application.dataPath + "/EtcSave.json";
+        levelSave = Application.dataPath + "/Saves/SaveLevels.json";
+        editorSave = Application.dataPath + "/Saves/EditorSaves.json";
+        minigameSave = Application.dataPath + "/Saves/MinigameSaves.json";
+        etcSave = Application.dataPath + "/Saves/EtcSave.json";
 
         if(!File.Exists(levelSave)){
             for(int i = 0; i < saveCounts; i++){
@@ -50,6 +56,8 @@ public class SaveGenerator : MonoBehaviour{
         } else {
             savedLevels.Add(new LevelInfo(false, false, false, false, false));
         }
+
+        savedLevels[0] = new LevelInfo(true, false, false, false, false);
         
         string levelContent = JsonHelper.ToJson<LevelInfo>(savedLevels.ToArray(), true);
         File.WriteAllText(levelSave, levelContent);

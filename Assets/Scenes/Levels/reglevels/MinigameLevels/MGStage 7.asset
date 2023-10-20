@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 7
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: e9f9e96b8e8163f49b6da67c3efea9c5, type: 2}
+  help: {fileID: 11400000, guid: 946e53e9ff483df43be91b85087694bd, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Conditions 1
+  levelName: Help with Grading
   levelDesc: 'I used to teach, once. I used a small program to determine which students
     passed and which ones didn''t.
 
@@ -26,7 +26,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - I used to teach, you know. I wrote this program to help me give out pass-or-fail
       grades based on the student's grade percent.
@@ -39,8 +39,8 @@ MonoBehaviour:
     - I know you're thinking it would've been simple to just do this without using
       code, but if you do the same thing hundreds of times you're bound to make a
       mistake somewhere.
-  mainText: "if(numGrade _ 90) {\n  student.GiveGrade(_);\n}\nelse if(numGrade _
-    75) {\n  student.GiveGrade(_);\n}\nelse {\n  student.GiveGrade(_);\n}"
+  mainText: "if(numGrade _ 90) {\n  Student.GiveGrade(_);\n}\nelse if(numGrade _
+    75) {\n  Student.GiveGrade(_);\n}\nelse {\n  Student.GiveGrade(_);\n}"
   hidWords:
   - hiddenText: '>='
     correctAnswers: []
@@ -61,3 +61,9 @@ MonoBehaviour:
   levelDictionary:
   - keyword: GiveGrade
     description: A function that gives a student a the grade passed as an argument.
+  - keyword: '"High Pass"'
+    description: A grade given to students that score 90 or above.
+  - keyword: '"Pass"'
+    description: A grade given to students that score 75 or above.
+  - keyword: '"Fail"'
+    description: A grade given to students that score under 75.

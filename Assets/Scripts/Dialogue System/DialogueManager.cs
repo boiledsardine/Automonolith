@@ -1,11 +1,15 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DialogueManager : DialogueSystemBase{
+public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     public static DialogueManager Instance;
     private Queue<Dialogue> dialogueBlocks;
+    public Button nextButton;
+    public bool allowSkipping;
+    string currentSentence;
 
     new void Awake(){
         base.Awake();
@@ -31,7 +35,17 @@ public class DialogueManager : DialogueSystemBase{
         loadDialogue();
 
         StopAllCoroutines();
-        StartCoroutine(typeSentence(dialogueLines.Dequeue()));
+        currentSentence = dialogueLines.Dequeue();
+        StartCoroutine(typeSentence(currentSentence));
+    }
+
+    public IEnumerator typeSentence(string sentence){
+        dialogueText.text = "";
+        foreach(char letter in CodeColorizer.Colorize(sentence, false, theme).ToCharArray()){
+            dialogueText.text += letter;
+            yield return null;
+        }
+        nextButton.gameObject.SetActive(true);
     }
 
     public override void nextLine(){
@@ -46,9 +60,11 @@ public class DialogueManager : DialogueSystemBase{
                 loadDialogue();
             }
         }
+        nextButton.gameObject.SetActive(false);
 
         StopAllCoroutines();
-        StartCoroutine(typeSentence(dialogueLines.Dequeue()));
+        currentSentence = dialogueLines.Dequeue();
+        StartCoroutine(typeSentence(currentSentence));
     }
 
     public void loadDialogue(){
@@ -61,6 +77,22 @@ public class DialogueManager : DialogueSystemBase{
 
         foreach(string s in dialogue.lines){
             dialogueLines.Enqueue(s);
+        }
+    }
+
+    void ForceDialogueComplete(){
+        StopAllCoroutines();
+        dialogueText.text = CodeColorizer.Colorize(currentSentence, false, theme);
+        nextButton.gameObject.SetActive(true);
+    }
+
+    public void OnPointerClick(PointerEventData eventData){
+        if(!allowSkipping) return;
+
+        if(nextButton.gameObject.activeSelf){
+            nextButton.onClick.Invoke();
+        } else {
+            ForceDialogueComplete();
         }
     }
 }

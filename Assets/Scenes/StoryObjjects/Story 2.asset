@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Story 2
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Looks like that servitor core you found did the trick after all. The Monolith
+      didn't react to G4wain the same way it did to the other explorers.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - Indeed. This is new ground. No expedition has gotten this far in yet. And yet...
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - And yet...?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - This section of the Monolith seems... devoid of technological artefacts I could
+      bring back for study. If this is going to be a trend that informs the yield
+      of this expedition, then...
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - I mean this place a tomb. I wouldn't expect a ton of Akasha tech you haven't
+      already seen before scattered around.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Yes, a tomb and a monument to its inhabitants who fought in one of the Akasha's
+      most historic battles. There has to be something in here, something related
+      to that event. But so far, nothing.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Don't jump to conclusions just yet, look over there. A broken construct, same
+      make and model as the one you extracted G4wain's core from.
+    - Scrap heap might have some valuable parts in it, maybe we can even upgrade
+      G4wain with it.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Hm, yes, you're right. I wonder, could we use those to improve G4wain's functionality...?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - One way to find out.

@@ -16,30 +16,34 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Okay, yeah, this is a bit more complicated so listen close. First, declare
-      a while loop as usual.
-    - Next, make sure the condition is something that you can change over time. A
-      comparison expression is most common.
+      a while loop as usual. Next, make sure the condition is something that you
+      can change over time. A comparison expression is most common.
     - Something like "varName < 3", where varName's value is subject to change. Once
       varName becomes equal to or greater than 3, the loop stops.
     - Oh right, declare the variable you're using before the while loop. If you declare
       it inside the loop, it'll just be reset to its first value every time the loop
       repeats.
-    - 'And keep in mind that programmers start counting from 0. So:
+    - 'Programmers typically counting from 0. So:
 
-      int varName
-      = 0; //declared outside the loop
+      ~int varName = 0; //declared
+      outside the loop`
 
-      while(varName < 3)'
-    - After that, use an increment inside the loop so the value of varName goes up
-      by 1 every time the loop reaches that line.
-    - 'Increments and decrements are made as such respectively:
+      ~while(varName < 3) {`
 
-      varName++;
+      ~  num++; //increments
+      num per loop`
 
-      varName--;'
+      ~}`'
+    - 'Use an increment inside the loop so the value of varName goes up by 1 every
+      time the loop reaches that line. Increments and decrements are written like
+      this:
+
+      ~varName++;`
+
+      ~varName--;`'
     - 'I''ve already given you a framework to work with, just fill it in.
 
       Whew,

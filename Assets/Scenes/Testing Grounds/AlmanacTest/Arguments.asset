@@ -17,7 +17,6 @@ MonoBehaviour:
     arguments, some don''t, and some can function with or without an argument.
 
 
-
     Arguments
     are written within the () at the end of a method. If a method requires multiple
     arguments, values are separated by a comma. Take note that there are some methods

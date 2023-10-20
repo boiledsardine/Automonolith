@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2e6422ecfe85147a7b2436171f42b7, type: 3}
   m_Name: Quiz1
   m_EditorClassIdentifier: 
-  startConvo: {fileID: 11400000, guid: ca4e668104e35e447a88b0627475acaf, type: 2}
-  passConvo: {fileID: 11400000, guid: 4745db6ebfc7d5b41b39acd2161bea47, type: 2}
-  failConvo: {fileID: 11400000, guid: c1e382138e957634c9c37f3b40feade8, type: 2}
+  startConvo: {fileID: 11400000, guid: c63458fb6452dfa41bbaab87ad849cd1, type: 2}
+  passConvo: {fileID: 11400000, guid: 7fb0bba47a825e740a45b1710087e853, type: 2}
+  failConvo: {fileID: 11400000, guid: 1408820f859ed3946b3790911fab0526, type: 2}
   threshold1: 5
   threshold2: 7
   threshold3: 10

@@ -13,17 +13,34 @@ MonoBehaviour:
   m_Name: Boolean Expressions
   m_EditorClassIdentifier: 
   articleName: Boolean Expressions 1
-  articleText: "Boolean expressions can also be assigned to bool variables. It compares
-    two values or variables and\r return either true or false based on the result
-    of the comparison. It is used for conditional testing,\r especially for loops
-    and if-else statements. Boolean expressions use comparison or logical operators.
-    Here is a list of comparison operators: \r\n\r\n\"~==`\": Equal to - is true
-    when two values are the same.\r\n\"~!=`\": Not equal - is true when two values
-    are different.\r\n\"~>`\": Greater than - is true when the left side is greater
-    than the right side.\r\n\"~<`\": Less than - is true when the left side is less
-    than the right side.\r\n\"~>=`\": Greater than or equal to - is true when the
-    left side is greater than or equal to the right\r\nside.\r\n\"~<=`\": Less than
-    or equal to - is true when the left side is less than or equal to the right side."
+  articleText: 'Boolean expressions can also be assigned to bool variables. It compares
+    two values or variables and returns either true or false based on the result
+    of the comparison. It is used for conditional testing, especially for loops and
+    if-else statements. Boolean expressions use comparison or logical operators.
+    Here is a list of comparison operators:
+
+    
+
+    "~==`": Equal to - is true
+    when two values are the same.
+
+    "~!=`": Not equal - is true when two values
+    are different.
+
+    "~>`": Greater than - is true when the left side is greater
+    than the right side.
+
+    "~<`": Less than - is true when the left side is less
+    than the right side.
+
+    "~>=`": Greater than or equal to - is true when the
+    left side is greater than or equal to the right
+
+    side.
+
+    "~<=`": Less
+    than or equal to - is true when the left side is less than or equal to the right
+    side.'
   articleExample: '~int x = 10;`
 
     ~int y = 5;`

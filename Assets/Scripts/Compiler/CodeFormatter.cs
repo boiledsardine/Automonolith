@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 public class CodeFormatter {
+    //formats code line by line
     public static string Format(string line){
         line = line.Trim();
 
@@ -109,6 +110,34 @@ public class CodeFormatter {
 
             lastAddedSection = sections[i];
         }
+
+        var formattedSections = formattedLine.Split(' ').ToList();
+        for(int i = 0; i < formattedSections.Count; i++){
+            if(formattedSections[i] == "." && i > 0 && i < formattedSections.Count - 1){
+                string beforeDot = formattedSections[i - 1];
+                string afterDot = formattedSections[i + 1];
+
+                if(int.TryParse(beforeDot, out _) && int.TryParse(afterDot, out _)){
+                    //probs a float val
+                    int beforeDotIndex = i - 1;
+                    string floatString = beforeDot + "." + afterDot;
+                    formattedSections.RemoveRange(beforeDotIndex, 3);
+                    formattedSections.Insert(beforeDotIndex, floatString);
+                    i = beforeDotIndex;
+                }
+            }
+        }
+
+        formattedLine = "";
+        for(int i = 0; i < formattedSections.Count; i++){
+            formattedLine += formattedSections[i];
+
+            if(i != formattedSections.Count - 1){
+                formattedLine += ' ';
+            }
+        }
+        formattedLine = formattedLine.Trim();
+
         return formattedLine;
     }
 }

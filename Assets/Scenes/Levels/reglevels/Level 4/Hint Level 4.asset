@@ -16,17 +16,22 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
-    - Okay, looks like that blue panel is storing some tile coordinates. Get its
-      value with Bot.read() and store it in a string variable. Remember, string varName
-      = value;
-    - After that, the vox gate's password seems to be the sum of the two green panels.
-      Get their values with Bot.readInt() and store each one in a separate variable.
-    - 'Then use operators to add the variables and say the password in front of the
-      vox gate. Here''s a tip that might save you a line:'
-    - 'You can perform operations inside a method''s argument. Like this: Bot.say(3
-      + 5); will make G4wain say 8.'
+    - 'Okay, looks like that blue panel is storing some tile coordinates. Get its
+      value with ~Bot.read(`) and store it in a string variable. Remember:
+
+      ~string
+      varName = value;`'
+    - 'After that, the vox gate''s password seems to be the sum of the two green
+      panels. Get their values with ~Bot.readInt()` and store each one in a separate
+      variable. Then use operators to add the variables and say the password in front
+      of the vox gate. '
+    - 'Here''s a tip that might save you a line: you can perform operations inside
+      a method''s argument. Like this:
+
+      ~Bot.say(3 + 5); //will make G4wain
+      say 8.`'
     - Then just move to the coordinates you got from the blue panel and push the
-      corresponding button with Bot.interact(). One of them ought to power that exit
-      totem...
+      corresponding button with ~Bot.interact()`. One of them ought to power that
+      exit totem...

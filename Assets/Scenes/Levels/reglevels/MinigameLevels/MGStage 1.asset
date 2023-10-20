@@ -12,58 +12,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff96e8016540e7e4abbeb21f5f72e315, type: 3}
   m_Name: MGStage 1
   m_EditorClassIdentifier: 
-  help: {fileID: 11400000, guid: b2a360eb9314f6d4ead484ff8864d267, type: 2}
+  help: {fileID: 11400000, guid: 8778a3fc63cacf2468297959849836ef, type: 2}
   hint: {fileID: 11400000, guid: 743f7b789bcc8b64d99dc8d91414f997, type: 2}
-  levelName: Methods 1
-  levelDesc: 
-  levelGoal: 
+  levelName: A Cup of Coffee
+  levelDesc: 'Ah, coffee. Perfect way to start the day. Shame I''ve forgotten how
+    to put a cup together step by step. Shameful, isn''t it?
+
+
+    -Merlin'
+  levelGoal: 'Arrange the methods so they execute in order: put coffee in cup, boil
+    water, pour hot water, and stir.'
   startConvo:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
-    - Test open dialogue
-    - Accounting for multiple lines
-  - npcName: Arthur
-    showNpc: 1
-    npcPos: 76
-    npcSprite: {fileID: -8640580854354238499, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
-    lines:
-    - And multiple speakers
+    - Ah, brewing coffee. A simple thing to do, and yet, I cannot remember how exactly
+      to do it. I really am senile. Help me put together how to make a cup of coffee
+      step by step. Sequence is important, after all.
   passConvo:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
     lines:
-    - Minigame test complete
-  mainText: 'Test
+    - Indeed, I remember now. Yes, that's how it's done. Well, I hope we can continue
+      helping each other out from now on.
+  mainText: '//here''s how I usually prepare coffee:
 
-    a: ___
+    //start with boiling water
 
-    b: ___
+    //then
+    put the coffee and water into a cup
 
-    c: ___
+    //then stir until well-mixed
 
-    d: ___
 
-    e: ___'
+    BoilWater()_
+
+    _();
+
+    _
+    _;
+
+    _();'
   hidWords:
-  - hiddenText: test-a
-    correctAnswers: []
-    mistakeMessage: '2: I don''t think ___ belongs there'
-  - hiddenText: test-b
-    correctAnswers: []
-    mistakeMessage: '3: I don''t think ___ belongs there'
-  - hiddenText: test-c
-    correctAnswers: []
-    mistakeMessage: '4: I don''t think ___ belongs there'
-  - hiddenText: test-d
-    correctAnswers: []
-    mistakeMessage: '5: I don''t think ___ belongs there'
-  - hiddenText: test-e
-    correctAnswers: []
-    mistakeMessage: '6: I don''t think ___ belongs there'
-  wordBank: []
-  levelDictionary: []
+  - hiddenText: ;
+    correctAnswers:
+    - ;
+    mistakeMessage: '1: Something belongs here, something that will end the line
+      of code.'
+  - hiddenText: AddCoffee
+    correctAnswers:
+    - AddCoffee
+    mistakeMessage: '2: I don''t know how you prepare your coffee, but I like to
+      get started on preparing the mug while the water''s boiling.'
+  - hiddenText: AddHotWater
+    correctAnswers:
+    - AddHotWater
+    mistakeMessage: '3: Water should be done boiling at this point...'
+  - hiddenText: ()
+    correctAnswers:
+    - ()
+    mistakeMessage: '5: Something belongs here, something that will mark the word
+      before as a method.'
+  - hiddenText: StirCup
+    correctAnswers:
+    - StirCup
+    mistakeMessage: '5: I don''t know you prepare your coffee, but I much prefer
+      it to an unmixed, well, mixture.'
+  wordBank:
+  - ;
+  - AddCoffee
+  - AddHotWater
+  - ()
+  - StirCup
+  levelDictionary:
+  - keyword: AddCoffee
+    description: A method. This adds cofffee to an existing empty cup.
+  - keyword: BoilWater
+    description: A method. This gets water hot enough to brew.
+  - keyword: AddHotWater
+    description: A method. This adds hot water to a cup, empty or not.
+  - keyword: StirCup
+    description: A method. This stirs a mixture inside a given cup.
+  - keyword: ()
+    description: A parenthesis pair. This is used to separate a group in an expression
+      or mark an identifier as a function!

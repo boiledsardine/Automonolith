@@ -20,8 +20,8 @@ MonoBehaviour:
     lines:
     - Right, now that G4wain can make decisions, it's time we tackled conditional
       statements in code.
-    - Conditional statements like if, else, and if-else use booleans to execute or
-      skip blocks of code depending on whether or not the condition is true.
+    - Conditional statements like ~if`, ~else`, and ~else-if` use booleans to execute
+      or skip blocks of code depending on whether or not the condition is true.
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
@@ -39,11 +39,11 @@ MonoBehaviour:
       one-by-one, but conceptually, they're similar.
     - 'The if keyword becomes <color=#925bb3>magenta</color> when written right.
       Write an if statement like this:'
-    - "if(condition)\r\n{\r\n  //code to be executed if condition is true\r\n}\r"
-    - 'The condition can be a boolean value or a conditional statement like a comparison. '
-    - "For if statements, if the condition is true, the code between the {} runs.
-      If not, the whole block is skipped over.\r"
+    - "~if(condition)\r`\n~{\r`\n~  //code to be executed if condition is true\r`\n~}\r`\nThe
+      condition can be a boolean value or a boolean expression."
+    - "For if statements, if the condition is true, the code between the curly braces
+      runs. If not, the whole block is skipped over.\r"
     - Why don't you try it out? I've written an if statement here without a condition.
-      At the end of the code, G4wain will move up.
-    - You have to provide the condition needed to make G4wain move right first or
-      else he'll walk into a trap. Get to it!
+      At the end of the code, G4wain will move up. You have to provide the condition
+      needed to make G4wain move right first or else he'll walk into a trap. Get
+      to it!

@@ -20,6 +20,12 @@ MonoBehaviour:
     lines:
     - 'I''ve already written out a barebones if statement for you, but in case you
       deleted it or want to remember how to make one:'
-    - "if(condition)\n{\n  //executes if condition is true\n}"
+    - '~if(condition)`
+
+      ~{`
+
+      ~  //executes if condition is true`
+
+      ~}`'
     - So you have to make the if statement I gave you true so that G4wain runs the
       code in the if block!

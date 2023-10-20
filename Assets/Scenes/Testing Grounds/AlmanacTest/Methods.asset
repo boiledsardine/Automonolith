@@ -18,7 +18,6 @@ MonoBehaviour:
     this game! You won''t be using them in real code.
 
 
-
     G4wain has the ~moveUp`,
     ~moveDown`, ~moveLeft`, and ~moveRight` methods which you''ll use to instruct
     G4wain to move in a certain direction. To call a method, use that method''s name

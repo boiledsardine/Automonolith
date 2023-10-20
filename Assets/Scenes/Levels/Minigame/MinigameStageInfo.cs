@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Minigame Stage", menuName = "MGStage")]
 public class MinigameStageInfo : ScriptableObject{
-    public HelpArticle help;
+    public AlmanacGroup help;
     public Conversation hint;
     public string levelName;
     

@@ -16,52 +16,50 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - 'You''re making good progress. At last, we reach the third conditional statement:
       else-if statements.'
     - Else if is like a hybrid else and if. It's an else block with an if statement
       attached to it. So, for example, the if statement above it is false...
     - The else if statement will check its own condition and either run or skip its
-      code depending on whether or not the condition is true.
-    - 'Write an else if statement after an if statement and before an else statement.
-      Syntax goes like this:'
-    - "if(condition1)\r\n{\r\n  //runs if condition1 is true\r\n}"
-    - "else if(condition2)\r\n{\r\n  //runs if condition1 is false & condition2 is
-      true\r\n}"
+      code depending on whether or not the condition is true. Write an else if statement
+      after an if statement and before an else statement.
+    - "~if(condition1)\r`\n~{\r`\n~  //runs if condition1 is true\r`\n~}`"
+    - "~else if(condition2)\r`\n~{\r`\n~  //runs if condition1 is false & condition2
+      is true\r`\n~}`"
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - "I'm guessing this is for when I have multiple conditions to check and one
       or all of them aren't guaranteed to be true?\r"
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -8746551012230393353, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Correct. Suppose you have an int variable "num" and you want to find out if
       num is less than 20 or more than 20 but less than 40.
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: -1018686373385036869, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
     - 'So my conditions are "num < 20" and "num < 40" and I write the following statements:'
-    - "if(num < 20)\r\n{\r\n  Bot.say(\"less than 20\");\r\n}"
-    - "else if(num < 40)\r\n{\r\n  Bot.say(\"more than 20, less than 40\");\r\n}"
-    - "else\r\n{\r\n  Bot.say(\"more than 40\");\r\n}"
-    - If num is 10, num < 20 is true and G4wain says "less than 20".
-    - 'If num is 30, num > 20 is false so it checks the second condition: num < 40
-      is true, so G4wain says "more than 20, less than 40".'
-    - And if num is 50 neither condition is true so, G4wain says "more than 40".
+    - "~if(num < 20)\r`\n~{\r`\n~  Bot.say(\"less than 20\");\r`\n~}`"
+    - "~else if(num < 40)\r`\n~{\r`\n~  Bot.say(\"more than 20, less than 40\");\r`\n~}`"
+    - "~else\r`\n~{\r`\n~  Bot.say(\"more than 40\");\r`\n~}`"
+    - 'If num is 10, num < 20 is true and G4wain says "less than 20". If num is 30,
+      num > 20 is false so it checks the second condition: num < 40 is true, so G4wain
+      says "more than 20, less than 40". And if num is 50 neither condition is true
+      so, G4wain says "more than 40".'
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: -2264094948481321240, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
     - That's right. Here, I've prepared another chain of if-else if- else statements.
-      G4wain needs to get to the middle button.
-    - Give the if and else if blocks condtions so that G4wain reaches tile C2. Hop
-      to it!
+      G4wain needs to get to the middle button. Give the if and else if blocks condtions
+      so that G4wain reaches tile C2. Hop to it!

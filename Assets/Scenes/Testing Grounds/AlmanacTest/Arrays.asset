@@ -13,17 +13,33 @@ MonoBehaviour:
   m_Name: Arrays
   m_EditorClassIdentifier: 
   articleName: Arrays
-  articleText: "Arrays are data structures that store multiple values in a single
-    variable, instead of using separate variables for each value, called elements.\r
-    To declare an array, define the variable's type with square brackets. So to declare
-    an array that holds strings, do this:\r\n\r\n~string[] stringArray;`\r\n\r\nThis
-    array doesn't store any elements yet. To do so, assign it an array literal, which
-    is a list of values separated by commas inside curly braces followed by a semicolon.\r\n\r\n~string[]
-    cakes = {\"chocolate\", \"red velvet\", \"confetti\"};`\n\r\nTo get the elements
-    of an array, it must be called with its index, a number unique to each element
-    of an array. The first element of an array is index 0, the second element is
-    index 1, so on. To use an array index, call the array's name followed by square
-    brackets (~[]`) with the index number inside them."
+  articleText: 'Arrays are data structures that store multiple values in a single
+    variable, instead of using separate variables for each value, called elements.
+    To declare an array, define the variable''s type with square brackets. For example,
+    to declare an array of strings:
+
+    
+
+    ~string[] stringArray;`
+
+    
+
+    This
+    array doesn''t store any elements yet. To do so, assign it an array literal,
+    which is a list of values separated by commas inside curly braces followed by
+    a semicolon.
+
+    
+
+    ~string[] cakes = {"chocolate", "red velvet", "confetti"};`
+
+    
+
+    To
+    get the elements of an array, it must be called with its index, a number unique
+    to each element of an array. The first element of an array is index 0, the second
+    element is index 1, so on. To use an array index, call the array''s name followed
+    by square brackets (~[]`) with the index number inside them.'
   articleExample: '~string[] cakes = {"chocolate", "red velvet", "confetti"}; //creates
     an array named cakes with "chocolate", "red velvet", and "confetti" as its elements`
 

@@ -18,32 +18,30 @@ MonoBehaviour:
     entire array in one go, but this game won''t make you do that. This is here for
     sake of explanation.
 
-    
 
-    You can declare an array without assigning its
-    variable, like any other variable.
+    You can declare an array without assigning its variable,
+    like any other variable.
 
-    
 
     ~int[] numbers;`
 
 
-    The array
-    ~numbers` is unassigned. To use it, it must be assigned an array value, but you
-    must use the ''~new`'' keyword. The ''~new`'' keyword should be followed by the
-    array''s data type and square braces with the size of the array between the square
-    braces.
+    The array ~numbers` is
+    unassigned. To use it, it must be assigned an array value, but you must use the
+    ''~new`'' keyword. The ''~new`'' keyword should be followed by the array''s data
+    type and square braces with the size of the array between the square braces.
 
 
-    This kind of assignment will create an array with the given size
-    (in this case, 3) but all its elements are empty or 0. To use the ''~new`'' keyword
-    to create an array with values, check example 2.
+    This
+    kind of assignment will create an array with the given size (in this case, 3)
+    but all its elements are empty or 0. To use the ''~new`'' keyword to create an
+    array with values, check example 2.
 
 
-    Notice how you don''t
-    need to specify the size of the array between the square braces when you''re
-    doing it this way. You still could, but then you''ll need to provide an array
-    literal with the same size as the one you specified. Check example 3.'
+    Notice how you don''t need to specify
+    the size of the array between the square braces when you''re doing it this way.
+    You still could, but then you''ll need to provide an array literal with the same
+    size as the one you specified. Check example 3.'
   articleExample: '~//example 1`
 
     ~//creates an array with 3 empty elements`

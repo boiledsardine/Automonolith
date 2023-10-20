@@ -16,11 +16,11 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 6903694227769077350, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
-    - 'Use the moveTo() method! It takes strings as arguments, and the strings should
-      be tile coordinates. Like this:
+    - 'Use the ~moveTo()` method! It takes strings as arguments, and the strings
+      should be tile coordinates. Like this:
 
-      Bot.move("A2");'
+      ~Bot.move("A2");`'
     - There, I've given you your first move. Each move should be stepping on a button
       because G4wain can't path through closed gates and walls.

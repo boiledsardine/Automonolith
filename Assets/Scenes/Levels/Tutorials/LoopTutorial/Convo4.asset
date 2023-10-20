@@ -28,15 +28,15 @@ MonoBehaviour:
     - Yep, it's so you could practice non-infinite loops. The loops you've been using
       up until now are infinite.
     - They'll keep going and going and going without end. They have their niche uses,
-      sure, but a loop that never ends isn't very useful most of the time.
-    - So it's better to make sure a loop can end by making it so its condition eventually
+      sure, but a loop that never ends isn't very useful most of the time. So it's
+      better to make sure a loop can end by making it so its condition eventually
       becomes false.
     - The best way to make a non-infnite loop is by using a comparative boolean expression
       as a condition. And use variables whose values you can change.
     - Take the condition "5 < 10" - since both of those values aren't variables,
-      they can't change, thus the loop is always true.
-    - ' But what if the condition was "num < 5", where num is 0 and goes up by 1
-      every time the loop hits its end?'
+      they can't change, thus the loop is always true. But what if the condition
+      was "num < 5", where num is 0 and goes up by 1 every time the loop hits its
+      end?
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
@@ -54,9 +54,9 @@ MonoBehaviour:
     - 'Simply put "++" or "--" after a variable. That''s a whole expression. Like
       this:
 
-      int x = 10;
+      ~int x = 10;`
 
-      x++; (x is now 11)'
+      ~x++; //x is now 11`'
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
@@ -68,8 +68,8 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
-    - 'Yeah, loops aren''t exactly the cakewalk you''ve been having up until now. '
-    - Buuut remember what I said about using the help I'm giving you and you should
-      be just fine.
+    - Yeah, loops aren't exactly the cakewalk you've been having up until now. Buuut
+      remember what I said about using the help I'm giving you and you should be
+      just fine.
     - Now make a non-infinite loop that ends when you reach that button on the floor.
       If you use an infinite loop here, G4wain's gonna step into a trap.

@@ -25,12 +25,12 @@ MonoBehaviour:
     npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Yep, more data types. This time, we're covering booleans! Booleans store a
-      value that is either true or false.
+      value that is either ~true` or ~false`.
     - Since it stores a true or false value, it acts as an on-or-off switch for things
       that require conditions, like loops which we'll cover later.
     - 'But for now, let''s cover how booleans work. Use the bool type to declare
       a boolean, like so:
 
-      bool myBool = true;'
-    - Also, I've made it so now the say() method takes booleans as arguments. For
+      ~bool myBool = true;`'
+    - Also, I've made it so now the ~say()` method takes booleans as arguments. For
       this one, declare two booleans and use their values to open the vox gates.

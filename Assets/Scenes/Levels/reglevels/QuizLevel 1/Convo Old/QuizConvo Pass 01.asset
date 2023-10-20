@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
-  m_Name: ConvoPass
+  m_Name: QuizConvo Pass 01
   m_EditorClassIdentifier: 
   dialogueBlocks:
   - npcName: Nimue
@@ -18,8 +18,8 @@ MonoBehaviour:
     npcPos: 0
     npcSprite: {fileID: 0}
     lines:
-    - You've passed my test. Well done. As promised, you may pass.
-    - And as a further reward, I will share with you a technology of the Ancients.
+    - You've passed my test. Well done. As promised, you may pass.And as a further
+      reward, I will share with you a technology of the Ancients.
   - npcName: G4wain
     showNpc: 1
     npcPos: 82
@@ -30,13 +30,13 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
     lines:
     - Thank you. But this is...?
   - npcName: Nimue
     showNpc: 0
     npcPos: 76
-    npcSprite: {fileID: 5097129605200609062, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 0}
     lines:
     - A modification for your construct - one that would let it make comparisons
       and make decisions based on those comparisons.
@@ -45,7 +45,7 @@ MonoBehaviour:
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - Thank you.
   - npcName: Nimue
@@ -58,14 +58,13 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 5927882187559961596, guid: 5b6284e1a3b3206428453b030857c481, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - Look at that, you've passed your first test from a mysterious voice and got
-      G4wain an upgrade! Good for you.
-    - So, you heading deeper in, or...?
+      G4wain an upgrade! Good for you. So, you heading deeper in, or...?
   - npcName: Arthur
     showNpc: 1
     npcPos: 76
-    npcSprite: {fileID: 3207679657460903351, guid: 0060de204d35a494da2ce31a2aed8053, type: 3}
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
     - I'm getting on it, have some patience.

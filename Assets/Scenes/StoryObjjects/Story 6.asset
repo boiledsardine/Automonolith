@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: Story 6
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - This floor is full of more decomissioned robots. But these look different from
+      the ones in the lower floors.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Yeah, nothing like the servitor models we found earlier. These look like units
+      designed for more complex jobs. Bet their cores will have more functions than
+      the servitor core G4wain has.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - I'm betting on that. I've noticed that the monolith's layouts become more complex
+      the higher we climb, and that new functions are necessary to continue ascent.
+    - If Nimue hadn't given G4wain the Decision Module, I doubt we would've made
+      it past the past few floors.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Perhaps she'd be better at guiding G4wain and I through the monolith?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 0f26000b080884f468865936f865aac8, type: 3}
+    lines:
+    - Like I haven't been helping you out? Another quip like that and I'm leaving
+      you to figure out the monolith and Nimue yourself.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
+    lines:
+    - I meant that as a joke, sorry. I didn't think you'd take it that personally.
+      Of course this expedition couldn't have gotten this far without your help.
+    - Your help in developing and improving G4wain was essential to our progress.
+      Moreso since Lancel0t, Perc1val, and Bor2 failed.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 0f26000b080884f468865936f865aac8, type: 3}
+    lines:
+    - ...
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Say it.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - Must I?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - You must.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Fine. Oh, great Morgan, beautiful and magnificent and very very intelligent,
+      please guide us through the Monolith.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Apology accepted, now let's get G4wain's scrappy hands on that broken-down
+      robot's scrappy parts.

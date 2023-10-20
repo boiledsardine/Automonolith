@@ -15,14 +15,15 @@ public class GlobalSettings : MonoBehaviour{
         } else {
             Destroy(gameObject);
         }
+    }
 
-        optionsSave = Application.dataPath + "/Options.json";
+    void Start(){
+        optionsSave = Application.dataPath + "/Saves/Options.json";
 
         resolution = ScreenResMode._1366x768;
         isFullscreen = false;
 
         LoadOptions();
-
         SetScreenRes();
     }
 
