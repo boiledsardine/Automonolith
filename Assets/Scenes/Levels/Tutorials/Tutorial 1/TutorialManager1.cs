@@ -22,6 +22,8 @@ public class TutorialManager1 : MonoBehaviour{
     private ConvoManager convoManager;
     public DialogueTrigger hintButton;
     public Conversation[] hints;
+    public Button openEditor;
+    public GameObject ffButtons;
 
     private void Awake(){
         cameraRotation = FindObjectOfType<CameraRotation>();
@@ -150,7 +152,7 @@ public class TutorialManager1 : MonoBehaviour{
     public void NextLinePressed(){
         timesPressed++;
 
-        if(currentObjective == 0 && timesPressed == 4){
+        if(currentObjective == 0 && timesPressed == convoManager.convos[0].LineCount()){
             objectiveText[0].transform.gameObject.SetActive(true);
             objectiveText[1].transform.gameObject.SetActive(true);
             objectiveText[2].transform.gameObject.SetActive(true);
@@ -169,9 +171,11 @@ public class TutorialManager1 : MonoBehaviour{
 
             buttonGroup1Children[0].enabled = true;
             buttonGroup1Children[1].enabled = true;
+
+            ffButtons.SetActive(true);
         }
 
-        if(currentObjective == 1 && timesPressed == 4){
+        if(currentObjective == 1 && timesPressed == convoManager.convos[1].LineCount()){
             objectiveText[2].transform.gameObject.SetActive(false);
 
             objectiveText[0].text = obj2strings[0];
@@ -184,7 +188,7 @@ public class TutorialManager1 : MonoBehaviour{
             currentObjective++;
         }
         
-        if(currentObjective == 2 && timesPressed == 3){
+        if(currentObjective == 2 && timesPressed == convoManager.convos[2].LineCount()){
             hintButton.convoToLoad = hints[0]; 
             
             objectiveText[1].transform.gameObject.SetActive(false);
@@ -198,9 +202,10 @@ public class TutorialManager1 : MonoBehaviour{
 
         if(currentObjective == 3 && timesPressed == 3){
             buttonGroup2.SetActive(true);
+            openEditor.gameObject.SetActive(true);
         }
 
-        if(currentObjective == 3 && timesPressed == 7){
+        if(currentObjective == 3 && timesPressed == convoManager.convos[3].LineCount()){
             hintButton.convoToLoad = hints[1];
 
             mainObjText.transform.gameObject.SetActive(true);

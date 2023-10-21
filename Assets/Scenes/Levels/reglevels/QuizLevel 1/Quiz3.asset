@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2e6422ecfe85147a7b2436171f42b7, type: 3}
   m_Name: Quiz3
   m_EditorClassIdentifier: 
-  startConvo: {fileID: 11400000, guid: ca4e668104e35e447a88b0627475acaf, type: 2}
-  passConvo: {fileID: 11400000, guid: 4745db6ebfc7d5b41b39acd2161bea47, type: 2}
-  failConvo: {fileID: 11400000, guid: c1e382138e957634c9c37f3b40feade8, type: 2}
+  startConvo: {fileID: 11400000, guid: a462022f4ce928e48ba1261b297f532b, type: 2}
+  passConvo: {fileID: 11400000, guid: e3395809c4cd65248bd395b389d6d94a, type: 2}
+  failConvo: {fileID: 11400000, guid: 1408820f859ed3946b3790911fab0526, type: 2}
   threshold1: 5
   threshold2: 7
   threshold3: 10
   items: 10
   quizBlocks:
-  - question: 'Given the following array, what is the index of "blue"?
+  - question: 'Given the following array, what is the index of ~"blue"`?
 
 
-      string[]
-      colors = {"red", "blue", "orange");'
+      ~string[]
+      colors = {"red", "blue", "orange");`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -37,8 +37,8 @@ MonoBehaviour:
   - question: 'What element is at index 3?
 
 
-      string[] colors = {"red", "blue,
-      "orange", "green", "white"};'
+      ~string[] colors = {"red", "blue",
+      "orange", "green", "white"};`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -66,14 +66,14 @@ MonoBehaviour:
     - B
     - C
     correctAnswer: 2
-  - question: 'Given the following array, what would the value of the variable len
+  - question: 'Given the following array, what would the value of the variable ~len`
       be?
 
 
-      string[] fingers = {"thumb", "index", "middle", "ring", "pinky"};
+      ~string[] fingers = {"thumb", "index", "middle", "ring", "pinky"};`
 
-      int
-      len = fingers.Length;'
+      ~int
+      len = fingers.Length;`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -83,11 +83,11 @@ MonoBehaviour:
     - 4
     - 5
     correctAnswer: 2
-  - question: 'Given the following array, what is the index of "Volvo"?
+  - question: 'Given the following array, what is the index of ~"Volvo"`?
 
 
-      string[]
-      cars = {"Audi", "Honda", "Toyota", "Volvo", "Subaru"};'
+      ~string[]
+      cars = {"Audi", "Honda", "Toyota", "Volvo", "Subaru"};`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -97,14 +97,14 @@ MonoBehaviour:
     - 4
     - 5
     correctAnswer: 0
-  - question: 'What would be the value of the variable myVar in the following snippet?
+  - question: 'What would be the value of the variable ~myVar` in the following snippet?
 
 
-      string[]
-      flavors = {"cheese", "ube", "chocolate", "mango"};
+      ~string[]
+      flavors = {"cheese", "ube", "chocolate", "mango"};`
 
 
-      myVar = flavors[2];'
+      ~myVar = flavors[2];`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -117,13 +117,13 @@ MonoBehaviour:
   - question: 'Which of these arrays are initialized correctly?
 
 
-      A. int intArray[]
-      = {1, 2, 3};
+      A. ~int intArray[]
+      = {1, 2, 3};`
 
-      B. int[] intArray = {1, 2, 3};
+      B. ~int[] intArray = {1, 2, 3};`
 
-      C. int[] intArray
-      = {"one", "two", "three"};'
+      C. ~int[] intArray
+      = {"one", "two", "three"};`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -133,14 +133,14 @@ MonoBehaviour:
     - B
     - C
     correctAnswer: 1
-  - question: 'What would be the value of the variable myVar in the following snippet?
+  - question: 'What would be the value of the variable ~myVar` in the following snippet?
 
 
-      int[]
-      primes = {1, 2, 3, 5, 7};
+      ~int[]
+      primes = {1, 2, 3, 5, 7};`
 
 
-      int myVar = primes[4] + primes[1];'
+      ~int myVar = primes[4] + primes[1];`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -150,13 +150,13 @@ MonoBehaviour:
     - 9
     - 11
     correctAnswer: 1
-  - question: 'Given the following array, what would the value of the variable len
+  - question: 'Given the following array, what would the value of the variable ~len`
       be?
 
 
-      int evens = {2, 4, 6};
+      ~int evens = {2, 4, 6};`
 
-      int len = fingers.Length;'
+      ~int len = evens.Length;`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -166,25 +166,17 @@ MonoBehaviour:
     - 2
     - 3
     correctAnswer: 2
-  - question: 'Given the following array, which of these options is equal to "Germany"?
+  - question: 'Given the following array, which of these options is equal to ~"Germany"`?
 
 
-      string[]
-      europe = {"UK", "France", "Sweden", "Norway", "Germany"};
-
-
-      A. europe[0]
-
-      B.
-      europe[2]
-
-      C. europe[4]'
+      ~string[]
+      europe = {"UK", "France", "Sweden", "Norway", "Germany"};`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
     hasChoice: 1
     choices:
-    - A
-    - B
-    - C
+    - europe[0]
+    - europe[2]
+    - europe[4]
     correctAnswer: 2

@@ -1371,8 +1371,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8266358081316805326}
-        m_TargetAssemblyTypeName: DialogueSystemBase, Assembly-CSharp
-        m_MethodName: endDialogue
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: SkipDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1031,6 +1031,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b4175d9e61ccc428be8283d9acd68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableSidebar: 0
+  disableTitle: FEATURES DISABLED
+  disableText: 'I hope you forgive the intrusion, but this trial isn''t exactly open-notes.
+
+
+    -Nimue'
   helpCanvas: {fileID: 5916109115951114699}
   articleTitle: {fileID: 5916109115925396668}
   articleText: {fileID: 5916109115608595064}

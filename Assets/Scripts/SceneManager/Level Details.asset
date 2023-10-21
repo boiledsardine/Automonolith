@@ -146,7 +146,7 @@ MonoBehaviour:
   - levelName: Nimue's Trial II
     levelDesc: 'You have done well to make it this far. But unless you prove to me
       your grasp of looping and decision-making, I cannot allow your further passage.
-      So prove yourself to me, Arthur of Calot.
+      So prove yourself to me, Arthur of Arcanix.
 
 
       -Nimue'
@@ -178,9 +178,9 @@ MonoBehaviour:
     isTutorial: 0
     isQuiz: 0
   - levelName: Nimue's Trial III
-    levelDesc: 'Your efforts are impressive, Arthur of Calot. It has been ages since
-      one has reached these chambers. Come, then, and I shall appraise your understanding
-      of arrays.
+    levelDesc: 'Your efforts are impressive, Arthur of Arcanix. It has been ages
+      since one has reached these chambers. Come, then, and I shall appraise your
+      understanding of arrays.
 
 
       -Nimue'

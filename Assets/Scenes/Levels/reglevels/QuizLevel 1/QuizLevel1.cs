@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class QuizLevel1 : MonoBehaviour{
@@ -13,6 +14,9 @@ public class QuizLevel1 : MonoBehaviour{
     int scoreThreshold1, scoreThreshold2, scoreThreshold3;
 
     float dialogueInvokeTime = 0.5f;
+    bool hintIsOpen = false;
+    public Button hintButton;
+    public QuizManager quizMgr;
 
     //triggers dialogue
     void Awake(){
@@ -28,39 +32,40 @@ public class QuizLevel1 : MonoBehaviour{
     }
 
     void Start(){
+        hintButton.onClick.AddListener(HintOpen);
+
         StartCoroutine(convoManager.StartDialogue(0, dialogueInvokeTime));
         levelIndex = LevelSaveLoad.Instance.indexHolder;
     }
 
-    public int timesPressed = 0;
-    //count times pressed
-    public void NextPressed(){
-        timesPressed++;
-        switch(state){
-            case QuizState.Start:
-                if(timesPressed == convoManager.convos[0].LineCount()){
-                    //start quiz proper
-                    Invoke("StartQuiz", 0.5f);
-                    timesPressed = 0;
-                }
+    int dialogueCounter = 0;
+    bool quizStarted = false;
+    public void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        
+        dialogueCounter++;
+        switch(dialogueCounter){
+            case 1:
+                if(quizStarted) return;
+                quizStarted = true;
+                Invoke("StartQuiz", 0.5f);
             break;
-            case QuizState.Pass:
-                if(timesPressed == convoManager.convos[1].LineCount()){
-                    timesPressed = 0;
-                    LevelComplete();
-                }
+            case 3:
+                LevelComplete();
             break;
-            case QuizState.Fail:
-                if(timesPressed == convoManager.convos[2].LineCount()){
-                    timesPressed = 0;
-                    LevelComplete();
-                }
-            break;
+            default: break;
         }
     }
 
+    public void HintOpen(){
+        hintIsOpen = true;
+    }
+
     void StartQuiz(){
-        QuizManager.Instance.startQuiz(quiz, quiz.items);
+        quizMgr.startQuiz(quiz, quiz.items);
     }
 
     public void QuizEnd(){

@@ -26,6 +26,7 @@ public class EditorToggle : MonoBehaviour{
         }
 
         panelAnimator.SetBool("isOpen", false);
+        controlAnimator.SetBool("isOpen", false);
         Invoke("disableEditor", 0.25f);
     }
 

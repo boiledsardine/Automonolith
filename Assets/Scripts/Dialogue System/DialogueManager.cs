@@ -32,6 +32,8 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     public override void startDialogue(Conversation convoToLoad){
+        dialogueBlocks.Clear();
+
         foreach(Dialogue d in convoToLoad.dialogueBlocks){
             dialogueBlocks.Enqueue(d);
         }
@@ -101,6 +103,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     public void SkipDialogue(){
+        dialogueBlocks.Clear();
         dialogueLines.Clear();
         endDialogue();
     }

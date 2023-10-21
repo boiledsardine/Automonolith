@@ -33,11 +33,11 @@ MonoBehaviour:
   - question: 'What steps shall G4wain take if given the following instructions?
 
 
-      Bot.moveUp();
+      ~Bot.moveUp();`
 
-      Bot.moveDown();
+      ~Bot.moveDown();`
 
-      Bot.moveLeft();'
+      ~Bot.moveLeft();`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   - question: 'What is the name of the method called in the code segment below?
 
 
-      Bot.interact();'
+      ~Bot.interact();`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -63,12 +63,12 @@ MonoBehaviour:
   - question: 'Which of the following methods is called correctly?
 
 
-      A.) Bot.moveUp(;
+      A.) ~Bot.moveUp(;`
 
       B.)
-      BotmoveLeft[;
+      ~BotmoveLeft[;`
 
-      C.) Bot.moveRight();'
+      C.) ~Bot.moveRight();`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
       segment below?
 
 
-      Console.WriteLine(30);'
+      ~Console.WriteLine(30);`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -95,8 +95,8 @@ MonoBehaviour:
   - question: 'What would be the best data type for the following value:
 
 
-      "Hello
-      world!"'
+      ~"Hello
+      world!"`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -109,23 +109,23 @@ MonoBehaviour:
   - question: 'What would be the best data type for the following value:
 
 
-      100'
+      ~100`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
     hasChoice: 1
     choices:
     - char
-    - double
+    - bool
     - int
     correctAnswer: 2
   - question: 'What would be the final value of num?
 
 
-      int num = 10;
+      ~int num = 10;`
 
-      num
-      *= 2;'
+      ~num
+      *= 2;`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -138,14 +138,14 @@ MonoBehaviour:
   - question: 'What would be the value of num?
 
 
-      int x = 10;
+      ~int x = 10;`
 
-      int y =
-      4;
+      ~int
+      y = 4;`
 
-      int z = 2;
+      ~int z = 2;`
 
-      int num = x * (y / z);'
+      ~int num = x * (y / z);`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}
@@ -158,12 +158,12 @@ MonoBehaviour:
   - question: 'Which of these variables is declared correctly?
 
 
-      int my_Num
-      = "100";
+      ~int my_Num
+      = "100";`
 
-      string 99stringVar = "text";
+      ~string 99stringVar = "text";`
 
-      int num2 = 5;'
+      ~int num2 = 5;`'
     npcName: Nimue
     showNpc: 0
     npcSprite: {fileID: 0}

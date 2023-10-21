@@ -59,8 +59,6 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     public abstract void nextLine();
 
     public void endDialogue(){
-        dialogueLines.Clear();
-        quizLines.Clear();
         currentSentence = null;
 
         dialogueBoxAnimator.SetBool("isOpen", false);
@@ -73,6 +71,9 @@ public abstract class DialogueSystemBase : MonoBehaviour{
 
         TutorialBase tutBase = FindObjectOfType<TutorialBase>();
         tutBase?.BroadcastMessage("DialogueEnd");
+
+        QuizLevel1 quizLvl = FindObjectOfType<QuizLevel1>();
+        quizLvl?.BroadcastMessage("DialogueEnd");
 
         Invoke("disableCanvas", 0.25f);
     }

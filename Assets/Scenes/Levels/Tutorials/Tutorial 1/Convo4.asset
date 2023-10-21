@@ -33,6 +33,6 @@ MonoBehaviour:
       you type into the editor so you have to think several steps ahead to guide
       G4wain's steps correctly.
     - Your goal is to get G4wain to the button directly below the exit totem (it's
-      that floating slab thing with the green arrow on it).
-    - For now, I've typed in what you need to succeed. Just hit the green play button
-      and then we'll get to talking about how to actually command G4wain.
+      that floating slab thing with the green arrow on it). For now, I've typed in
+      what you need to succeed. Just hit the green play button and then we'll get
+      to talking about how to actually command G4wain.

@@ -820,7 +820,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2807705840957109683}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.4999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1655,6 +1655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1147bc302a25448b3e1bf717298f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAlmanac: 0
+  disableTitle: FEATURES DISABLED
+  disableText: 'I hope you forgive the intrusion, but this trial isn''t exactly open-notes.
+
+
+    -Nimue'
   titleText: {fileID: 6185776853500940243}
   mainText: {fileID: 6185776854354610455}
   exampleText: {fileID: 4187216857332953519}
@@ -1670,6 +1676,7 @@ MonoBehaviour:
   buttonContainer: {fileID: 3709590684713681388}
   almanacButton: {fileID: 8023480440519964812, guid: e4ffb2dde0f66684c8f9c712086cc25b, type: 3}
   theme: {fileID: 11400000, guid: 13ee408152dec984d905ce22f85324e7, type: 2}
+  scrollView: {fileID: 0}
 --- !u!1 &6185776853997050464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,7 +1978,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6185776853899472881}
   m_HandleRect: {fileID: 6185776853899472880}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2012,7 +2019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0008239746, y: 109.36922}
+  m_AnchoredPosition: {x: -0.0008239746, y: 109.36921}
   m_SizeDelta: {x: 483, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6185776854354610452

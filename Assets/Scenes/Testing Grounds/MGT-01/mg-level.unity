@@ -622,6 +622,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: MinigameManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8266358081316805326, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
+      propertyPath: allowFullSkipping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266358081316805326, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
+      propertyPath: allowLineSkipping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
 --- !u!224 &280266049 stripped
@@ -1287,11 +1295,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 395472441473070556, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 395472441473070556, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 395472441473070556, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1307,15 +1315,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 395472441473070556, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -63.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 395472441524971292, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 395472441524971292, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 395472441524971292, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1331,7 +1339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 395472441524971292, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -36.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 395472441908795531, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchorMax.y

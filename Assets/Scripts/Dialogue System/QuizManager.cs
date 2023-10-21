@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class QuizManager : DialogueSystemBase{
+public class QuizManager : DialogueSystemBase, IPointerClickHandler{
     public static QuizManager Instance;
 
     [SerializeField] private Text[] choiceText;
@@ -13,7 +14,8 @@ public class QuizManager : DialogueSystemBase{
     private bool isRightOrWrong = false;
     public int quizScore = 0;
 
-    public GameObject quizManager;
+    public QuizLevel1 quizManager;
+    public Button nextButton;
 
     new void Awake(){
         if(Instance == null){
@@ -50,18 +52,6 @@ public class QuizManager : DialogueSystemBase{
 
         loadQuizItem();
     }
-
-    
-    //invoked upon pressing next button
-    public void checkIfChoice(){
-        if(currentItem.hasChoice && !isRightOrWrong){
-            Debug.Log("Answer the question to proceed");
-            return;
-        }
-
-        isRightOrWrong = false;
-        loadQuizItem();
-    }
     
     public void loadQuizItem(){
         //check if there's another block in the queue
@@ -90,7 +80,7 @@ public class QuizManager : DialogueSystemBase{
             buttonAnimators[2].SetBool("isOpen", false);
         }
 
-        dialogueText.text = currentItem.question;
+        dialogueText.text = CodeColorizer.Colorize(currentItem.question, false, theme);
     }
 
     public void loadCorrect(){
@@ -146,6 +136,16 @@ public class QuizManager : DialogueSystemBase{
     }
 
     public override void nextLine() {
-        //do nothing
+        if(currentItem.hasChoice && !isRightOrWrong){
+            Debug.Log("Answer the question to proceed");
+            return;
+        }
+
+        isRightOrWrong = false;
+        loadQuizItem();
+    }
+
+    public void OnPointerClick(PointerEventData eventData){
+        nextButton.onClick.Invoke();
     }
 }

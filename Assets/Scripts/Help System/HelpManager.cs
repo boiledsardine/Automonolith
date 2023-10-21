@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HelpManager : MonoBehaviour{
+    public bool disableSidebar;
+    public string disableTitle;
+    [TextArea(5,10)]
+    public string disableText;
     public Canvas helpCanvas;
     public TMPro.TMP_Text articleTitle, articleText, articleExample, pageNumbers;
     public Button leftButton, rightButton;
@@ -17,8 +21,16 @@ public class HelpManager : MonoBehaviour{
 
     public void openHelp(){
         helpCanvas.gameObject.SetActive(true);
-        loadArticle(lastLoadedIndex);
         helpPanelAnim.SetBool("isOpen", true);
+
+        if(disableSidebar){
+            articleTitle.text = disableTitle;
+            articleText.text = disableText;
+            articleExample.text = "";
+            return;
+        }
+
+        loadArticle(lastLoadedIndex);
     }
 
     public void closeHelp(){

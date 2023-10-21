@@ -5550,6 +5550,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3676556660082618095, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+      propertyPath: allowFullSkipping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676556660082618095, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+      propertyPath: allowLineSkipping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4756110417284243471, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: methodsPanelSet
       value: 

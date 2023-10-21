@@ -7,6 +7,10 @@ using TMPro;
 using System.IO;
 
 public class AlmanacManager : MonoBehaviour{
+    public bool disableAlmanac;
+    public string disableTitle;
+    [TextArea(5,10)]
+    public string disableText;
     public TMP_Text titleText, mainText, exampleText;
     public AlmanacGroup[] groups;
     List<AlmanacEntry> entries;
@@ -19,6 +23,13 @@ public class AlmanacManager : MonoBehaviour{
     public ScrollRect scrollView;
 
     void Start(){
+        if(disableAlmanac){
+            titleText.text = disableTitle;
+            mainText.text = disableText;
+            exampleText.text = "";
+            return;
+        }
+
         string content = File.ReadAllText(Application.dataPath + "/Saves/SaveLevels.json");
 
         if(string.IsNullOrEmpty(content) || content == "{}"){

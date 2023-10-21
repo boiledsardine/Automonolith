@@ -26,6 +26,10 @@ MonoBehaviour:
     - The question mark button is the Help button. Clicking it opens an encyclopedia
       - written by moi, you're welcome. Reference it if you need help with writing
       code.
-    - In case you're wondering, that last button is the menu button. But I suppose
-      you didn't need me to tell you that. Anyway, click the Hints and Help button
-      once each and we'll get on to the next topic.
+    - 'In case you''re wondering, that last button is the menu button. But I suppose
+      you didn''t need me to tell you that. '
+    - I've also opened time controls. In the lower right, you'll see three buttons.
+      Each of those adjusts the speed of the game by 1x, 2x, and 3x respectively.
+      You don't have to click them to finish this objective, though.
+    - Anyway, click the Hints and Help button once each and we'll get on to the next
+      topic.
