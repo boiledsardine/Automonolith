@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: QuizConvo Pass 03
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 0
+    npcSprite: {fileID: 0}
+    lines:
+    - 'You have proven yourself a worthy successor to the knowledge of the Ancients.
+      I shall grant you passage into the Grail. '
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - You've done it, Arthur. A cure for your ills and a longer life ahead of you.
+      Congratulations.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Though if you ask me, immortality's overrated. Consider retiring after a few
+      centuries, ey?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Actually, there's one thing I'd like to ask you, Nimue.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - What is it?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - With your permission, I'd like to establish a permanent research station in
+      the Monolith. There is plenty the Imperial Academy can learn from the Akashic
+      relics stored here and it would be a waste to let them gather dust, away from
+      the world.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - In addition, when the time comes that we relearn the secrets of the Akasha,
+      we can reactivate the Monolith's dormant systems and take it back to the state
+      it was when it was first built.
+    - In studying the artifacts here and the guidance Morgan has given me, I've formulated
+      a working plan for it moving forward.
+    - It must also be tiring to be the Overseer of a monument to a dead civilization.
+      With this, we can think about tourism in the future and have this place as
+      lively as it was in the past.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - I- this-
+    - I have no complaints. You may proceed.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Arthur, since when have you been planning this?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - A while now, actually. But after hearing more about the history of this place
+      from you and Nimue, I figured it might be better in the long run to study this
+      place a bit longer.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - '*Arthur leans in to whisper* And with this, you can think about making amends
+      with Nimue, no?'
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - You sly dog, was that your plan this whole time?
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Not necessarily. Though why not take advantage of the opportunity?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - You... *sigh*
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - If this works out, I owe you big time.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - I'll put it on your tab.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Hey, Nimue?
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - What is it?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - I know this isn't worth much, but for all it's worth, I'm sorry for leaving
+      you behind all these years.
+    - I seem carefree about it, but I've actually regretted it for centuries.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - Forgiving you for all these years of loneliness isn't something I can do easily,
+      but if your friend's plan works, I'd be willing to give you a second chance.
+    - So if you wish to earn my forgiveness, you'd best do what you can to assist
+      Arthur's efforts in revitalizing the Monolith.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Yeah, of course.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - The first step to forgiveness is giving second chances, I suppose.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
+    lines:
+    - '*Arthur coughs*'
+    - If you'll excuse me, I'm going to take some of that Azoth now.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Yeah, and after that, let's get to your making your plans a reality. After
+      all, we have all the time in the world now.
+  - npcName: 
+    showNpc: 1
+    npcPos: 67
+    npcSprite: {fileID: 0}
+    lines:
+    - '[THE END]'

@@ -13,9 +13,92 @@ MonoBehaviour:
   m_Name: StoryTest 10
   m_EditorClassIdentifier: 
   dialogueBlocks:
-  - npcName: Test
-    showNpc: 0
-    npcPos: 0
-    npcSprite: {fileID: 0}
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
-    - '[L10 Story dialogue test]'
+    - Good news, Arthur. We're getting close. A couple of floors left and you'll
+      be swimming in Azoth in no time flat.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Ah, don't actually swim in the Azoth, the undiluted stuff is dangerous.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
+    lines:
+    - Reassuring. But it will work?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - 100% satisfaction guaranteed or you get your money back. Then we can get out
+      of here and you can go publish your findings on this place. Become the scholar
+      of your dreams.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 069fdd26e58185a498fa4bb912a64582, type: 3}
+    lines:
+    - That's good to know, then.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - But, one more thing...
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - That look on your face tells me this is going to be about Nimue and I.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Are you sure you're fine with leaving things between you two as it is? I mean,
+      you mentioned you used to be friends. Can't you fix your relationship?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Art, I appreciate the concern, but it's already been too long since I left
+      that burning bridge behind me. I doubt she's willing to forgive me.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Still, can't you just try?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Awfully pushy, aren't you? Even if I wanted to, forgiveness takes two people.
+      Given how rigid Nimue is, she's more likely to want me out of here ASAP than
+      give me the time of day.
+    - Though it's not like I don't want to make amends. It's just... it's way too
+      late for that.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Anyway, let's get back to the exploration. The longer we wait, the worse your
+      condition gets, after all, and as good as the stuff is, Azoth can't bring back
+      the dead.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Killing me already? Sharp tongue and dark sense of humor, as always.

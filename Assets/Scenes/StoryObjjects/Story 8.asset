@@ -64,8 +64,8 @@ MonoBehaviour:
     npcPos: 76
     npcSprite: {fileID: 21300000, guid: ba45e156a33bd394abff0b72c2d39e7a, type: 3}
     lines:
-    - You... were around when the Monolith was built? That must have been millennia
-      ago!
+    - You... were around when the Monolith was built? That was after the War of Enclaves...
+      That was centuries ago!
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
@@ -77,6 +77,7 @@ MonoBehaviour:
     npcPos: 76
     npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
+    - ...
     - How o-
   - npcName: Morgan
     showNpc: 1
@@ -96,7 +97,7 @@ MonoBehaviour:
     npcPos: 76
     npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
-    - 'At least answer me this: is it true the Akasha had the means to cure my condition? '
+    - 'At least answer me this: was Azoth real? And could it really help me?'
   - npcName: Morgan
     showNpc: 1
     npcPos: 82

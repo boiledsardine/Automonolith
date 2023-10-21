@@ -7,9 +7,12 @@ using UnityEngine.UI;
 public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     public static DialogueManager Instance;
     private Queue<Dialogue> dialogueBlocks;
-    public Button nextButton;
-    public bool allowSkipping;
-    string currentSentence;
+    public Button nextButton, skipButton;
+    public bool allowLineSkipping;
+    public bool allowFullSkipping;
+    public bool nextLineTimer;
+    bool currentSentenceDone = false;
+    [SerializeField] TMPro.TMP_Text nextLineCountdown;
 
     new void Awake(){
         base.Awake();
@@ -22,6 +25,10 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
         }
 
         dialogueBlocks = new Queue<Dialogue>();
+    }
+
+    void Start(){
+        skipButton.gameObject.SetActive(allowFullSkipping);
     }
 
     public override void startDialogue(Conversation convoToLoad){
@@ -45,10 +52,16 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
             dialogueText.text += letter;
             yield return null;
         }
-        nextButton.gameObject.SetActive(true);
+        StartCoroutine(ActivateNextLine());
     }
 
+    float lastPressTime = 0;
     public override void nextLine(){
+        //makes it so you can't spamclick nextLine easily
+        float pressTime = Time.fixedTime;
+        if(Mathf.Abs(pressTime - lastPressTime) < 0.25f) return;
+
+        lastPressTime = Time.fixedTime;
         if(dialogueLines.Count == 0){
             //check if there's another block in the queue
             //if yes, end dialogue
@@ -64,6 +77,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
 
         StopAllCoroutines();
         currentSentence = dialogueLines.Dequeue();
+        currentSentenceDone = false;
         StartCoroutine(typeSentence(currentSentence));
     }
 
@@ -83,16 +97,44 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     void ForceDialogueComplete(){
         StopAllCoroutines();
         dialogueText.text = CodeColorizer.Colorize(currentSentence, false, theme);
-        nextButton.gameObject.SetActive(true);
+        StartCoroutine(ActivateNextLine());
+    }
+
+    public void SkipDialogue(){
+        dialogueLines.Clear();
+        endDialogue();
+    }
+
+    //only here because i'm evil and want to keep the player *gasp* READING
+    //sets a countdown after each dialogue line which prevents the player from going forward
+    IEnumerator ActivateNextLine(){
+        currentSentenceDone = true;
+        if(nextLineTimer){
+            nextButton.gameObject.SetActive(true);
+            nextButton.interactable = false;
+            nextLineCountdown.transform.gameObject.SetActive(true);
+
+            float countdown = 4;
+            while(countdown > 1){
+                countdown -= Time.fixedDeltaTime;
+                nextLineCountdown.text = Mathf.FloorToInt(countdown).ToString();
+                yield return null;
+            }
+
+            nextButton.interactable = true;
+            nextLineCountdown.transform.gameObject.SetActive(false);
+        } else {
+            nextButton.gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData){
-        if(!allowSkipping) return;
-
-        if(nextButton.gameObject.activeSelf){
+        if(currentSentenceDone && nextButton.interactable){
             nextButton.onClick.Invoke();
         } else {
-            ForceDialogueComplete();
+            if(allowLineSkipping){
+                ForceDialogueComplete();
+            }
         }
     }
 }

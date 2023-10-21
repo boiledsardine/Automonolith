@@ -26,14 +26,20 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 1
     isQuiz: 0
-  - levelName: Level 1
-    levelDesc: Use methods to reach the exit by moving G4wain and pushing the pillar
-      out of the way.
+  - levelName: Between a Rock...
+    levelDesc: 'A pillar''s blocking the way to the exit. Push it around to clear
+      a path, ey?
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
-  - levelName: Level 2
-    levelDesc: Use methods to reach the exit by moving G4wain and dragging the pillar
-      to the button.
+  - levelName: Minimum Weight Requirement
+    levelDesc: 'Looks like the gate here''s sealed with a button. You need to use
+      something to weigh it down.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
   - levelName: Integer Invocation
@@ -54,14 +60,21 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 1
     isQuiz: 0
-  - levelName: Level 3
-    levelDesc: Store values in variables and use them to direct G4wain's movements
-      and open password-locked vox gates.
+  - levelName: No Constants Here
+    levelDesc: 'The panels on this floor are constantly shifting. Use variables to
+      capture their values and navigate the floor.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
-  - levelName: Level 4
-    levelDesc: Store values in variables, perform a mathematical operation on them
-      to open the vox gate, and use the moveTo() method to move to a specific tile.
+  - levelName: Some Addition Required
+    levelDesc: 'The Vox Gate here seems to be locked by a password you can get only
+      by adding the green panels on this floor. What''s more, the exit point can
+      be activated only by a random button. Use variables to figure things out.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
   - levelName: Nimue's Trial I
@@ -89,14 +102,20 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 1
     isQuiz: 0
-  - levelName: Level 5
-    levelDesc: Answer the questions of the watchers by performing operations with
-      comparison operators and getting boolean values.
+  - levelName: The Watchers
+    levelDesc: 'The Watchers here want to test you. Perform operations with comparison
+      operators and tell them the resulting boolean.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
-  - levelName: Level 6
-    levelDesc: Find the button that activates the teleporters by using if-else statements
-      to direct G4wain's movements.
+  - levelName: Branching Paths
+    levelDesc: 'Find the button that activates the teleporters by using if-else statements
+      to direct G4wain''s movements.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
   - levelName: Rite of Repetition
@@ -108,14 +127,20 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 1
     isQuiz: 0
-  - levelName: Level 7
-    levelDesc: Use the while loop to repeat a block of code and reach the exit with
-      as few methods written as possible.
+  - levelName: Repeating Signals
+    levelDesc: 'This floor''s got an obvious pattern. Use a while loop to get through
+      it.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
-  - levelName: Level 8
-    levelDesc: Use a finite while loop to activate a dormant item acceptor then reach
-      the exit which it opens up.
+  - levelName: Bring Me...
+    levelDesc: 'There''s an acceptor here. Use a while loop to power it then get
+      out of there once the door opens up.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
   - levelName: Nimue's Trial II
@@ -136,14 +161,20 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 1
     isQuiz: 0
-  - levelName: Level 9
-    levelDesc: Answer the watchers' questions by calling on array elements using
-      array indices.
+  - levelName: The Watchers (again)
+    levelDesc: 'Oh hey, it''s the Watchers again. This time, they want to see how
+      well you handle arrays.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
-  - levelName: Level 10
-    levelDesc: Reach the exit by using the given array to figure out the sequence
-      of buttons needed to activate the locked gate.
+  - levelName: PIN Code Please
+    levelDesc: 'The buttons here have to be activated in sequence to open up the
+      gate at the end. Luckily, Nimue''s giving it to us in the form of an array.
+
+
+      -Morgan'
     isTutorial: 0
     isQuiz: 0
   - levelName: Nimue's Trial III

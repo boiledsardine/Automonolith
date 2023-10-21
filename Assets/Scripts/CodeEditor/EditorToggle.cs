@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EditorToggle : MonoBehaviour{
     public Canvas editorCanvas;
-    public Animator panelAnimator;
+    public Animator panelAnimator, controlAnimator;
     CodeEditor editor;
     public float invokeTime = 0.1f;
 
@@ -27,6 +27,14 @@ public class EditorToggle : MonoBehaviour{
 
         panelAnimator.SetBool("isOpen", false);
         Invoke("disableEditor", 0.25f);
+    }
+
+    public void ToggleControls(){
+        if(!controlAnimator.GetBool("isOpen")){
+            controlAnimator.SetBool("isOpen", true);
+        } else {
+            controlAnimator.SetBool("isOpen", false);
+        }
     }
 
     public void EnableInputs(){

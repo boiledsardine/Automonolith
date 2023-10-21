@@ -1,10 +1,10 @@
 {
     "Items": [
         {
-            "editorContent": "//this is a comment\n//comments are marked with a double slash\n//these aren't processed as instructions\n//they're here so you can read them\n//for now, press the play button\n\nBot.moveRight();\nBot.moveDown();"
+            "editorContent": "//Don't change these\nint num1 = 3;\nint num2 = 2;\nint num3 = 3;\n\n//pass num1 as an argument\nBot.moveUp(num1);\n\n//pass num2 as an argument\nBot.moveRight(num2);\n\n//pass num3 as an argument\nBot.moveDown(num3);"
         },
         {
-            "editorContent": "//Grab the pillar\n//Then move it to the button\n\n//Turn to face the pillar\n//Then hold it\n//Then move up twice\n//Then let it go\n//Use \"Bot.drop();\" to release\nBot.turnRight();\nBot.hold();\nBot.moveUp();\nBot.moveUp();\nBot.drop();\nBot.moveUp();\nBot.moveUp();\n"
+            "editorContent": "//Step on the button\n\n//try typing these without the double slash:\n//Bot.moveUp();\n//Bot.moveUp();"
         },
         {
             "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft();\nBot.moveLeft();\nBot.moveDown();\nBot.moveDown();\nBot.moveRight();\nBot.hold();\nBot.moveRight();\nBot.moveRight();\nBot.moveRight();\nBot.drop();\nBot.moveDown();\n"
@@ -19,7 +19,7 @@
             "editorContent": "//use a string!\n//strings are words surrounded by \"\"\n//a gate's password floats above it\n//pay attention to capitalization\n\nBot.say(\"Hello World\");\nBot.moveRight();\nBot.say(\"Open Sesame\");\nBot.moveRight();"
         },
         {
-            "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//Bot.moveTo(\"B2\");\n\n//move the pillar up by the value in the variable\n//then push it to the right button\nBot.moveRight();\nBot.hold();\nBot.moveUp(num);\nBot.moveRight();\nBot.drop();\n\n//move to the tile of the blue panel (D0)\n//and get the string variable from the blue panel\nBot.moveTo(\"D0\");\nstring str = Bot.read();\n\n//move to in front of the vox gate (D3)\n//and say the value of your string variable\nBot.moveTo(\"D3\");\nBot.say(str);\nBot.moveUp(); "
+            "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//Bot.moveTo(\"B2\");\n\n//move the pillar up by the value in the variable\n//then push it to the right button\nBot.moveRight();\nBot.hold();\nBot.moveUp(num);\nBot.moveRight();\nBot.drop();\n\n//move to the tile of the blue panel (D0)\n//and get the string variable from the blue panel\nBot.moveTo(\"D0\");\nstring str = Bot.read();\n\n//move to in front of the vox gate (D3)\n//and say the value of your string variable\nBot.moveTo(\"D3\");\nBot.say(str);\nBot.moveUp(); "
         },
         {
             "editorContent": "//get the string within the blue panel\nstring strVar = Bot.read();\n\n//get the values of the green panels and add them\n//then speak it to the Vox gate\nBot.moveTo(\"B0\");\nint num1 = Bot.readInt();\nBot.moveTo(\"B2\");\nnum1 += Bot.readInt();\nBot.moveTo(\"B1\");\nBot.say(num1);\n\n//use the string from the blue panel to move to a tile coordinate\n//and press the button on that tile\nBot.moveTo(strVar);\nBot.interact();"

@@ -101,6 +101,31 @@ public class ArrayTutorial : TutorialBase, IActivate{
         latches = 0;
     }
 
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartLooping();
+            break;
+            case 4:
+                StartChangeIndex();
+            break;
+            case 6:
+                StartNewDeclaration();
+            break;
+            case 8: 
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -143,6 +168,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    */
 
     void StartIntro(){
         StartStage(0);

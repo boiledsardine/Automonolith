@@ -56,6 +56,28 @@ public class StringsTutorial : TutorialBase, IActivate{
         }
     }
 
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartDeclare();
+            break;
+            case 4:
+                StartMoveTo();
+            break;
+            case 6:
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -92,6 +114,7 @@ public class StringsTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    */
 
     void StartString(){
         StartStage(0);

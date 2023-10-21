@@ -17,6 +17,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     [SerializeField] protected Image leftSprite;
     [SerializeField] protected Image rightSprite;
     [SerializeField] protected ColorizerTheme theme;
+    protected string currentSentence;
 
     public void Awake(){
         dialogueLines = new Queue<string>();
@@ -54,23 +55,25 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         }
     }*/
 
-    string ListToString(List<char> cList){
-        string s = "";
-        foreach(char c in cList){
-            s += c;
-        }
-        return s;
-    }
-
     //navigates to the next line on the list
     public abstract void nextLine();
 
     public void endDialogue(){
+        dialogueLines.Clear();
+        quizLines.Clear();
+        currentSentence = null;
+
         dialogueBoxAnimator.SetBool("isOpen", false);
         panelAnimator.SetBool("isOpen", false);
         leftSprite.GetComponent<Image>().enabled = false;
         rightSprite.GetComponent<Image>().enabled = false;
-        BroadcastMessage("DialogueEnd");
+       
+        StoryManager stryMgr = FindObjectOfType<StoryManager>();
+        stryMgr?.BroadcastMessage("DialogueEnd");
+
+        TutorialBase tutBase = FindObjectOfType<TutorialBase>();
+        tutBase?.BroadcastMessage("DialogueEnd");
+
         Invoke("disableCanvas", 0.25f);
     }
 

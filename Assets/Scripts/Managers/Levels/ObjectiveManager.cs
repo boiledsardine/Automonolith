@@ -97,30 +97,36 @@ public class ObjectiveManager : MonoBehaviour {
         }
     }
     
-    public void LevelComplete(){
-        var maptacks = GameObject.Find("Maptacks");
-        if(maptacks != null){
-            Destroy(maptacks);
-        }
+    public void LevelComplete(){   
         if(objScript == null && PrimaryObjective()){
-            //save editor state
-            EditorSaveLoad.Instance.SaveEditorState();
-            //save level
-            SaveLevel(PrimaryObjective(), SecondObjective1(), SecondObjective2());
-            //open postlevel
-            PostlevelCanvas.Instance.OpenCanvas();
-            PostlevelCanvas.Instance.SetStars(PrimaryObjective(), SecondObjective1(), SecondObjective2());
+            Postlevel(PrimaryObjective(), SecondObjective1(), SecondObjective2());
         } else if(objScript != null && objScript.IsComplete()){
-            //save editor state
-            EditorSaveLoad.Instance.SaveEditorState();
-            //save level
-            SaveLevel(objScript.Objective1(), objScript.Objective2(), objScript.Objective3());
-            //open postlevel
-            PostlevelCanvas.Instance.OpenCanvas();
-            PostlevelCanvas.Instance.SetStars(objScript.Objective1(), objScript.Objective2(), objScript.Objective3());
+            Postlevel(objScript.Objective1(), objScript.Objective2(), objScript.Objective3());
         } else {
             DialogueManager.Instance.startDialogue(failDialogue);
         }
+    }
+
+    void Postlevel(bool obj1, bool obj2, bool obj3){
+        var maptacks = GameObject.Find("Maptacks");
+
+        //destroy maptacks
+        if(maptacks != null){
+            Destroy(maptacks);
+        }
+        
+        //save editor state
+        EditorSaveLoad.Instance.SaveEditorState();
+        //save level
+        SaveLevel(obj1, obj2, obj3);
+        
+        //open postlevel
+        Time.timeScale = 1;
+        var postlevelCanvas = FindObjectOfType<PostlevelCanvas>(true);
+        postlevelCanvas.gameObject.SetActive(true);
+
+        PostlevelCanvas.Instance.OpenCanvas();
+        PostlevelCanvas.Instance.SetStars(obj1, obj2, obj3);
     }
 
     public void SaveLevel(bool goal1, bool goal2, bool goal3){

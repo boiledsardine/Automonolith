@@ -21,5 +21,6 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerClick(PointerEventData eventData){
         var text = GetComponent<TMPro.TMP_Text>().text;
         CodeEditor.Instance.AddLine("Bot." + text + ";");
+        CodeEditor.Instance.FocusCaret(true);
     }
 }

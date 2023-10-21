@@ -82,6 +82,8 @@ public class QuizLevel1 : MonoBehaviour{
 
         LevelSaveLoad.Instance.EndLevelSave(levelIndex, checkOne, checkTwo, checkThree, openNext);
 
+        var postlevelCanvas = FindObjectOfType<PostlevelCanvas>(true);
+        postlevelCanvas.gameObject.SetActive(true);
         PostlevelCanvas.Instance.OpenCanvas();
         PostlevelCanvas.Instance.SetStars(checkOne, checkTwo, checkThree);
     }

@@ -13,9 +13,70 @@ MonoBehaviour:
   m_Name: StoryTest 9
   m_EditorClassIdentifier: 
   dialogueBlocks:
-  - npcName: Test
-    showNpc: 0
-    npcPos: 0
-    npcSprite: {fileID: 0}
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
     lines:
-    - '[L9 Story dialogue test]'
+    - Back then, with Nimue... your exchange sounded like... animosity.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Nimue and I used to get along. I was around when she was first awakened, after
+      all. But then things changed when-
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - When you abandoned your duties.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 82b2f07614610e644bf30c0f678b352c, type: 3}
+    lines:
+    - Yes. Used to be that I was the caretaker of the Monolith, entertaining guests
+      and responsible for keeping all the systems running and in check.
+    - I used to like the role. But then centuries passed. The Akashic civilization
+      collapsed. The Monolith stagnated. Things got boring.
+    - 'With nothing else better to do, I installed Nimue, who used to be my assistant,
+      as the new Overseer of the place then left. '
+    - For centuries more, I wandered... until some punk who needed a familiar caught
+      me in a summoning rite.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - A punk now, am I?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Looked like one when you were younger.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - But that's why Nimue said that. We used to be the best of friends, her and
+      I. And then I left her alone here.
+    - It's fine if she thinks I'm selfish for doing it. But back then, I couldn't
+      stand being trapped in a decaying monument to a dead race.
+    - Anyway, that's my story. You, on the other hand, have more pressing issues
+      at hand.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Like getting the Grail.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Yes. Shall we?

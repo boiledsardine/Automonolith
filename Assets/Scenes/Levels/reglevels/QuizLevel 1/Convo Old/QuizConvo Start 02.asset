@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7eead655cf2c45aed16b4e66d494f, type: 3}
+  m_Name: QuizConvo Start 02
+  m_EditorClassIdentifier: 
+  dialogueBlocks:
+  - npcName: arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - Another fountain room... which means...
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - Arthur of Arcanix, you have returned. More learned than last time, if you have
+      managed to get this far.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Nimue.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - That voice... Spyrys, is that you?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - I go by Morgan now. Rolls off the tongue better.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 871a6206396249d4a9f21d456ef93709, type: 3}
+    lines:
+    - I see. It has been centuries since we last met. Centuries since you abandoned
+      your duties.
+    - Centuries since you left me alone.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - After all this time, you still go straight for the throat, hm? Guess your nature
+      as an artificial existence means you're as rigid as they come.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 78
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - While you seem to have changed a lot, and not necessarily for the better. What
+      are you doing here?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
+    lines:
+    - Assisting my intrepid wizard friend here explore Camelot. He needs the Grail.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: 2882ea8cc62ca6b4f95e171b4e6c2e78, type: 3}
+    lines:
+    - Camelot? The Grail?
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - The name the Akasha had for what you now call the Automonolith and that vault
+      of Azoth I told you about, respectively.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - I see. As it stands, I have little power to kick you out - time has not been
+      kind to my systems. But I could impede your progress regardless.
+    - But... looking back, you, Arthur of Arcanix, once told me you are unfit for
+      exploring this monument personally.
+  - npcName: Arthur
+    showNpc: 1
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Yes. Painful as it is to admit, my condition is deteriorating. But I cannot
+      stop now, not when there's so much left to discover.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Very well. I'll allow you access to the Grail, but you must continue to prove
+      yourself deserving of it through my trials.
+    - And with this, Morgan, we're even.
+  - npcName: Morgan
+    showNpc: 1
+    npcPos: 82
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
+    lines:
+    - Appreciate it.
+  - npcName: Nimue
+    showNpc: 0
+    npcPos: 76
+    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    lines:
+    - Not another word out of you, fairy.
+    - Arthur of Arcanix, now begins your second trial.

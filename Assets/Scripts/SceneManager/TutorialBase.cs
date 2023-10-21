@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeEditorComponents;
+using UnityEngine.UI;
 
 public abstract class TutorialBase : MonoBehaviour{
     protected ConvoManager convoManager;
@@ -21,6 +22,7 @@ public abstract class TutorialBase : MonoBehaviour{
     [SerializeField] protected Color successColor = new Color(100f, 200f, 50f, 255f);
     [SerializeField] protected DialogueTrigger hintButton;
     [SerializeField] protected Conversation[] hints;
+    [SerializeField] protected int dialogueEndCount = 0;
 
     public Vector3[] cameraPos;
     
@@ -30,6 +32,7 @@ public abstract class TutorialBase : MonoBehaviour{
     protected void Awake() {
         convoManager = gameObject.GetComponent<ConvoManager>();
         cameraPivot = GameObject.Find("Camera Pivot");
+        hintButton.gameObject.GetComponent<Button>().onClick.AddListener(HintOpen);
     }
 
     protected void DeactivateAllStages(){        
@@ -38,9 +41,11 @@ public abstract class TutorialBase : MonoBehaviour{
         }
     }
 
-    public abstract void NextLinePressed();
+    //public abstract void NextLinePressed();
+    public abstract void DialogueEnd();
 
     public void HintOpen(){
+        Debug.Log("Hint opened!");
         hintIsOpen = true;
     }
 

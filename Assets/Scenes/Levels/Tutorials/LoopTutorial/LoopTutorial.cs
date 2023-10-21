@@ -6,7 +6,7 @@ public class LoopTutorial : TutorialBase, IActivate{
     public LoopObjectives currentObjective;
     void Start(){
         //Time.timeScale = 3;
-        gameObject.GetComponent<Pathfinder>().enabled = false;
+        FindObjectOfType<Pathfinder>().enabled = false;
         switch(currentObjective){
             case LoopObjectives.Start:
                 StartInfLoop1();
@@ -96,7 +96,37 @@ public class LoopTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            Debug.Log("closed hint");
+            return;
+        }
 
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartInfLoop2();
+            break;
+            case 4:
+                StartFixedLoop();
+            break;
+            case 6:
+                StartAcceptor1();
+            break;
+            case 8:
+                StartAcceptor2();
+            break;
+            case 10:
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -145,6 +175,7 @@ public class LoopTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    */
 
     void StartInfLoop1(){
         StartStage(0);

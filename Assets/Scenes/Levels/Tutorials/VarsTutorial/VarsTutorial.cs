@@ -83,6 +83,34 @@ public class VarsTutorial : TutorialBase, IActivate{
         }
     }
 
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartIntDeclare();
+            break;
+            case 4:
+                StartIntAssign();
+            break;
+            case 6:
+                StartMathOps();
+            break;
+            case 8:
+                StartAssignOps();
+            break;
+            case 10:
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     private int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -132,6 +160,7 @@ public class VarsTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    */
     
     void StartIntCall(){
         StartStage(0);

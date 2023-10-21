@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convos:
-  - {fileID: 11400000, guid: c63458fb6452dfa41bbaab87ad849cd1, type: 2}
-  - {fileID: 11400000, guid: 7fb0bba47a825e740a45b1710087e853, type: 2}
+  - {fileID: 11400000, guid: 6995808318ebf4141a05ee8468900e76, type: 2}
+  - {fileID: 11400000, guid: ff22e477023287d4daab11833a0a77af, type: 2}
   - {fileID: 11400000, guid: 1408820f859ed3946b3790911fab0526, type: 2}
   failConvos: []
   dialogueManager: {fileID: 377779983}

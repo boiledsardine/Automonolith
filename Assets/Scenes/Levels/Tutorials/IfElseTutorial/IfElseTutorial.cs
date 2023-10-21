@@ -135,6 +135,34 @@ public class IfElseTutorial : TutorialBase, IActivate{
         }
     }
 
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartElse();
+            break;
+            case 4:
+                StartPlayElse();
+            break;
+            case 6:
+                StartElseIf();
+            break;
+            case 8:
+                StartPlayElseIf();
+            break;
+            case 10:
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -183,6 +211,7 @@ public class IfElseTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    */
 
     void StartIf(){
         StartStage(0);

@@ -37,7 +37,7 @@ public class LevelSelectManager : MonoBehaviour{
     void Start(){
         var buttonHolders = buttonGroupContainer.GetChildren();
         foreach(GameObject buttonHolder in buttonHolders){
-            buttonArr.Add(buttonHolder.transform.GetChild(0).gameObject.GetComponent<Button>());
+            buttonArr.Add(buttonHolder.transform.GetChild(1).gameObject.GetComponent<Button>());
         }
 
         buttonGroupContainer.GetComponent<ResizeScrollObject>().Resize();
@@ -51,13 +51,13 @@ public class LevelSelectManager : MonoBehaviour{
             if(LevelSaveLoad.Instance.savedLevels[i].isUnlocked){
                 buttonArr[i].interactable = true;
                 buttonArr[i].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
-                buttonArr[i].transform.GetChild(1).GetComponent<Button>().interactable = true;
-                buttonArr[i].transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>().color = Color.white;
+                buttonHolders[i].transform.GetChild(0).GetComponent<Button>().interactable = true;
+                buttonHolders[i].transform.GetChild(0).GetComponentInChildren<TMPro.TMP_Text>().color = Color.white;
             } else {
                 buttonArr[i].interactable = false; 
                 buttonArr[i].transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = disabledColor;
-                buttonArr[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
-                buttonArr[i].transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>().color = disabledColor;
+                buttonHolders[i].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                buttonHolders[i].transform.GetChild(0).GetComponentInChildren<TMPro.TMP_Text>().color = disabledColor;
             }
             if(levelsWithCutscene.Contains(i)){
                 buttonArr[i].gameObject.GetComponent<LevelSelectButton>().hasCutscene = true;
@@ -65,7 +65,7 @@ public class LevelSelectManager : MonoBehaviour{
             var levelButtonText = buttonArr[i].gameObject.transform.GetChild(0).gameObject.GetComponent<TMPro.TMP_Text>();
             levelButtonText.text = levelDetails[i].levelName;
 
-            var decoText = buttonArr[i].transform.GetChild(1).GetComponentInChildren<TMPro.TMP_Text>();
+            var decoText = buttonHolders[i].transform.GetChild(0).GetComponentInChildren<TMPro.TMP_Text>();
             if(levelDetails[i].isTutorial){
                 decoText.text = "Tutorial";
             } else if(levelDetails[i].isQuiz){

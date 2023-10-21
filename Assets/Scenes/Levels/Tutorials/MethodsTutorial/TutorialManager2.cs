@@ -9,12 +9,7 @@ public class TutorialManager2 : TutorialBase, IActivate{
     void Start(){
         switch(currentObjective){
             case Tutorial2Objectives.Start:
-                //sets editor comments
-                SetEditorComments(0);
-
-                objectiveText[0].text = ">Press the button";
-                hintButton.convoToLoad = hints[0];
-                StartCoroutine(convoManager.StartDialogue(0, 0.5f));
+                StartMethods();
             break;
             case Tutorial2Objectives.MethodsPlay:
                 StartMethodsPlay();
@@ -72,7 +67,35 @@ public class TutorialManager2 : TutorialBase, IActivate{
             break;
         }
     }
-    
+
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartMethodsPlay();
+            break;
+            case 4:
+                StartParamsIntro();
+            break;
+            case 6:
+                StartTurnInteract();
+            break;
+            case 8:
+                StartTurnInteract2();
+            break;
+            case 10:
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     [SerializeField] private int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -127,6 +150,18 @@ public class TutorialManager2 : TutorialBase, IActivate{
             break;
         }
     }
+    */
+
+    void StartMethods(){
+        StartStage(0);
+
+        //set enum mode
+        currentObjective = Tutorial2Objectives.MethodsIntro;
+
+        //set objective text
+        objectiveText[0].text = ">Press the button";
+        objectiveText[0].color = defaultColor;
+    }
 
     void StartMethodsPlay(){
         StartStage(1);
@@ -135,7 +170,7 @@ public class TutorialManager2 : TutorialBase, IActivate{
         currentObjective = Tutorial2Objectives.MethodsPlay;
 
         //set objective text
-        objectiveText[0].text = ">Find the real buttons";
+        objectiveText[0].text = ">Press the button";
         objectiveText[0].color = defaultColor;
     }
 
@@ -161,9 +196,11 @@ public class TutorialManager2 : TutorialBase, IActivate{
         currentObjective = Tutorial2Objectives.TurnInteract;
         
         //set objective text
-        objectiveText[0].text = ">Press the button";
+        objectiveText[1].text = ">Press the wall button";
+        objectiveText[1].color = Color.white;
+
+        objectiveText[0].text = ">Press the floor button";
         objectiveText[0].color = Color.white;
-        objectiveText[1].transform.gameObject.SetActive(false);
     }
 
     private void StartTurnInteract2(){
@@ -171,10 +208,13 @@ public class TutorialManager2 : TutorialBase, IActivate{
 
         //set enum mode
         currentObjective = Tutorial2Objectives.MethodsPlay;
-
+        
         //set objective text
-        objectiveText[0].text = ">Press the button";
+        objectiveText[0].text = ">Move pillar to brown button";
         objectiveText[0].color = Color.white;
+
+        objectiveText[1].text = ">Press the button";
+        objectiveText[1].color = Color.white;
     }
 
     /*private void StartFinalStretch(){

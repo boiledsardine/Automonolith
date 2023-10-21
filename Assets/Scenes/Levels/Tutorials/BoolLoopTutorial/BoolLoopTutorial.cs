@@ -51,6 +51,29 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
         }
     }
 
+    public override void DialogueEnd(){
+        if(hintIsOpen){
+            hintIsOpen = false;
+            return;
+        }
+        
+        dialogueEndCount++;
+
+        switch(dialogueEndCount){
+            case 2:
+                StartCompareOps();
+            break;
+            case 4:
+                StartBooleanOps();
+            break;
+            case 6:
+                GameObject.Find("exit-point").GetComponent<IActivate>().activate();
+            break;
+            default: break;
+        }
+    }
+
+    /*
     private int timesPressed = 0;
     public override void NextLinePressed(){
         timesPressed++;
@@ -88,6 +111,7 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
             break;
         }
     }
+    */
 
     void StartTrueFalse(){
         StartStage(0);

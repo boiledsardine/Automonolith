@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using CodeEditorComponents;
 
 public class CodeEditor : MonoBehaviour{
@@ -29,9 +30,15 @@ public class CodeEditor : MonoBehaviour{
     List<KeyCode> registeredKeys = new List<KeyCode>();
     Dictionary<KeyCode, KeyState> keys = new Dictionary<KeyCode, KeyState>();
     public ColorizerTheme theme;
-    public ScrollRect scrollView;
+    public ScrollRect textScroll, methodsScroll;
     bool keyPressed = false;
     public bool takeInputs = false;
+    public GameObject methodsPanelViewport, methodsPanelSet;
+
+    public bool KeyPressed {
+        get { return keyPressed; }
+        set { keyPressed = value; }
+    }
 
     void Awake(){
         if(Instance == null){
@@ -42,6 +49,11 @@ public class CodeEditor : MonoBehaviour{
     }
 
     private void Start(){
+        var panelSet = Instantiate(methodsPanelSet);
+        panelSet.transform.SetParent(methodsPanelViewport.transform);
+        panelSet.transform.localScale = new Vector3(1,1,1);
+        methodsScroll.content = panelSet.GetComponent<RectTransform>();
+
         code = editorMainText.text;
 
         if(string.IsNullOrEmpty(code)){
@@ -73,17 +85,21 @@ public class CodeEditor : MonoBehaviour{
     private void Update(){
         keyPressed = false;
         if(editorMainText.transform.gameObject.activeInHierarchy && takeInputs){
+            EventSystem.current.SetSelectedGameObject(null);
 
             KeyPress();
             SetLineNumbers();
             SetCaret();
 
-            if(keyPressed){
-                scrollView.FocusOnItem(caret.rectTransform);
-            }
+            FocusCaret(keyPressed);
 
             editorMainText.text = Colorize(code);
         }
+    }
+
+    public void FocusCaret(bool go){
+        if(!go) return;
+        textScroll.FocusOnItem(caret.rectTransform);
     }
 
     public void AddLine(string input){
@@ -144,13 +160,19 @@ public class CodeEditor : MonoBehaviour{
 
                     if(charIndex == lineMaxIndex){
                         codeLines[lineIndex] += "\n";
+
+                        //this is a non-breaking space
+                        //kind of a bad fix considering it adds an extra character
+                        //and it kinda screws up backspacing large amounts of empty space
+                        //plus messes up the line numbering when it's removed from an empty line
+                        //codeLines[lineIndex] += "\n\u00A0";
                     } else {
                         string lastLine = currentLine.Substring(0, charIndex);
                         string nextLine = currentLine.Substring(charIndex, lineMaxIndex - charIndex);
                         codeLines.Insert(lineIndex, lastLine);
                         codeLines[lineIndex + 1] = nextLine;
                     }
-                    
+                     
                     charIndex = 0;
                     lineIndex++;
 
@@ -235,7 +257,7 @@ public class CodeEditor : MonoBehaviour{
                 }
 
                 //check for line above
-                if(charIndex == 0 && lineIndex > 0){
+                else if(charIndex == 0 && lineIndex > 0){
                     lineIndex--;
 
                     string[] codeLines = code.Split('\n');
@@ -260,7 +282,7 @@ public class CodeEditor : MonoBehaviour{
                 }
 
                 //check for line below
-                if(charIndex == lineMaxIndex && lineIndex < codeLines.Length - 1){
+                else if(charIndex == lineMaxIndex && lineIndex < codeLines.Length - 1){
                     lineIndex++;
 
                     codeLines = code.Split('\n');
@@ -347,14 +369,24 @@ public class CodeEditor : MonoBehaviour{
         string numbers = "";
         string dividers = "";
 
-        int numLines = code.Split('\n').Length;
-        for(int i = 0; i < numLines; i++){
+        string[] numLines = code.Split('\n');
+        for(int i = 0; i < numLines.Length; i++){
             numbers += (i + 1) + "\n";
             dividers += "|\n";
         }
         
         editorLineNumbers.text = numbers;
         editorLineDividers.text = dividers;
+    }
+
+    private int CountChars(string s, char c){
+        int total = 0;
+        foreach(char x in s.ToCharArray()){
+            if(x == c){
+                total++;
+            }
+        }
+        return total;
     }
 
     private void SetCaret(){
