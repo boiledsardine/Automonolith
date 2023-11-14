@@ -13,6 +13,7 @@ TagManager:
   - Pickup
   - Held Big
   - Save Manager
+  - Pillar
   layers:
   - Default
   - TransparentFX

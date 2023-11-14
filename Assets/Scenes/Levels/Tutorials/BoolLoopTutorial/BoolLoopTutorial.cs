@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeEditorComponents;
 
-public class BoolLoopTutorial : TutorialBase, IActivate{
+public class BoolLoopTutorial : TutorialBase{
     public BoolLoopObjectives currentObjective;
 
     void Start(){
@@ -21,7 +21,14 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
         }
     }
 
-    public void activate(){
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+
         switch(currentObjective){            
             case BoolLoopObjectives.TrueFalse:
                 //check dictionaries
@@ -30,28 +37,32 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = BoolLoopObjectives.AfterTrueFalse;
-                    StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(1, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
             case BoolLoopObjectives.CompareOps:
                 objectiveText[0].color = successColor;
                 currentObjective = BoolLoopObjectives.AfterCompareOps;
-                StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(3, 0));
             break;
             case BoolLoopObjectives.BooleanOps:
                 objectiveText[0].color = successColor;
                 currentObjective = BoolLoopObjectives.AfterBooleanOps;
-                StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(5, 0));
             break;
             default: break;
         }
     }
 
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             return;
@@ -114,13 +125,15 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
     */
 
     void StartTrueFalse(){
+        Debug.Log("Starting TrueFalse");
+
         StartStage(0);
 
         //set enum mode
         currentObjective = BoolLoopObjectives.TrueFalse;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -129,31 +142,31 @@ public class BoolLoopTutorial : TutorialBase, IActivate{
     }
 
     void StartCompareOps(){
+        Debug.Log("Starting CompareOps");
+
         StartStage(1);
 
         //set enum mode
         currentObjective = BoolLoopObjectives.CompareOps;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(false);
     }
 
     void StartBooleanOps(){
+        Debug.Log("Starting BoolOps");
+
         StartStage(2);
 
         //set enum mode
         currentObjective = BoolLoopObjectives.BooleanOps;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
-    }
-
-    public void deactivate(){
-        //do nothing
     }
 
     public enum BoolLoopObjectives{

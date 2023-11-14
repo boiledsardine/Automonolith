@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class L4Objs : ObjectiveBase{
-    public TMPro.TMP_Text primObj, secObj1, secObj2, secObjHeader;
+    public TMPro.TMP_Text primObj, primObj2, secObj1, secObjHeader;
     int intVarCount;
     void Start(){
         intVarCount = Compiler.Instance.intVars.Count;
 
-        primObj.text = ">Reach the exit";
+        primObj.text = ">Reach the coordinate in the blue panel";
+        primObj2.text = ">Add the values of the green panels";
         
         secObjHeader.transform.gameObject.SetActive(true);
         secObj1.transform.gameObject.SetActive(true);
@@ -25,6 +26,12 @@ public class L4Objs : ObjectiveBase{
             primObj.color = successColor;
         } else {
             primObj.color = defaultColor;
+        }
+
+        if(Objective2()){
+            primObj2.color = successColor;
+        } else {
+            primObj2.color = defaultColor;
         }
         
         if(Objective3()){
@@ -44,15 +51,16 @@ public class L4Objs : ObjectiveBase{
     }
 
     public override bool Objective2(){
-        //count statements
-        if(Compiler.Instance.linesCount > 7){
+        //add stuff
+        if(ObjectiveManager.Instance.exitTouched){
+            return true;
+        } else {
             return false;
         }
-        return true;
     }
 
     public override bool Objective3(){
-        if(Compiler.Instance.intVars.Count + intVarCount > 1){
+        if(Compiler.Instance.intVars.Count - intVarCount > 1){
             return false;
         } else {
             return true;

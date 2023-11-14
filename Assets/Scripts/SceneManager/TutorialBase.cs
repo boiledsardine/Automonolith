@@ -4,7 +4,7 @@ using UnityEngine;
 using CodeEditorComponents;
 using UnityEngine.UI;
 
-public abstract class TutorialBase : MonoBehaviour{
+public abstract class TutorialBase : MonoBehaviour, IActivate{
     protected ConvoManager convoManager;
     protected GameObject cameraPivot;
     protected bool hintIsOpen = false;
@@ -24,10 +24,13 @@ public abstract class TutorialBase : MonoBehaviour{
     [SerializeField] protected Conversation[] hints;
     [SerializeField] protected int dialogueEndCount = 0;
 
+    protected bool buttonIsActivated = false;
+
     public Vector3[] cameraPos;
     
     [TextArea(3,10)]
     public string[] comments;
+    public bool hasError = false;
 
     protected void Awake() {
         convoManager = gameObject.GetComponent<ConvoManager>();
@@ -44,10 +47,20 @@ public abstract class TutorialBase : MonoBehaviour{
     //public abstract void NextLinePressed();
     public abstract void DialogueEnd();
 
+    public void activate(){
+        StartCoroutine(ActivateButton());
+    }
+
+    public void deactivate(){
+        //do nothing
+    }
+
     public void HintOpen(){
         Debug.Log("Hint opened!");
         hintIsOpen = true;
     }
+
+    public abstract IEnumerator ActivateButton();
 
     protected void SetEditorComments(int commentIndex){
         defaultText.defaultInput = comments[commentIndex];

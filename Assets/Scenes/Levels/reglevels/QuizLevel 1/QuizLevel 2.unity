@@ -190,7 +190,6 @@ MonoBehaviour:
   state: 0
   hintButton: {fileID: 1706003261740076090}
   quizMgr: {fileID: 9050793182962177072}
-  timesPressed: 0
 --- !u!1 &276910111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,8 +1809,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2176,8 +2175,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2409,6 +2408,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4162099961583547499, guid: 1b482497dd83fb74baabdef24a0494e8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 20.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4162099963592141064, guid: 1b482497dd83fb74baabdef24a0494e8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2496,6 +2499,10 @@ PrefabInstance:
     - target: {fileID: 4162099963592141068, guid: 1b482497dd83fb74baabdef24a0494e8, type: 3}
       propertyPath: m_Name
       value: QuizCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162099963592141068, guid: 1b482497dd83fb74baabdef24a0494e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4162099963592141075, guid: 1b482497dd83fb74baabdef24a0494e8, type: 3}
       propertyPath: quizManager

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeEditorComponents;
 
-public class VarsTutorial : TutorialBase, IActivate{
+public class VarsTutorial : TutorialBase{
     public VarsObjectives currentObjective;
 
     void Start(){
@@ -26,13 +26,20 @@ public class VarsTutorial : TutorialBase, IActivate{
         }
     }
 
-    public void activate(){
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+        
         var ci = Compiler.Instance;
         switch(currentObjective){
             case VarsObjectives.IntCall:
                 objectiveText[0].color = successColor;
                 currentObjective = VarsObjectives.AfterIntCall;
-                StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(1, 0));
             break;
             case VarsObjectives.IntDeclare:
                 //check compiler dictionaries
@@ -40,11 +47,11 @@ public class VarsTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = VarsObjectives.AfterIntDeclare;
-                    StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(3, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
             case VarsObjectives.IntAssign:
@@ -53,17 +60,17 @@ public class VarsTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = VarsObjectives.AfterIntAssign;
-                    StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(5, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(1, 0));
                 }
             break;
             case VarsObjectives.MathOps:
                 objectiveText[0].color = successColor;
                 currentObjective = VarsObjectives.AfterMathOps;
-                StartCoroutine(convoManager.StartDialogue(7, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(7, 0));
             break;
             case VarsObjectives.AssignOps:
                 //check compiler dictionaries
@@ -71,11 +78,11 @@ public class VarsTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = VarsObjectives.AfterAssignOps;
-                    StartCoroutine(convoManager.StartDialogue(9, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(9, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(2, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(2, 0));
                 }
             break;
             default:
@@ -84,6 +91,10 @@ public class VarsTutorial : TutorialBase, IActivate{
     }
 
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             return;
@@ -228,10 +239,6 @@ public class VarsTutorial : TutorialBase, IActivate{
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use only the given variable";
         objectiveText[1].color = defaultColor;
-    }
-
-    public void deactivate(){
-        //nothing
     }
 
     public enum VarsObjectives{

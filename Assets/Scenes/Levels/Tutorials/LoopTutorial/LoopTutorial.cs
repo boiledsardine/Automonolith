@@ -27,7 +27,14 @@ public class LoopTutorial : TutorialBase, IActivate{
     }
 
     int activatePresses = 0;
-    void IActivate.activate(){
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+        
         switch(currentObjective){
             case LoopObjectives.InfLoop1:
                 activatePresses++;
@@ -40,12 +47,12 @@ public class LoopTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterInfLoop1;
-                    StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(1, 0));
                     Compiler.Instance.terminateExecution();
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
             case LoopObjectives.InfLoop2:
@@ -54,12 +61,12 @@ public class LoopTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterInfLoop2;
-                    StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(3, 0));
                     Compiler.Instance.terminateExecution();
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
             case LoopObjectives.FixedLoop:
@@ -73,12 +80,12 @@ public class LoopTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterAcceptor;
-                    StartCoroutine(convoManager.StartDialogue(7, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(7, 0));
                     Compiler.Instance.terminateExecution();
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
             case LoopObjectives.Acceptor2:
@@ -87,17 +94,21 @@ public class LoopTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = LoopObjectives.AfterAcceptor2;
-                    StartCoroutine(convoManager.StartDialogue(9, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(9, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
         }
     }
     
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             Debug.Log("closed hint");
@@ -184,7 +195,7 @@ public class LoopTutorial : TutorialBase, IActivate{
         currentObjective = LoopObjectives.InfLoop1;
 
         //set objective text
-        objectiveText[0].text = ">Press the button repeatedly";
+        objectiveText[0].text = ">Step on the button repeatedly";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -199,7 +210,7 @@ public class LoopTutorial : TutorialBase, IActivate{
         currentObjective = LoopObjectives.InfLoop2;
 
         //set objective text
-        objectiveText[0].text = ">Press the button repeatedly";
+        objectiveText[0].text = ">Step on the button repeatedly";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -246,7 +257,7 @@ public class LoopTutorial : TutorialBase, IActivate{
         currentObjective = LoopObjectives.Acceptor2;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Reach the exit button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class ArrayTutorial : TutorialBase, IActivate{
+public class ArrayTutorial : TutorialBase{
     public Objectives currentObjective;
     void Start(){
         switch(currentObjective){
@@ -23,14 +23,21 @@ public class ArrayTutorial : TutorialBase, IActivate{
     }
 
     int latches = 0;
-    public void activate(){
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+        
         switch(currentObjective){
             case Objectives.IntroIndices:
                 latches++;
                 if(latches == 3){
                     objectiveText[0].color = successColor;
                     currentObjective = Objectives.AfterIntroIndices;
-                    StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(1, 0));
                     Compiler.Instance.terminateExecution();
                     latches = 0;
                 }
@@ -40,7 +47,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
                 if(latches == 5){
                     objectiveText[0].color = successColor;
                     currentObjective = Objectives.AfterLoopingArray;
-                    StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(3, 0));
                     Compiler.Instance.terminateExecution();
                     latches = 0;
                 }
@@ -49,7 +56,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
                 objectiveText[0].color = successColor;
                 objectiveText[1].color = successColor;
                 currentObjective = Objectives.AfterChangeIndex;
-                StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(5, 0));
                 Compiler.Instance.terminateExecution();
                 latches = 0;
             break;
@@ -73,23 +80,23 @@ public class ArrayTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
                     objectiveText[2].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));                    
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));                    
                 } else if(failOne){
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
                     objectiveText[2].color = successColor;
-                    StartCoroutine(convoManager.StartFailDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(1, 0));
                 } else if(failTwo){
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     objectiveText[2].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(2, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(2, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     objectiveText[2].color = successColor;
                     currentObjective = Objectives.AfterNewDeclaration;
-                    StartCoroutine(convoManager.StartDialogue(7, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(7, 0));
                 }
                 Compiler.Instance.terminateExecution();
                 latches = 0;
@@ -102,10 +109,15 @@ public class ArrayTutorial : TutorialBase, IActivate{
     }
 
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             return;
         }
+
         dialogueEndCount++;
 
         switch(dialogueEndCount){
@@ -177,7 +189,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.IntroIndices;
 
         //set objective text
-        objectiveText[0].text = ">Find the real buttons";
+        objectiveText[0].text = ">Step on the correct buttons";
         objectiveText[0].color = defaultColor;
     }
 
@@ -188,7 +200,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.LoopingArray;
 
         //set objective text
-        objectiveText[0].text = ">Find the real buttons";
+        objectiveText[0].text = ">Step on the correct buttons";
         objectiveText[0].color = defaultColor;
     }
 
@@ -199,7 +211,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.ChangeIndex;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -214,7 +226,7 @@ public class ArrayTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.NewDeclaration;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -224,10 +236,6 @@ public class ArrayTutorial : TutorialBase, IActivate{
         objectiveText[2].transform.gameObject.SetActive(true);
         objectiveText[2].text = ">Use only the given array";
         objectiveText[2].color = defaultColor;
-    }
-
-    public void deactivate(){
-        //do nothing
     }
 
     public enum Objectives{

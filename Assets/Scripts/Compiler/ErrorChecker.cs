@@ -13,7 +13,14 @@ public class ErrorChecker : MonoBehaviour{
     //do this: errorConvo.dialogueBlocks[0].lines[0] = "whatever here";
 
     public void writeError(){
+        var tutBase = FindObjectOfType<TutorialBase>();
+        if(tutBase != null){
+            Debug.Log("Error found in tutorial play");
+            tutBase.hasError = true;
+        }
+
         DialogueCanvas.gameObject.SetActive(true);
+        DialogueManager.Instance.ErrorDialogue = true;
         DialogueManager.Instance.startDialogue(errorConvo);
     }
 

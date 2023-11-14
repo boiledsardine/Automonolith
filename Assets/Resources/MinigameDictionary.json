@@ -169,6 +169,10 @@
             "description": "The Console class in C# contains methods used in outputting data to the terminal."
         },
         {
+            "keyword": "Bot",
+            "description": "The Bot class contains everything G4wain needs to navigate the Monolith, like moveUp() and moveDown()."
+        },
+        {
             "keyword": ".",
             "description": "The dot is used to access a class's variables and methods."
         },

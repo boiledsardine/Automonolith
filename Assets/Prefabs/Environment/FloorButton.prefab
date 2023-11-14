@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundObject: {fileID: 0}
+  latch: 0
+  latchActive: 0
+  latchColor: {fileID: 0}
   isTrap: 0
 --- !u!65 &3539352728940485543
 BoxCollider:

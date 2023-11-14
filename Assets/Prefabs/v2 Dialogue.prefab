@@ -463,6 +463,7 @@ MonoBehaviour:
   leftSprite: {fileID: 4930769583985234530}
   rightSprite: {fileID: 4597895064595031125}
   theme: {fileID: 11400000, guid: 13ee408152dec984d905ce22f85324e7, type: 2}
+  darkColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   nextButton: {fileID: 130158755523204641}
   skipButton: {fileID: 707681554049064310}
   allowLineSkipping: 1

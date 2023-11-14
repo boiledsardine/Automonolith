@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StringsTutorial : TutorialBase, IActivate{
+public class StringsTutorial : TutorialBase{
     public StringsObjectives currentObjective;
     void Start(){
         switch(currentObjective){
@@ -20,13 +20,20 @@ public class StringsTutorial : TutorialBase, IActivate{
         }
     }
 
-    public void activate(){
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+        
         var ci = Compiler.Instance;
         switch(currentObjective){
             case StringsObjectives.StartString:
                 objectiveText[0].color = successColor;
                 currentObjective = StringsObjectives.AfterString;
-                StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(1, 0));
             break;
             case StringsObjectives.StringDeclare:
                 //check compiler dictionaries
@@ -34,11 +41,11 @@ public class StringsTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = StringsObjectives.AfterStringDeclare;
-                    StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(3, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
             case StringsObjectives.MoveTo:
@@ -46,17 +53,21 @@ public class StringsTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = StringsObjectives.AfterMoveTo;
-                    StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(5, 0));
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(1, 0));
                 }
             break;
         }
     }
 
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             return;
@@ -123,7 +134,7 @@ public class StringsTutorial : TutorialBase, IActivate{
         currentObjective = StringsObjectives.StartString;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
     }
 
@@ -134,7 +145,7 @@ public class StringsTutorial : TutorialBase, IActivate{
         currentObjective = StringsObjectives.StringDeclare;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -149,15 +160,13 @@ public class StringsTutorial : TutorialBase, IActivate{
         currentObjective = StringsObjectives.MoveTo;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use 3 or less statements";
         objectiveText[1].color = defaultColor;
     }
-
-    public void deactivate(){}
 
     public enum StringsObjectives{
         Start,

@@ -22,9 +22,6 @@ public class MoveNugget : MonoBehaviour{
             case Tutorial2Objectives.ParamsIntro:
                 gameObject.transform.position = tpLocs[2].transform.position;
             break;
-            case Tutorial2Objectives.TurnInteract:
-                gameObject.transform.position = tpLocs[3].transform.position;
-            break;
             case Tutorial2Objectives.TurnInteract2:
                 gameObject.transform.position = tpLocs[4].transform.position;
             break;

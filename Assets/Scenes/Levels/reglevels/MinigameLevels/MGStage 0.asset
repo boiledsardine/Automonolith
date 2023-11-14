@@ -56,32 +56,38 @@ MonoBehaviour:
     Bot _ moveLeft _ _ ;'
   hidWords:
   - hiddenText: WriteLine
-    correctAnswers: []
+    correctAnswers:
+    - WriteLine
     mistakeMessage: '2: A dot tells the code to look inside the object on its left
       side. What goes on the right of the dot is a name belonging to that object,
       like a variable or a method. That being said, a method name should go here.'
   - hiddenText: (
-    correctAnswers: []
+    correctAnswers:
+    - (
     mistakeMessage: '2: What comes after a method''s name? A form of punctuation
       that opens groups and allows the method to take arguments.'
   - hiddenText: '"Hello World!"'
-    correctAnswers: []
+    correctAnswers:
+    - '"Hello World!"'
     mistakeMessage: '2: Arguments are values passed into methods for them to do things.
       Some need methods, some don''t - the method on this line can do either, but
       for now I need you to give it an argument anyway.'
   - hiddenText: )
     correctAnswers:
     - ()
+    - )
     mistakeMessage: '2:  You have to close the method''s arguments somehow. There''s
       a punctuation mark set aside for it...'
   - hiddenText: ;
     correctAnswers:
     - ()
+    - ;
     mistakeMessage: '2:  You have to close a complete line of code somehow. There''s
       a punctuation mark set aside for it...'
   - hiddenText: .
     correctAnswers:
     - ()
+    - .
     mistakeMessage: '4: You need a punctuation mark here of some kind to tell the
       machine to look inside the "Bot" class and get one of the methods it contains.
 
@@ -91,31 +97,31 @@ MonoBehaviour:
   - hiddenText: (
     correctAnswers:
     - ()
+    - (
     mistakeMessage: '4: What comes after a method''s name? A form of punctuation
       that opens groups and allows the method to take arguments.'
-  - hiddenText: '   '
-    correctAnswers:
-    - ()
-    mistakeMessage: '4: Remember what I said about methods sometimes requiring arguments
-      and sometimes not?'
   - hiddenText: )
     correctAnswers:
     - ()
+    - )
     mistakeMessage: '4:  You have to close the method''s arguments somehow. There''s
       a punctuation mark set aside for it...'
   wordBank:
+  - WriteLine
+  - (
+  - '"Hello World!"'
+  - )
   - ;
-  - AddCoffee
-  - AddHotWater
-  - ()
-  - StirCup
+  - .
   levelDictionary:
   - keyword: Console
     description: A System class in C#. Has methods you need to do things with the
       console.
   - keyword: WriteLine
     description: A function that prints its argument out to the console or terminal.
+      It requires an argument.
   - keyword: '"Hello World!"'
-    description: A string value! Could be used as an argument.
-  - keyword: '   '
-    description: This is empty.
+    description: A string value! Use this as the argument for WriteLine.
+  - keyword: moveLeft
+    description: G4wain uses this to move left a number of spaces! Don't pass arguments
+      into this one for now.

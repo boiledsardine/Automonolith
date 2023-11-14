@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeEditorComponents;
 
-public class TutorialManager2 : TutorialBase, IActivate{
+public class TutorialManager2 : TutorialBase{
     public Tutorial2Objectives currentObjective;
 
     void Start(){
@@ -17,30 +17,35 @@ public class TutorialManager2 : TutorialBase, IActivate{
             case Tutorial2Objectives.ParamsIntro:
                 StartParamsIntro();
             break;
+            /*
             case Tutorial2Objectives.TurnInteract:
                 StartTurnInteract();
             break;
+            */
             case Tutorial2Objectives.TurnInteract2:
                 StartTurnInteract2();
             break;
         }
     }
 
-    //stage 1: methods - what methods are; 2x moveUp
-    //stage 3: parameters - enforce line limit
-    //stage 3: turn and interact methods; get the rock to the button
-    //stage 4: DIY level
-    public void activate() {
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+
         switch(currentObjective){
             case Tutorial2Objectives.MethodsIntro:
                 objectiveText[0].color = successColor;
                 currentObjective = Tutorial2Objectives.AfterMethodsIntro;
-                StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(1, 0));
             break;
             case Tutorial2Objectives.MethodsPlay:
                 objectiveText[0].color = successColor;
                 currentObjective = Tutorial2Objectives.AfterMethodsPlay;
-                StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(3, 0));
             break;
             case Tutorial2Objectives.ParamsIntro:
                 objectiveText[0].color = successColor;
@@ -49,26 +54,32 @@ public class TutorialManager2 : TutorialBase, IActivate{
                 if(Compiler.Instance.linesCount <= 5){
                     objectiveText[1].color = successColor;
                     currentObjective = Tutorial2Objectives.AfterParamsIntro;
-                    StartCoroutine(convoManager.StartDialogue(5, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(5, 0));
                 } else {
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                 }
             break;
+            /*
             case Tutorial2Objectives.TurnInteract:
                 objectiveText[0].color = successColor;
                 currentObjective = Tutorial2Objectives.AfterTurnInteract1;
                 StartCoroutine(convoManager.StartDialogue(7, dialogueInvokeTime));
             break;
+            */
             case Tutorial2Objectives.TurnInteract2:
                 objectiveText[0].color = successColor;
                 currentObjective = Tutorial2Objectives.AfterTurnInteract2;
-                StartCoroutine(convoManager.StartDialogue(9, dialogueInvokeTime));
+                StartCoroutine(convoManager.StartDialogue(9, 0));
             break;
         }
     }
 
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             return;
@@ -83,12 +94,9 @@ public class TutorialManager2 : TutorialBase, IActivate{
                 StartParamsIntro();
             break;
             case 6:
-                StartTurnInteract();
-            break;
-            case 8:
                 StartTurnInteract2();
             break;
-            case 10:
+            case 8:
                 GameObject.Find("exit-point").GetComponent<IActivate>().activate();
             break;
             default: break;
@@ -159,7 +167,7 @@ public class TutorialManager2 : TutorialBase, IActivate{
         currentObjective = Tutorial2Objectives.MethodsIntro;
 
         //set objective text
-        objectiveText[0].text = ">Press the button";
+        objectiveText[0].text = ">Move to the white button";
         objectiveText[0].color = defaultColor;
     }
 
@@ -170,7 +178,7 @@ public class TutorialManager2 : TutorialBase, IActivate{
         currentObjective = Tutorial2Objectives.MethodsPlay;
 
         //set objective text
-        objectiveText[0].text = ">Press the button";
+        objectiveText[0].text = ">Move to the white button";
         objectiveText[0].color = defaultColor;
     }
 
@@ -178,10 +186,10 @@ public class TutorialManager2 : TutorialBase, IActivate{
         StartStage(2);
 
         //set enum mode
-        currentObjective = Tutorial2Objectives.MethodsPlay;
+        currentObjective = Tutorial2Objectives.ParamsIntro;
         
         //set objective text
-        objectiveText[0].text = ">Press the button";
+        objectiveText[0].text = ">Move to the white button";
         objectiveText[0].color = Color.white;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -190,7 +198,12 @@ public class TutorialManager2 : TutorialBase, IActivate{
     }
 
     private void StartTurnInteract(){
-        StartStage(3);
+        //Immediately switch to Stage 4
+        StartTurnInteract2();
+
+
+        //CODE NOW OBSOLETE!
+        /*StartStage(3);
 
         //change enum mode to TurnInteract
         currentObjective = Tutorial2Objectives.TurnInteract;
@@ -200,14 +213,14 @@ public class TutorialManager2 : TutorialBase, IActivate{
         objectiveText[1].color = Color.white;
 
         objectiveText[0].text = ">Press the floor button";
-        objectiveText[0].color = Color.white;
+        objectiveText[0].color = Color.white;*/
     }
 
     private void StartTurnInteract2(){
         StartStage(4);
 
         //set enum mode
-        currentObjective = Tutorial2Objectives.MethodsPlay;
+        currentObjective = Tutorial2Objectives.TurnInteract2;
         
         //set objective text
         objectiveText[0].text = ">Move pillar to brown button";
@@ -239,10 +252,6 @@ public class TutorialManager2 : TutorialBase, IActivate{
 
         hintButton.convoToLoad = hints[5];
     }*/
-
-    public void deactivate() {
-        //do nothing
-    }
 }
 
 public enum Tutorial2Objectives{
@@ -253,8 +262,8 @@ public enum Tutorial2Objectives{
     AfterMethodsPlay,
     ParamsIntro,
     AfterParamsIntro,
-    TurnInteract,
-    AfterTurnInteract1,
+    //TurnInteract,
+    //AfterTurnInteract1,
     TurnInteract2,
     AfterTurnInteract2,
 }

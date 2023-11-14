@@ -7,7 +7,7 @@ public class FloorButton : ButtonBase, IActivator{
     public bool isTrap = false;
 
     private void OnTriggerEnter(Collider col) {
-        if(col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player"){
+        if(col.gameObject.tag == "Pillar" || col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player"){
             if(!isTrap){
                 if(latch){
                     latchActive = true;
@@ -23,7 +23,7 @@ public class FloorButton : ButtonBase, IActivator{
     }
 
     private void OnTriggerExit(Collider col) {
-        if(col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player" && !latchActive){
+        if(col.gameObject.tag == "Pillar" || col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player" && !latchActive){
             isActivated = false;
             transform.position = originPos;
             boundObject.GetComponent<IActivate>().deactivate();

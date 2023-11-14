@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level4Mgr : MonoBehaviour{
     public WallPanel stringPanel, invisPanel;
-    public WallButton[] buttons;
+    public FloorButton[] buttons;
     public GameObject exitPoint, killBot;
     public WallPanel intPanelLeft, intPanelRight;
     public VoxGate vGate;

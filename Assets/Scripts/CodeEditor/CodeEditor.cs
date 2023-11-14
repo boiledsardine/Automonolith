@@ -130,6 +130,43 @@ public class CodeEditor : MonoBehaviour{
         code = code.Substring(0, code.Length - 1);
     }
 
+    //scuffed fix?
+    /*
+        public void AddLine(string input){
+        List<string> codeLines = code.Split('\n').ToList();
+        string currentLine = codeLines[lineIndex];
+
+        if(string.IsNullOrWhiteSpace(codeLines[lineIndex])){
+            codeLines[lineIndex] = currentLine.Insert(charIndex, input);
+        } else {
+            codeLines[lineIndex] = currentLine.Insert(charIndex, "\n" + input);
+            charIndex = 0;
+            lineIndex++;
+        }
+        charIndex += input.Length;
+        
+        currentLine = codeLines[lineIndex];
+        int lineMaxIndex = currentLine.Length;
+        if(charIndex == lineMaxIndex){
+            codeLines[lineIndex] += "\n";
+        } else {
+            string lastLine = currentLine.Substring(0, charIndex);
+            string nextLine = currentLine.Substring(charIndex, lineMaxIndex - charIndex);
+            codeLines.Insert(lineIndex, lastLine);
+            codeLines[lineIndex + 1] = nextLine;
+        }
+
+        charIndex = 0;
+        lineIndex++;
+    
+        code = "";
+        foreach(string s in codeLines){
+            code += s + "\n";
+        }
+        code = code.Substring(0, code.Length - 1);
+    }
+    */
+
     private void KeyPress(){
         //triggers on legal character entry
         //or for a ctrl+C or ctrl+R combo

@@ -9,7 +9,7 @@ public class L1Objs : ObjectiveBase{
         
         secObjHeader.transform.gameObject.SetActive(true);
         secObj1.transform.gameObject.SetActive(true);
-        secObj1.text = ">Use 9 lines or less";
+        secObj1.text = ">Use 10 lines or less";
         
         secObj2.transform.gameObject.SetActive(true);
         secObj2.text = ">Get all gems";
@@ -51,7 +51,7 @@ public class L1Objs : ObjectiveBase{
 
     public override bool Objective2(){
         //count statements
-        if(Compiler.Instance.linesCount >= 9){
+        if(Compiler.Instance.linesCount >= 10){
             return false;
         }
         return true;

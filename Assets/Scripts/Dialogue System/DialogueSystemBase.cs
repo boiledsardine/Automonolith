@@ -18,13 +18,21 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     [SerializeField] protected Image rightSprite;
     [SerializeField] protected ColorizerTheme theme;
     protected string currentSentence;
+    protected Queue<Dialogue> dialogueBlocks;
+    private bool isErrorDialogue = false;
+    public bool ErrorDialogue{
+        get { return isErrorDialogue; }
+        set { isErrorDialogue = value; }
+    }
 
     public void Awake(){
         dialogueLines = new Queue<string>();
+        dialogueBlocks = new Queue<Dialogue>();
         quizLines = new Queue<string>();
     }
 
     public abstract void startDialogue(Conversation convoToLoad);
+    public Color darkColor = new Color(60,60,60);
 
     //issue: types out the tags
     /*public IEnumerator typeSentence(string sentence){
@@ -59,6 +67,9 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     public abstract void nextLine();
 
     public void endDialogue(){
+        dialogueLines?.Clear();
+        dialogueBlocks?.Clear();
+
         currentSentence = null;
 
         dialogueBoxAnimator.SetBool("isOpen", false);
@@ -66,14 +77,19 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         leftSprite.GetComponent<Image>().enabled = false;
         rightSprite.GetComponent<Image>().enabled = false;
        
-        StoryManager stryMgr = FindObjectOfType<StoryManager>();
-        stryMgr?.BroadcastMessage("DialogueEnd");
+        if(!isErrorDialogue){
+            StoryManager stryMgr = FindObjectOfType<StoryManager>();
+            stryMgr?.BroadcastMessage("DialogueEnd");
 
-        TutorialBase tutBase = FindObjectOfType<TutorialBase>();
-        tutBase?.BroadcastMessage("DialogueEnd");
+            TutorialBase tutBase = FindObjectOfType<TutorialBase>();
+            tutBase?.BroadcastMessage("DialogueEnd");
 
-        QuizLevel1 quizLvl = FindObjectOfType<QuizLevel1>();
-        quizLvl?.BroadcastMessage("DialogueEnd");
+            QuizLevel1 quizLvl = FindObjectOfType<QuizLevel1>();
+            quizLvl?.BroadcastMessage("DialogueEnd");   
+        } else {
+            isErrorDialogue = false;
+            return;
+        }
 
         Invoke("disableCanvas", 0.25f);
     }
@@ -95,13 +111,13 @@ public abstract class DialogueSystemBase : MonoBehaviour{
                     ImageLeft.enabled = true;
                     ImageLeft.sprite = dialogue.npcSprite;
                     ImageLeft.color = Color.white;
-                    ImageRight.color = Color.gray;
+                    ImageRight.color = darkColor;
                     break;
                 case 'R':
                     ImageRight.enabled = true;
                     ImageRight.sprite = dialogue.npcSprite;
                     ImageRight.color = Color.white;
-                    ImageLeft.color = Color.gray;
+                    ImageLeft.color = darkColor;
                     break;
                 case 'B':
                     ImageLeft.color = Color.white;
@@ -113,8 +129,8 @@ public abstract class DialogueSystemBase : MonoBehaviour{
                     break;
             }
         } else {
-            leftSprite.GetComponent<Image>().color = Color.gray;
-            rightSprite.GetComponent<Image>().color = Color.gray;
+            leftSprite.GetComponent<Image>().color = darkColor;
+            rightSprite.GetComponent<Image>().color = darkColor;
         }
     }
 }

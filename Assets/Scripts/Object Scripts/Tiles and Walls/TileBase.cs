@@ -146,7 +146,7 @@ public class TileBase : MonoBehaviour {
     //checks for occupants
     protected void OnTriggerEnter(Collider col){
         occupant = col.gameObject;
-        if(!(col.tag == "Player" || col.tag == "Held Big")){
+        if(!(col.tag == "Player" || col.tag == "Held Big" || col.tag == "Pillar")){
             isOccupied = true;
         }
     }

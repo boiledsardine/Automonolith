@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IfElseTutorial : TutorialBase, IActivate{
+public class IfElseTutorial : TutorialBase{
     public Objectives currentObjective;
     void Start(){
         switch(currentObjective){
@@ -24,7 +24,14 @@ public class IfElseTutorial : TutorialBase, IActivate{
         }
     }
 
-    public void activate(){
+    public override IEnumerator ActivateButton(){
+        hasError = false;
+        yield return new WaitForSeconds(1);
+        if(hasError){
+            hasError = false;
+            yield break;
+        }
+        
         var ci = Compiler.Instance;
         switch(currentObjective){
             case Objectives.If:
@@ -39,12 +46,12 @@ public class IfElseTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = Objectives.AfterIf;
-                    StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(1, 0));
                     Compiler.Instance.terminateExecution();
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(0, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(0, 0));
                     Compiler.Instance.terminateExecution();
                 }
             break;
@@ -60,12 +67,12 @@ public class IfElseTutorial : TutorialBase, IActivate{
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = successColor;
                     currentObjective = Objectives.AfterElse;
-                    StartCoroutine(convoManager.StartDialogue(3, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartDialogue(3, 0));
                     Compiler.Instance.terminateExecution();
                 } else {
                     objectiveText[0].color = successColor;
                     objectiveText[1].color = Color.red;
-                    StartCoroutine(convoManager.StartFailDialogue(1, dialogueInvokeTime));
+                    StartCoroutine(convoManager.StartFailDialogue(1, 0));
                     Compiler.Instance.terminateExecution();
                 }
             break;
@@ -136,6 +143,10 @@ public class IfElseTutorial : TutorialBase, IActivate{
     }
 
     public override void DialogueEnd(){
+        if(DialogueManager.Instance.ErrorDialogue){
+            return;
+        }
+        
         if(hintIsOpen){
             hintIsOpen = false;
             return;
@@ -220,7 +231,7 @@ public class IfElseTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.If;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the correct button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -235,7 +246,7 @@ public class IfElseTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.Else;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the correct button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -250,7 +261,7 @@ public class IfElseTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.PlayElse;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the correct button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -265,7 +276,7 @@ public class IfElseTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.ElseIf;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the correct button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
@@ -280,15 +291,13 @@ public class IfElseTutorial : TutorialBase, IActivate{
         currentObjective = Objectives.PlayElseIf;
 
         //set objective text
-        objectiveText[0].text = ">Reach the button";
+        objectiveText[0].text = ">Step on the correct button";
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
         objectiveText[1].text = ">Use an else if statement";
         objectiveText[1].color = defaultColor;
     }
-
-    public void deactivate(){}
 
     public enum Objectives{
         Start,

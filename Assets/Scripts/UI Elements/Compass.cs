@@ -18,7 +18,8 @@ public class Compass : MonoBehaviour{
         }
 
         //order: N, E, S, W
-        string[] letters = {"N", "E", "S", "W"};
+        //order: U, R, D, L
+        string[] letters = {"U", "R", "D", "L"};
 
         Vector3[] positions = {
             new Vector3((gridWidth - 1) * 100 / 2, 0, gridLength * 100 + 100),

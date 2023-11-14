@@ -153,6 +153,8 @@ public class TutorialManager1 : MonoBehaviour{
         timesPressed++;
 
         if(currentObjective == 0 && timesPressed == convoManager.convos[0].LineCount()){
+            mainObjText.transform.gameObject.SetActive(true);
+            
             objectiveText[0].transform.gameObject.SetActive(true);
             objectiveText[1].transform.gameObject.SetActive(true);
             objectiveText[2].transform.gameObject.SetActive(true);
@@ -208,8 +210,7 @@ public class TutorialManager1 : MonoBehaviour{
         if(currentObjective == 3 && timesPressed == convoManager.convos[3].LineCount()){
             hintButton.convoToLoad = hints[1];
 
-            mainObjText.transform.gameObject.SetActive(true);
-            objectiveText[0].text = ">Finish the level";
+            objectiveText[0].text = ">Reach the green button";
             objectiveText[0].color = Color.white;
             
             timesPressed = 0;

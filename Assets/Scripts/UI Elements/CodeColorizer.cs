@@ -26,7 +26,7 @@ public static class CodeColorizer{
                 int end = line.IndexOf("`");
                 string text = GetSubstring(line, start + 1, end);
                 if(changeFont){
-                    text = "<font=\"Cascadia\">" + ColorizeCode(text, theme) + "</font>";
+                    text = "<font=\"Perfect DOS VGA 437 Win SDF\">" + ColorizeCode(text, theme) + "</font>";
                 } else {
                     text = ColorizeCode(text, theme);
                 }

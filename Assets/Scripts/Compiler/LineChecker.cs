@@ -40,6 +40,11 @@ public class LineChecker{
             return;
         }
 
+        if(!CheckAfterSemicolon(sections)){
+            hasError = true;
+            return;
+        }
+
         //check a curly brace
         if(sections[0] == "{"){
             lineType = LineType.openBrace;
@@ -273,6 +278,7 @@ public class LineChecker{
 
         if(!(Flags.Instance.isArray || Flags.Instance.isInArray || isCondLoop || sections[0] == "{" || sections[0] == "}")){
             if(!CheckSemicolon(sections)){
+                Debug.Log("post-semicolon error");
                 hasError = true;
                 return;
             }
@@ -420,6 +426,14 @@ public class LineChecker{
             }
         }
 
+        if(!CheckAfterSemicolon(sections)){
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool CheckAfterSemicolon(string[] sections){
         //checks if there are elements after the first semicolon
         //if there are, throws an error
         if(sections.Contains(";") && Array.IndexOf(sections, ";") != sections.Length - 1){
@@ -971,7 +985,7 @@ public class LineChecker{
             //if you do this thing won't read expressions right
             //because then it'll flip isExpectingValue and you're screwed
             if(isExpectingValue && Regex.IsMatch(sections[i], @"^[a-zA-Z0-9_`.\']+$")){
-                string[] words = {"true", "false", "intArr", "stringArr", "boolArr"};
+                string[] words = {"true", "false", "intArr", "stringArr", "boolArr", "charArr", "doubleArr"};
                 if(words.Contains(sections[i])){
                     continue;
                 }
@@ -1037,6 +1051,17 @@ public class LineChecker{
 
                 //check variable name validity
                 else if(isValidVarName(sections[i])){
+                    //check if it's True or False (capitalized)
+                    if(sections[i].ToLower() == "true" && sections[i] != "true"){
+                        Debug.Log("Capitalized true found");
+                        addErr(string.Format("Line {0}: pay attention to capitalization! Only \"true\" (all lowercase) is a valid boolean value.", lineIndex));
+                        return false;
+                    } else if(sections[i].ToLower() == "false" && sections[i] != "false"){
+                        Debug.Log("Capitalized false found");
+                        addErr(string.Format("Line {0}: pay attention to capitalization! Only \"false\" (all lowercase) is a valid boolean value.", lineIndex));
+                        return false;
+                    }
+
                     //check if it's an array index
                     if(sections[i].Contains('`')){
                         if(!CheckArrayIndex(sections[i])){
@@ -1060,6 +1085,7 @@ public class LineChecker{
                             return false;   
                         }
 
+                        Debug.LogAssertion("Nonextant");
                         addErr(string.Format("Line {0}: the name {1} does not exist or was improperly declared! Check that the variable you're calling was declared in the code and that it's spelled right!", lineIndex, sections[i]));
                         return false;
                     }
@@ -1494,7 +1520,7 @@ public class LineChecker{
         foreach(string s in expression){
             if(Regex.IsMatch(s, "^[0-9]+$") || Compiler.Instance.intVars.ContainsKey(s)){
                 valTypes.Add(ValueType.intVal);
-            } else if(Regex.IsMatch(s, "^(true||false)$") || Compiler.Instance.boolVars.ContainsKey(s)){
+            } else if(Regex.IsMatch(s, "^(true||false||True||False)$") || Compiler.Instance.boolVars.ContainsKey(s)){
                 valTypes.Add(ValueType.boolVal);
             } else if(Regex.IsMatch(s, "^\"[^\"]*\"$") || Compiler.Instance.strVars.ContainsKey(s)){
                 valTypes.Add(ValueType.strVal);

@@ -21,9 +21,8 @@ MonoBehaviour:
     - G4wain has access to more than just movement methods, you know. You can make
       him turn with the directional "~turnUp()`", "~turnDown()`", "~turnLeft()`",
       and "~turnRight()`" methods.
-    - Aside from that, G4wain can also hold on to keys and stone pillars with the
-      "~hold()`" and "~drop()`" methods. He can also interact with interactable objects
-      like gates and wall buttons with "~interact()`".
+    - G4wain has access to more than just movement methods, you know. He can hold
+      on to cubes and stone pillars with the "~hold()`" and "~drop()`" methods.
     - The "~turn`" methods work well with the "~hold()`", "~drop()`", and "~interact()`"
       methods because G4wain always interacts with whatever he's facing, so you'll
       have to tell him which way to face first.

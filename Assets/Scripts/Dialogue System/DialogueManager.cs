@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     public static DialogueManager Instance;
-    private Queue<Dialogue> dialogueBlocks;
     public Button nextButton, skipButton;
     public bool allowLineSkipping;
     public bool allowFullSkipping;
@@ -23,8 +22,6 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
         } else {
             Destroy(gameObject);
         }
-
-        dialogueBlocks = new Queue<Dialogue>();
     }
 
     void Start(){
@@ -49,6 +46,11 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     public IEnumerator typeSentence(string sentence){
+        //next two lines disable colorizer by removing ~` tags
+        //don't @ me i'm too lazy to remove the tags from each dialogue line
+        sentence = sentence.Replace("~", "");
+        sentence = sentence.Replace("`", "");
+
         dialogueText.text = "";
         foreach(char letter in CodeColorizer.Colorize(sentence, false, theme).ToCharArray()){
             dialogueText.text += letter;

@@ -18,6 +18,8 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
+    - G4wain has access to more than just movement methods, you know. He can hold
+      on to cubes and stone pillars with the "~hold()`" and "~drop()`" methods.
     - That gate over there is wired to that brown button on the floor so you'll need
       to weigh it down with something so G4wain can pass through the gate.
   - npcName: Arthur
@@ -25,6 +27,6 @@ MonoBehaviour:
     npcPos: 76
     npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
     lines:
-    - I should make him turn toward the stone pillar and hold on to it with "hold()",
+    - I should make him move toward the stone pillar and hold on to it with "hold()",
       drag it around with the "move" methods until it reaches the button, then release
       it with "drop()" to stop dragging it.

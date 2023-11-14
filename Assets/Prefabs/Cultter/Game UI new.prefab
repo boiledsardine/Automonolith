@@ -974,6 +974,7 @@ GameObject:
   - component: {fileID: 7178530419817966337}
   - component: {fileID: 7178530419817966336}
   - component: {fileID: 7178530419817966339}
+  - component: {fileID: 1382521784572558018}
   m_Layer: 5
   m_Name: Hint
   m_TagString: Untagged
@@ -1061,8 +1062,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1109,6 +1110,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convoToLoad: {fileID: 11400000, guid: ad1090eba1c01bc4688d40d52e63581a, type: 2}
   dialogueCanvas: {fileID: 0}
+--- !u!114 &1382521784572558018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178530419817966341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2ff33744f96ff4cab63b19eab88627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Hint
+  content: Get a hint (or words of encouragement) from Morgan.
+  borderImage: {fileID: 0}
+  isUIElement: 1
 --- !u!1 &7178530419954991648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,8 +1225,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1403,6 +1420,7 @@ GameObject:
   - component: {fileID: 7178530420123575806}
   - component: {fileID: 7178530420123575793}
   - component: {fileID: 7178530420123575792}
+  - component: {fileID: 3417191693194023394}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -1490,8 +1508,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1524,6 +1542,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3417191693194023394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178530420123575794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2ff33744f96ff4cab63b19eab88627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Stop
+  content: Stop the code mid-execution. Resets everything to its initial position.
+  borderImage: {fileID: 0}
+  isUIElement: 1
 --- !u!1 &7178530420382585140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,6 +2200,7 @@ GameObject:
   - component: {fileID: 7178530421185412737}
   - component: {fileID: 7178530421185412736}
   - component: {fileID: 7178530421185412739}
+  - component: {fileID: 3538487423688214609}
   m_Layer: 5
   m_Name: Run
   m_TagString: Untagged
@@ -2253,8 +2288,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2299,6 +2334,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3538487423688214609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178530421185412741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2ff33744f96ff4cab63b19eab88627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Run
+  content: Run your code; G4wain will act accordingly. Resets everything to its initial
+    position.
+  borderImage: {fileID: 0}
+  isUIElement: 1
 --- !u!1 &7178530421221588488
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,6 +2363,7 @@ GameObject:
   - component: {fileID: 7178530421221588533}
   - component: {fileID: 7178530421221588532}
   - component: {fileID: 7178530421221588535}
+  - component: {fileID: 2021580983959157144}
   m_Layer: 5
   m_Name: Help
   m_TagString: Untagged
@@ -2398,8 +2451,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2432,6 +2485,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2021580983959157144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178530421221588488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2ff33744f96ff4cab63b19eab88627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Help
+  content: Read some encyclopedia entries relevant to this level.
+  borderImage: {fileID: 0}
+  isUIElement: 1
 --- !u!1 &7178530421347930924
 GameObject:
   m_ObjectHideFlags: 0

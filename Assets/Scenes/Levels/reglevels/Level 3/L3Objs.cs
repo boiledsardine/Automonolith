@@ -10,9 +10,6 @@ public class L3Objs : ObjectiveBase{
         
         secObj1.transform.gameObject.SetActive(true);
         secObj1.text = ">" + objText2;
-
-        secObj2.transform.gameObject.SetActive(true);
-        secObj2.text = ">" + objText3;
     }
 
     public override bool IsComplete(){
@@ -50,17 +47,12 @@ public class L3Objs : ObjectiveBase{
     }
 
     public override bool Objective2(){
-        //reach the exit
-        if(Compiler.Instance.intVars.Count != 0){
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
     public override bool Objective3(){
         //reach the exit
-        if(Compiler.Instance.strVars.Count != 0){
+        if(Compiler.Instance.intVars.Count != 0){
             return true;
         } else {
             return false;
