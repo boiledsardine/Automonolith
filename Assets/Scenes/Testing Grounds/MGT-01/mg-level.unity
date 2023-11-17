@@ -916,6 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dictName: {fileID: 2529358808967101753}
   dictText: {fileID: 1644040810}
+  dict: {fileID: 11400000, guid: 8efef142c82742c49ba713b8e51b4c1a, type: 2}
 --- !u!1 &651188699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1294,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8490688655393278057}
     m_Modifications:
+    - target: {fileID: 395472441464859973, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 395472441464859973, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 395472441473070556, guid: 0b570fe50d897384c8b44fcc9c353af7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3384,6 +3393,7 @@ MonoBehaviour:
   layoutElement: {fileID: 3165687038671995751}
   charWrapLimit: 65
   offset: 5
+  isOverUI: 0
 --- !u!224 &3165687038671995745
 RectTransform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class ObjectiveManager : MonoBehaviour {
     public bool exitTouched = false;
     public ObjectiveBase objScript;
     public Conversation failDialogue;
+    public bool dontUpdate = false;
 
     public void Awake(){ 
         if(Instance == null){
@@ -84,6 +85,10 @@ public class ObjectiveManager : MonoBehaviour {
     }
 
     public void Update(){
+        if(dontUpdate){
+            return;
+        }
+        
         if(objScript == null){
             if(PrimaryObjective()){
                 primObj.color = successColor;

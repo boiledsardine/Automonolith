@@ -69,6 +69,7 @@ public class TutorialManager2 : TutorialBase{
             */
             case Tutorial2Objectives.TurnInteract2:
                 objectiveText[0].color = successColor;
+                objectiveText[1].color = successColor;
                 currentObjective = Tutorial2Objectives.AfterTurnInteract2;
                 StartCoroutine(convoManager.StartDialogue(9, 0));
             break;

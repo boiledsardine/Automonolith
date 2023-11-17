@@ -60,7 +60,7 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 1
     isQuiz: 0
-  - levelName: No Constants Here
+  - levelName: Nothing Stays Constant
     levelDesc: 'The panels on this floor are constantly shifting. Use variables to
       capture their values and navigate the floor.
 
@@ -169,7 +169,7 @@ MonoBehaviour:
       -Morgan'
     isTutorial: 0
     isQuiz: 0
-  - levelName: PIN Code Please
+  - levelName: PIN Code
     levelDesc: 'The buttons here have to be activated in sequence to open up the
       gate at the end. Luckily, Nimue''s giving it to us in the form of an array.
 

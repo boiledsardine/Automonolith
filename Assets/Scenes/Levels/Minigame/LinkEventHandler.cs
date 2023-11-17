@@ -7,12 +7,12 @@ using System.Linq;
 
 public class LinkEventHandler : MonoBehaviour{
     [SerializeField] TMP_Text dictName, dictText;
+    public DictionaryContent dict;
 
     Dictionary<string,string> dictContent = new Dictionary<string,string>();
 
     void Awake(){
-        //add contents of general dictionary
-        foreach(var entry in ReadDictionaryFromJSON()){
+        foreach(var entry in dict.content){
             if(!dictContent.ContainsKey(entry.keyword)){
                 dictContent.Add(entry.keyword, entry.description);
             } else {
@@ -30,6 +30,7 @@ public class LinkEventHandler : MonoBehaviour{
         }
     }
 
+    //OBSOLETE
     List<DictInfo> ReadDictionaryFromJSON(){
         string dictFile = Application.dataPath + "/Resources/MinigameDictionary.json";
 

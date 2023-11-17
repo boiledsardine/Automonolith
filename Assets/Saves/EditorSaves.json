@@ -1,10 +1,10 @@
 {
     "Items": [
         {
-            "editorContent": "//declare two bools\n//one should be true\n//other should be false\n//use this syntax:\n//bool varName = value;\n\n//pass the true boolean here\nBot.say(True);\nBot.moveRight();\n//pass the false boolean here\nBot.say();\nBot.moveRight();"
+            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft();\nBot.moveLeft();\nBot.moveDown();\nBot.moveDown();\nBot.moveRight();\nBot.hold();\nBot.moveRight();\nBot.moveRight();\nBot.moveRight();\nBot.drop();\nBot.moveDown();\n"
         },
         {
-            "editorContent": "//Step on the button\n\n//Use arguments! Like so:\n//Bot.moveDown(3);\n//Bot.moveLeft(3);\n//you get the idea\n\nBot.moveDown();\nBot.moveDown();\nBot.moveDown();\nBot.moveLeft();\nBot.moveLeft();\nBot.moveLeft();\nBot.moveUp();\nBot.moveUp();\nBot.moveUp();\nBot.moveRight();\nBot.moveRight();\n"
+            "editorContent": "//Grab the pillar\n//Then move it to the button\n\n//Move right to face the pillar\n//Then hold it\n//Then move up twice\n//Then let it go\n//Use \"Bot.drop();\" to release\n\nBot.moveRight();\nBot.hold();\nBot.moveUp();\nBot.moveUp();\nBot.drop();\nBot.moveUp();\n"
         },
         {
             "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveRight()\nBot.moveRight();"

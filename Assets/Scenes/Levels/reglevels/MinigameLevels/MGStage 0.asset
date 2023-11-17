@@ -53,7 +53,7 @@ MonoBehaviour:
     //Put
     here a method to move your robot one space left
 
-    Bot _ moveLeft _ _ ;'
+    Bot _ moveLeft _ _'
   hidWords:
   - hiddenText: WriteLine
     correctAnswers:
@@ -78,12 +78,6 @@ MonoBehaviour:
     - )
     mistakeMessage: '2:  You have to close the method''s arguments somehow. There''s
       a punctuation mark set aside for it...'
-  - hiddenText: ;
-    correctAnswers:
-    - ()
-    - ;
-    mistakeMessage: '2:  You have to close a complete line of code somehow. There''s
-      a punctuation mark set aside for it...'
   - hiddenText: .
     correctAnswers:
     - ()
@@ -94,25 +88,26 @@ MonoBehaviour:
       Classes
       and member methosd are part of a whole mess about object orientation which
       we wouldn''t bother with today.'
-  - hiddenText: (
+  - hiddenText: ()
     correctAnswers:
     - ()
     - (
     mistakeMessage: '4: What comes after a method''s name? A form of punctuation
-      that opens groups and allows the method to take arguments.'
-  - hiddenText: )
+      that  allows the method to take arguments.'
+  - hiddenText: ;
     correctAnswers:
     - ()
     - )
-    mistakeMessage: '4:  You have to close the method''s arguments somehow. There''s
+    mistakeMessage: '4:  You have to close this line as a complete statement. There''s
       a punctuation mark set aside for it...'
   wordBank:
   - WriteLine
   - (
   - '"Hello World!"'
   - )
-  - ;
   - .
+  - ()
+  - ;
   levelDictionary:
   - keyword: Console
     description: A System class in C#. Has methods you need to do things with the
