@@ -67,6 +67,8 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     public abstract void nextLine();
 
     public void endDialogue(){
+        Invoke("disableCanvas", 0.25f);
+        
         dialogueLines?.Clear();
         dialogueBlocks?.Clear();
 
@@ -78,6 +80,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         rightSprite.GetComponent<Image>().enabled = false;
        
         if(!isErrorDialogue){
+            Debug.LogWarning("BROADCASTING ENDDIALOGUE");
             StoryManager stryMgr = FindObjectOfType<StoryManager>();
             stryMgr?.BroadcastMessage("DialogueEnd");
 
@@ -90,8 +93,6 @@ public abstract class DialogueSystemBase : MonoBehaviour{
             isErrorDialogue = false;
             return;
         }
-
-        Invoke("disableCanvas", 0.25f);
     }
 
     public void enableCanvas(){

@@ -35,7 +35,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Indeed, I remember now. Yes, that's how it's done. Well, I hope we can continue
       helping each other out from now on.
@@ -61,26 +61,26 @@ MonoBehaviour:
   - hiddenText: ;
     correctAnswers:
     - ;
-    mistakeMessage: '1: Something belongs here, something that will end the line
+    mistakeMessage: '6: Something belongs here, something that will end the line
       of code.'
   - hiddenText: AddCoffee
     correctAnswers:
     - AddCoffee
-    mistakeMessage: '2: I don''t know how you prepare your coffee, but I like to
+    mistakeMessage: '7: I don''t know how you prepare your coffee, but I like to
       get started on preparing the mug while the water''s boiling.'
   - hiddenText: AddHotWater
     correctAnswers:
     - AddHotWater
-    mistakeMessage: '3: Water should be done boiling at this point...'
+    mistakeMessage: '8: Water should be done boiling at this point...'
   - hiddenText: ()
     correctAnswers:
     - ()
-    mistakeMessage: '5: Something belongs here, something that will mark the word
+    mistakeMessage: '8: Something belongs here, something that will mark the word
       before as a method.'
   - hiddenText: StirCup
     correctAnswers:
     - StirCup
-    mistakeMessage: '5: I don''t know you prepare your coffee, but I much prefer
+    mistakeMessage: '9: I don''t know you prepare your coffee, but I much prefer
       it to an unmixed, well, mixture.'
   wordBank:
   - ;

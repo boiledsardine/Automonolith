@@ -1646,19 +1646,20 @@ MonoBehaviour:
   - {x: 6150, y: 0, z: 170}
   - {x: 8150, y: 0, z: 170}
   comments:
-  - "//make this true\r\nif(condition goes here)\r\n{\r\n  Bot.moveRight(2);\r\n}\r\nBot.moveUp(2);"
-  - "//if this is false, the else block executes\r\nif(false)\r\n{\r\n  Bot.moveLeft(2);\r\n}\r\nelse\r\n{\r\n 
-    Bot.moveRight(2);\r\n}\r\n\r\nBot.moveUp(2);"
-  - "int num = Bot.readInt();\r\n\n//if num is less than 5, go left 2 spaces\nif(num
-    < 5){\r\n    Bot.moveLeft(2);\r\n}\r\n//if not, go right 2 spaces\n//put an else
-    statement here\n\r\nBot.moveDown(2);"
-  - "//make this false to reach the else if block\r\nif(condition1)\r\n{\r\n  Bot.moveTo(\"C0\");\r\n}\r\n\r\n//make
-    this true to run this block\r\nelse if(condition2)\r\n{\r\n  Bot.moveTo(\"C2\");\r\n}\r\n\r\nelse\r\n{\r\n 
-    Bot.moveTo(\"C4\");\r\n}"
-  - "//check if num is 1\r\nif(){\r\n    Bot.moveTo(\"D0\");\r\n}\r\n\r\n//check
-    if num is 2\r\nelse if(){\r\n    Bot.moveTo(\"C1\");\r\n}\r\n\r\n//else, check
-    if num is 3\r\n//move to B2 if true\r\n\r\n\r\n//move to A3 if everything else
-    is false\r\n//use an else statement here"
+  - "//make this true\nif(condition goes here)\n{\n  Bot.moveRight(2);\n}\nBot.moveUp(2);"
+  - "//give this a condition\n//so that the else block is reached\nif()\n{\n  Bot.moveLeft(2);\n}\n\nelse\n{\n 
+    Bot.moveRight(2);\n}\n\r\nBot.moveUp(2);"
+  - "int num = Bot.readInt();\n\n//if num is less than 5, go left 2 spaces\nif(num
+    < 5){\n  //write your movement here\n}\n//if not, go right 2 spaces\n//put an
+    else statement here\n\nBot.moveDown(2);"
+  - "//make it so this block is skipped\nif(condition1)\n{\n  Bot.moveTo(\"C0\");\n}\n\n//make
+    it so this block is executed\nif(condition2)\n{\n  Bot.moveTo(\"C2\");\n}\n\n//you
+    shouldn't reach this block\nelse\n{\n  Bot.moveTo(\"C4\");\n}"
+  - "//num changes all the time!\n//that's why we use a variable\nint num = Bot.readInt();\n\n//check
+    if num is 1\n//move to D0 if it's true\nif(){\n  Bot.moveTo(\"D0\");\n}\n\n//check
+    if num is 2\n//move to C1 if it's true\nelse if(){\n  //write a moveTo() here\n}\n\n//check
+    if num is 3\n//move to B2 if it's true\n\n//move to A3 if everything else is
+    false\n//use an else statement here"
   hasError: 0
   currentObjective: 0
 --- !u!1001 &734997597
@@ -5233,7 +5234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1189848336689388298, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 135
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1189848336689388298, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5353,7 +5354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1189848337446242827, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 135
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1189848337446242827, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchoredPosition.y

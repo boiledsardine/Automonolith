@@ -46,8 +46,7 @@ MonoBehaviour:
     lines:
     - That's right. Why not try it now? Make G4wain move two spaces up and press
       that button on the floor before we proceed.
-    - Type "~Bot.moveUp();`" twice. You'll notice the word "Bot" become <color=#40c1ac>teal</color>
-      when written right and the function name become <color=#cadaa9>pale yellow</color>
-      when spelled right.
+    - Type "~Bot.moveUp();`" twice. You'll notice the word "Bot" become teal when
+      written right and the function name become pale yellow when spelled right.
     - To make things easier, you can also click on the buttons in the methods panel.
       That'll add a line of code with the method already written in. For convience.

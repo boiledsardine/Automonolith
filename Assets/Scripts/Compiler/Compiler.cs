@@ -124,6 +124,8 @@ public class Compiler : MonoBehaviour{
         _conditionByIndex = new Dictionary<int, ConditionBlocks>();
         scopeList = new List<Dictionary<string, string>>();
         nestedVars = new List<List<string>>();
+
+        reserveDictionaries();
         
         playerAct = GameObject.Find("PlayerCharacter").GetComponent<Interaction>();
         playerMove = GameObject.Find("PlayerCharacter").GetComponent<Movement>();
@@ -133,10 +135,6 @@ public class Compiler : MonoBehaviour{
         //this part here protects the compiler from the colorizer
         //since the compiler used to take input directly from the editor's text component
         //which is formatted by the colorizer
-        //now the compiler takes input from the editormanager's unformatted code
-        //this is here as a stopgap since fixing it the old fashioned way (reassigning gameobject refs) will take a lot of repetitive work
-        //and i'm lazy af
-        //maybe change it eventually
         editorManager = GameObject.Find("EditorManager").GetComponent<CodeEditor>();
     }
     
@@ -173,7 +171,7 @@ public class Compiler : MonoBehaviour{
         string[] unformattedLines = code.Split('\n');
         List<string> formattedLines = new List<string>();
         foreach(string unformattedLine in unformattedLines){
-            string formattedLine = CodeFormatter.Format(unformattedLine);
+            string formattedLine = CodeFormatter.Format(unformattedLine, false);
             string[] sections = formattedLine.Split(' ');
 
             //strips comments
@@ -350,9 +348,11 @@ public class Compiler : MonoBehaviour{
         conditionBlocks.Clear();
     }
 
-    private List<string> GetLineList(string currentLine){
+    private List<string> GetLineList(string currentLine, bool hasArrayCheck){
         //replace indices
-        currentLine = CheckForIndex(currentLine.Split(' '));
+        if(!hasArrayCheck){
+            currentLine = CheckForIndex(currentLine.Split(' '));
+        }
         
         //enforce curly brace on its own line, so firstpass can pass the separate lines into linechecker under the same lineindex
         currentLine = currentLine.Replace("{", "\n{\n");
@@ -392,9 +392,10 @@ public class Compiler : MonoBehaviour{
         currentIndex = lineIndex;
 
         string currentLine = codeLines[lineIndex];
+        Debug.LogWarning(currentLine);
         string[] sections = currentLine.Split(' ');
         
-        List<string> lines = GetLineList(currentLine);
+        List<string> lines = GetLineList(currentLine, false);
 
         try{
             for(int i = 0; i < lines.Count; i++){
@@ -405,19 +406,22 @@ public class Compiler : MonoBehaviour{
                 lines[i] = lines[i].Trim();
                 
                 //find next line
+                //splits a line with a curly brace on the same line into multiple lines but counted as the same line
+                //keeps going until it finds a non-empty line
                 string nextLine = "";
                 if(i == lines.Count - 1){
                     if(lineIndex + 1 == stopIndex){
                         nextLine = null;
                     } else {
                         int num = lineIndex + 1;
-                        List<string> sList = GetLineList(codeLines[num]);
+                        bool hasArrayCheck = sections.Contains("ReadStringArr") || sections.Contains("ReadIntArr") || sections.Contains("ReadBoolArr");
+                        List<string> sList = GetLineList(codeLines[num], hasArrayCheck);
                         while(sList.Count == 1 && string.IsNullOrEmpty(sList[0])){
                             num++;
                             if(num == stopIndex){
                                 break;
                             }
-                            sList = GetLineList(codeLines[num]);
+                            sList = GetLineList(codeLines[num], hasArrayCheck);
                         }
 
                         foreach(string s in sList){
@@ -501,18 +505,21 @@ public class Compiler : MonoBehaviour{
 
                 //assign an array
                 if(!lineChecker.hasError && lineType == LineType.assignArray){
+                    Debug.Log("array assignment");
                     AddStatementCount(false);
                     AssignArray();
                 }
 
                 //declare a variable
                 if(!lineChecker.hasError && lineType == LineType.varInitialize){
+                    Debug.Log("initialization");
                     AddStatementCount(false);
                     initializeVariable(currentLine);
                 }
 
                 //assign a non-array variable
                 if(!lineChecker.hasError && lineType == LineType.varAssign){
+                    Debug.Log("assignment");
                     AddStatementCount(false);
                     assignVariable(currentLine);
                 }
@@ -1195,7 +1202,7 @@ public class Compiler : MonoBehaviour{
     }
 
     string FormatStringInIndexBraces(string indexString){
-        string formattedLine = CodeFormatter.Format(indexString);
+        string formattedLine = CodeFormatter.Format(indexString, false);
         string[] formatLineSections = formattedLine.Split(' ');
 
         //replace indices
@@ -1264,6 +1271,8 @@ public class Compiler : MonoBehaviour{
             allVars.Add(arrVarName, new VariableInfo(VariableInfo.Type.intVar, true));
             intVars.Add(arrVarName, varValues[i]);
         }
+
+        Debug.Log(allVars.ContainsKey("arr`0"));
     }
 
     void ClearIntArray(string varName){
@@ -1326,6 +1335,7 @@ public class Compiler : MonoBehaviour{
     private string CheckForIndex(string[] sections){
         for(int i = 0; i < sections.Length; i++){
             if(!CheckBraceDepth(arrayToString(sections, 0))){
+                Debug.Log("Here");
                 hasError = true;
                 return arrayToString(sections, 0);
             }
@@ -1361,9 +1371,10 @@ public class Compiler : MonoBehaviour{
                 //now check if it exists
                 //if it doesn't, index is out of bounds
                 if(!allVars.ContainsKey(sections[i])){
+                    addErr(string.Format("Line {0}: array index is out of the array's bounds! Check that the index you're using is within bounds (number of elements in the array minus one)!", currentIndex + 1));
+                    Debug.Log("Here: " + sections[i]);
                     hasError = true;
                     killTimer();
-                    errorChecker.writeError();
                 }
             }
         }
@@ -1424,6 +1435,7 @@ public class Compiler : MonoBehaviour{
         }
         functionHandler.initializeHandler(arrayToString(funcString.ToArray(), 0), currentIndex + 1);
         if(functionHandler.hasError){
+            Debug.Log("func has errah");
             hasError = true;
         }
 
@@ -1520,6 +1532,7 @@ public class Compiler : MonoBehaviour{
         }
         functionHandler.initializeHandler(arrayToString(funcString.ToArray(), 0), currentIndex + 1);
         if(functionHandler.hasError){
+            Debug.LogAssertion("func has errah");
             hasError = true;
         }
 
@@ -1529,11 +1542,16 @@ public class Compiler : MonoBehaviour{
                     sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
                     strArrs["$readArr"] = new string[999];
                     sectionList.Insert(botIndex, "$readArr");
+                    Debug.LogWarning(arrayToString(sectionList.ToArray(), 0));
                 break;
                 case "ReadIntArr":
                     sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
                     intArrs["$readIntArr"] = new int[999];
                     sectionList.Insert(botIndex, "$readIntArr");
+                    Debug.LogWarning(arrayToString(sectionList.ToArray(), 0));
+                    //foreach(int num in intArrs["$readIntArr"]){
+                    //    Debug.LogWarning(num);
+                    //}
                 break;
                 case "ReadBoolArr":
                     sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
@@ -1552,6 +1570,9 @@ public class Compiler : MonoBehaviour{
                 sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
                 intArrs["$readIntArr"] = playerAct.ReadIntArr();
                 sectionList.Insert(botIndex, "$readIntArr");
+                foreach(int num in intArrs["$readIntArr"]){
+                    Debug.LogWarning(num);
+                }
             break;
             case "ReadBoolArr":
                 sectionList.RemoveRange(botIndex, endIndex - botIndex + 1);
@@ -1805,10 +1826,10 @@ public class Compiler : MonoBehaviour{
         /*foreach(var o in FindObjectsOfType<MonoBehaviour>()){
             o.StopAllCoroutines();
         }*/
+        StopAllCoroutines();
         playerAct.StopAllCoroutines();
         playerMove.StopAllCoroutines();
         functionHandler.StopAllCoroutines();
-        StopAllCoroutines();
     }
 
     public void KillAll(){

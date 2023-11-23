@@ -6,8 +6,11 @@ public class VoxGate : GateBase, IActivate, IVox{
     public string password;
     public bool caseInsensitive;
     public Material[] errorColor;
+    public bool isOpen = false;
 
     public void activate(){
+        isOpen = true;
+        
         gameObject.layer = 0;
         var animator = GetComponent<Animator>();
         animator.SetBool("isOpen", true);

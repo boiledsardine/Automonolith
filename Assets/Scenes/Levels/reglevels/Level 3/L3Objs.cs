@@ -8,8 +8,8 @@ public class L3Objs : ObjectiveBase{
     void Start(){
         primObj.text = ">" + objText1;
         
-        secObj1.transform.gameObject.SetActive(true);
-        secObj1.text = ">" + objText2;
+        secObj2.transform.gameObject.SetActive(true);
+        secObj2.text = ">" + objText2;
     }
 
     public override bool IsComplete(){
@@ -51,8 +51,8 @@ public class L3Objs : ObjectiveBase{
     }
 
     public override bool Objective3(){
-        //reach the exit
-        if(Compiler.Instance.intVars.Count != 0){
+        //declare a var
+        if(Compiler.Instance.intVars.Count - Compiler.Instance.reservedInts > 0){
             return true;
         } else {
             return false;

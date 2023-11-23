@@ -41,73 +41,76 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Indeed, I remember now. Yes, that's how it's done. Well, I hope we can continue
       helping each other out from now on.
-  mainText: '//Put here a method to output text to a console
+  mainText: '//Put here a method to move your robot one space left
 
-    Console._ _ _ _;
+    Bot _ moveLeft
+    _ _
 
 
-    //Put
-    here a method to move your robot one space left
+    //Put here a method to output text to a console
 
-    Bot _ moveLeft _ _'
+    //use the WriteLine
+    method
+
+    Console._ _ _ _;'
   hidWords:
+  - hiddenText: .
+    correctAnswers:
+    - ()
+    - .
+    mistakeMessage: '2: You need a punctuation mark here of some kind to tell the
+      machine to look inside the "Bot" class and get one of the methods it contains.
+
+      Classes
+      and member methods are part of a whole mess about object orientation which
+      we wouldn''t bother with today.'
+  - hiddenText: ()
+    correctAnswers:
+    - ()
+    - (
+    mistakeMessage: '2: What comes after a method''s name? A form of punctuation
+      that  allows the method to take arguments.'
+  - hiddenText: ;
+    correctAnswers:
+    - ()
+    - )
+    mistakeMessage: '2:  You have to close this line as a complete statement. There''s
+      a punctuation mark set aside for it...'
   - hiddenText: WriteLine
     correctAnswers:
     - WriteLine
-    mistakeMessage: '2: A dot tells the code to look inside the object on its left
+    mistakeMessage: '4: A dot tells the code to look inside the object on its left
       side. What goes on the right of the dot is a name belonging to that object,
       like a variable or a method. That being said, a method name should go here.'
   - hiddenText: (
     correctAnswers:
     - (
-    mistakeMessage: '2: What comes after a method''s name? A form of punctuation
+    mistakeMessage: '4: What comes after a method''s name? A form of punctuation
       that opens groups and allows the method to take arguments.'
   - hiddenText: '"Hello World!"'
     correctAnswers:
     - '"Hello World!"'
-    mistakeMessage: '2: Arguments are values passed into methods for them to do things.
+    mistakeMessage: '4: Arguments are values passed into methods for them to do things.
       Some need methods, some don''t - the method on this line can do either, but
       for now I need you to give it an argument anyway.'
   - hiddenText: )
     correctAnswers:
     - ()
     - )
-    mistakeMessage: '2:  You have to close the method''s arguments somehow. There''s
-      a punctuation mark set aside for it...'
-  - hiddenText: .
-    correctAnswers:
-    - ()
-    - .
-    mistakeMessage: '4: You need a punctuation mark here of some kind to tell the
-      machine to look inside the "Bot" class and get one of the methods it contains.
-
-      Classes
-      and member methosd are part of a whole mess about object orientation which
-      we wouldn''t bother with today.'
-  - hiddenText: ()
-    correctAnswers:
-    - ()
-    - (
-    mistakeMessage: '4: What comes after a method''s name? A form of punctuation
-      that  allows the method to take arguments.'
-  - hiddenText: ;
-    correctAnswers:
-    - ()
-    - )
-    mistakeMessage: '4:  You have to close this line as a complete statement. There''s
+    mistakeMessage: '4:  You have to close the method''s arguments somehow. There''s
       a punctuation mark set aside for it...'
   wordBank:
+  - .
+  - ()
+  - ;
   - WriteLine
   - (
   - '"Hello World!"'
   - )
-  - .
-  - ()
-  - ;
   levelDictionary:
   - keyword: Console
     description: A System class in C#. Has methods you need to do things with the

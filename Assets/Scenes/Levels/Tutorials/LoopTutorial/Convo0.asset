@@ -47,7 +47,7 @@ MonoBehaviour:
       that's both inconvenient and makes for messy code.
     - 'Which is where loops come into play. There''s three types of loop, but for
       now we''ll cover while loops as it''s the simplest. The while keyword becomes
-      <color=#925bb3>magenta</color> when written right.Follow this syntax:'
+      magenta when written right.Follow this syntax:'
     - "~while(boolean value or condition)\r`\n~{\r`\n~  //code to be looped\r`\n~}`"
     - You can put booleans like true or false between the while loop's "()" pair
       or a comparative expression like "5 < 10" - which is true.

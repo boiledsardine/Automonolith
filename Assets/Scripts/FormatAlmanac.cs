@@ -72,7 +72,7 @@ public class FormatAlmanac : EditorWindow{
         List<int> stringStartIndices = new List<int>();
         List<int> stringEndIndices = new List<int>();
 
-        string formattedLine = CodeFormatter.Format(line);
+        string formattedLine = CodeFormatter.Format(line, false);
         string[] sections = formattedLine.Split(' ');
         int nonSpace = 0;
         bool isComment = false;

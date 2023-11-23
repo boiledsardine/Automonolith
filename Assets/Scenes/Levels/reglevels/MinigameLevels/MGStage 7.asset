@@ -34,35 +34,34 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - I know you're thinking it would've been simple to just do this without using
       code, but if you do the same thing hundreds of times you're bound to make a
       mistake somewhere.
-  mainText: "if(numGrade _ 90) {\n  Student.GiveGrade(_);\n}\nelse if(numGrade _
-    75) {\n  Student.GiveGrade(_);\n}\nelse {\n  Student.GiveGrade(_);\n}"
+  mainText: "if(numGrade _ 90) {\n  Student.GiveGrade(\"High Pass\");\n}\nelse if(numGrade
+    _ 75) {\n  Student.GiveGrade(_);\n}\nelse {\n  Student.GiveGrade(_);\n}"
   hidWords:
   - hiddenText: '>='
     correctAnswers: []
-    mistakeMessage: '2: I don''t think ___ belongs there'
-  - hiddenText: '"High Pass"'
-    correctAnswers: []
-    mistakeMessage: '3: I don''t think ___ belongs there'
+    mistakeMessage: '1: You''re trying to make a comparison here, where numGrade
+      should be at least 90. Now which operator would represent that best?'
   - hiddenText: '>='
     correctAnswers: []
-    mistakeMessage: '4: I don''t think ___ belongs there'
+    mistakeMessage: '4: You''re trying to make a comparison here, where numGrade
+      should be at least 90. Now which operator would represent that best?'
   - hiddenText: '"Pass"'
     correctAnswers: []
-    mistakeMessage: '5: I don''t think ___ belongs there'
+    mistakeMessage: '5: An argument belongs here. Something that represents a grade
+      of over 75.'
   - hiddenText: '"Fail"'
     correctAnswers: []
-    mistakeMessage: '6: I don''t think ___ belongs there'
+    mistakeMessage: '8: An argument belongs here. Something that represents a grade
+      of below 75.'
   wordBank: []
   levelDictionary:
   - keyword: GiveGrade
     description: A function that gives a student a the grade passed as an argument.
-  - keyword: '"High Pass"'
-    description: A grade given to students that score 90 or above.
   - keyword: '"Pass"'
     description: A grade given to students that score 75 or above.
   - keyword: '"Fail"'

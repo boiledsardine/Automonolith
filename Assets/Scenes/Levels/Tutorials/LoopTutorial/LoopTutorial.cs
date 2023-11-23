@@ -251,7 +251,7 @@ public class LoopTutorial : TutorialBase, IActivate{
     void StartAcceptor2(){
         StartStage(4);
 
-        gameObject.GetComponent<Pathfinder>().enabled = true;
+        GameObject.Find("CompileManager").GetComponent<Pathfinder>().enabled = true;
 
         //set enum mode
         currentObjective = LoopObjectives.Acceptor2;

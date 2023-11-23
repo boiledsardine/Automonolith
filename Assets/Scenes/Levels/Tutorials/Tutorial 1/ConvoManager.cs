@@ -14,7 +14,7 @@ public class ConvoManager : MonoBehaviour{
     }
 
     public IEnumerator StartFailDialogue(int convoIndex, float delay){
-        dialogueManager.ErrorDialogue = true;
+        DialogueManager.Instance.ErrorDialogue = true;
         
         yield return new WaitForSeconds(delay);
         dialogueManager.enableCanvas();

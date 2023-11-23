@@ -2157,7 +2157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271500043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6300, y: 0, z: 100}
+  m_LocalPosition: {x: 6400, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 515738654}
@@ -7404,50 +7404,21 @@ MonoBehaviour:
   comments:
   - "//I've written the skeleton of a while loop for you\n//it's missing a condiion
     and the code it'll repeat\n//that's where you come in\n\nwhile() //missing condition\n{\n 
-    //code goes here\n}"
-  - "//use while loops to make two statements repeat infinitely\n\nwhile(){ //missing
-    condition\n  //code goes here\n}"
-  - "//make a while loop that ends after 3 repeats\r\n//use a variable in the while
-    loop's condition!\r\n//and make it so varName increments every loop\r\n\n//declare
-    an int variable first and use its name\r\nint num = 0;\n\r\nwhile(num < 3){\r\n 
-    //write your code here\n  //don't forget to increment num!\r\n}"
-  - '//put the given block of code in a while loop
-
-    //and make that while loop
-    run
-
-    //ask Morgan for the syntax if you forgot
-
-
-    Bot.turnLeft();
-
-    Bot.hold();
-
-    Bot.turnRight();
-
-    Bot.drop();'
-  - 'int num = 0;
-
-
-    //move between the acceptor and generator
-
-    //take and
-    drop cubes
-
-    //use a loop that ends after running 5 times
-
-    //use the num
-    variable given to you!
-
-
-    //after the while loop, move to the exit button
-
-    //you
-    can write code outside the while loop''s {}
-
-    //it''ll run after the loop
-    ends
-
-    Bot.moveTo("C2");'
+    //make a lap around the square\n  //up to you how you do it\n  //put it between
+    the {}\n}"
+  - "//use while loops to make a block of code repeat\n//go right, then go up\n\nwhile(){
+    //missing boolean\n  //code goes here\n}"
+  - "//make a while loop that ends after 3 repeats\n//use a variable in the while
+    loop's condition!\n//and make it so varName increments every loop\n\n//declare
+    an int variable first and use its name\nint num = 0;\n\nwhile(num < 3){\n  //write
+    your code here\n  \n  //don't forget to increment num!\n  //num will limit how
+    many times your loop runs\n  num++;\n}"
+  - "//put the given block of code in a while loop\n//and make that while loop run\n//ask
+    Morgan for the syntax if you forgot\n\n  Bot.moveLeft(2);\n  Bot.hold();\n  Bot.moveRight(2);\n 
+    Bot.drop();"
+  - "//num is your loop counter!\nint num = 0;\n\n//move between the acceptor and
+    generator\n//take and drop cubes\n//use a loop that ends after running 5 times\nwhile(){\n 
+    \n}\n\n//after the while loop, move to the exit button\n//you can write code
+    outside the while loop's {}\n//it'll run after the loop ends\nBot.moveTo(\"C2\");"
   hasError: 0
   currentObjective: 0

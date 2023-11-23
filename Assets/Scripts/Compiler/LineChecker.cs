@@ -28,6 +28,14 @@ public class LineChecker{
         globalSections = line.Split(' ');
     }
 
+    public LineChecker(string inputLine, int index, ErrorChecker err){
+        allVars = Compiler.Instance.allVars;
+        lineIndex = index;
+        errorChecker = err;
+        line = inputLine;
+        globalSections = line.Split(' ');
+    }
+
     public LineChecker(){}
 
     public void CheckLine(){
@@ -701,7 +709,7 @@ public class LineChecker{
         if(sections[botIndex + 1] == "."){
             //checks if function name exists in list of valid functions
             if(!FunctionHandler.builtInFunctions.Contains(sections[botIndex + 2])){
-                addErr(string.Format("Line {0}: Bot has no definition for {1}! Make sure that you're using a function that G4wain can use - check the bottom section of the editor! The word will be colored <color=#cadaa9>pale yellow</color> if it's a valid function!", lineIndex, sections[botIndex + 2]));
+                addErr(string.Format("Line {0}: Bot has no definition for {1}! Make sure that you're using a function that G4wain can use - check the bottom section of the editor! The word will be colored pale yellow if it's a valid function!", lineIndex, sections[botIndex + 2]));
                 return false;
             }
 
@@ -810,7 +818,7 @@ public class LineChecker{
                 globalSections = secList.ToArray();
                 sections = globalSections;
             } else {
-                string formattedLine = CodeFormatter.Format(indexString);
+                string formattedLine = CodeFormatter.Format(indexString, false);
                 int index = new IntExpression(formattedLine).evaluate();
                 //check for an initializer
                 if(nextLine == "{"){
@@ -1646,7 +1654,7 @@ public class LineChecker{
     //not that the limited editor will allow special chars anyway
     private bool isValidVarName(string varName){
         if(ReservedConstants.keywords.Contains(varName)){
-            addErr(string.Format("Line {0}: {1} is an invalid name - variable names cannot be reserved words! A word will be colored <color=#26bcc9>navy blue</color> if it's a reserved word.", lineIndex, varName));
+            addErr(string.Format("Line {0}: {1} is an invalid name - variable names cannot be reserved words! A word will be colored navy blue if it's a reserved word.", lineIndex, varName));
             hasError = true;
             return false;
         }

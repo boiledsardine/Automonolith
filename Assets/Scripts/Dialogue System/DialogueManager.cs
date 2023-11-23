@@ -70,7 +70,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
             //check if there's another block in the queue
             //if yes, end dialogue
             //if no, load the next one
-            if(dialogueBlocks.Count == 0){
+            if(gameObject.activeInHierarchy && dialogueBlocks.Count == 0){
                 endDialogue();
                 return;
             } else {

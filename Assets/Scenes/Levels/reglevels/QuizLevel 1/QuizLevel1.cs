@@ -17,6 +17,7 @@ public class QuizLevel1 : MonoBehaviour{
     bool hintIsOpen = false;
     public Button hintButton;
     public QuizManager quizMgr;
+    public TMPro.TMP_Text scoreText;
 
     //triggers dialogue
     void Awake(){
@@ -91,6 +92,8 @@ public class QuizLevel1 : MonoBehaviour{
         postlevelCanvas.gameObject.SetActive(true);
         PostlevelCanvas.Instance.OpenCanvas();
         PostlevelCanvas.Instance.SetStars(checkOne, checkTwo, checkThree);
+
+        scoreText.text = QuizManager.Instance.quizScore.ToString() + "/10";
     }
 
     public enum QuizState{

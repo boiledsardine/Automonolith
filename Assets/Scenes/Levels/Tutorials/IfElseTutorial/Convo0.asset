@@ -37,8 +37,8 @@ MonoBehaviour:
       your code to do one thing or another based on its inputs.
     - The if, else, and else-if statements enable that. We'll tackle those three
       one-by-one, but conceptually, they're similar.
-    - 'The if keyword becomes <color=#925bb3>magenta</color> when written right.
-      Write an if statement like this:'
+    - 'The if keyword becomes magenta when written right. Write an if statement like
+      this:'
     - "~if(condition)\r`\n~{\r`\n~  //code to be executed if condition is true\r`\n~}\r`\nThe
       condition can be a boolean value or a boolean expression."
     - "For if statements, if the condition is true, the code between the curly braces

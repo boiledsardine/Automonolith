@@ -58,7 +58,7 @@ public static class CodeColorizer{
         List<int> stringStartIndices = new List<int>();
         List<int> stringEndIndices = new List<int>();
 
-        string[] sections = CodeFormatter.Format(line).Split(' ');
+        string[] sections = CodeFormatter.Format(line, true).Split(' ');
         int nonSpace = 0;
         bool isComment = false;
 

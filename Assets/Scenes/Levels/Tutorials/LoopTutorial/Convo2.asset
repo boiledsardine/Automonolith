@@ -30,7 +30,7 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 4a5146b8dbc7e274bbdbeb86f1e9e96c, type: 3}
     lines:
-    - "This is a lot simpler than before, yet works on the same principle. You see
+    - This is a lot simpler than before, yet works on the same principle. You see
       a pattern you can repeat, you use a loop so you don't write as much code as
-      it you'd need without a loop.\r Finish this under a certain amount of lines
-      and we'll continue."
+      it you'd need without a loop. Finish this under a certain amount of lines and
+      we'll continue.

@@ -53,10 +53,36 @@ public class ArrayTutorial : TutorialBase{
                 }
             break;
             case Objectives.ChangeIndex:
-                objectiveText[0].color = successColor;
-                objectiveText[1].color = successColor;
-                currentObjective = Objectives.AfterChangeIndex;
-                StartCoroutine(convoManager.StartDialogue(5, 0));
+                //check if only one array is used and it's the given variable
+                var compiler = Compiler.Instance;
+                bool ciFailOne = false;
+                bool ciFailTwo = false;
+
+                ciFailOne = !compiler.allVars["arr"].isSet || compiler.intVars["arr`0"] == 1 || compiler.intVars["arr`1"] == 2 || compiler.intVars["arr`2"] == 3;
+                ciFailTwo = compiler.intArrs.Count != 2 && !compiler.allVars.ContainsKey("arr");
+
+                if(ciFailOne && ciFailTwo){
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = Color.red;
+                    objectiveText[2].color = Color.red;
+                    StartCoroutine(convoManager.StartFailDialogue(3, 0));                    
+                } else if(ciFailOne){
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = Color.red;
+                    objectiveText[2].color = successColor;
+                    StartCoroutine(convoManager.StartFailDialogue(4, 0));
+                } else if(ciFailTwo){
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = successColor;
+                    objectiveText[2].color = Color.red;
+                    StartCoroutine(convoManager.StartFailDialogue(5, 0));
+                } else {
+                    objectiveText[0].color = successColor;
+                    objectiveText[1].color = successColor;
+                    objectiveText[2].color = successColor;
+                    currentObjective = Objectives.AfterChangeIndex;
+                    StartCoroutine(convoManager.StartDialogue(5, 0));
+                }
                 Compiler.Instance.terminateExecution();
                 latches = 0;
             break;
@@ -73,8 +99,6 @@ public class ArrayTutorial : TutorialBase{
                     failOne = true;
                     failTwo = true;
                 }
-                failOne = !ci.allVars["arr"].isSet || !cis.Contains("Open") || !cis.Contains("Akeru") || !cis.Contains("Ouvrir");
-                failTwo = ci.strArrs.Count != 2 && !ci.allVars.ContainsKey("arr");
 
                 if(failOne && failTwo){
                     objectiveText[0].color = successColor;
@@ -215,8 +239,12 @@ public class ArrayTutorial : TutorialBase{
         objectiveText[0].color = defaultColor;
 
         objectiveText[1].transform.gameObject.SetActive(true);
-        objectiveText[1].text = ">Change the array's values";
+        objectiveText[1].text = ">Change the given array's values";
         objectiveText[1].color = defaultColor;
+
+        objectiveText[2].transform.gameObject.SetActive(true);
+        objectiveText[2].text = ">Use only the given array";
+        objectiveText[2].color = defaultColor;
     }
 
     void StartNewDeclaration(){

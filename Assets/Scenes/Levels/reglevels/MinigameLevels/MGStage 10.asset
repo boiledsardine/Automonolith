@@ -29,11 +29,13 @@ MonoBehaviour:
     lines:
     - This thing prints out the mulitples of a given number through a loop. Now I
       could've just done this by hand, yes, but where's the fun in that?
+    - Multiples as in the multiples of 3 are 3, 6, 9, so on. And those of 5 are 5,
+      10, 15, and so on. Think you could make something like that?
   passConvo:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Yes, good. Supplying it with the proper inputs will give you the multiples
       of a certain digit up to a certain number.
@@ -42,20 +44,20 @@ MonoBehaviour:
   hidWords:
   - hiddenText: num
     correctAnswers: []
-    mistakeMessage: '3: You''re comparing values here. The first space in this line
+    mistakeMessage: '6: You''re comparing values here. The first space in this line
       should contain something that changes over time.'
   - hiddenText: <
     correctAnswers: []
-    mistakeMessage: '3: You''re comparing values here. The second space in this line
+    mistakeMessage: '6: You''re comparing values here. The second space in this line
       should contain something that can do a comparison and return true for a few
       runs so the loop can proceed.'
   - hiddenText: input
     correctAnswers: []
-    mistakeMessage: '3: You''re comparing values here. The last space in this line
+    mistakeMessage: '6: You''re comparing values here. The last space in this line
       should contain something that doesn''t change over time.'
   - hiddenText: num
     correctAnswers: []
-    mistakeMessage: '5: Looks like a math operation. Perhaps a value or variable
+    mistakeMessage: '7: Looks like a math operation. Perhaps a value or variable
       of some kind goes in here, one that multiplies the given number by the number
       of loops already done.'
   - hiddenText: ++

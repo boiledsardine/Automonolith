@@ -21,8 +21,8 @@ MonoBehaviour:
     - Alright, else statements! Else statements come after if statements and, unlike
       if statements, don't take conditions.
     - 'Instead, their code executes automatically if the condition of the if statement
-      before it is false. Like if, else becomes <color=#925bb3>magenta</color> when
-      written right. Write one like this after an if statement:'
+      before it is false. Like if, else becomes magenta when written right. Write
+      one like this after an if statement:'
     - '~else`
 
       ~{`
@@ -54,7 +54,7 @@ MonoBehaviour:
   - npcName: Morgan
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: f2608b585e94e9e4d9f2b18e0c992283, type: 3}
+    npcSprite: {fileID: 21300000, guid: 5e17b7974d3ebb241b0d9c54dc3442ee, type: 3}
     lines:
     - 'Pretty much. Why don''t you try? Here, the  path G4wain takes depends on the
       condition you pass. Here''s a hint: G4wain has to reach the right side. Try

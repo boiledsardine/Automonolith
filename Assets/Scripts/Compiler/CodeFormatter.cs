@@ -5,7 +5,7 @@ using System.Linq;
 
 public class CodeFormatter {
     //formats code line by line
-    public static string Format(string line){
+    public static string Format(string line, bool colorizerFormatting){
         line = line.Trim();
 
         List<string> sections = new List<string>();
@@ -37,17 +37,18 @@ public class CodeFormatter {
             if(inLiteral || inCharLiteral){
                 if(currentChar == ' '){
                     tempString += '^';
-                } else if(currentChar == '{'){
+                } else if(currentChar == '{' && !colorizerFormatting){
                     tempString += 'あ';
-                } else if(currentChar == '}'){
+                } else if(currentChar == '}' && !colorizerFormatting){
                     tempString += 'え';
-                } else if(currentChar == '['){
+                } else if(currentChar == '[' && !colorizerFormatting){
                     tempString += 'い';
-                } else if(currentChar == ']'){
+                } else if(currentChar == ']' && !colorizerFormatting){
                     tempString += 'お';
-                } else if(currentChar == ','){
+                } else if(currentChar == ',' && !colorizerFormatting){
                     tempString += 'け';
                 }
+                
             }
 
             //adds a full token

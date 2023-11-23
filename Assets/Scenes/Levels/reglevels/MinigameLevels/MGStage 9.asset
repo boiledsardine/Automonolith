@@ -33,7 +33,7 @@ MonoBehaviour:
   - npcName: Merlin
     showNpc: 1
     npcPos: 82
-    npcSprite: {fileID: 21300000, guid: 9d43eb43e4fc0d84a876fedd867625c4, type: 3}
+    npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
     - Minigame test complete
   mainText: "//note: seconds is a random value\nint seconds;\n\n_(seconds _ 0){\n 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class L4Objs : ObjectiveBase{
     public TMPro.TMP_Text primObj, primObj2, secObj1, secObjHeader;
     int intVarCount;
+    public WallPanel numpanel1, numpanel2;
+    public VoxGate vox;
     void Start(){
         intVarCount = Compiler.Instance.intVars.Count;
 
@@ -60,10 +62,10 @@ public class L4Objs : ObjectiveBase{
     }
 
     public override bool Objective3(){
-        if(Compiler.Instance.intVars.Count - intVarCount > 1){
-            return false;
-        } else {
+        if(Compiler.Instance.intVars.Count <= 1){
             return true;
+        } else {
+            return false;
         }
     }
 }

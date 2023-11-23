@@ -63,6 +63,6 @@ public class LinkEventHandler : MonoBehaviour{
 
     void SetDictText(string keyword){
         dictName.text = keyword;
-        dictText.text = dictContent.ContainsKey(keyword) ? dictContent[keyword] : "entry not found";
+        dictText.text = dictContent.ContainsKey(keyword) ? dictContent[keyword] : "This is a comment! Comments aren't read by the machine as instructions.";
     }
 }

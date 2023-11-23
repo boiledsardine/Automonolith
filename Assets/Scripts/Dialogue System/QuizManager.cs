@@ -16,6 +16,7 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
 
     public QuizLevel1 quizManager;
     public Button nextButton;
+    public TMPro.TMP_Text numText;
 
     new void Awake(){
         if(Instance == null){
@@ -67,6 +68,12 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
 
         currentItem = quizItems.Dequeue();
 
+        //hide right button and show numtext
+        nextButton.GetComponent<Image>().enabled = false;
+        numText.transform.gameObject.SetActive(true);
+        int remaining = 10 - quizItems.Count;
+        numText.text = remaining.ToString() + "/10";
+
         nameText.text = currentItem.npcName;
 
         if(currentItem.hasChoice){
@@ -90,6 +97,10 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
 
         dialogueText.text = "That is the correct answer.";
         isRightOrWrong = true;
+        
+        //show right button and hide numtext
+        nextButton.GetComponent<Image>().enabled = true;
+        numText.transform.gameObject.SetActive(false);
     }
 
     public void loadIncorrect(){
@@ -99,6 +110,10 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
 
         dialogueText.text = "That is incorrect.";
         isRightOrWrong = true;
+
+        //show right button and hide numtext
+        nextButton.GetComponent<Image>().enabled = true;
+        numText.transform.gameObject.SetActive(false);
     }
 
     char letter(){

@@ -28,7 +28,7 @@ public abstract class TutorialBase : MonoBehaviour, IActivate{
 
     public Vector3[] cameraPos;
     
-    [TextArea(3,10)]
+    [TextArea(3,30)]
     public string[] comments;
     public bool hasError = false;
 

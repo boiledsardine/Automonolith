@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 //works great
 public class EditorSaveLoad : MonoBehaviour{
@@ -26,7 +27,9 @@ public class EditorSaveLoad : MonoBehaviour{
         levelIndex = LevelSaveLoad.Instance.indexHolder;
 
         LoadEditorState();
-    }  
+    }
+
+    public Animator autosaveAnim;
 
     //saves whatever's written in the editor
     public void SaveEditorState(){
@@ -34,6 +37,9 @@ public class EditorSaveLoad : MonoBehaviour{
 
         string content = JsonHelper.ToJson<EditorState>(editorStates.ToArray(), true);
         File.WriteAllText(editorSave, content);
+
+        //triggers autosave animator
+        autosaveAnim.Play("SaveAnimOff");
     }
 
     //replaces editor text with whatever's in the savefile

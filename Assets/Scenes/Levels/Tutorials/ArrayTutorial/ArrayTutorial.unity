@@ -4771,7 +4771,9 @@ MonoBehaviour:
     //remember that indices start at 0
 
     //so
-    the first element is index 0, second is index 1, so on
+    the first element is index 0
+
+    //second is index 1, so on
 
     Bot.moveTo(arr[0]);
 
@@ -4782,7 +4784,7 @@ MonoBehaviour:
     variables are used for the while loop's condition \r\nint num = 0;\r\nint arrayLength
     = arr.Length;\r\n\r\n//make a while loop that runs as long as num < arrayLength\r\n//and
     move to the element at index num over and over\r\n//until the end of the array
-    is reached"
+    is reached\nwhile(){\n  //code goes here\n}"
   - '//this uses the ReadIntArr function to get an int array
 
     int[] arr = Bot.ReadIntArr();
@@ -4796,22 +4798,28 @@ MonoBehaviour:
 
     arr[0] *= 10;
 
+    arr[1] *= 10;
 
-    //these will move G4wain
+    arr[2] *= 10;
 
-    //first
-    change the array arr''s values
+
+    //these
+    will move G4wain
+
+    //first change the array arr''s values
+
+    //by multiplying
+    arr''s elements by 10
+
 
     Bot.say(arr[0]);
 
     Bot.moveRight();
 
 
-
     Bot.say(arr[1]);
 
     Bot.moveRight();
-
 
 
     Bot.say(arr[2]);
@@ -4878,6 +4886,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fdaa0ed95158a84418bcd28ed3aef694, type: 2}
   - {fileID: 11400000, guid: 4df100c41da83ad4e8ea533ab85f6a4e, type: 2}
   - {fileID: 11400000, guid: 48c574825ab76df44bfbc4e6802a02dc, type: 2}
+  - {fileID: 11400000, guid: 0c70d789bc4f1094b8605b911235297c, type: 2}
+  - {fileID: 11400000, guid: 6487a2e21938c7c4e8f01320bf8f30d3, type: 2}
+  - {fileID: 11400000, guid: 34916fabe7ed56e47b73abfe18d80af9, type: 2}
   dialogueManager: {fileID: 175071778}
 --- !u!1001 &1605176543
 PrefabInstance:
