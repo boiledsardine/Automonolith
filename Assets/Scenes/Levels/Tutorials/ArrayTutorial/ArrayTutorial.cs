@@ -22,7 +22,6 @@ public class ArrayTutorial : TutorialBase{
         }
     }
 
-    int latches = 0;
     public override IEnumerator ActivateButton(){
         hasError = false;
         yield return new WaitForSeconds(1);
@@ -33,23 +32,23 @@ public class ArrayTutorial : TutorialBase{
         
         switch(currentObjective){
             case Objectives.IntroIndices:
-                latches++;
-                if(latches == 3){
+                LatchCounter.Instance.latch++;
+                if(LatchCounter.Instance.latch == 3){
                     objectiveText[0].color = successColor;
                     currentObjective = Objectives.AfterIntroIndices;
                     StartCoroutine(convoManager.StartDialogue(1, 0));
                     Compiler.Instance.terminateExecution();
-                    latches = 0;
+                    LatchCounter.Instance.latch = 0;
                 }
             break;
             case Objectives.LoopingArray:
-                latches++;
-                if(latches == 5){
+                LatchCounter.Instance.latch++;
+                if(LatchCounter.Instance.latch == 5){
                     objectiveText[0].color = successColor;
                     currentObjective = Objectives.AfterLoopingArray;
                     StartCoroutine(convoManager.StartDialogue(3, 0));
                     Compiler.Instance.terminateExecution();
-                    latches = 0;
+                    LatchCounter.Instance.latch = 0;
                 }
             break;
             case Objectives.ChangeIndex:
@@ -84,7 +83,7 @@ public class ArrayTutorial : TutorialBase{
                     StartCoroutine(convoManager.StartDialogue(5, 0));
                 }
                 Compiler.Instance.terminateExecution();
-                latches = 0;
+                LatchCounter.Instance.latch = 0;
             break;
             case Objectives.NewDeclaration:
                 //check if only one array is used and it's the given variable
@@ -123,13 +122,13 @@ public class ArrayTutorial : TutorialBase{
                     StartCoroutine(convoManager.StartDialogue(7, 0));
                 }
                 Compiler.Instance.terminateExecution();
-                latches = 0;
+                LatchCounter.Instance.latch = 0;
             break;
         }
     }
 
     public void ResetLatches(){
-        latches = 0;
+        LatchCounter.Instance.latch = 0;
     }
 
     public override void DialogueEnd(){

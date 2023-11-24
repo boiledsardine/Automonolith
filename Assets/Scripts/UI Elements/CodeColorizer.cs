@@ -12,6 +12,7 @@ public static class CodeColorizer{
         "GiveGrade",
         "Alarm"
     };
+
     public static string Colorize(string input, bool changeFont, ColorizerTheme theme){
         input = input.Replace('“', '\"');
         input = input.Replace('”', '\"');
@@ -66,6 +67,7 @@ public static class CodeColorizer{
             Color color = Color.clear;
             string section = sections[i];
 
+            //identify sections and assign colors
             if(section == "//" || isComment){
                 color = theme.commentColor;
                 isComment = true;
@@ -95,6 +97,7 @@ public static class CodeColorizer{
                 color = theme.varColor;
             }
 
+            //tracks start and end indices of words checked
             if (color != Color.clear) {
                 colors.Add (color);
                 int endIndex = nonSpace + sections[i].Length;
@@ -104,6 +107,10 @@ public static class CodeColorizer{
             nonSpace += sections[i].Length;
         }
 
+        //find spaces between tokens in code and start/end indices for words
+        //spaces demarcate tokens and separate color tags
+        //could've split the tokens into an array instead
+        //but merging them will not always result in the same thing the user inputted
         if(colors.Count > 0){
             nonSpace = 0;
             int colorIndex = 0;
@@ -128,13 +135,15 @@ public static class CodeColorizer{
                 if(i < line.Length){
                     char c = line[i];
 
+                    //count spaces in literals as non-spaces
+                    //not doing so leads to funky shenanigans in the editor
+                    //such as in-literal spaces displacing the color tags
                     if((c == '\"' || c == '\'') && !isLiteral){
                         isLiteral = true;
                     } else if((c == '\"' || c == '\'') && isLiteral){
                         isLiteral = false;
                     }
 
-                    //this is the condition causing the error
                     if(c != ' ' || (c == ' ' && isLiteral)){
                         nonSpace++;
                     }
@@ -142,6 +151,7 @@ public static class CodeColorizer{
             }
         }
 
+        //actually apply colors
         for(int i = colors.Count - 1; i >= 0; i--){
             var col = colors[i];
             string colorString = ColorUtility.ToHtmlStringRGB(col);

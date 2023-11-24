@@ -22,14 +22,14 @@ public class SaveHandler : MonoBehaviour{
     }
 
     public void AddLevelSaveEntry(){
-        savedLevels.Add(new LevelInfo(false, false, false, false, false));
+        savedLevels.Add(new LevelInfo(false, false, false, false));
         
         string levelContent = JsonHelper.ToJson<LevelInfo>(savedLevels.ToArray(), true);
         File.WriteAllText(levelSave, levelContent);
     }
 
     public void AddEditorSaveEntry(){
-        editorStates.Add(new EditorState(""));
+        editorStates.Add(new EditorState(0, ""));
 
         string editorContent = JsonHelper.ToJson<EditorState>(editorStates.ToArray(), true);
         File.WriteAllText(editorSave, editorContent);

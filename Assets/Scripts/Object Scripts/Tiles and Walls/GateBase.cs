@@ -8,8 +8,17 @@ public class GateBase : MonoBehaviour{
     [SerializeField] protected TileBase tileFront, tileBack;
 
     void Update(){
-        Debug.DrawRay(transform.position, Vector3.forward * Globals.Instance.distancePerTile, Color.blue);
-        Debug.DrawRay(transform.position, Vector3.back * Globals.Instance.distancePerTile, Color.green);
+        //divisible by 180, probably facing x axis
+        if(gameObject.transform.parent.transform.rotation.eulerAngles.y % 180 == 0){
+            Debug.DrawRay(transform.position, Vector3.left * Globals.Instance.distancePerTile, Color.blue);
+            Debug.DrawRay(transform.position, Vector3.right * Globals.Instance.distancePerTile, Color.green);
+        }
+
+        //probably 270 or 90, facing y axis
+        else if(gameObject.transform.parent.transform.rotation.eulerAngles.y % 180 == 90){
+            Debug.DrawRay(transform.position, Vector3.forward * Globals.Instance.distancePerTile, Color.blue);
+            Debug.DrawRay(transform.position, Vector3.back * Globals.Instance.distancePerTile, Color.green);
+        }
     }
 
     protected void Start(){
@@ -19,8 +28,20 @@ public class GateBase : MonoBehaviour{
         //fire raycasts to find front and back tiles
         int tileMask = 1 << 7;
         float distance = Globals.Instance.distancePerTile;
+        
         Vector3 fwd = Vector3.forward;
         Vector3 bck = Vector3.back;
+
+        if(gameObject.transform.parent.transform.rotation.eulerAngles.y % 180 == 90){
+            //facing y axis
+            fwd = Vector3.forward;
+            bck = Vector3.back;
+        } else if(gameObject.transform.parent.transform.rotation.eulerAngles.y % 180 == 0) {
+            //facing x axis
+            fwd = Vector3.left;
+            bck = Vector3.right;
+        }
+
         if(Physics.Raycast(transform.position, fwd, out RaycastHit hitF, distance, tileMask)){
             tileFront = hitF.transform.gameObject.GetComponent<TileBase>();
         }

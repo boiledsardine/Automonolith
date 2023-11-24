@@ -73,4 +73,8 @@ public class EditorSaveLoad : MonoBehaviour{
             editor.charIndex = lineMaxIndex;
         }
     }
+
+    void OnApplicationQuit(){
+        SaveEditorState();
+    }
 }

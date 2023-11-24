@@ -55,7 +55,9 @@ public class MenuControl : MonoBehaviour{
     public void exitGame(){
         var currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Main Menu"){
-            Application.Quit();
+            Destroy(FindObjectOfType<LevelSaveLoad>().gameObject);
+            SceneManager.LoadScene(0);
+            return;
         }
 
         var maptacks = GameObject.Find("Maptacks");

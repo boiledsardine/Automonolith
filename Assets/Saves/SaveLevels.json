@@ -1,158 +1,151 @@
 {
     "Items": [
         {
+            "levelIndex": 0,
             "isUnlocked": true,
             "star1": true,
             "star2": true,
-            "star3": true,
-            "sceneWatched": false
+            "star3": true
         },
         {
+            "levelIndex": 1,
             "isUnlocked": true,
             "star1": true,
             "star2": true,
-            "star3": true,
-            "sceneWatched": false
+            "star3": true
         },
         {
+            "levelIndex": 2,
             "isUnlocked": true,
             "star1": true,
             "star2": true,
-            "star3": true,
-            "sceneWatched": true
+            "star3": false
         },
         {
+            "levelIndex": 3,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": false,
+            "star3": true
+        },
+        {
+            "levelIndex": 4,
             "isUnlocked": true,
             "star1": true,
             "star2": true,
-            "star3": true,
-            "sceneWatched": true
+            "star3": true
         },
         {
+            "levelIndex": 5,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 6,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": false
+        },
+        {
+            "levelIndex": 7,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 8,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": false,
+            "star3": false
+        },
+        {
+            "levelIndex": 9,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 10,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 11,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 12,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 13,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 14,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": false
+        },
+        {
+            "levelIndex": 15,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": false
+        },
+        {
+            "levelIndex": 16,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": false,
+            "star3": false
+        },
+        {
+            "levelIndex": 17,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 18,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 19,
+            "isUnlocked": true,
+            "star1": true,
+            "star2": true,
+            "star3": true
+        },
+        {
+            "levelIndex": 20,
             "isUnlocked": true,
             "star1": false,
             "star2": false,
-            "star3": false,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": true
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": true
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": true,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": true,
-            "star2": true,
-            "star3": false,
-            "sceneWatched": false
-        },
-        {
-            "isUnlocked": true,
-            "star1": false,
-            "star2": false,
-            "star3": false,
-            "sceneWatched": false
+            "star3": false
         }
     ]
 }

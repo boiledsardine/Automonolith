@@ -17,7 +17,7 @@ public class SaveGenerator : MonoBehaviour{
     string levelSave, editorSave, minigameSave, etcSave, saveDir;
     public bool unlockAllLevels, unlockAllMinigames;
 
-    public void Awake(){
+    void Awake(){
         //check for directory
         saveDir = Application.dataPath + "/Saves";
         if(!Directory.Exists(saveDir)){
@@ -30,51 +30,70 @@ public class SaveGenerator : MonoBehaviour{
         editorSave = Application.dataPath + "/Saves/EditorSaves.json";
         minigameSave = Application.dataPath + "/Saves/MinigameSaves.json";
         etcSave = Application.dataPath + "/Saves/EtcSave.json";
+    }
 
+    public void GenerateSaves(){
         if(!File.Exists(levelSave)){
             for(int i = 0; i < saveCounts; i++){
-                AddLevelSaveEntry();
+                AddLevelSaveEntry(i);
             }
         }
 
         if(!File.Exists(editorSave)){
             for(int i = 0; i < saveCounts; i++){
-                AddEditorSaveEntry();
+                AddEditorSaveEntry(i);
             }
         }
 
         if(!File.Exists(minigameSave)){
             for(int i = 0; i < minigameSaveCounts; i++){
-                AddMinigameSaveEntry();
+                AddMinigameSaveEntry(i, false);
             }
         }
     }
 
-    public void AddLevelSaveEntry(){
-        if(unlockAllLevels){
-            savedLevels.Add(new LevelInfo(true, false, false, false, false));
-        } else {
-            savedLevels.Add(new LevelInfo(false, false, false, false, false));
+    public void DeleteSaves(){
+        if(File.Exists(levelSave)){
+            Debug.Log("Attempting mainsave deletion");
+            File.Delete(levelSave);
         }
 
-        savedLevels[0] = new LevelInfo(true, false, false, false, false);
+        if(File.Exists(editorSave)){
+            Debug.Log("Attempting editor deletion");
+            File.Delete(editorSave);
+        }
+
+        if(File.Exists(minigameSave)){
+            Debug.Log("Attempting minigame deletion");
+            File.Delete(minigameSave);
+        }
+    }
+
+    public void AddLevelSaveEntry(int index){
+        if(unlockAllLevels){
+            savedLevels.Add(new LevelInfo(index, false, false, false, false));
+        } else {
+            savedLevels.Add(new LevelInfo(index, false, false, false, false));
+        }
+
+        savedLevels[0] = new LevelInfo(0, true, false, false, false);
         
         string levelContent = JsonHelper.ToJson<LevelInfo>(savedLevels.ToArray(), true);
         File.WriteAllText(levelSave, levelContent);
     }
 
-    public void AddEditorSaveEntry(){
-        editorStates.Add(new EditorState(""));
+    public void AddEditorSaveEntry(int index){
+        editorStates.Add(new EditorState(index, ""));
 
         string editorContent = JsonHelper.ToJson<EditorState>(editorStates.ToArray(), true);
         File.WriteAllText(editorSave, editorContent);
     }
 
-    public void AddMinigameSaveEntry(){
-        if(unlockAllMinigames){
-            minigameStates.Add(new MinigameState(true, false));
+    public void AddMinigameSaveEntry(int index, bool openLevel){
+        if(unlockAllMinigames || openLevel){
+            minigameStates.Add(new MinigameState(index, true, false));
         } else {
-            minigameStates.Add(new MinigameState(false, false));
+            minigameStates.Add(new MinigameState(index, false, false));
         }
 
         string minigameContent = JsonHelper.ToJson<MinigameState>(minigameStates.ToArray(), true);
@@ -84,12 +103,12 @@ public class SaveGenerator : MonoBehaviour{
 
 [System.Serializable]
 public class LevelInfo{
-    public LevelInfo(bool isUnlocked, bool star1, bool star2, bool star3, bool sceneWatched){
+    public LevelInfo(int levelIndex, bool isUnlocked, bool star1, bool star2, bool star3){
+        this.levelIndex = levelIndex;
         this.isUnlocked = isUnlocked;
         this.star1 = star1;
         this.star2 = star2;
         this.star3 = star3;
-        this.sceneWatched = sceneWatched;
     }
 
     public LevelInfo(bool isUnlocked, bool star1, bool star2, bool star3){
@@ -99,23 +118,29 @@ public class LevelInfo{
         this.star3 = star3;
     }
 
-    public bool isUnlocked, star1, star2, star3, sceneWatched;
+    public int levelIndex;
+    public bool isUnlocked, star1, star2, star3;
 }
 
 [System.Serializable]
 public class EditorState{
-    public EditorState(string editorContent){
+    public EditorState(int levelIndex, string editorContent){
+        this.levelIndex = levelIndex;
         this.editorContent = editorContent;
     }
+    public int levelIndex;
     public string editorContent;
 }
 
 [System.Serializable]
 public class MinigameState{
-    public MinigameState(bool isUnlocked, bool isDone){
+    public MinigameState(int levelIndex, bool isUnlocked, bool isDone){
+        this.levelIndex = levelIndex;
         this.isUnlocked = isUnlocked;
         this.isDone = isDone;
     }
+
+    public int levelIndex;
     public bool isUnlocked;
     public bool isDone;
 }

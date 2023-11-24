@@ -58,6 +58,7 @@ public class L1Objs : ObjectiveBase{
     }
 
     public override bool Objective3(){
+        //get all gems
         GemPickup[] activeGems = FindObjectsOfType<GemPickup>();
         if(activeGems.Length != 0){
             return false;

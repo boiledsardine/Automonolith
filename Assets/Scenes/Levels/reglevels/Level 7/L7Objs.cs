@@ -53,7 +53,7 @@ public class L7Objs : ObjectiveBase{
 
     public override bool Objective2(){
         //count statements
-        if(Compiler.Instance.moveCount >= 7){
+        if(Compiler.Instance.moveCount > 8){
             return false;
         }
         return true;

@@ -1,42 +1,52 @@
 {
     "Items": [
         {
+            "levelIndex": 0,
             "isUnlocked": true,
             "isDone": false
         },
         {
+            "levelIndex": 1,
             "isUnlocked": true,
             "isDone": false
         },
         {
-            "isUnlocked": true,
-            "isDone": true
-        },
-        {
-            "isUnlocked": true,
-            "isDone": true
-        },
-        {
-            "isUnlocked": true,
-            "isDone": true
-        },
-        {
+            "levelIndex": 2,
             "isUnlocked": true,
             "isDone": false
         },
         {
+            "levelIndex": 3,
             "isUnlocked": true,
             "isDone": false
         },
         {
+            "levelIndex": 4,
             "isUnlocked": true,
             "isDone": false
         },
         {
+            "levelIndex": 5,
             "isUnlocked": true,
             "isDone": false
         },
         {
+            "levelIndex": 6,
+            "isUnlocked": true,
+            "isDone": false
+        },
+        {
+            "levelIndex": 7,
+            "isUnlocked": true,
+            "isDone": false
+        },
+        {
+            "levelIndex": 8,
+            "isUnlocked": true,
+            "isDone": false
+        },
+        {
+            "levelIndex": 9,
             "isUnlocked": true,
             "isDone": false
         }

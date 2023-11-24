@@ -15,6 +15,7 @@ public class FloorButton : ButtonBase, IActivator{
                 }
                 isActivated = true;
                 transform.position = originPos - new Vector3(0f, 3f, 0f);
+                Debug.Log("activating");
                 boundObject.GetComponent<IActivate>().activate();
             } else {
                 Destroy(gameObject);
@@ -26,6 +27,7 @@ public class FloorButton : ButtonBase, IActivator{
         if(col.gameObject.tag == "Pillar" || col.gameObject.tag == "Big Object" || col.gameObject.tag == "Player" && !latchActive){
             isActivated = false;
             transform.position = originPos;
+            Debug.Log("deactivating");
             boundObject.GetComponent<IActivate>().deactivate();
         }
     }

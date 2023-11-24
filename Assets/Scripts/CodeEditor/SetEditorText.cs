@@ -9,7 +9,7 @@ public class SetEditorText : MonoBehaviour {
     public TMPro.TMP_Text textField;
     public CodeEditor editor;
 
-    [Multiline (10)]
+    [TextArea(10,30)]
     public string defaultInput;
 
     void Awake (){

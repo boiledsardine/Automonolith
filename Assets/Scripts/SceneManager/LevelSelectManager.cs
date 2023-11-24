@@ -22,6 +22,7 @@ public class LevelSelectManager : MonoBehaviour{
     public ScrollRect levelSelectScroll;
     public Color disabledColor = new Color(200,200,200,128);
     public int[] levelsWithCutscene;
+    QuizUnlocker quizUnlocker;
 
     void Awake(){
         if(Instance == null){
@@ -82,6 +83,9 @@ public class LevelSelectManager : MonoBehaviour{
             var focusedButtonRect = buttonGroupContainer.transform.GetChild(indexOfButton).GetComponent<RectTransform>();
             levelSelectScroll.FocusOnItem(focusedButtonRect);
         }*/
+
+        quizUnlocker = GetComponent<QuizUnlocker>();
+        quizUnlocker.CountStars();
     }
 
     public void loadLevelDetails(int levelIndex){
@@ -109,10 +113,28 @@ public class LevelSelectManager : MonoBehaviour{
 
     //called by play button
     public void loadScene(){
+        if(sceneToLoad == 0 || sceneToLoad == 1){
+            return;
+        }
+
+        int loadIndex = sceneToLoad - levelOffset;
+        int[] quizLevels = {8, 16, 20};
+
         //if level has associated story scene, run that first
         if(loadCutscene){
             SceneManager.LoadScene("Story Scene");
-        } else {
+        }
+
+        //check star counts to unlock quiz levels
+        else if(quizLevels.Contains(loadIndex)){
+            if(quizUnlocker.CheckStars(loadIndex)){
+                loadCanvas.gameObject.SetActive(true);
+                StartCoroutine(loadAsync(sceneToLoad));    
+            }   
+        }
+
+        //normal levels
+        else {
             loadCanvas.gameObject.SetActive(true);
             StartCoroutine(loadAsync(sceneToLoad));
         }

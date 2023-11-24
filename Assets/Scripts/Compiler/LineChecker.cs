@@ -199,6 +199,34 @@ public class LineChecker{
         else if(sections[0] == "break"){
             lineType = LineType.loopBreak;
         }
+        
+        //checks for a call using "Bot."
+        else if(sections[0] == "Bot"){
+            //check if trying to use Bot as a type
+            if(sections[1] != "."){
+                if(ReservedConstants.allOperators.Contains(sections[1])
+                    || ReservedConstants.allOperatorsArr.Contains(sections[1])
+                    || sections[1] == ReservedConstants.arrayIndexSeparator) {
+                        addErr(string.Format("Line {0}: unexpected token {1}, was expecting a '.' after the 'Bot'!", lineIndex, sections[1]));
+                        hasError = true;
+                        return;
+                }
+
+                if(isValidVarName(sections[1])){
+                    addErr(string.Format("Line {0}: cannot instantiate new object of class 'Bot', G4wain doesn't know object-oriented programming yet!", lineIndex));
+                    hasError = true;
+                    return;
+                } 
+            }
+
+            lineType = LineType.functionCall;
+
+            if(!checkBotCall(sections, 0)){
+                hasError = true;
+                return;
+            }
+        }
+
         //checks for variable declaration
         //to add a new data type, add it in ReservedConstants.varTypes
         //follow a pattern: type varName = expression
@@ -209,22 +237,7 @@ public class LineChecker{
                 return;
             }
         }
-        //checks for a call using "Bot."
-        else if(sections[0] == "Bot"){
-            //check if trying to use Bot as a type
-            if(sections[1] != "." && isValidVarName(sections[1])){
-                addErr(string.Format("Line {0}: cannot instantiate new object of class 'Bot', G4wain doesn't know object-oriented programming yet!", lineIndex));
-                hasError = true;
-                return;
-            }
 
-            lineType = LineType.functionCall;
-
-            if(!checkBotCall(sections, 0)){
-                hasError = true;
-                return;
-            }
-        }
         //checks for variable assignment
         //!ReservedConstants.keywords.Contains(sections[0]) &&  isValidVarName(sections[0])
         else if(sections.Length > 1 && sections[1] == "="){
@@ -1642,10 +1655,6 @@ public class LineChecker{
             return false;
         }
         return true;
-    }
-
-    private void TestFunc(int wah, int nah){
-
     }
 
     //uses RegEx to check if variable name is valid

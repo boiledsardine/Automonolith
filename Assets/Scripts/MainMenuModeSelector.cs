@@ -53,14 +53,14 @@ public class MainMenuModeSelector : MonoBehaviour{
 
     void ResetSelectors(){
         levelName.text = "Select a level";
-        levelDesc.text = "Choose from the buttons on the right";
+        levelDesc.text = "Pick a level of the monolith.";
         star1.texture = starInactive;
         star2.texture = starInactive;
         star3.texture = starInactive;
         LevelSelectManager.Instance.sceneToLoad = 1;
 
         minigameLevelName.text = "Select a level";
-        minigameLevelDesc.text = "Choose from the buttons on the left";
+        minigameLevelDesc.text = "Pick a task to help Merlin with.";
         isDone.texture = starInactive;
         MinigameLevelSelector.Instance.sceneToLoad = "Main Menu";
     }

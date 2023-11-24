@@ -9,7 +9,10 @@ public class L2Objs : ObjectiveBase{
         
         secObjHeader.transform.gameObject.SetActive(true);
         secObj1.transform.gameObject.SetActive(true);
-        secObj1.text = ">Use 7 lines or less";
+        secObj1.text = ">Get the gem";
+        
+        secObj2.transform.gameObject.SetActive(true);
+        secObj2.text = ">Use 10 moves or less";
     }
 
     public override bool IsComplete(){
@@ -23,11 +26,17 @@ public class L2Objs : ObjectiveBase{
         } else {
             primObj.color = defaultColor;
         }
-        
-        if(Objective3()){
+
+        if(Objective2()){
             secObj1.color = successColor;
         } else {
             secObj1.color = defaultColor;
+        }
+        
+        if(Objective3()){
+            secObj2.color = successColor;
+        } else {
+            secObj2.color = defaultColor;
         }
     }
 
@@ -41,12 +50,17 @@ public class L2Objs : ObjectiveBase{
     }
 
     public override bool Objective2(){
+        //get gem
+        GemPickup[] activeGems = FindObjectsOfType<GemPickup>();
+        if(activeGems.Length != 0){
+            return false;
+        }
         return true;
     }
 
     public override bool Objective3(){
-        //count statements
-        if(Compiler.Instance.linesCount > 7){
+        //count moves
+        if(Compiler.Instance.moveCount > 10){
             return false;
         }
         return true;

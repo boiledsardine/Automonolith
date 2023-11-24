@@ -42,7 +42,7 @@ public class MinigameLoader : MonoBehaviour{
 
     public void EndLevelSave(int levelIndex, bool done){
         //saves the current level
-        savedLevels[levelIndex] = new MinigameState(true, done);
+        savedLevels[levelIndex] = new MinigameState(savedLevels[levelIndex].levelIndex, true, done);
 
         //saves everything
         SaveLevels();

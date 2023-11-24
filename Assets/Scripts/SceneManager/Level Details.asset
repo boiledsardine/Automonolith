@@ -81,7 +81,10 @@ MonoBehaviour:
     levelDesc: 'Something''s watching us...
 
 
-      -Morgan'
+      -Morgan
+
+      (Requires 21 green
+      lights to enter)'
     isTutorial: 0
     isQuiz: 1
   - levelName: True or False?
@@ -149,7 +152,10 @@ MonoBehaviour:
       So prove yourself to me, Arthur of Arcanix.
 
 
-      -Nimue'
+      -Nimue
+
+      (Requires
+      42 green lights to enter)'
     isTutorial: 0
     isQuiz: 1
   - levelName: Box of Stuff
@@ -180,9 +186,12 @@ MonoBehaviour:
   - levelName: Nimue's Trial III
     levelDesc: 'Your efforts are impressive, Arthur of Arcanix. It has been ages
       since one has reached these chambers. Come, then, and I shall appraise your
-      understanding of arrays.
+      understanding of arrays as your last trial.
 
 
-      -Nimue'
+      -Nimue
+
+      (Requires
+      53 green lights to enter)'
     isTutorial: 0
     isQuiz: 1

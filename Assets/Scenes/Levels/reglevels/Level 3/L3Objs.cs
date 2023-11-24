@@ -8,12 +8,15 @@ public class L3Objs : ObjectiveBase{
     void Start(){
         primObj.text = ">" + objText1;
         
+        secObj1.transform.gameObject.SetActive(true);
+        secObj1.text = ">" + objText2;
+
         secObj2.transform.gameObject.SetActive(true);
-        secObj2.text = ">" + objText2;
+        secObj2.text = ">" + objText3;
     }
 
     public override bool IsComplete(){
-        return Objective1() && Objective2() && Objective3();
+        return true;
     }
 
     void Update(){
@@ -47,15 +50,20 @@ public class L3Objs : ObjectiveBase{
     }
 
     public override bool Objective2(){
-        return true;
-    }
-
-    public override bool Objective3(){
-        //declare a var
-        if(Compiler.Instance.intVars.Count - Compiler.Instance.reservedInts > 0){
+        //count statements
+        if(Compiler.Instance.moveCount <= 7){
             return true;
         } else {
             return false;
         }
+    }
+
+    public override bool Objective3(){
+        //gem
+        GemPickup[] activeGems = FindObjectsOfType<GemPickup>();
+        if(activeGems.Length != 0){
+            return false;
+        }
+        return true;
     }
 }

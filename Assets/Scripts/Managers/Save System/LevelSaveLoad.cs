@@ -53,7 +53,7 @@ public class LevelSaveLoad : MonoBehaviour{
         }
 
         //saves the current level
-        savedLevels[levelIndex] = new LevelInfo(true, star1, star2, star3);
+        savedLevels[levelIndex] = new LevelInfo(savedLevels[levelIndex].levelIndex, true, star1, star2, star3);
 
         //opens the next level if it exists
         if(openNext){
@@ -67,9 +67,9 @@ public class LevelSaveLoad : MonoBehaviour{
     public void EndStorySceneSave(int levelIndex){
         var lvl = savedLevels[levelIndex];
 
-        savedLevels[levelIndex] = new LevelInfo(lvl.isUnlocked, lvl.star1, lvl.star2, lvl.star3, true);
+        savedLevels[levelIndex] = new LevelInfo(lvl.levelIndex, lvl.isUnlocked, lvl.star1, lvl.star2, lvl.star3);
 
-        SaveLevels();        
+        SaveLevels();
     }
 
     public void OpenNextLevel(int nextLevelIndex){

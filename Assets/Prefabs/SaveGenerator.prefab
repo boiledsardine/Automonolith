@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveCounts: 21
-  minigameSaveCounts: 15
+  minigameSaveCounts: 10
   savedLevels: []
   editorStates: []
   minigameStates: []
+  unlockAllLevels: 0
+  unlockAllMinigames: 0

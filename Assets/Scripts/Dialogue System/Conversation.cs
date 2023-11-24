@@ -14,6 +14,9 @@ public class Conversation : ScriptableObject{
         }
         return lineCount;
     }
+    public Conversation(List<Dialogue> dialogueList){
+        this.dialogueBlocks = dialogueList;
+    }
 }
 
 [System.Serializable]

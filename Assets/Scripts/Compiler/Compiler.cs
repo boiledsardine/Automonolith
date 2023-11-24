@@ -850,7 +850,7 @@ public class Compiler : MonoBehaviour{
 
         if(addMoveCount){
             moveCount++;
-            stepCount.text = string.Format("Steps: {0}", moveCount);
+            stepCount.text = string.Format("Moves: {0}", moveCount);
         }
     }
    
