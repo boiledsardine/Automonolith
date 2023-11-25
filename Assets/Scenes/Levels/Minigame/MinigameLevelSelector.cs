@@ -81,6 +81,10 @@ public class MinigameLevelSelector : MonoBehaviour{
     }
 
     public void LoadScene(){
+        if(sceneToLoad == "Main Menu"){
+            return;
+        }
+        
         loadCanvas.gameObject.SetActive(true);
         StartCoroutine(LoadAsync(sceneToLoad));
     }
