@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TitleButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler{
     AudioSource source;
@@ -13,10 +14,18 @@ public class TitleButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     }
 
     public void OnPointerClick(PointerEventData eventData){
+        if(!GetComponent<Button>().interactable){
+            return;
+        }
+        
         //PlayClickSound();
     }
 
     public void OnPointerEnter(PointerEventData eventData){
+        if(!GetComponent<Button>().interactable){
+            return;
+        }
+
         arrow.gameObject.SetActive(true);
         PlayRolloverSound();
     }

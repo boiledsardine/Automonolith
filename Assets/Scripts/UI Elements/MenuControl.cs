@@ -25,7 +25,9 @@ public class MenuControl : MonoBehaviour{
         }
 
         source = GetComponent<AudioSource>();
-        optionMenu = optionsCanvas.GetComponent<OptionsMenu>();
+        if(optionsCanvas != null){
+            optionMenu = optionsCanvas.GetComponent<OptionsMenu>();
+        }
     }
 
     public void openMenu(){
@@ -83,7 +85,7 @@ public class MenuControl : MonoBehaviour{
         var currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Main Menu"){
             Destroy(FindObjectOfType<LevelSaveLoad>().gameObject);
-            SceneManager.LoadScene(0);
+            StartCoroutine(LoadAsync(0));
             return;
         }
 
@@ -102,15 +104,17 @@ public class MenuControl : MonoBehaviour{
         LastSceneHolder.Instance.lastScene = SceneManager.GetActiveScene().buildIndex;
         LastSceneHolder.Instance.lastSceneName = SceneManager.GetActiveScene().name;
 
-        StartCoroutine(LoadAsync());
+        StartCoroutine(LoadAsync(1));
     }
 
     public Canvas loadCanvas;
 
-    public IEnumerator LoadAsync(){
-        Debug.Log("LOADING!");
+    public IEnumerator LoadAsync(int sceneIndex){
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.mute = true;
+
         loadCanvas.gameObject.SetActive(true);
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync("Main Menu");
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
 
         loadOp.allowSceneActivation = false;
 

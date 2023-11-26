@@ -61,7 +61,7 @@ EditorBuildSettings:
     guid: 0ad975fca752a194bb3d97af77ab307c
   - enabled: 1
     path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel 2.unity
-    guid: 5f79059d59bded4458f0d044d91e1be4
+    guid: 573a82be343f8d147ab80b6bfa2c6ac1
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorials/ArrayTutorial/ArrayTutorial.unity
     guid: b4ec66b9a939b7649b7ac89956524069
@@ -73,7 +73,7 @@ EditorBuildSettings:
     guid: 9fae3145f66823345908f1e3ae00f529
   - enabled: 1
     path: Assets/Scenes/Levels/reglevels/QuizLevel 1/QuizLevel 3.unity
-    guid: 6d78312e443651d42af999a68761305f
+    guid: 1335da3e310aa9340bba6f0f812cc062
   - enabled: 1
     path: Assets/Scenes/Testing Grounds/MGT-01/mg-level.unity
     guid: 284feff588e4c2345a713df571b67b2e

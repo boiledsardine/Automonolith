@@ -84,6 +84,7 @@ public class TitleManager : MonoBehaviour{
             OpenWindow(ngPanel, ngFrame);
         } else {
             saveGen.GenerateSaves();
+            loadCanvas.gameObject.SetActive(true);
             StartCoroutine(LoadAsync(1));
         }
     }
@@ -95,6 +96,7 @@ public class TitleManager : MonoBehaviour{
         saveGen.DeleteSaves();
         saveGen.GenerateSaves();
 
+        loadCanvas.gameObject.SetActive(true);
         StartCoroutine(LoadAsync(1));
     }
 
@@ -183,7 +185,7 @@ public class TitleManager : MonoBehaviour{
 
     public void CreditsRight(){
         creditsPageNum++;
-        if(creditsPageNum == 2){
+        if(creditsPageNum == creditsPage.Length - 1){
             creditsRight.interactable = false;
         }
         creditsLeft.interactable = true;
@@ -192,9 +194,9 @@ public class TitleManager : MonoBehaviour{
     }
 
     public void ChangeCreditsPage(int num){
-        creditsPage[0].gameObject.SetActive(false);
-        creditsPage[1].gameObject.SetActive(false);
-        creditsPage[2].gameObject.SetActive(false);
+        foreach(GridLayoutGroup gl in creditsPage){
+            gl.gameObject.SetActive(false);
+        }
 
         creditsPage[num].gameObject.SetActive(true);
     }
@@ -204,11 +206,17 @@ public class TitleManager : MonoBehaviour{
     }
 
     public void Quit(){
-        Invoke(nameof(Application.Quit), 0.5f);
+        Invoke(nameof(ExitForRealsies), 0.5f);
+    }
+
+    void ExitForRealsies(){
+        Application.Quit();
     }
 
     public IEnumerator LoadAsync(int sceneIndex){
-        Debug.Log("LOADING!");
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.mute = true;
+        
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
 
         loadOp.allowSceneActivation = false;

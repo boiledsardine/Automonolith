@@ -14,7 +14,9 @@ public class SkipScript : MonoBehaviour{
         try{
             exit = GameObject.Find("exit-point").GetComponent<ExitPoint>();
         } catch {
-            Debug.LogAssertion("didn't find any exit point");
+            if(exit == null){
+                Debug.LogAssertion("didn't find any exit point");
+            }
         }
         
         canvas = GetComponent<Canvas>();

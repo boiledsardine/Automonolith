@@ -90,7 +90,9 @@ public class MinigameLevelSelector : MonoBehaviour{
     }
 
     public IEnumerator LoadAsync(string sceneIndex){
-        Debug.Log("LOADING!");
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.mute = true;
+        
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
 
         loadOp.allowSceneActivation = false;

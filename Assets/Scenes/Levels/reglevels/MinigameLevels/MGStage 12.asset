@@ -36,7 +36,8 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
-    - Yes, everything looks like it's in its proper place.
+    - Yes, everything looks like it's in its proper place. Say, I wouldn't be able
+      to get you to sort my bookmarks too, would you?
   mainText: 'string[] flavors = {_, _, _};
 
 
@@ -56,6 +57,7 @@ MonoBehaviour:
     - '"chocolate'''
     - '"strawberry"'
     - '"vanilla"'
+    - '"chocolate"'
     mistakeMessage: '1: Try putting a string in there, a flavor of food, mayhap.'
   - hiddenText: '"strawberry"'
     correctAnswers:
@@ -70,24 +72,36 @@ MonoBehaviour:
     - '"vanilla"'
     mistakeMessage: '1: Try putting a string in there, a flavor of food, mayhap.'
   - hiddenText: new
-    correctAnswers: []
+    correctAnswers:
+    - new
     mistakeMessage: '4: I have a feeling that a keyword of some sort goes here...'
   - hiddenText: 3
     correctAnswers:
     - 
+    - 3
     mistakeMessage: '4: Ah, this one needs an int between the square braces. One
       that tells us the size of an arrray to be created...'
-  - hiddenText: 7
+  - hiddenText: 1
     correctAnswers:
     - 
+    - 2
+    - 1
     mistakeMessage: '7: Ah, this one needs an int between the square braces. One
       that tells us the index of an array element, perhaps...'
   - hiddenText: '"orange"'
     correctAnswers:
     - 
+    - '"orange"'
     mistakeMessage: '7: This one needs a value that''ll fit into the fruits array.
       And it has to be a fruit, of course.'
-  wordBank: []
+  wordBank:
+  - '"chocolate"'
+  - '"strawberry"'
+  - '"vanilla"'
+  - new
+  - 3
+  - '"orange"'
+  - 1
   levelDictionary:
   - keyword: flavors
     description: The name of a string array. It should contain ice cream flavors.
@@ -115,7 +129,7 @@ MonoBehaviour:
     description: A string value. Tart and tangy!
   - keyword: 3
     description: An int value.
-  - keyword: 7
+  - keyword: 1
     description: An int value.
   - keyword: '"orange"'
     description: A string value. Just the right blend of sweet and sour.

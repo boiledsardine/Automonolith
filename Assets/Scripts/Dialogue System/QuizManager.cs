@@ -20,6 +20,7 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
     public Button nextButton;
     public TMPro.TMP_Text numText;
     AudioSource source;
+    public AudioClip quiz_BGM, dialogue_BGM;
 
     new void Awake(){
         if(Instance == null){
@@ -37,7 +38,15 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         //do nothing
     }
 
+    public void ChangeBGM(){
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.Stop();
+        bgmSource.clip = quiz_BGM;
+    }
+
     public void startQuiz(Quiz quizToLoad, int questionCount){
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.Play();
         dialogueCanvas.gameObject.SetActive(true);
 
         List<QuizItem> quizRnd = new List<QuizItem>();
@@ -56,6 +65,7 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         panelAnimator.SetBool("isOpen", true);
         PlayOpenSound();
 
+        RecordPositions();
         loadQuizItem();
     }
     
@@ -67,10 +77,11 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
             //send broadcast
             quizManager.BroadcastMessage("QuizEnd");
 
-            endDialogue();
+            endDialogue(false);
             return;
         }
 
+        ShuffleButtons();
         currentItem = quizItems.Dequeue();
         isQuestion = true;
         PlayQuestionAskSound();
@@ -136,6 +147,30 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         }
     }
 
+    float[] buttonPosition = new float[3];
+
+    void RecordPositions(){
+        RectTransform rectA = buttonA.GetComponent<RectTransform>();
+        RectTransform rectB = buttonB.GetComponent<RectTransform>();
+        RectTransform rectC = buttonC.GetComponent<RectTransform>();
+
+        buttonPosition[0] = rectA.localPosition.y;
+        buttonPosition[1] = rectB.localPosition.y;
+        buttonPosition[2] = rectC.localPosition.y;
+    }
+
+    void ShuffleButtons(){
+        RectTransform rectA = buttonA.GetComponent<RectTransform>();
+        RectTransform rectB = buttonB.GetComponent<RectTransform>();
+        RectTransform rectC = buttonC.GetComponent<RectTransform>();
+
+        buttonPosition.Shuffle();
+
+        rectA.localPosition = new Vector2(rectA.localPosition.x, buttonPosition[0]);
+        rectB.localPosition = new Vector2(rectB.localPosition.x, buttonPosition[1]);
+        rectC.localPosition = new Vector2(rectC.localPosition.x, buttonPosition[2]);
+    }
+
     public void clickA(){
         Image buttonImage = buttonA.GetComponent<Image>();
         if(checkAnswer(Letters.A)){
@@ -195,13 +230,13 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     void PlayCorrectSound(){
-        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
         source.clip = AudioPicker.Instance.correctAnswer;
         source.Play();
     }
 
     void PlayWrongSound(){
-        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
         source.clip = AudioPicker.Instance.wrongAnswer;
         source.Play();
     }
@@ -213,7 +248,7 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     void PlayQuestionAskSound(){
-        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.question.Length;
         source.clip = AudioPicker.Instance.question[rnd.Next(maxIndex)];

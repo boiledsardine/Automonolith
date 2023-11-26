@@ -22,6 +22,11 @@ public class PostlevelCanvas : MonoBehaviour{
         Animator anim = gameObject.GetComponent<Animator>();
         anim.SetBool("isOpen", true);
         TempMuteSource();
+
+        AudioSource bgmSource = GameObject.Find("BGM Source")?.GetComponent<AudioSource>();
+        if(bgmSource != null){
+            bgmSource.mute = true;
+        }
     }
 
     public void SetStars(bool star1Open, bool star2Open, bool star3Open){
@@ -52,7 +57,10 @@ public class PostlevelCanvas : MonoBehaviour{
     public Canvas loadCanvas;
 
     public IEnumerator LoadAsync(){
-        Debug.Log("LOADING!");
+        //mute bgm source
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.mute = true;
+
         loadCanvas.gameObject.SetActive(true);
         AsyncOperation loadOp = SceneManager.LoadSceneAsync("Main Menu");
 

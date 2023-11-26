@@ -119,7 +119,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
             //if yes, end dialogue
             //if no, load the next one
             if(gameObject.activeInHierarchy && dialogueBlocks.Count == 0){
-                endDialogue();
+                endDialogue(true);
                 return;
             } else {
                 loadDialogue();
@@ -162,7 +162,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
         source.Stop();
         dialogueBlocks.Clear();
         dialogueLines.Clear();
-        endDialogue();
+        endDialogue(true);
     }
 
     //only here because i'm evil and want to keep the player *gasp* READING

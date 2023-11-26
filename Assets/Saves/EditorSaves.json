@@ -10,7 +10,7 @@
         },
         {
             "levelIndex": 2,
-            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\nBot.moveUp(2);\nBot.moveDown(3);"
+            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft();"
         },
         {
             "levelIndex": 3,

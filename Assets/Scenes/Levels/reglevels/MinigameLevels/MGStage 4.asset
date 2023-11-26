@@ -35,7 +35,7 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
-    - Hm, yes, that looks correct.
+    - Ah, you have a knack for arithmetic indeed. Keep this up and you'll do fine.
   mainText: 'int x = 10;
 
     int y = 5;

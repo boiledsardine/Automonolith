@@ -40,7 +40,7 @@ MonoBehaviour:
     - Yes, good. Supplying it with the proper inputs will give you the multiples
       of a certain digit up to a certain number.
   mainText: "//input's value is a random number\nint input;\n\nint num = 0;\n\nwhile(_
-    _ _){\n  int product = _ * input;\n  Console.WriteLine(product);\n  num_;\n}"
+    _ _){\n  int product = num _ input;\n  Console.WriteLine(product);\n  num_;\n}"
   hidWords:
   - hiddenText: num
     correctAnswers: []
@@ -55,7 +55,7 @@ MonoBehaviour:
     correctAnswers: []
     mistakeMessage: '6: You''re comparing values here. The last space in this line
       should contain something that doesn''t change over time.'
-  - hiddenText: num
+  - hiddenText: '*'
     correctAnswers: []
     mistakeMessage: '7: Looks like a math operation. Perhaps a value or variable
       of some kind goes in here, one that multiplies the given number by the number

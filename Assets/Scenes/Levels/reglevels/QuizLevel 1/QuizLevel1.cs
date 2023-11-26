@@ -54,7 +54,7 @@ public class QuizLevel1 : MonoBehaviour{
                 quizStarted = true;
                 Invoke("StartQuiz", 0.5f);
             break;
-            case 3:
+            case 2:
                 LevelComplete();
             break;
             default: break;
@@ -65,13 +65,34 @@ public class QuizLevel1 : MonoBehaviour{
         hintIsOpen = true;
     }
 
+    //don't take this out
+    //broadcast targets only active gameobjects
+    //quizmgr is inactive until this fires
     void StartQuiz(){
         quizMgr.startQuiz(quiz, quiz.items);
     }
 
+    void ChangeBGM(){
+        if(state == QuizState.Pass){
+            return;
+        }
+        
+        quizMgr.ChangeBGM();
+    }
+
     public void QuizEnd(){
+        quizMgr.ChangeBGM();
+        Invoke(nameof(ClosingDialogue), 1f);
+    }
+
+    void ClosingDialogue(){
         if(QuizManager.Instance.quizScore >= scoreThreshold1){
             state = QuizState.Pass;
+            
+            AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+            bgmSource.clip = quizMgr.dialogue_BGM;
+            bgmSource.Play();
+
             StartCoroutine(convoManager.StartDialogue(1, dialogueInvokeTime));
         } else {
             state = QuizState.Fail;

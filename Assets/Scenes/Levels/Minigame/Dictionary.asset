@@ -142,3 +142,6 @@ MonoBehaviour:
   - keyword: ()
     description: A pair of parentheses. This is usually put at the end of a method's
       name to denote that it is, in fact, a method.
+  - keyword: ','
+    description: A comma! This is used to separate values in an array literal or
+      arguments in a method.

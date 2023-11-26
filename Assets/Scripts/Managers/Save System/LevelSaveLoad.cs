@@ -75,7 +75,7 @@ public class LevelSaveLoad : MonoBehaviour{
     public void OpenNextLevel(int nextLevelIndex){
         //checks if there's a next level
         //if there is, unlocks the next level if it isn't yet
-        if(nextLevelIndex <= savedLevels.Count){
+        if(nextLevelIndex < savedLevels.Count){
             if(!savedLevels[nextLevelIndex].isUnlocked){
                 savedLevels[nextLevelIndex].isUnlocked = true;
             }

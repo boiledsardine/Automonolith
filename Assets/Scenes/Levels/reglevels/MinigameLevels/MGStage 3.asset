@@ -35,7 +35,8 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
-    - Hm, yes, that looks correct. Thanks for helping with variable declaration.
+    - It appears all fragments are in their place, yes. Yes, this is how variables
+      are done.
   mainText: '_ var1 = 10;
 
     string var2 = _;

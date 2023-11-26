@@ -37,8 +37,9 @@ MonoBehaviour:
     npcPos: 82
     npcSprite: {fileID: 21300000, guid: 3439f81a94f3c0a409645c7a40b9a01a, type: 3}
     lines:
-    - Indeed, I remember now. Yes, that's how it's done. Well, I hope we can continue
-      helping each other out from now on.
+    - Ah, a nice cup of coffee, hot and fresh as I used to like it. Shame I have
+      no mouth to enjoy it with. Also, coffee tends to stain my pages. Still, thank
+      you for this.
   mainText: '//here''s how I usually prepare coffee:
 
     //start with boiling water

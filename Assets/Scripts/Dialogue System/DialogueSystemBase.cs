@@ -40,7 +40,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     //navigates to the next line on the list
     public abstract void nextLine();
 
-    public void endDialogue(){
+    public void endDialogue(bool broadcast){
         PlayCloseSound();
         Invoke("disableCanvas", 0.25f);
         
@@ -54,20 +54,37 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         leftSprite.GetComponent<Image>().enabled = false;
         rightSprite.GetComponent<Image>().enabled = false;
        
-        if(!isErrorDialogue){
+        if(!isErrorDialogue && broadcast){
             Debug.LogWarning("BROADCASTING ENDDIALOGUE");
             StoryManager stryMgr = FindObjectOfType<StoryManager>();
-            stryMgr?.BroadcastMessage("DialogueEnd");
+            if(stryMgr != null){
+                stryMgr.BroadcastMessage("DialogueEnd");
+            }
 
             TutorialBase tutBase = FindObjectOfType<TutorialBase>();
-            tutBase?.BroadcastMessage("DialogueEnd");
+            if(tutBase != null){
+                tutBase.BroadcastMessage("DialogueEnd");
+            }
+
+            MinigameManager minigame = FindObjectOfType<MinigameManager>();
+            if(minigame != null){
+                minigame.BroadcastMessage("DialogueEnd");
+            }
 
             QuizLevel1 quizLvl = FindObjectOfType<QuizLevel1>();
-            quizLvl?.BroadcastMessage("DialogueEnd");   
+            if(quizLvl != null){
+                quizLvl.BroadcastMessage("ChangeBGM");
+                Invoke(nameof(StartQuiz), 0.5f);
+            }
         } else {
             isErrorDialogue = false;
             return;
         }
+    }
+
+    void StartQuiz(){
+        QuizLevel1 quizLvl = FindObjectOfType<QuizLevel1>();
+        quizLvl?.BroadcastMessage("DialogueEnd");
     }
 
     public void enableCanvas(){

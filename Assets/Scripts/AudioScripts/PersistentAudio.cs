@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PersistentAudio : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler{
     AudioSource source;
@@ -9,6 +10,10 @@ public class PersistentAudio : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public MouseoverType mouseoverType;
 
     public void OnPointerClick(PointerEventData eventData){
+        if(!GetComponent<Button>().interactable){
+            return;
+        }
+
         source = AudioPicker.Instance.gameObject.GetComponent<AudioSource>();
 
         source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
@@ -29,6 +34,10 @@ public class PersistentAudio : MonoBehaviour, IPointerClickHandler, IPointerEnte
     }
 
     public void OnPointerEnter(PointerEventData eventData){
+        if(!GetComponent<Button>().interactable){
+            return;
+        }
+
         source = GetComponent<AudioSource>();
 
         source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;

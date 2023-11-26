@@ -23,32 +23,32 @@
         {
             "levelIndex": 4,
             "isUnlocked": true,
-            "isDone": false
+            "isDone": true
         },
         {
             "levelIndex": 5,
             "isUnlocked": true,
-            "isDone": false
+            "isDone": true
         },
         {
             "levelIndex": 6,
             "isUnlocked": true,
-            "isDone": false
+            "isDone": true
         },
         {
             "levelIndex": 7,
             "isUnlocked": true,
-            "isDone": false
+            "isDone": true
         },
         {
             "levelIndex": 8,
             "isUnlocked": true,
-            "isDone": false
+            "isDone": true
         },
         {
             "levelIndex": 9,
             "isUnlocked": true,
-            "isDone": false
+            "isDone": true
         }
     ]
 }

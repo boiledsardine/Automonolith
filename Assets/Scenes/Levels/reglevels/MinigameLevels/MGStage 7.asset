@@ -39,7 +39,7 @@ MonoBehaviour:
     - I know you're thinking it would've been simple to just do this without using
       code, but if you do the same thing hundreds of times you're bound to make a
       mistake somewhere.
-  mainText: "if(numGrade _ 90) {\n  Student.GiveGrade(\"High Pass\");\n}\nelse if(numGrade
+  mainText: "if(numGrade _ 90) {\n  Student.GiveGrade(\"High^Pass\");\n}\nelse if(numGrade
     _ 75) {\n  Student.GiveGrade(_);\n}\nelse {\n  Student.GiveGrade(_);\n}"
   hidWords:
   - hiddenText: '>='
@@ -58,7 +58,9 @@ MonoBehaviour:
     correctAnswers: []
     mistakeMessage: '8: An argument belongs here. Something that represents a grade
       of below 75.'
-  wordBank: []
+  wordBank:
+  - '>='
+  - '>='
   levelDictionary:
   - keyword: GiveGrade
     description: A function that gives a student a the grade passed as an argument.
@@ -66,3 +68,5 @@ MonoBehaviour:
     description: A grade given to students that score 75 or above.
   - keyword: '"Fail"'
     description: A grade given to students that score under 75.
+  - keyword: '"High Pass"'
+    description: A grade given to students that score 90 or above.

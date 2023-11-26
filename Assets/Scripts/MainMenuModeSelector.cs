@@ -100,7 +100,7 @@ public class MainMenuModeSelector : MonoBehaviour{
     void TempMuteAll(){
         var allAudioSource = FindObjectsOfType<AudioSource>();
         foreach(AudioSource aud in allAudioSource){
-            if(aud != source){
+            if(!(aud == source || aud.gameObject.name == "BGM Source")){
                 aud.enabled = false;
             }
         }

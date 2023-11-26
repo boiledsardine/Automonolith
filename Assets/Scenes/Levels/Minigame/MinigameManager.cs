@@ -39,7 +39,8 @@ public class MinigameManager : MonoBehaviour{
         "]",
         "//",
         "_",
-        "."
+        ".",
+        ","
     };
 
     void Awake(){
@@ -304,7 +305,6 @@ public class MinigameManager : MonoBehaviour{
         source.Play();
     }
 
-    int timesPressed = 0;
 
     //could probably get away with a cheeky Broadcast here
     public void NextLinePressed(){
@@ -312,11 +312,15 @@ public class MinigameManager : MonoBehaviour{
             return; 
         }
 
-        timesPressed++;
+        //deleted for obsoletion
+    }
 
-        if(timesPressed == passConvo.LineCount()){
-            timesPressed = 0;
-            //end level
+    public void DialogueEnd(){
+        if(!levelOver){
+            return;
+        }
+
+        //end level
             LastSceneHolder.Instance.SetLastScene();
             MinigameLoader.Instance.EndLevelSave(levelIndex, true);
 
@@ -328,7 +332,6 @@ public class MinigameManager : MonoBehaviour{
             PostlevelCanvas.Instance.SetStars(true, true, true);
 
             PlayFanfare();
-        }
     }
 
     void PlayFanfare(){

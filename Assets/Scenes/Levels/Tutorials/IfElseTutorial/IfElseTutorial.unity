@@ -805,6 +805,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9176148560996106562, guid: ff52bf7b7205a454d93e0d3866e8065a, type: 3}
   m_PrefabInstance: {fileID: 523099874}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &523099876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8706165077388628842, guid: ff52bf7b7205a454d93e0d3866e8065a, type: 3}
+  m_PrefabInstance: {fileID: 523099874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584f2eed11a4d2b44a8e022463b5c9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &523205229
 GameObject:
   m_ObjectHideFlags: 0
@@ -5636,17 +5647,25 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7975242999557236643, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e7f84943c19648a4fa260a6b7ef1df42, type: 3}
     - target: {fileID: 8435195003790006567, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_SizeDelta.x
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 8518516551253032897, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 523099876}
     - target: {fileID: 8518516551253032906, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518516551253032909, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8518516551690245671, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_SizeDelta.x

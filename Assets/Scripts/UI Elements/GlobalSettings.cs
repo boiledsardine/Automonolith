@@ -22,6 +22,7 @@ public class GlobalSettings : MonoBehaviour{
         }
 
         optionsSave = Application.dataPath + "/Saves/Options.json";
+        GenerateSave();
         LoadOptions();
     }
 
@@ -60,12 +61,19 @@ public class GlobalSettings : MonoBehaviour{
     }
 
     //save and load options
-    public void LoadOptions(){
+    void GenerateSave(){
+        string saveDir = Application.dataPath + "/Saves";
+        if(!Directory.Exists(saveDir)){
+            Directory.CreateDirectory(saveDir);
+        }
+
         if(!File.Exists(optionsSave)){
             string savedSettings = JsonUtility.ToJson(new GameSettings(ScreenResMode._1366x768, false, 1f, 1f), true);
             File.WriteAllText(optionsSave, savedSettings);
         }
+    }
 
+    public void LoadOptions(){
         string content = File.ReadAllText(optionsSave);
 
         if(string.IsNullOrEmpty(content) || content == "{}"){

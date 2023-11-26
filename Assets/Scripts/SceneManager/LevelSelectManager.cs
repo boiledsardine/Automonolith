@@ -148,7 +148,9 @@ public class LevelSelectManager : MonoBehaviour{
     }
 
     public IEnumerator LoadAsync(int sceneIndex){
-        Debug.Log("LOADING!");
+        AudioSource bgmSource = GameObject.Find("BGM Source").GetComponent<AudioSource>();
+        bgmSource.mute = true;
+        
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
 
         loadOp.allowSceneActivation = false;

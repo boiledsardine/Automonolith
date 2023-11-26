@@ -348,6 +348,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cb4e4dd17884944bb127fb777a2988f, type: 3}
+--- !u!114 &922553063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7209756173440257764, guid: 5cb4e4dd17884944bb127fb777a2988f, type: 3}
+  m_PrefabInstance: {fileID: 922553062}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584f2eed11a4d2b44a8e022463b5c9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &929506847 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1695415285224098026, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
@@ -1763,6 +1774,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 7975242999557236643, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e7f84943c19648a4fa260a6b7ef1df42, type: 3}
     - target: {fileID: 8435195003790006567, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1787,13 +1802,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8518516551253032897, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 922553063}
     - target: {fileID: 8518516551253032906, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518516551253032909, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8518516551690245671, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_SizeDelta.x
