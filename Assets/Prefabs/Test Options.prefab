@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5197601580922141455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5197601580922141449}
+  - component: {fileID: 5197601580922141454}
+  - component: {fileID: 5197601580922141448}
+  - component: {fileID: 6896797622819057680}
+  m_Layer: 0
+  m_Name: Test Options
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5197601580922141449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197601580922141455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1025.7958, y: 58.576843, z: -18.331055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5197601580922141454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197601580922141455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7118353bbdbe97140a5233b8c1080b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 1
+  isFullscreen: 0
+  optionsSave: 
+  sfxVolume: 1
+  bgmVolume: 0
+--- !u!114 &5197601580922141448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197601580922141455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e48f1297fe99f943bd6eca8553b43f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonVolume: 0.3
+  menuSwooshVolume: 0.5
+  footstepVolume: 0.75
+  minigameVolume: 0.5
+  typingVolume: 0.25
+  talkingVolume: 0.15
+  successFanfare: {fileID: 8300000, guid: 4d53ee82e50fb1b4293de89e63d3c78a, type: 3}
+  uiMouseover: {fileID: 8300000, guid: 461d5b0ad2855c84f9a9ba7afe1929bd, type: 3}
+  uiClick: {fileID: 8300000, guid: 9c3dba50d77058547989255a4a858ff5, type: 3}
+  closeClick: {fileID: 8300000, guid: c70da547038936949a48aad4e0e15c14, type: 3}
+  toggleClick: {fileID: 8300000, guid: 6cfe32268ea5e6949803cfa7580b615b, type: 3}
+  playClick: {fileID: 8300000, guid: c69e279445e2f7d49b459255b13203e3, type: 3}
+  stopClick: {fileID: 8300000, guid: 3e2d9239cf6d52a41af690a196d35145, type: 3}
+  sidebarOpen: {fileID: 8300000, guid: 439df89125623a149b0d9e88ced5980b, type: 3}
+  sidebarClose: {fileID: 8300000, guid: b971c51f3c1a0ab40b0d667362337820, type: 3}
+  menuOpen: {fileID: 8300000, guid: 439df89125623a149b0d9e88ced5980b, type: 3}
+  menuClose: {fileID: 8300000, guid: b971c51f3c1a0ab40b0d667362337820, type: 3}
+  beep: {fileID: 8300000, guid: 396b8b2209f27e6469b6b265380461e8, type: 3}
+  methodRollover: {fileID: 8300000, guid: 461d5b0ad2855c84f9a9ba7afe1929bd, type: 3}
+  methodClick: {fileID: 8300000, guid: 9c3dba50d77058547989255a4a858ff5, type: 3}
+  resetEditor: {fileID: 8300000, guid: 0d72331e94031704699a68b8a90ec79d, type: 3}
+  keyPress:
+  - {fileID: 8300000, guid: c9432146053832248b37a44d8a783d84, type: 3}
+  - {fileID: 8300000, guid: 82aa98d5569d0fa408f6ec0080aa61ce, type: 3}
+  - {fileID: 8300000, guid: 9bbfe3eb09ae06b4e887677ea7d5fbac, type: 3}
+  - {fileID: 8300000, guid: a24b0aece71bc374b874be107303edf2, type: 3}
+  - {fileID: 8300000, guid: 178a50c8c09f754468064210f1eea409, type: 3}
+  botMove1: {fileID: 8300000, guid: ebe5f335b5744384489142f4eeba5998, type: 3}
+  botMove2: {fileID: 8300000, guid: 95d0f924d2961d248a6d1c3b026456ed, type: 3}
+  botSay: {fileID: 8300000, guid: a7c06c19446103a46908080dcddf10ac, type: 3}
+  botRead: {fileID: 8300000, guid: 7688b8e084a8d5348934d93a0e9e08eb, type: 3}
+  botHold: {fileID: 8300000, guid: 59aaf38feb983e44d924fe3b5dad8183, type: 3}
+  botDrop: {fileID: 8300000, guid: ced82b2e8a9f8b8448fef43e2d25bac3, type: 3}
+  botDead:
+  - {fileID: 8300000, guid: 605314cc11fc759499cec7200c694186, type: 3}
+  - {fileID: 8300000, guid: e71c6cb6f9cffae479cf00ca005a8651, type: 3}
+  gemPickup: {fileID: 8300000, guid: 6e3e3316b6588404eb6be0a0aa9c789d, type: 3}
+  buttonOn: {fileID: 8300000, guid: 82271597e7895fe4b93452cf83757087, type: 3}
+  buttonOff: {fileID: 8300000, guid: 82271597e7895fe4b93452cf83757087, type: 3}
+  buttonLatch: {fileID: 8300000, guid: b3a1aa8148e7025458994726828ff115, type: 3}
+  gateOpen: {fileID: 8300000, guid: 295b8892031613a498b666d743694146, type: 3}
+  gateClose: {fileID: 8300000, guid: e680f53576cade243a5ff1f4dd640285, type: 3}
+  trap: {fileID: 8300000, guid: 215220742b443cf4da31c361eb3529b8, type: 3}
+  acceptorFull: {fileID: 8300000, guid: 4b4c7387fcbff2e4a8bf987ecb275036, type: 3}
+  rockMove:
+  - {fileID: 8300000, guid: f4cd8420f16723a42acdcea6d5ee0c18, type: 3}
+  - {fileID: 8300000, guid: 871372247b1c87c409e674fb8df17c80, type: 3}
+  acceptorUp:
+  - {fileID: 8300000, guid: 0d954f79056265242919379be8e7fcdc, type: 3}
+  - {fileID: 8300000, guid: ce8e0934843d4524f961b6ccedca23e1, type: 3}
+  - {fileID: 8300000, guid: db7e6310c043ec74cb1de701f8f72fbd, type: 3}
+  errorMessage: {fileID: 8300000, guid: d3026fbd64088064fa89ba2ade0ed4c5, type: 3}
+  talkingSound: {fileID: 8300000, guid: 95fca483d10343e4e9dfc12b739bc705, type: 3}
+  talkingDone: {fileID: 8300000, guid: 4e3074abe0f95c944a1bda85f8adb39f, type: 3}
+  titleRollover: {fileID: 8300000, guid: 396b8b2209f27e6469b6b265380461e8, type: 3}
+  levelRollover: {fileID: 8300000, guid: 461d5b0ad2855c84f9a9ba7afe1929bd, type: 3}
+  titleSelect: {fileID: 0}
+  levelSelect: {fileID: 8300000, guid: 396b8b2209f27e6469b6b265380461e8, type: 3}
+  modeSwitchLeft: {fileID: 8300000, guid: 9f5a134732aa5e441b15b9921f9be6d1, type: 3}
+  modeSwitchRight: {fileID: 8300000, guid: e6916597c75bdde47987e86a933852ab, type: 3}
+  titleWindowOpen: {fileID: 8300000, guid: 8560ad95ad0678f439f893330ab90854, type: 3}
+  titleWindowClose: {fileID: 8300000, guid: 7f1a9efcff9e4924497ca4f8df832f30, type: 3}
+  question:
+  - {fileID: 8300000, guid: 07b881aca7b522b43aa9146c07018ca3, type: 3}
+  - {fileID: 8300000, guid: a32cde8f83bf21a449968bc6555f145a, type: 3}
+  - {fileID: 8300000, guid: 8487380324516f54eb5a4896c23ea35c, type: 3}
+  wrongAnswer: {fileID: 8300000, guid: 0a1d26abe2e2f3745b870172df341d35, type: 3}
+  correctAnswer: {fileID: 8300000, guid: 30558ee0b54067b4fa5fa0c1e721758e, type: 3}
+  nextLocked: {fileID: 8300000, guid: 13815e5c684772d41a7dc3b11f9f786c, type: 3}
+  failSting: {fileID: 8300000, guid: d96ab9e64720f92488c687a935424009, type: 3}
+  passSting: {fileID: 8300000, guid: 4d53ee82e50fb1b4293de89e63d3c78a, type: 3}
+  minigameSuccess: {fileID: 8300000, guid: c69e279445e2f7d49b459255b13203e3, type: 3}
+  minigameError: {fileID: 8300000, guid: 3e2d9239cf6d52a41af690a196d35145, type: 3}
+  boxClick:
+  - {fileID: 8300000, guid: 9f5a134732aa5e441b15b9921f9be6d1, type: 3}
+  - {fileID: 8300000, guid: e6916597c75bdde47987e86a933852ab, type: 3}
+  - {fileID: 8300000, guid: 573b13a8933e086459792e38ebd568a0, type: 3}
+  boxDrop:
+  - {fileID: 8300000, guid: bc468cb1c547c7f449a2154a97598a63, type: 3}
+  - {fileID: 8300000, guid: f682d9252f9d8f74eb025719d2dfd6c9, type: 3}
+  - {fileID: 8300000, guid: f24e0ae6875631347a26eda5b69cf098, type: 3}
+  persistBeep: {fileID: 8300000, guid: 396b8b2209f27e6469b6b265380461e8, type: 3}
+  persistBell: {fileID: 8300000, guid: 605314cc11fc759499cec7200c694186, type: 3}
+  persistConf: {fileID: 8300000, guid: 5703bf9a4e90a7448b14d207e0e3918f, type: 3}
+--- !u!82 &6896797622819057680
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197601580922141455}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

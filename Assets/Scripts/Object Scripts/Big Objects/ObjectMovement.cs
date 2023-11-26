@@ -20,10 +20,11 @@ public class ObjectMovement : MonoBehaviour, IMovement{
 
     public IEnumerator Move(Vector3 moveDir){
         if(envirScript.neighborIsValid(dir) && !envirScript.checkForWalls(dir)){
+            PlayMoveSound();
+
             float timeElapsed = 0;
             originPos = transform.position;
             targetPos = originPos + moveDir;
-
             while(timeElapsed < Globals.Instance.timeToMove){
                 transform.position = Vector3.Lerp(originPos, targetPos,
                 (timeElapsed / Globals.Instance.timeToMove));
@@ -51,5 +52,14 @@ public class ObjectMovement : MonoBehaviour, IMovement{
 
     public IEnumerator moveUp(){
         yield return StartCoroutine(Move(new Vector3(0f, 0f, 100f)));
+    }
+
+    void PlayMoveSound(){
+        AudioSource source = GetComponent<AudioSource>();
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        System.Random rnd = new System.Random();
+        int maxIndex = AudioPicker.Instance.rockMove.Length;
+        source.clip = AudioPicker.Instance.rockMove[rnd.Next(maxIndex)];
+        source.Play();
     }
 }

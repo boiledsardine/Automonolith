@@ -21,6 +21,7 @@ public class GemPickup : ObjectBase{
             Debug.Log("Gem picked up!");
             var player = GameObject.Find("PlayerCharacter").transform.position;
             transform.position = new Vector3(player.x, Globals.Instance.pickupYFixedPos, player.z);
+            PlayGemSound();
             StartCoroutine(FadePickup());
         }
     }
@@ -53,5 +54,12 @@ public class GemPickup : ObjectBase{
             yield return null;
         }
         transform.position = targetPos;
+    }
+
+    void PlayGemSound(){
+        var source = GetComponent<AudioSource>();
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.gemPickup;
+        source.Play();
     }
 }

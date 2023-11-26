@@ -21,6 +21,14 @@ public class AlmanacManager : MonoBehaviour{
     public GameObject almanacButton;
     public ColorizerTheme theme;
     public ScrollRect scrollView;
+    AudioSource source;
+    public Image lastClicked;
+    public Color lastClickedColor;
+    List<Image> buttonImageArray;
+
+    void Awake(){
+        source = GetComponent<AudioSource>();
+    }
 
     void Start(){
         if(disableAlmanac){
@@ -58,6 +66,8 @@ public class AlmanacManager : MonoBehaviour{
             AddEntries(groups[5]);
         }
 
+        buttonImageArray = new List<Image>();
+
         for(int i = 0; i < entries.Count; i++){
             var almButton = Instantiate(almanacButton);
             var textObj = almButton.transform.GetChild(0);
@@ -67,6 +77,7 @@ public class AlmanacManager : MonoBehaviour{
             button.index = i;
             almButton.transform.SetParent(buttonContainer.transform);
             almButton.transform.localScale = new Vector3(1,1,1);
+            buttonImageArray.Add(almButton.GetComponent<Image>());
         }
         buttonContainer.GetComponent<ResizeScrollObject>().Resize();
         //scrollView.FocusOnItem(buttonContainer.transform.GetChild(0).GetComponent<RectTransform>());
@@ -81,6 +92,14 @@ public class AlmanacManager : MonoBehaviour{
         }
     }
 
+    public void SetClickedButton(){
+        foreach(Image i in buttonImageArray){
+            i.color = Color.white;
+        }
+
+        lastClicked.color = lastClickedColor;
+    }
+
     public void LoadEntry(int index){
         Debug.Log(index);
         titleText.text = entries[index].articleName;
@@ -91,14 +110,55 @@ public class AlmanacManager : MonoBehaviour{
     public void OpenHelp(){
         helpCanvas.gameObject.SetActive(true);
         helpPanelAnim.SetBool("isOpen", true);
+        PlayOpenSound();
     }
 
     public void CloseHelp(){
+        PlayCloseSound();
+        TempDisableMenuSound();
         helpPanelAnim.SetBool("isOpen", false);
         Invoke("disableHelp", 0.25f);
     }
 
     void DisableHelp(){
         helpCanvas.gameObject.SetActive(false);
+    }
+
+    void PlayOpenSound(){
+        source.clip = AudioPicker.Instance.menuOpen;
+
+        float globalVolume = GlobalSettings.Instance.sfxVolume;
+        float multiplier = AudioPicker.Instance.menuSwooshVolume;
+        source.volume = globalVolume * multiplier;
+
+        source.Play();
+    }
+
+    void PlayCloseSound(){
+        source.clip = AudioPicker.Instance.menuClose;
+
+        float globalVolume = GlobalSettings.Instance.sfxVolume;
+        float multiplier = AudioPicker.Instance.menuSwooshVolume;
+        source.volume = globalVolume * multiplier;
+        
+        source.Play();
+    }
+
+    void TempDisableMenuSound(){
+        GameUISound menuButtonSource = GameObject.Find("MenuButtonNew")?.transform.
+            GetChild(0).transform.Find("Menu").GetComponent<GameUISound>();
+        if(menuButtonSource != null){
+            menuButtonSource.enable = false;
+            Invoke(nameof(ReEnableMenuSound), 0.3f);
+        }
+    }
+
+    void ReEnableMenuSound(){
+        GameUISound menuButtonSource = GameObject.Find("MenuButtonNew")?.transform.
+            GetChild(0).transform.Find("Menu").GetComponent<GameUISound>();
+        
+        if(menuButtonSource != null){
+            menuButtonSource.enable = true;
+        }
     }
 }

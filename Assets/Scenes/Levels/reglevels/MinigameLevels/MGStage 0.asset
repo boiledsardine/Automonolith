@@ -73,35 +73,36 @@ MonoBehaviour:
     - ()
     - (
     mistakeMessage: '2: What comes after a method''s name? A form of punctuation
-      that  allows the method to take arguments.'
+      that allows the method to take arguments.'
   - hiddenText: ;
     correctAnswers:
     - ()
     - )
-    mistakeMessage: '2:  You have to close this line as a complete statement. There''s
+    - ;
+    mistakeMessage: '2: You have to close this line as a complete statement. There''s
       a punctuation mark set aside for it...'
   - hiddenText: WriteLine
     correctAnswers:
     - WriteLine
-    mistakeMessage: '4: A dot tells the code to look inside the object on its left
+    mistakeMessage: '6: A dot tells the code to look inside the object on its left
       side. What goes on the right of the dot is a name belonging to that object,
       like a variable or a method. That being said, a method name should go here.'
   - hiddenText: (
     correctAnswers:
     - (
-    mistakeMessage: '4: What comes after a method''s name? A form of punctuation
+    mistakeMessage: '6: What comes after a method''s name? A form of punctuation
       that opens groups and allows the method to take arguments.'
   - hiddenText: '"Hello World!"'
     correctAnswers:
     - '"Hello World!"'
-    mistakeMessage: '4: Arguments are values passed into methods for them to do things.
+    mistakeMessage: '6: Arguments are values passed into methods for them to do things.
       Some need methods, some don''t - the method on this line can do either, but
       for now I need you to give it an argument anyway.'
   - hiddenText: )
     correctAnswers:
     - ()
     - )
-    mistakeMessage: '4:  You have to close the method''s arguments somehow. There''s
+    mistakeMessage: '6: You have to close the method''s arguments somehow. There''s
       a punctuation mark set aside for it...'
   wordBank:
   - .

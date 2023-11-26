@@ -220,6 +220,7 @@ public class Movement : MonoBehaviour, IMovement {
         yield return new WaitForSeconds(Globals.Instance.timePerStep);
         anim.SetBool("walk1", !lastWalkLeft);
         anim.SetBool("walk2", lastWalkLeft);
+
         if(recurCount > 0){
             if(envirScript.neighborIsValid(direction) && !envirScript.checkForWalls(direction)){                
                 //moves any held object
@@ -243,6 +244,7 @@ public class Movement : MonoBehaviour, IMovement {
                 recurCount--;
                 
                 lastWalkLeft = !lastWalkLeft;
+                PlayWalkSound();
                 yield return StartCoroutine(Move(moveDir));
             } else {
                 Compiler.Instance.addErr(string.Format("G4wain cannot move to the specified direction!", Compiler.Instance.currentIndex + 1));
@@ -253,6 +255,22 @@ public class Movement : MonoBehaviour, IMovement {
         }
         anim.SetBool("walk1", false);
         anim.SetBool("walk2", false);
+    }
+
+    void PlayWalkSound(){
+        //play sound
+        AudioSource source = GetComponent<AudioSource>();
+        if(lastWalkLeft){
+            source.clip = AudioPicker.Instance.botMove1;
+        } else {
+            source.clip = AudioPicker.Instance.botMove2;
+        }
+
+        float globalVolume = GlobalSettings.Instance.sfxVolume;
+        float multiplier = AudioPicker.Instance.footstepVolume;
+        source.volume = globalVolume * multiplier;
+
+        source.Play();
     }
 
     public IEnumerator Rotate(Quaternion rotDir){

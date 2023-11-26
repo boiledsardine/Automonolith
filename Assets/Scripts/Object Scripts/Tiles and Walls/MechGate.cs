@@ -8,7 +8,8 @@ public class MechGate : GateBase, IActivate{
 
         var animator = GetComponent<Animator>();
         animator.SetBool("isOpen", true);
-        //StartCoroutine(openGate());
+        PlayOpenSound();
+        isActive = true;
         UpdateTiles(false);
     }
 
@@ -17,7 +18,8 @@ public class MechGate : GateBase, IActivate{
 
         var animator = GetComponent<Animator>();
         animator.SetBool("isOpen", false);
-        //StartCoroutine(closeGate());
+        PlayCloseSound();
+        isActive = false;
         UpdateTiles(true);
     }
 

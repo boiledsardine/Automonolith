@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 5115564632564949871}
   - component: {fileID: 5115564632564949870}
   - component: {fileID: 6444557520176898648}
+  - component: {fileID: 4023811073618942534}
   m_Layer: 5
   m_Name: turnRight()
   m_TagString: Untagged
@@ -230,6 +231,7 @@ MonoBehaviour:
 
     Turns G4wain until he''s facing east.'
   borderImage: {fileID: 5115564632475222131}
+  isUIElement: 0
 --- !u!114 &6444557520176898648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +242,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4023811073618942534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632564949864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632634476054
@@ -255,6 +269,7 @@ GameObject:
   - component: {fileID: 5115564632634476053}
   - component: {fileID: 5115564632634476052}
   - component: {fileID: 4162752316859400849}
+  - component: {fileID: 6262941837986899925}
   m_Layer: 5
   m_Name: hold()
   m_TagString: Untagged
@@ -398,6 +413,7 @@ MonoBehaviour:
     G4wain picks up or holds on to an object he
     is facing.'
   borderImage: {fileID: 5115564634244381392}
+  isUIElement: 0
 --- !u!114 &4162752316859400849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +424,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6262941837986899925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632634476054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632636964558
@@ -423,6 +451,7 @@ GameObject:
   - component: {fileID: 5115564632636964557}
   - component: {fileID: 5115564632636964556}
   - component: {fileID: 9094012923983998005}
+  - component: {fileID: 4755577064316177185}
   m_Layer: 5
   m_Name: moveDown()
   m_TagString: Untagged
@@ -566,6 +595,7 @@ MonoBehaviour:
     Moves G4wain down (south) by the number
     of steps between the parentheses.'
   borderImage: {fileID: 5115564633980800579}
+  isUIElement: 0
 --- !u!114 &9094012923983998005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +606,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4755577064316177185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632636964558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632649213043
@@ -591,6 +633,7 @@ GameObject:
   - component: {fileID: 5115564632649213046}
   - component: {fileID: 5115564632649213041}
   - component: {fileID: 3894596501648374240}
+  - component: {fileID: 2896814761236572581}
   m_Layer: 5
   m_Name: turnUp()
   m_TagString: Untagged
@@ -733,6 +776,7 @@ MonoBehaviour:
 
     Turns G4wain until he''s facing north.'
   borderImage: {fileID: 5115564633603048254}
+  isUIElement: 0
 --- !u!114 &3894596501648374240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +787,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2896814761236572581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632649213043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632664393561
@@ -758,6 +814,7 @@ GameObject:
   - component: {fileID: 5115564632664393564}
   - component: {fileID: 5115564632664393567}
   - component: {fileID: 4877574251258760268}
+  - component: {fileID: 6401586865661135848}
   m_Layer: 5
   m_Name: turnLeft()
   m_TagString: Untagged
@@ -900,6 +957,7 @@ MonoBehaviour:
 
     Turns G4wain until he''s facing west.'
   borderImage: {fileID: 5115564634125043021}
+  isUIElement: 0
 --- !u!114 &4877574251258760268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +968,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6401586865661135848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632664393561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632825210152
@@ -1000,6 +1070,7 @@ GameObject:
   - component: {fileID: 5115564632859067149}
   - component: {fileID: 5115564632859067148}
   - component: {fileID: 3968680924024429314}
+  - component: {fileID: 4821610728221997656}
   m_Layer: 5
   m_Name: drop()
   m_TagString: Untagged
@@ -1143,6 +1214,7 @@ MonoBehaviour:
     G4wain drops or lets go of a held object on
     the tile he''s facing.'
   borderImage: {fileID: 5115564633647867915}
+  isUIElement: 0
 --- !u!114 &3968680924024429314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,6 +1225,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4821610728221997656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632859067150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632930043621
@@ -1168,6 +1252,7 @@ GameObject:
   - component: {fileID: 5115564632930043640}
   - component: {fileID: 5115564632930043643}
   - component: {fileID: 8892589072336606719}
+  - component: {fileID: 5300229367517654764}
   m_Layer: 5
   m_Name: interact()
   m_TagString: Untagged
@@ -1311,6 +1396,7 @@ MonoBehaviour:
     G4wain interacts with the interactable
     object he''s facing like key-opened doors and wall buttons.'
   borderImage: {fileID: 5115564634121103103}
+  isUIElement: 0
 --- !u!114 &8892589072336606719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,6 +1407,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5300229367517654764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632930043621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632943596004
@@ -1336,6 +1434,7 @@ GameObject:
   - component: {fileID: 5115564632943596027}
   - component: {fileID: 5115564632943596026}
   - component: {fileID: 1796578561435548374}
+  - component: {fileID: 5600292507684399048}
   m_Layer: 5
   m_Name: readInt()
   m_TagString: Untagged
@@ -1480,6 +1579,7 @@ MonoBehaviour:
     in an adjacent wall panel, which must immediately be stored as a variable or
     used as a value.'
   borderImage: {fileID: 5115564633283155316}
+  isUIElement: 0
 --- !u!114 &1796578561435548374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1590,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5600292507684399048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564632943596004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564632946692015
@@ -1580,6 +1692,7 @@ GameObject:
   - component: {fileID: 5115564633016068826}
   - component: {fileID: 5115564633016068805}
   - component: {fileID: 1006673643772708939}
+  - component: {fileID: 3095571496296919651}
   m_Layer: 5
   m_Name: read()
   m_TagString: Untagged
@@ -1724,6 +1837,7 @@ MonoBehaviour:
     value in an adjacent wall panel, which must immediately be stored as a variable
     or used as a value.'
   borderImage: {fileID: 5115564634468622669}
+  isUIElement: 0
 --- !u!114 &1006673643772708939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1734,6 +1848,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3095571496296919651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564633016068807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564633062731225
@@ -1749,6 +1875,7 @@ GameObject:
   - component: {fileID: 5115564633062731228}
   - component: {fileID: 5115564633062731231}
   - component: {fileID: 7454261721930891563}
+  - component: {fileID: 1115595345716262976}
   m_Layer: 5
   m_Name: moveLeft()
   m_TagString: Untagged
@@ -1892,6 +2019,7 @@ MonoBehaviour:
     Moves G4wain left (west) by the number
     of steps between the parentheses.'
   borderImage: {fileID: 5115564634370859051}
+  isUIElement: 0
 --- !u!114 &7454261721930891563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1902,6 +2030,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1115595345716262976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564633062731225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564633189081285
@@ -1917,6 +2057,7 @@ GameObject:
   - component: {fileID: 5115564633189081304}
   - component: {fileID: 5115564633189081307}
   - component: {fileID: 1761694184970995515}
+  - component: {fileID: 3554377611540859640}
   m_Layer: 5
   m_Name: say()
   m_TagString: Untagged
@@ -2060,6 +2201,7 @@ MonoBehaviour:
     G4wain says the message or the
     value of the variable between the parentheses.'
   borderImage: {fileID: 5115564633244324206}
+  isUIElement: 0
 --- !u!114 &1761694184970995515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,6 +2212,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3554377611540859640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564633189081285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564633244324200
@@ -2160,6 +2314,7 @@ GameObject:
   - component: {fileID: 5115564633246823573}
   - component: {fileID: 5115564633246823572}
   - component: {fileID: 2837764918461206435}
+  - component: {fileID: 476524422144829321}
   m_Layer: 5
   m_Name: turnDown()
   m_TagString: Untagged
@@ -2302,6 +2457,7 @@ MonoBehaviour:
 
     Turns G4wain until he''s facing south.'
   borderImage: {fileID: 5115564632946692013}
+  isUIElement: 0
 --- !u!114 &2837764918461206435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2312,6 +2468,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &476524422144829321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564633246823574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564633283155318
@@ -2552,6 +2720,7 @@ GameObject:
   - component: {fileID: 5115564633921780046}
   - component: {fileID: 5115564633921780041}
   - component: {fileID: 4416030406751132516}
+  - component: {fileID: 6780590076920799454}
   m_Layer: 5
   m_Name: moveRight()
   m_TagString: Untagged
@@ -2695,6 +2864,7 @@ MonoBehaviour:
     Moves G4wain right (east) by the number
     of steps between the parentheses.'
   borderImage: {fileID: 5115564634420786605}
+  isUIElement: 0
 --- !u!114 &4416030406751132516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2705,6 +2875,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6780590076920799454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564633921780043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564633980800589
@@ -3020,6 +3202,7 @@ GameObject:
   - component: {fileID: 5115564634277170163}
   - component: {fileID: 5115564634277170162}
   - component: {fileID: 1394646561425379170}
+  - component: {fileID: 2479355875069452349}
   m_Layer: 5
   m_Name: moveTo()
   m_TagString: Untagged
@@ -3163,6 +3346,7 @@ MonoBehaviour:
     G4wain finds the shortest path to the
     tile with the given coordinates and moves there automatically.'
   borderImage: {fileID: 5115564632825210158}
+  isUIElement: 0
 --- !u!114 &1394646561425379170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3173,6 +3357,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2479355875069452349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564634277170172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564634346717064
@@ -3188,6 +3384,7 @@ GameObject:
   - component: {fileID: 5115564634346717071}
   - component: {fileID: 5115564634346717070}
   - component: {fileID: 405043416176474884}
+  - component: {fileID: 1763294376012654593}
   m_Layer: 5
   m_Name: moveUp()
   m_TagString: Untagged
@@ -3331,6 +3528,7 @@ MonoBehaviour:
     Moves G4wain up (north) by the number of
     steps between the parentheses.'
   borderImage: {fileID: 5115564634386236805}
+  isUIElement: 0
 --- !u!114 &405043416176474884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3341,6 +3539,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d851bd59c1dbace45a552caade52f663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1763294376012654593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115564634346717064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9db81a9fa16bf469ac17651eca37dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5115564634370867157
@@ -3654,6 +3864,7 @@ GameObject:
   - component: {fileID: 8419481676504633394}
   - component: {fileID: 8419481676504633392}
   - component: {fileID: 8419481676504633393}
+  - component: {fileID: 7386116065131755935}
   m_Layer: 5
   m_Name: IfElseMethods
   m_TagString: Untagged
@@ -3733,3 +3944,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!82 &7386116065131755935
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419481676504633395}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

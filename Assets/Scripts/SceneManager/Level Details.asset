@@ -83,7 +83,7 @@ MonoBehaviour:
 
       -Morgan
 
-      (Requires 21 green
+      (Requires 22 green
       lights to enter)'
     isTutorial: 0
     isQuiz: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
       -Nimue
 
       (Requires
-      42 green lights to enter)'
+      44 green lights to enter)'
     isTutorial: 0
     isQuiz: 1
   - levelName: Box of Stuff
@@ -192,6 +192,6 @@ MonoBehaviour:
       -Nimue
 
       (Requires
-      53 green lights to enter)'
+      55 green lights to enter)'
     isTutorial: 0
     isQuiz: 1

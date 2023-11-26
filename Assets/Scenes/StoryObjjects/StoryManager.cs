@@ -35,17 +35,26 @@ public class StoryManager : MonoBehaviour{
         Debug.Log("ending dialogue");
         LevelSaveLoad.Instance.EndStorySceneSave(sceneIndex);
 
-        Destroy(GameObject.Find("Essentials"));
         loadCanvas.gameObject.SetActive(true);
-        StartCoroutine(loadAsync(sceneIndex + 2));
+        StartCoroutine(LoadAsync(sceneIndex + 2));
     }
 
-    public IEnumerator loadAsync(int sceneIndex){
+    public IEnumerator LoadAsync(int sceneIndex){
+        Debug.Log("LOADING!");
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
+
+        loadOp.allowSceneActivation = false;
 
         while(!loadOp.isDone){
             float progress = Mathf.Clamp01(loadOp.progress / 0.9f);
             loadBar.value = progress;
+            
+            if(loadOp.progress >= 0.9f){
+                yield return new WaitForSeconds(GlobalSettings.Instance.forceWaitTime);
+                loadOp.allowSceneActivation = true;
+                Destroy(GameObject.Find("Essentials"));
+            }
+            
             yield return null;
         }
     }
