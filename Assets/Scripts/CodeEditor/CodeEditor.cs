@@ -34,8 +34,6 @@ public class CodeEditor : MonoBehaviour{
     bool keyPressed = false;
     public bool takeInputs = false;
     public GameObject methodsPanelViewport, methodsPanelSet;
-    AudioSource source;
-    System.Random rnd;
 
     public bool KeyPressed {
         get { return keyPressed; }
@@ -48,51 +46,6 @@ public class CodeEditor : MonoBehaviour{
         } else {
             Destroy(gameObject);
         }
-
-        source = transform.GetChild(0).GetComponent<AudioSource>();
-        rnd = new System.Random();
-    }
-
-    void SetTypeSource(){
-        source = transform.Find("TypingSource").GetComponent<AudioSource>();
-
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.typingVolume;
-        source.volume = globalVolume * multiplier;
-    }
-
-    void SetSpecialSource(){
-        source = transform.Find("SpecialSource").GetComponent<AudioSource>();
-        
-        source.volume = GlobalSettings.Instance.sfxVolume;
-    }
-
-    void PlayKeySound(){
-        SetTypeSource(); //also sets volume
-
-        source.clip = AudioPicker.Instance.keyPress[rnd.Next(3)];
-        source.Play();
-    }
-
-    void PlaySpecialKeySound(){
-        SetTypeSource(); //also sets volume
-
-        source.clip = AudioPicker.Instance.keyPress[rnd.Next(3,5)];
-        source.Play();
-    }
-
-    void PlayCompileSound(){
-        SetSpecialSource(); //also sets volume
-
-        source.clip = AudioPicker.Instance.playClick;
-        source.Play();
-    }
-
-    void PlayClearSound(){
-        SetSpecialSource(); //also sets volume
-
-        source.clip = AudioPicker.Instance.resetEditor;
-        source.Play();
     }
 
     private void Start(){
@@ -233,8 +186,6 @@ public class CodeEditor : MonoBehaviour{
                     }
                     code = code.Substring(0, code.Length - 1);
                     keyPressed = true;
-                    
-                    PlayKeySound();
                 }
                 //return/enter
                 else if(c == '\n' || c == '\r'){
@@ -268,8 +219,6 @@ public class CodeEditor : MonoBehaviour{
                     }
                     code = code.Substring(0, code.Length - 1);
                     keyPressed = true;
-
-                    PlaySpecialKeySound();
                 }
                 //backspace
                 else if(c == '\b'){
@@ -300,8 +249,6 @@ public class CodeEditor : MonoBehaviour{
                     }
                     code = code.Substring(0, code.Length - 1);
                     keyPressed = true;
-
-                    PlayKeySound();
                 }
             }
         } else {
@@ -309,9 +256,6 @@ public class CodeEditor : MonoBehaviour{
                 Compiler.Instance.Run();
                 EditorToggle toggle = gameObject.GetComponent<EditorToggle>();
                 toggle.closeEditor();
-                
-                //play execute sound
-                PlayCompileSound();
             } else if(Input.GetKey(KeyCode.R)){
                 code = defaultText.defaultInput;
 
@@ -321,9 +265,6 @@ public class CodeEditor : MonoBehaviour{
 
                 lineIndex = codeLines.Length - 1;
                 charIndex = lineMaxIndex;
-                
-                //play reset sound
-                PlayClearSound();
             }
             keyPressed = true;
         }
@@ -343,8 +284,6 @@ public class CodeEditor : MonoBehaviour{
             }
             code = code.Substring(0, code.Length - 1);
             keyPressed = true;
-
-            PlaySpecialKeySound();
         }
 
         if(GetKeyPress(KeyCode.LeftArrow)){
@@ -366,8 +305,6 @@ public class CodeEditor : MonoBehaviour{
                 }
             }
             keyPressed = true;
-
-            PlayKeySound();
         }
 
         if(GetKeyPress(KeyCode.RightArrow)){
@@ -393,8 +330,6 @@ public class CodeEditor : MonoBehaviour{
                 }
             }
             keyPressed = true;
-
-            PlayKeySound();
         }
 
         if(GetKeyPress(KeyCode.UpArrow)){
@@ -411,8 +346,6 @@ public class CodeEditor : MonoBehaviour{
                 lineIndex--;
             }
             keyPressed = true;
-
-            PlayKeySound();
         }
 
         if(GetKeyPress(KeyCode.DownArrow)){
@@ -430,15 +363,11 @@ public class CodeEditor : MonoBehaviour{
                 lineIndex++;
             }
             keyPressed = true;
-            
-            PlayKeySound();
         }
 
         if(Input.GetKeyDown(KeyCode.Home)){
             charIndex = 0;
             keyPressed = true;
-
-            PlaySpecialKeySound();
         }
 
         if(Input.GetKeyDown(KeyCode.End)){
@@ -448,8 +377,6 @@ public class CodeEditor : MonoBehaviour{
 
             charIndex = lineMaxIndex;
             keyPressed = true;
-
-            PlaySpecialKeySound();
         }
     }
 

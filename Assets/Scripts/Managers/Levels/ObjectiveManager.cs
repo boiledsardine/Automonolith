@@ -113,11 +113,6 @@ public class ObjectiveManager : MonoBehaviour {
     }
 
     void Postlevel(bool obj1, bool obj2, bool obj3){
-        AudioSource source = GetComponent<AudioSource>();
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.successFanfare;
-        source.Play();
-
         var maptacks = GameObject.Find("Maptacks");
 
         //destroy maptacks

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DraggableItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler{
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
     public Image image;
     
     //original parent object
@@ -15,10 +15,6 @@ public class DraggableItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     void Start(){
         image = GetComponent<Image>();
         transform.position = transform.parent.transform.position;
-    }
-
-    public void OnPointerDown(PointerEventData eventData){
-        PlayClickSound();
     }
 
     public void OnBeginDrag(PointerEventData eventData){
@@ -44,18 +40,5 @@ public class DraggableItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         image.raycastTarget = true;
 
         SendMessage("CheckSlot");
-    }
-
-    void PlayClickSound(){
-        AudioSource source = MinigameManager.Instance.GetComponent<AudioSource>();
-        System.Random rnd = new System.Random();
-        int maxIndex = AudioPicker.Instance.boxClick.Length;
-
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.minigameVolume;
-        source.volume = globalVolume * multiplier;
-
-        source.clip = AudioPicker.Instance.boxClick[rnd.Next(maxIndex)];
-        source.Play();
     }
 }

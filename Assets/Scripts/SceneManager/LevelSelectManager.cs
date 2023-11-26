@@ -23,7 +23,6 @@ public class LevelSelectManager : MonoBehaviour{
     public Color disabledColor = new Color(200,200,200,128);
     public int[] levelsWithCutscene;
     QuizUnlocker quizUnlocker;
-    public GameObject buttonContainer;
 
     void Awake(){
         if(Instance == null){
@@ -37,19 +36,13 @@ public class LevelSelectManager : MonoBehaviour{
     }
 
     void Start(){
-        levelDetails = levelDetailsObject.levelDetails;
-        for(int i = 0; i < levelDetails.Count; i++){
-            var newButton = Instantiate(buttonContainer);
-            newButton.transform.SetParent(buttonGroupContainer.transform);
-            newButton.transform.localScale = new Vector3(1,1,1);
-        }
-
         var buttonHolders = buttonGroupContainer.GetChildren();
         foreach(GameObject buttonHolder in buttonHolders){
             buttonArr.Add(buttonHolder.transform.GetChild(1).gameObject.GetComponent<Button>());
         }
 
         buttonGroupContainer.GetComponent<ResizeScrollObject>().Resize();
+        levelDetails = levelDetailsObject.levelDetails;
         
         int levelCounter = 1;
         for(int i = 0; i < buttonArr.Count; i++){
@@ -136,32 +129,23 @@ public class LevelSelectManager : MonoBehaviour{
         else if(quizLevels.Contains(loadIndex)){
             if(quizUnlocker.CheckStars(loadIndex)){
                 loadCanvas.gameObject.SetActive(true);
-                StartCoroutine(LoadAsync(sceneToLoad));    
+                StartCoroutine(loadAsync(sceneToLoad));    
             }   
         }
 
         //normal levels
         else {
             loadCanvas.gameObject.SetActive(true);
-            StartCoroutine(LoadAsync(sceneToLoad));
+            StartCoroutine(loadAsync(sceneToLoad));
         }
     }
 
-    public IEnumerator LoadAsync(int sceneIndex){
-        Debug.Log("LOADING!");
+    public IEnumerator loadAsync(int sceneIndex){
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
-
-        loadOp.allowSceneActivation = false;
 
         while(!loadOp.isDone){
             float progress = Mathf.Clamp01(loadOp.progress / 0.9f);
             loadBar.value = progress;
-            
-            if(loadOp.progress >= 0.9f){
-                yield return new WaitForSeconds(GlobalSettings.Instance.forceWaitTime);
-                loadOp.allowSceneActivation = true;
-            }
-            
             yield return null;
         }
     }

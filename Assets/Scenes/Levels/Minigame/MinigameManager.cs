@@ -28,7 +28,6 @@ public class MinigameManager : MonoBehaviour{
     public DialogueTrigger hintDialogue;
     public Sprite merlin;
     public ColorizerTheme theme;
-    AudioSource source;
     readonly string[] specialChars = {
         ";",
         "{",
@@ -53,7 +52,6 @@ public class MinigameManager : MonoBehaviour{
         levelIndex = MinigameLoader.Instance.levelIndex;
 
         stageInfo.InitializeInfo();
-        source = GetComponent<AudioSource>();
     }
 
 
@@ -265,7 +263,7 @@ public class MinigameManager : MonoBehaviour{
                 string[] msg = {stageInfo.hidWords[i].mistakeMessage};
 
                 if(dsList[i].transform.childCount == 0){
-                    //msg[0] = string.Format("{0}: At least put something in there.", i + 1);
+                    msg[0] = string.Format("{0}: At least put something in there", i + 1);
                 } else if(msg[0].Contains("___")){
                     string newMsg = dsList[i].transform.GetChild(0).GetComponent<TextItem>().textToShow;
                     msg[0] = msg[0].Replace("___", newMsg);
@@ -282,26 +280,10 @@ public class MinigameManager : MonoBehaviour{
             //TODO: Add check for if the pass convo has been read (tutorial NextLinePressed-esque?)
             //save the level after the pass convo has been read
             levelOver = true;
-
-            PlaySuccessSound();
         } else {
             dialogueCanvas.gameObject.SetActive(true);
             DialogueManager.Instance.startDialogue(failConvo);
-
-            PlayFailureSound();
         }
-    }
-
-    void PlaySuccessSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.minigameSuccess;
-        source.Play();
-    }
-
-    void PlayFailureSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.minigameError;
-        source.Play();
     }
 
     int timesPressed = 0;
@@ -318,22 +300,16 @@ public class MinigameManager : MonoBehaviour{
             timesPressed = 0;
             //end level
             LastSceneHolder.Instance.SetLastScene();
+
+            DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
+            foreach(DontDestroy obj in persistents){
+                if(obj.transform.gameObject.tag != "Save Manager"){
+                    Destroy(obj.gameObject);
+                }
+            }
+
             MinigameLoader.Instance.EndLevelSave(levelIndex, true);
-
-            //open postlevel
-            var postlevelCanvas = FindObjectOfType<PostlevelCanvas>(true);
-            postlevelCanvas.gameObject.SetActive(true);
-
-            PostlevelCanvas.Instance.OpenCanvas();
-            PostlevelCanvas.Instance.SetStars(true, true, true);
-
-            PlayFanfare();
+            SceneManager.LoadScene("Main Menu");
         }
-    }
-
-    void PlayFanfare(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.successFanfare;
-        source.Play();
     }
 }

@@ -20,7 +20,6 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     protected string currentSentence;
     protected Queue<Dialogue> dialogueBlocks;
     private bool isErrorDialogue = false;
-    private AudioSource m_source;
     public bool ErrorDialogue{
         get { return isErrorDialogue; }
         set { isErrorDialogue = value; }
@@ -30,18 +29,44 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         dialogueLines = new Queue<string>();
         dialogueBlocks = new Queue<Dialogue>();
         quizLines = new Queue<string>();
-
-        m_source = GetComponent<AudioSource>();
     }
 
     public abstract void startDialogue(Conversation convoToLoad);
     public Color darkColor = new Color(60,60,60);
 
+    //issue: types out the tags
+    /*public IEnumerator typeSentence(string sentence){
+        dialogueText.text = "";
+        bool inColorTag = false;
+        string endTag = "</color>";
+        List<char> charList = new List<char>();
+        foreach(char letter in sentence.ToCharArray()){
+            if(inColorTag){
+                int insertIndex = charList.Count - endTag.Length;
+                charList.Insert(insertIndex, letter);
+                dialogueText.text = ListToString(charList);
+            } else if(!inColorTag && !(letter == '~' || letter == '`')){
+                charList.Insert(dialogueText.text.Length, letter);
+                dialogueText.text = ListToString(charList);
+            }
+
+            if(letter == '~'){
+                foreach(char c in CodeColorizer.Colorize("", false, theme)){
+                    charList.Add(c);
+                }
+                inColorTag = true;
+            } else if(letter == '`'){
+                inColorTag = false;
+            }
+            
+            yield return null;
+        }
+    }*/
+
     //navigates to the next line on the list
     public abstract void nextLine();
 
     public void endDialogue(){
-        PlayCloseSound();
         Invoke("disableCanvas", 0.25f);
         
         dialogueLines?.Clear();
@@ -108,27 +133,5 @@ public abstract class DialogueSystemBase : MonoBehaviour{
             leftSprite.GetComponent<Image>().color = darkColor;
             rightSprite.GetComponent<Image>().color = darkColor;
         }
-    }
-
-    protected void PlayOpenSound(){
-        m_source = GetComponent<AudioSource>();
-        
-        m_source.clip = AudioPicker.Instance.sidebarOpen;
-
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        m_source.volume = globalVolume * multiplier;
-
-        m_source.Play();
-    }
-
-    protected void PlayCloseSound(){
-        m_source.clip = AudioPicker.Instance.sidebarClose;
-
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        m_source.volume = globalVolume * multiplier;
-
-        m_source.Play();
     }
 }

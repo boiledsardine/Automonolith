@@ -22,11 +22,6 @@ public class ErrorChecker : MonoBehaviour{
         DialogueCanvas.gameObject.SetActive(true);
         DialogueManager.Instance.ErrorDialogue = true;
         DialogueManager.Instance.startDialogue(errorConvo);
-
-        var source = DialogueManager.Instance.gameObject.transform.Find("ErrorSource").GetComponent<AudioSource>();
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.errorMessage;
-        source.Play();
     }
 
     public void unnamedVariableError(int lineIndex, string varType){        

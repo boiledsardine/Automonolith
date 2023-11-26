@@ -23,8 +23,6 @@ public class HelpManager : MonoBehaviour{
         helpCanvas.gameObject.SetActive(true);
         helpPanelAnim.SetBool("isOpen", true);
 
-        SendMessage("PlayOpenSound");
-
         if(disableSidebar){
             articleTitle.text = disableTitle;
             articleText.text = disableText;
@@ -38,9 +36,6 @@ public class HelpManager : MonoBehaviour{
     public void closeHelp(){
         lastLoadedIndex = currentIndex;
         helpPanelAnim.SetBool("isOpen", false);
-
-        SendMessage("PlayCloseSound");
-
         Invoke("disableHelp", 0.25f);
     }
 

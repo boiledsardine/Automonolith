@@ -7,16 +7,10 @@ using TMPro;
 public class OptionsMenu : MonoBehaviour{
     public TMP_Dropdown dropdown;
     public Toggle fullscreenToggle;
-    public Slider bgmSlider, sfxSlider;
     public Animator panelAnim;
-    AudioSource source;
 
     // Start is called before the first frame update
     void Awake(){
-        source = GetComponent<AudioSource>();
-    }
-
-    public void SetValues(){
         switch(GlobalSettings.Instance.resolution){
             case ScreenResMode._1280x720:
                 dropdown.value = 0;
@@ -37,14 +31,6 @@ public class OptionsMenu : MonoBehaviour{
         }
 
         fullscreenToggle.isOn = GlobalSettings.Instance.isFullscreen;
-        
-        Debug.Log("bgm: " + GlobalSettings.Instance.bgmVolume);
-        bgmSlider.value = GlobalSettings.Instance.bgmVolume;
-        
-        Debug.Log("sfx: " + GlobalSettings.Instance.bgmVolume);
-        Debug.Log(sfxSlider.value);
-        sfxSlider.value = GlobalSettings.Instance.sfxVolume;
-        Debug.Log(sfxSlider.value);
     }
 
     void SetScreenRes(int width, int height){
@@ -79,59 +65,8 @@ public class OptionsMenu : MonoBehaviour{
         Screen.fullScreen = fullscreenToggle.isOn;
     }
 
-    public void BGM_Changed(){
-        if(!sfxSlider.GetComponent<SliderMouseCheck>().isDragging){
-            return;
-        }
-        
-        GlobalSettings.Instance.sfxVolume = bgmSlider.value;
-    }
-
-    public void SFX_Changed(){
-        if(!sfxSlider.GetComponent<SliderMouseCheck>().isDragging){
-            return;
-        }
-
-        GlobalSettings.Instance.sfxVolume = sfxSlider.value;
-        PlayTestSound(GlobalSettings.Instance.sfxVolume, AudioPicker.Instance.sfxTestSound);
-    }
-
-    public void CloseOptions(bool confirm){
-        if(confirm){
-            GlobalSettings.Instance.SaveSettings();
-        } else {
-            GlobalSettings.Instance.LoadOptions();
-            SetValues();
-        }
-
-        PlayCloseSound();
+    public void CloseOptions(){
         panelAnim.SetBool("isOpen", false);
-    }
-
-    public void PlayOpenSound(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
-        
-        source.clip = AudioPicker.Instance.menuOpen;
-        source.Play();
-    }
-
-    void PlayCloseSound(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
-        
-        source.clip = AudioPicker.Instance.menuClose;
-        source.Play();
-    }
-
-    void PlayTestSound(float volume, AudioClip clip){
-        source.volume = volume;
-        source.clip = clip;
-        
-        if(!source.isPlaying){
-            source.Play();
-        }
+        GlobalSettings.Instance.SaveSettings();
     }
 }

@@ -14,7 +14,6 @@ public class VoxGate : GateBase, IActivate, IVox{
         gameObject.layer = 0;
         var animator = GetComponent<Animator>();
         animator.SetBool("isOpen", true);
-        PlayOpenSound();
     }
 
     public void activateVox(string input){
@@ -38,7 +37,7 @@ public class VoxGate : GateBase, IActivate, IVox{
     }
 
     public void deactivate(){
-        PlayCloseSound();
+        throw new System.NotImplementedException();
     }
 
     //todo: thing that says wrong password called from interaction

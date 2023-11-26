@@ -13,15 +13,8 @@ public class EditorToggle : MonoBehaviour{
     }
 
     public void openEditor(){
-        if(editorCanvas.gameObject.activeInHierarchy){
-            return;
-        }
-
         editorCanvas.gameObject.SetActive(true);
         panelAnimator.SetBool("isOpen", true);
-
-        SendMessage("PlayOpenSound");
-
         Invoke("EnableInputs", invokeTime);
     }
 
@@ -34,9 +27,6 @@ public class EditorToggle : MonoBehaviour{
 
         panelAnimator.SetBool("isOpen", false);
         controlAnimator.SetBool("isOpen", false);
-
-        SendMessage("PlayCloseSound");
-
         Invoke("disableEditor", 0.25f);
     }
 

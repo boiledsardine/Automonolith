@@ -13,8 +13,6 @@ public class TrapTile : TileBase {
 
     MeshFilter mf;
     MeshRenderer mr;
-
-    AudioSource source;
     
     new void Awake(){
         base.Awake();
@@ -26,8 +24,6 @@ public class TrapTile : TileBase {
             mf.mesh = tileMesh;
             mr.material = tileMats;
         }
-
-        source = GetComponent<AudioSource>();
     }
 
     public new void OnTriggerEnter(Collider col){
@@ -41,10 +37,6 @@ public class TrapTile : TileBase {
 
             Compiler.Instance.terminateExecution();
 
-            source.volume = GlobalSettings.Instance.sfxVolume;
-            source.clip = AudioPicker.Instance.trap;
-            source.Play();
-            
             occupant.GetComponent<Animator>().SetBool("ded", true);
             Invoke("DestroyBot", 1f);
             isOccupied = false;
@@ -52,16 +44,7 @@ public class TrapTile : TileBase {
     }
 
     void DestroyBot(){
-        PlayBotKill();
         var chara = GameObject.Find("PlayerCharacter");
         Destroy(chara);
-    }
-
-    void PlayBotKill(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        System.Random rnd = new System.Random();
-        int maxIndex = AudioPicker.Instance.botDead.Length;
-        source.clip = AudioPicker.Instance.botDead[rnd.Next(maxIndex)];
-        source.Play();
     }
 }

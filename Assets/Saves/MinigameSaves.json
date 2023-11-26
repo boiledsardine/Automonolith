@@ -3,7 +3,7 @@
         {
             "levelIndex": 0,
             "isUnlocked": true,
-            "isDone": true
+            "isDone": false
         },
         {
             "levelIndex": 1,
@@ -13,7 +13,7 @@
         {
             "levelIndex": 2,
             "isUnlocked": true,
-            "isDone": true
+            "isDone": false
         },
         {
             "levelIndex": 3,

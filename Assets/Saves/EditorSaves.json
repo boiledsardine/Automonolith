@@ -2,7 +2,7 @@
     "Items": [
         {
             "levelIndex": 0,
-            "editorContent": ""
+            "editorContent": "//this uses the ReadIntArr function to get an int array\nint[] arr = Bot.ReadIntArr();\n\n//you have to multiply the array's elements by 10\n//an easy way to do that is with the *= operator\narr[0] *= 10;\narr[1] *= 10;\narr[2] *= 10;\n\n//these will move G4wain\n//first change the array arr's values\n//by multiplying arr's elements by 10\n\nBot.say(arr[0]);\nBot.moveRight();\n\nBot.say(arr[1]);\nBot.moveRight();\n\nBot.say(arr[2]);\nBot.moveRight();"
         },
         {
             "levelIndex": 1,
@@ -10,11 +10,11 @@
         },
         {
             "levelIndex": 2,
-            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\nBot.moveUp(2);\nBot.moveDown(3);"
+            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit"
         },
         {
             "levelIndex": 3,
-            "editorContent": "//move right and hold the pillar\n\n//then drag it to the button\n\n//release then move to the exit point\n\nBot.moveRight();\nBot.hold();\n\nwhile(true){\n  Bot.moveLeft();\n  Bot.moveRight();\n//  Bot.moveLeft();\n}"
+            "editorContent": "//move right and hold the pillar\n\n//then drag it to the button\n\n//release then move to the exit point"
         },
         {
             "levelIndex": 4,
@@ -70,7 +70,7 @@
         },
         {
             "levelIndex": 17,
-            "editorContent": "//this uses the ReadStringArr function to get an array\r\nstring[] arr = Bot.ReadStringArr();\r\n\r\n//these variables are used for the while loop's condition \r\nint num = 0;\r\nint arrayLength = arr.Length;\r\n\r\n//make a while loop that runs as long as num < arrayLength\r\n//and move to the element at index num over and over\r\n//until the end of the array is reached\nwhile(num < arr.Length){\n  Bot.moveTo(arr[num]);\n  num++;\n}"
+            "editorContent": "//this is a string array declaration\nstring[] arr = {\"D0\", \"C2\", \"A3\"};\n\n//you can call a specific element like this\n//remember that indices start at 0\n//so the first element is index 0\n//second is index 1, so on\nBot.moveTo(arr[0]);\n\n//move to the coordinates in the 2nd and 3rd elements"
         },
         {
             "levelIndex": 18,

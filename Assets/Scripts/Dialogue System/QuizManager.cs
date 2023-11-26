@@ -9,17 +9,14 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
 
     [SerializeField] private Text[] choiceText;
     [SerializeField] private Animator[] buttonAnimators;
-    [SerializeField] private Button buttonA, buttonB, buttonC;
-    [SerializeField] Color wrongColor, correctColor;
     private Queue<QuizItem> quizItems;
     private QuizItem currentItem;
-    private bool isQuestion;
+    private bool isRightOrWrong = false;
     public int quizScore = 0;
 
     public QuizLevel1 quizManager;
     public Button nextButton;
     public TMPro.TMP_Text numText;
-    AudioSource source;
 
     new void Awake(){
         if(Instance == null){
@@ -30,7 +27,6 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         }
 
         quizItems = new Queue<QuizItem>();
-        source = GetComponent<AudioSource>();
     }
 
     public override void startDialogue(Conversation convoToLoad){
@@ -54,7 +50,6 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
 
         dialogueBoxAnimator.SetBool("isOpen", true);
         panelAnimator.SetBool("isOpen", true);
-        PlayOpenSound();
 
         loadQuizItem();
     }
@@ -72,10 +67,6 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         }
 
         currentItem = quizItems.Dequeue();
-        isQuestion = true;
-        PlayQuestionAskSound();
-        ToggleButtons(true);
-        ResetButtonColor();
 
         //hide right button and show numtext
         nextButton.GetComponent<Image>().enabled = false;
@@ -105,6 +96,7 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         buttonAnimators[2].SetBool("isOpen", false);
 
         dialogueText.text = "That is the correct answer.";
+        isRightOrWrong = true;
         
         //show right button and hide numtext
         nextButton.GetComponent<Image>().enabled = true;
@@ -117,6 +109,7 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
         buttonAnimators[2].SetBool("isOpen", false);
 
         dialogueText.text = "That is incorrect.";
+        isRightOrWrong = true;
 
         //show right button and hide numtext
         nextButton.GetComponent<Image>().enabled = true;
@@ -137,99 +130,33 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     public void clickA(){
-        Image buttonImage = buttonA.GetComponent<Image>();
-        if(checkAnswer(Letters.A)){
-            buttonImage.color = correctColor;
-        } else {
-            buttonImage.color = wrongColor;
-        }
+        checkAnswer(Letters.A);
     }
     
     public void clickB(){
-        Image buttonImage = buttonB.GetComponent<Image>();
-        if(checkAnswer(Letters.B)){
-            buttonImage.color = correctColor;
-        } else {
-            buttonImage.color = wrongColor;
-        }
+        checkAnswer(Letters.B);
     }
 
     public void clickC(){
-        Image buttonImage = buttonC.GetComponent<Image>();
-        if(checkAnswer(Letters.C)){
-            buttonImage.color = correctColor;
-        } else {
-            buttonImage.color = wrongColor;
-        }
+        checkAnswer(Letters.C);
     }
 
-    void ToggleButtons(bool interactable){
-        buttonA.interactable = interactable;
-        buttonB.interactable = interactable;
-        buttonC.interactable = interactable;
-    }
-
-    void ResetButtonColor(){
-        Image buttonImageA = buttonA.GetComponent<Image>();
-        Image buttonImageB = buttonB.GetComponent<Image>();
-        Image buttonImageC = buttonC.GetComponent<Image>();
-        
-        buttonImageA.color = Color.white;
-        buttonImageB.color = Color.white;
-        buttonImageC.color = Color.white;
-    }
-
-    public bool checkAnswer(Letters answer){
-        ToggleButtons(false);
-        isQuestion = false;
-        Invoke(nameof(loadQuizItem), 1.5f);
-
+    public void checkAnswer(Letters answer){
         if(answer == currentItem.correctAnswer){
             quizScore++;
-            PlayCorrectSound();
-            return true;
+            loadCorrect();
         } else {
-            PlayWrongSound();
-            return false;
+            loadIncorrect();
         }
-    }
-
-    void PlayCorrectSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.correctAnswer;
-        source.Play();
-    }
-
-    void PlayWrongSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.wrongAnswer;
-        source.Play();
-    }
-
-    void PlayNextLineLockSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.nextLocked;
-        source.Play();
-    }
-
-    void PlayQuestionAskSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        System.Random rnd = new System.Random();
-        int maxIndex = AudioPicker.Instance.question.Length;
-        source.clip = AudioPicker.Instance.question[rnd.Next(maxIndex)];
-        source.Play();
     }
 
     public override void nextLine() {
-        if(currentItem.hasChoice && isQuestion){
+        if(currentItem.hasChoice && !isRightOrWrong){
             Debug.Log("Answer the question to proceed");
-
-            PlayNextLineLockSound();
-
             return;
         }
 
-        CancelInvoke(nameof(loadQuizItem));
+        isRightOrWrong = false;
         loadQuizItem();
     }
 

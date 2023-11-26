@@ -15,9 +15,9 @@ public class QuizLevel1 : MonoBehaviour{
 
     float dialogueInvokeTime = 0.5f;
     bool hintIsOpen = false;
+    public Button hintButton;
     public QuizManager quizMgr;
     public TMPro.TMP_Text scoreText;
-    AudioSource source;
 
     //triggers dialogue
     void Awake(){
@@ -30,11 +30,11 @@ public class QuizLevel1 : MonoBehaviour{
         convoManager.convos[0] = quiz.startConvo;
         convoManager.convos[1] = quiz.passConvo;
         convoManager.convos[2] = quiz.failConvo;
-
-        source = GetComponent<AudioSource>();
     }
 
     void Start(){
+        hintButton.onClick.AddListener(HintOpen);
+
         StartCoroutine(convoManager.StartDialogue(0, dialogueInvokeTime));
         levelIndex = LevelSaveLoad.Instance.indexHolder;
     }
@@ -94,24 +94,6 @@ public class QuizLevel1 : MonoBehaviour{
         PostlevelCanvas.Instance.SetStars(checkOne, checkTwo, checkThree);
 
         scoreText.text = QuizManager.Instance.quizScore.ToString() + "/10";
-
-        if(!checkOne){
-            PlayFailSound();
-        } else {
-            PlayPassSound();
-        }
-    }
-
-    void PlayPassSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.passSting;
-        source.Play();
-    }
-
-    void PlayFailSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.failSting;
-        source.Play();
     }
 
     public enum QuizState{

@@ -7,9 +7,7 @@ public class GlobalSettings : MonoBehaviour{
 
     public ScreenResMode resolution;
     public bool isFullscreen;
-    public float bgmVolume, sfxVolume;
     public string optionsSave;
-    public float forceWaitTime = 1f;
     void Awake(){
         if(Instance == null){
             Instance = this;
@@ -22,16 +20,11 @@ public class GlobalSettings : MonoBehaviour{
     void Start(){
         optionsSave = Application.dataPath + "/Saves/Options.json";
 
-        SetDefault();
-        LoadOptions();
-        SetScreenRes();
-    }
-
-    void SetDefault(){
         resolution = ScreenResMode._1366x768;
         isFullscreen = false;
-        bgmVolume = 1f;
-        sfxVolume = 1f;
+
+        LoadOptions();
+        SetScreenRes();
     }
 
     void SetScreenRes(){
@@ -54,7 +47,7 @@ public class GlobalSettings : MonoBehaviour{
     //save and load options
     public void LoadOptions(){
         if(!File.Exists(optionsSave)){
-            string savedSettings = JsonUtility.ToJson(new GameSettings(ScreenResMode._1366x768, false, 1f, 1f), true);
+            string savedSettings = JsonUtility.ToJson(new GameSettings(ScreenResMode._1366x768, false), true);
             File.WriteAllText(optionsSave, savedSettings);
         }
 
@@ -69,12 +62,10 @@ public class GlobalSettings : MonoBehaviour{
 
         resolution = options.resolution;
         isFullscreen = options.isFullscreen;
-        bgmVolume = options.bgmVolume;
-        sfxVolume = options.sfxVolume;
     }
 
     public void SaveSettings(){
-        string savedSettings = JsonUtility.ToJson(new GameSettings(resolution, isFullscreen, bgmVolume, sfxVolume), true);
+        string savedSettings = JsonUtility.ToJson(new GameSettings(resolution, isFullscreen), true);
         File.WriteAllText(optionsSave, savedSettings);
     }
 
@@ -84,16 +75,13 @@ public class GlobalSettings : MonoBehaviour{
 }
 
 public class GameSettings{
-    public GameSettings(ScreenResMode resolution, bool isFullscreen, float bgmVolume, float sfxVolume){
+    public GameSettings(ScreenResMode resolution, bool isFullscreen){
         this.resolution = resolution;
         this.isFullscreen = isFullscreen;
-        this.bgmVolume = bgmVolume;
-        this.sfxVolume = sfxVolume;
     }
 
     public ScreenResMode resolution;
     public bool isFullscreen;
-    public float bgmVolume, sfxVolume;
 }
 
 public enum ScreenResMode{

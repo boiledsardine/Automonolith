@@ -31,21 +31,7 @@ public class DragSlot : MonoBehaviour, IDropHandler{
         draggable.ogPosition = transform.position;
         draggable.ogParent = gameObject.transform;
 
-        PlayDropSound();
         //Invoke("ReformatText", 0.01f);
-    }
-
-    void PlayDropSound(){
-        AudioSource source = MinigameManager.Instance.GetComponent<AudioSource>();
-        System.Random rnd = new System.Random();
-        int maxIndex = AudioPicker.Instance.boxDrop.Length;
-
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.minigameVolume;
-        source.volume = globalVolume * multiplier;
-        
-        source.clip = AudioPicker.Instance.boxDrop[rnd.Next(maxIndex)];
-        source.Play();
     }
 
     /*void Update(){

@@ -24,12 +24,6 @@ public class QuizUnlocker : MonoBehaviour{
             }
         }
 
-        foreach(MinigameState state in MinigameLoader.Instance.savedLevels){
-            if(state.isDone){
-                starCount++;
-            }
-        }
-
         starCountText.text = "x" + starCount;
     }
 

@@ -89,21 +89,12 @@ public class MinigameLevelSelector : MonoBehaviour{
         StartCoroutine(LoadAsync(sceneToLoad));
     }
 
-    public IEnumerator LoadAsync(string sceneIndex){
-        Debug.Log("LOADING!");
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
-
-        loadOp.allowSceneActivation = false;
+    public IEnumerator LoadAsync(string sceneToLoad){
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneToLoad);
 
         while(!loadOp.isDone){
             float progress = Mathf.Clamp01(loadOp.progress / 0.9f);
             loadBar.value = progress;
-            
-            if(loadOp.progress >= 0.9f){
-                yield return new WaitForSeconds(GlobalSettings.Instance.forceWaitTime);
-                loadOp.allowSceneActivation = true;
-            }
-            
             yield return null;
         }
     }

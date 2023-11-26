@@ -21,7 +21,6 @@ public class PostlevelCanvas : MonoBehaviour{
     public void OpenCanvas(){
         Animator anim = gameObject.GetComponent<Animator>();
         anim.SetBool("isOpen", true);
-        TempMuteSource();
     }
 
     public void SetStars(bool star1Open, bool star2Open, bool star3Open){
@@ -30,53 +29,13 @@ public class PostlevelCanvas : MonoBehaviour{
         star3.texture = star3Open ? starActive : starInactive;
     }
 
-    public void EndLevel(){        
-        StartCoroutine(LoadAsync());
-    }
-
-    void TempMuteSource(){
-        AudioSource[] sources = GetComponentsInChildren<AudioSource>();
-        foreach(AudioSource source in sources){
-            source.enabled = false;
-        }
-        Invoke(nameof(UnmuteSource), 0.20f);
-    }
-
-    void UnmuteSource(){
-        AudioSource[] sources = GetComponentsInChildren<AudioSource>();
-        foreach(AudioSource source in sources){
-            source.enabled = true;
-        }
-    }
-
-    public Canvas loadCanvas;
-
-    public IEnumerator LoadAsync(){
-        Debug.Log("LOADING!");
-        loadCanvas.gameObject.SetActive(true);
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync("Main Menu");
-
-        loadOp.allowSceneActivation = false;
-
-        while(!loadOp.isDone){
-            Slider loadBar = loadCanvas.transform.Find("Slider").GetComponent<Slider>();
-            float progress = Mathf.Clamp01(loadOp.progress / 0.9f);
-            loadBar.value = progress;
-
-            if(loadOp.progress >= 0.9f){
-                yield return new WaitForSeconds(GlobalSettings.Instance.forceWaitTime);
-                loadOp.allowSceneActivation = true;
-
-                //destroy persistents
-                DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
-                foreach(DontDestroy obj in persistents){
-                    if(obj.transform.gameObject.tag != "Save Manager"){
-                        Destroy(obj.gameObject);
-                    }
-                }
-            }
-
-            yield return null;
+    public void EndLevel(){
+        //then return to main menu
+        SceneManager.LoadScene("Main Menu");
+        //destroy persistents
+        DontDestroy[] persistents = FindObjectsOfType<DontDestroy>();
+        foreach(DontDestroy obj in persistents){
+            Destroy(obj.gameObject);
         }
     }
 }

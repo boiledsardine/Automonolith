@@ -14,7 +14,6 @@ public class ItemAcceptor : ObjectBase, IActivator{
     GameObject bubble = null;
     bool isAccepting = true;
     public CubeColor cubeColor;
-    AudioSource source;
     
     string color{
         get{
@@ -34,7 +33,6 @@ public class ItemAcceptor : ObjectBase, IActivator{
         envirScript = gameObject.GetComponent<ObjectEnvironment>();
         //envirScript.tileUnder.isOccupied = true;
         meshRend = GetComponent<MeshRenderer>();
-        source = GetComponent<AudioSource>();
     }
 
     void Update(){
@@ -92,33 +90,13 @@ public class ItemAcceptor : ObjectBase, IActivator{
     bool hasActivated = false;
     void CheckItemCount(){
         if(itemCount >= itemLimit){
-            if(hasActivated){
-                PlayUpSound();
-            }
             meshRend.materials = material;
             isAccepting = false;
             if(boundObject != null && !hasActivated){
                 hasActivated = true;
-                PlayFullSound();
                 boundObject.GetComponent<IActivate>().activate();
             }
-        } else {
-            PlayUpSound();
         }
-    }
-
-    void PlayUpSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        System.Random rnd = new System.Random();
-        int maxIndex = AudioPicker.Instance.acceptorUp.Length;
-        source.clip = AudioPicker.Instance.acceptorUp[rnd.Next(maxIndex)];
-        source.Play();
-    }
-
-    void PlayFullSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
-        source.clip = AudioPicker.Instance.acceptorFull;
-        source.Play();
     }
 
     public bool IsActive(){

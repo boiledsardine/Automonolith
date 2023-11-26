@@ -19,13 +19,13 @@
             "isUnlocked": true,
             "star1": true,
             "star2": true,
-            "star3": true
+            "star3": false
         },
         {
             "levelIndex": 3,
             "isUnlocked": true,
             "star1": true,
-            "star2": true,
+            "star2": false,
             "star3": true
         },
         {
