@@ -78,9 +78,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     void PlayTalkingSound(){
         AdjustPitch();
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.talkingVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.talkingMixer;
 
         source.clip = AudioPicker.Instance.talkingSound;
         source.Play();
@@ -194,9 +192,7 @@ public class DialogueManager : DialogueSystemBase, IPointerClickHandler{
     void PlayDoneSound(){
         source.pitch = 0.75f;
         
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.talkingVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.talkingMixer;
         
         source.clip = AudioPicker.Instance.talkingDone;
         source.Play();

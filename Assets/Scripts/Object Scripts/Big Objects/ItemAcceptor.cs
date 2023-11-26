@@ -108,7 +108,7 @@ public class ItemAcceptor : ObjectBase, IActivator{
     }
 
     void PlayUpSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.acceptorUp.Length;
         source.clip = AudioPicker.Instance.acceptorUp[rnd.Next(maxIndex)];
@@ -116,7 +116,7 @@ public class ItemAcceptor : ObjectBase, IActivator{
     }
 
     void PlayFullSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.acceptorFull;
         source.Play();
     }

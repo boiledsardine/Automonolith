@@ -127,9 +127,7 @@ public class AlmanacManager : MonoBehaviour{
     void PlayOpenSound(){
         source.clip = AudioPicker.Instance.menuOpen;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
 
         source.Play();
     }
@@ -137,9 +135,7 @@ public class AlmanacManager : MonoBehaviour{
     void PlayCloseSound(){
         source.clip = AudioPicker.Instance.menuClose;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.Play();
     }

@@ -51,9 +51,7 @@ public class DraggableItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.boxClick.Length;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.minigameVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.minigameMixer;
 
         source.clip = AudioPicker.Instance.boxClick[rnd.Next(maxIndex)];
         source.Play();

@@ -12,18 +12,14 @@ public class MethodClickSound : MonoBehaviour, IPointerEnterHandler, IPointerCli
     }
 
     public void OnPointerEnter(PointerEventData eventData){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         source.clip = AudioPicker.Instance.methodRollover;
         source.Play();
     }
 
     public void OnPointerClick(PointerEventData eventData){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
         
         source.clip = AudioPicker.Instance.methodClick;
         source.Play();

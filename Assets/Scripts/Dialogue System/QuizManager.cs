@@ -195,25 +195,25 @@ public class QuizManager : DialogueSystemBase, IPointerClickHandler{
     }
 
     void PlayCorrectSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.correctAnswer;
         source.Play();
     }
 
     void PlayWrongSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.wrongAnswer;
         source.Play();
     }
 
     void PlayNextLineLockSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.nextLocked;
         source.Play();
     }
 
     void PlayQuestionAskSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.question.Length;
         source.clip = AudioPicker.Instance.question[rnd.Next(maxIndex)];

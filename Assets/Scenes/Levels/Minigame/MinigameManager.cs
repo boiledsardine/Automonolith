@@ -293,13 +293,13 @@ public class MinigameManager : MonoBehaviour{
     }
 
     void PlaySuccessSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.minigameSuccess;
         source.Play();
     }
 
     void PlayFailureSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.minigameError;
         source.Play();
     }
@@ -332,7 +332,7 @@ public class MinigameManager : MonoBehaviour{
     }
 
     void PlayFanfare(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.successFanfare;
         source.Play();
     }

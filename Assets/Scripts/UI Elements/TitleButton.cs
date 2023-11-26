@@ -30,9 +30,7 @@ public class TitleButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             return;
         }
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         source.clip = AudioPicker.Instance.titleRollover;
         source.Play();
@@ -43,9 +41,7 @@ public class TitleButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             return;
         }
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         source.clip = AudioPicker.Instance.titleSelect;
         source.Play();

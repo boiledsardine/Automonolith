@@ -103,13 +103,13 @@ public class QuizLevel1 : MonoBehaviour{
     }
 
     void PlayPassSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.passSting;
         source.Play();
     }
 
     void PlayFailSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.failSting;
         source.Play();
     }

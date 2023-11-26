@@ -20,9 +20,7 @@ public class GameUISound : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
         source.clip = AudioPicker.Instance.uiMouseover;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         source.Play();
     }
@@ -57,11 +55,9 @@ public class GameUISound : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         }
 
         if(uiType == UIType.play || uiType == UIType.stop){
-            source.volume = GlobalSettings.Instance.sfxVolume;
+            source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         } else {
-            float globalVolume = GlobalSettings.Instance.sfxVolume;
-            float multiplier = AudioPicker.Instance.buttonVolume;
-            source.volume = globalVolume * multiplier;
+            source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
         }
 
         source.Play();

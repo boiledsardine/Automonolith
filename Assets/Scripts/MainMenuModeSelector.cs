@@ -82,18 +82,14 @@ public class MainMenuModeSelector : MonoBehaviour{
     }
 
     void PlayMinigameModeSound(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.clip = AudioPicker.Instance.modeSwitchLeft;
         source.Play();
     }
 
     void PlayCoreModeSound(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.clip = AudioPicker.Instance.modeSwitchRight;
         source.Play();

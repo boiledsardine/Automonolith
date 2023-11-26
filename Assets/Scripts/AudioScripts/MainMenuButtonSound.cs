@@ -13,17 +13,13 @@ public class MainMenuButtonSound : MonoBehaviour, IPointerEnterHandler, IPointer
     public void OnPointerEnter(PointerEventData eventData){
         source.clip = AudioPicker.Instance.levelRollover;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
         
         source.Play();
     }
 
     public void OnPointerClick(PointerEventData eventData){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
         
         source.clip = AudioPicker.Instance.levelSelect;
         source.Play();

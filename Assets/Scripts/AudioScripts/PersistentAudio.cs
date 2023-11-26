@@ -11,9 +11,7 @@ public class PersistentAudio : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public void OnPointerClick(PointerEventData eventData){
         source = AudioPicker.Instance.gameObject.GetComponent<AudioSource>();
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         if(gameObject.tag == "Play Button"){
             bool coreLevelInitialized = LevelSelectManager.Instance.sceneToLoad > 1;
@@ -33,9 +31,7 @@ public class PersistentAudio : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public void OnPointerEnter(PointerEventData eventData){
         source = GetComponent<AudioSource>();
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         PlayMouseOver();
     }

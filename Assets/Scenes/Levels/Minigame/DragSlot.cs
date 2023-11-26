@@ -40,9 +40,7 @@ public class DragSlot : MonoBehaviour, IDropHandler{
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.boxDrop.Length;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.minigameVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.minigameMixer;
         
         source.clip = AudioPicker.Instance.boxDrop[rnd.Next(maxIndex)];
         source.Play();

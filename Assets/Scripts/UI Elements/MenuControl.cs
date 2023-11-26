@@ -159,9 +159,7 @@ public class MenuControl : MonoBehaviour{
     }
 
     void PlayBeep(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.buttonVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.buttonMixer;
 
         source.clip = AudioPicker.Instance.beep;
         source.Play();

@@ -24,7 +24,7 @@ public class ErrorChecker : MonoBehaviour{
         DialogueManager.Instance.startDialogue(errorConvo);
 
         var source = DialogueManager.Instance.gameObject.transform.Find("ErrorSource").GetComponent<AudioSource>();
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.errorMessage;
         source.Play();
     }

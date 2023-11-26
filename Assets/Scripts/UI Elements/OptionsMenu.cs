@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class OptionsMenu : MonoBehaviour{
     public TMP_Dropdown dropdown;
@@ -10,6 +11,7 @@ public class OptionsMenu : MonoBehaviour{
     public Slider bgmSlider, sfxSlider;
     public Animator panelAnim;
     AudioSource source;
+    public AudioMixer mixer;
 
     // Start is called before the first frame update
     void Awake(){
@@ -39,12 +41,12 @@ public class OptionsMenu : MonoBehaviour{
         fullscreenToggle.isOn = GlobalSettings.Instance.isFullscreen;
         
         Debug.Log("bgm: " + GlobalSettings.Instance.bgmVolume);
+        mixer.SetFloat("bgmMasterVolume", Mathf.Log10(GlobalSettings.Instance.bgmVolume) * 20);
         bgmSlider.value = GlobalSettings.Instance.bgmVolume;
         
         Debug.Log("sfx: " + GlobalSettings.Instance.bgmVolume);
-        Debug.Log(sfxSlider.value);
+        mixer.SetFloat("sfxMasterVolume", Mathf.Log10(GlobalSettings.Instance.sfxVolume) * 20);
         sfxSlider.value = GlobalSettings.Instance.sfxVolume;
-        Debug.Log(sfxSlider.value);
     }
 
     void SetScreenRes(int width, int height){
@@ -84,7 +86,8 @@ public class OptionsMenu : MonoBehaviour{
             return;
         }
         
-        GlobalSettings.Instance.sfxVolume = bgmSlider.value;
+        GlobalSettings.Instance.bgmVolume = bgmSlider.value;
+        mixer.SetFloat("bgmMasterVolume", Mathf.Log10(bgmSlider.value) * 20);
     }
 
     public void SFX_Changed(){
@@ -93,7 +96,7 @@ public class OptionsMenu : MonoBehaviour{
         }
 
         GlobalSettings.Instance.sfxVolume = sfxSlider.value;
-        PlayTestSound(GlobalSettings.Instance.sfxVolume, AudioPicker.Instance.sfxTestSound);
+        mixer.SetFloat("sfxMasterVolume", Mathf.Log10(sfxSlider.value) * 20);
     }
 
     public void CloseOptions(bool confirm){
@@ -109,29 +112,16 @@ public class OptionsMenu : MonoBehaviour{
     }
 
     public void PlayOpenSound(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.clip = AudioPicker.Instance.menuOpen;
         source.Play();
     }
 
     void PlayCloseSound(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.clip = AudioPicker.Instance.menuClose;
         source.Play();
-    }
-
-    void PlayTestSound(float volume, AudioClip clip){
-        source.volume = volume;
-        source.clip = clip;
-        
-        if(!source.isPlaying){
-            source.Play();
-        }
     }
 }

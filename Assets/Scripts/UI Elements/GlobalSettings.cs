@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using System.IO;
+
 public class GlobalSettings : MonoBehaviour{
     public static GlobalSettings Instance { get; private set; }
 
@@ -10,6 +12,7 @@ public class GlobalSettings : MonoBehaviour{
     public float bgmVolume, sfxVolume;
     public string optionsSave;
     public float forceWaitTime = 1f;
+    public AudioMixer mixer;
     void Awake(){
         if(Instance == null){
             Instance = this;
@@ -17,14 +20,14 @@ public class GlobalSettings : MonoBehaviour{
         } else {
             Destroy(gameObject);
         }
+
+        optionsSave = Application.dataPath + "/Saves/Options.json";
+        LoadOptions();
     }
 
     void Start(){
-        optionsSave = Application.dataPath + "/Saves/Options.json";
-
-        SetDefault();
-        LoadOptions();
         SetScreenRes();
+        SetVolume();
     }
 
     void SetDefault(){
@@ -51,6 +54,11 @@ public class GlobalSettings : MonoBehaviour{
         }
     }
 
+    void SetVolume(){
+        mixer.SetFloat("sfxMasterVolume", Mathf.Log10(sfxVolume) * 20);
+        mixer.SetFloat("bgmMasterVolume", Mathf.Log10(bgmVolume) * 20);
+    }
+
     //save and load options
     public void LoadOptions(){
         if(!File.Exists(optionsSave)){
@@ -71,6 +79,13 @@ public class GlobalSettings : MonoBehaviour{
         isFullscreen = options.isFullscreen;
         bgmVolume = options.bgmVolume;
         sfxVolume = options.sfxVolume;
+
+        if(bgmVolume == 0){
+            bgmVolume = 0.0001f;
+        }
+        if(sfxVolume == 0){
+            sfxVolume = 0.0001f;
+        }
     }
 
     public void SaveSettings(){

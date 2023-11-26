@@ -56,7 +56,7 @@ public class ObjectMovement : MonoBehaviour, IMovement{
 
     void PlayMoveSound(){
         AudioSource source = GetComponent<AudioSource>();
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.environmentMixer;
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.rockMove.Length;
         source.clip = AudioPicker.Instance.rockMove[rnd.Next(maxIndex)];

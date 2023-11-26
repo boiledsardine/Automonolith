@@ -628,25 +628,25 @@ public class Interaction : MonoBehaviour {
     }
 
     void PlaySaySound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.botSay;
         source.Play();
     }
 
     void PlayReadSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.botRead;
         source.Play();
     }
 
     void PlayHoldSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.botHold;
         source.Play();
     }
 
     void PlayDropSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.botDrop;
         source.Play();
     }

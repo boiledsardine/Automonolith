@@ -48,8 +48,8 @@ MonoBehaviour:
   resolution: 1
   isFullscreen: 0
   optionsSave: 
-  sfxVolume: 1
-  bgmVolume: 0
+  forceWaitTime: 1
+  mixer: {fileID: 24100000, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
 --- !u!114 &5197601580922141448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,12 +62,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e48f1297fe99f943bd6eca8553b43f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  sfxMaster: {fileID: -2210354981601073857, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  bgmMaster: {fileID: 0}
+  environmentMixer: {fileID: -4491838062042060296, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
   buttonVolume: 0.3
   menuSwooshVolume: 0.5
   footstepVolume: 0.75
   minigameVolume: 0.5
   typingVolume: 0.25
   talkingVolume: 0.15
+  environmentVolume: 0.75
   successFanfare: {fileID: 8300000, guid: 4d53ee82e50fb1b4293de89e63d3c78a, type: 3}
   uiMouseover: {fileID: 8300000, guid: 461d5b0ad2855c84f9a9ba7afe1929bd, type: 3}
   uiClick: {fileID: 8300000, guid: 9c3dba50d77058547989255a4a858ff5, type: 3}
@@ -146,6 +151,8 @@ MonoBehaviour:
   persistBeep: {fileID: 8300000, guid: 396b8b2209f27e6469b6b265380461e8, type: 3}
   persistBell: {fileID: 8300000, guid: 605314cc11fc759499cec7200c694186, type: 3}
   persistConf: {fileID: 8300000, guid: 5703bf9a4e90a7448b14d207e0e3918f, type: 3}
+  sfxTestSound: {fileID: 8300000, guid: 0d954f79056265242919379be8e7fcdc, type: 3}
+  bgmTestSound: {fileID: 0}
 --- !u!82 &6896797622819057680
 AudioSource:
   m_ObjectHideFlags: 0

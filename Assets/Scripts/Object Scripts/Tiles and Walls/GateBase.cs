@@ -85,7 +85,7 @@ public class GateBase : MonoBehaviour{
             return;
         }
 
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.gateOpen;
         source.Play();
     }
@@ -95,7 +95,7 @@ public class GateBase : MonoBehaviour{
             return;
         }
 
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.gateClose;
         source.Play();
     }

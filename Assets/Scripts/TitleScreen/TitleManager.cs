@@ -210,18 +210,14 @@ public class TitleManager : MonoBehaviour{
     }
 
     void PlayOpenWindow(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
 
         source.clip = AudioPicker.Instance.titleWindowOpen;
         source.Play();
     }
 
     void PlayCloseWindow(){
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.clip = AudioPicker.Instance.titleWindowClose;
         source.Play();

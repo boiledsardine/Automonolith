@@ -50,7 +50,7 @@ public class FloorButton : ButtonBase, IActivator{
             return;
         }
 
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.buttonOn;
         source.Play();
     }
@@ -60,13 +60,13 @@ public class FloorButton : ButtonBase, IActivator{
             return;
         }
 
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.buttonOff;
         source.Play();
     }
 
     void PlayLatchSound(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.buttonLatch;
         source.Play();
     }

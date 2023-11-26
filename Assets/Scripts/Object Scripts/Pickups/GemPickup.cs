@@ -58,7 +58,7 @@ public class GemPickup : ObjectBase{
 
     void PlayGemSound(){
         var source = GetComponent<AudioSource>();
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.environmentMixer;
         source.clip = AudioPicker.Instance.gemPickup;
         source.Play();
     }

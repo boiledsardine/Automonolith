@@ -13,7 +13,7 @@ public class BotKiller : MonoBehaviour, IActivate{
     public void activate(){
         Compiler.Instance.terminateExecution();
 
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.trap;
         source.Play();
 
@@ -35,7 +35,7 @@ public class BotKiller : MonoBehaviour, IActivate{
     }
 
     void PlayBotKill(){
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         System.Random rnd = new System.Random();
         int maxIndex = AudioPicker.Instance.botDead.Length;
         source.clip = AudioPicker.Instance.botDead[rnd.Next(maxIndex)];

@@ -56,15 +56,13 @@ public class CodeEditor : MonoBehaviour{
     void SetTypeSource(){
         source = transform.Find("TypingSource").GetComponent<AudioSource>();
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.typingVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.typingMixer;
     }
 
     void SetSpecialSource(){
         source = transform.Find("SpecialSource").GetComponent<AudioSource>();
         
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
     }
 
     void PlayKeySound(){

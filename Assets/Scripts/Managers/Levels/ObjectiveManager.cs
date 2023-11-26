@@ -114,7 +114,7 @@ public class ObjectiveManager : MonoBehaviour {
 
     void Postlevel(bool obj1, bool obj2, bool obj3){
         AudioSource source = GetComponent<AudioSource>();
-        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.outputAudioMixerGroup = AudioPicker.Instance.sfxMaster;
         source.clip = AudioPicker.Instance.successFanfare;
         source.Play();
 

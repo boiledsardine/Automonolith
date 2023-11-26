@@ -266,9 +266,7 @@ public class Movement : MonoBehaviour, IMovement {
             source.clip = AudioPicker.Instance.botMove2;
         }
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.footstepVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.footstepMixer;
 
         source.Play();
     }

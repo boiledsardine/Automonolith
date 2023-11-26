@@ -115,9 +115,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
         
         m_source.clip = AudioPicker.Instance.sidebarOpen;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        m_source.volume = globalVolume * multiplier;
+        m_source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
 
         m_source.Play();
     }
@@ -125,9 +123,7 @@ public abstract class DialogueSystemBase : MonoBehaviour{
     protected void PlayCloseSound(){
         m_source.clip = AudioPicker.Instance.sidebarClose;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        m_source.volume = globalVolume * multiplier;
+        m_source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
 
         m_source.Play();
     }

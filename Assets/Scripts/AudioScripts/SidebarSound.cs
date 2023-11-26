@@ -11,9 +11,7 @@ public class SidebarSound : MonoBehaviour{
     public void PlayOpenSound(){
         source.clip = AudioPicker.Instance.sidebarOpen;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
 
         source.Play();
     }
@@ -21,9 +19,7 @@ public class SidebarSound : MonoBehaviour{
     public void PlayCloseSound(){
         source.clip = AudioPicker.Instance.sidebarClose;
 
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
 
         source.Play();
     }
