@@ -47,9 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resolution: 1
   isFullscreen: 0
-  optionsSave: 
-  sfxVolume: 1
   bgmVolume: 0
+  sfxVolume: 1
+  optionsSave: 
+  forceWaitTime: 1
 --- !u!114 &5197601580922141448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +63,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e48f1297fe99f943bd6eca8553b43f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonMixer: {fileID: 6733010312667862653, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  swooshMixer: {fileID: -1365625501646226509, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  footstepMixer: {fileID: -463693390101368431, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  minigameMixer: {fileID: -7757163009021684612, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  typingMixer: {fileID: -7037079394803374601, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  talkingMixer: {fileID: 3582242177112929325, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
   buttonVolume: 0.3
   menuSwooshVolume: 0.5
   footstepVolume: 0.75
@@ -146,6 +153,8 @@ MonoBehaviour:
   persistBeep: {fileID: 8300000, guid: 396b8b2209f27e6469b6b265380461e8, type: 3}
   persistBell: {fileID: 8300000, guid: 605314cc11fc759499cec7200c694186, type: 3}
   persistConf: {fileID: 8300000, guid: 5703bf9a4e90a7448b14d207e0e3918f, type: 3}
+  sfxTestSound: {fileID: 0}
+  bgmTestSound: {fileID: 0}
 --- !u!82 &6896797622819057680
 AudioSource:
   m_ObjectHideFlags: 0

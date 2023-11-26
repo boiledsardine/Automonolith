@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioPicker : MonoBehaviour{
     public static AudioPicker Instance { get; private set; }
@@ -13,6 +14,7 @@ public class AudioPicker : MonoBehaviour{
             Destroy(gameObject);
         }
     }
+    public AudioMixerGroup buttonMixer, swooshMixer, footstepMixer, minigameMixer, typingMixer, talkingMixer;
     
     public float buttonVolume, menuSwooshVolume, footstepVolume, minigameVolume, typingVolume, talkingVolume;
 

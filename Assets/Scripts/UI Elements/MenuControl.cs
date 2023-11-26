@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MenuControl : MonoBehaviour{
     public static MenuControl Instance { get; private set; }
@@ -136,25 +137,24 @@ public class MenuControl : MonoBehaviour{
         }
     }
 
+    
     void PlayOpenSound(){
         TempDisableMenuSound();
 
-        source.clip = AudioPicker.Instance.menuOpen;
-        
         float globalVolume = GlobalSettings.Instance.sfxVolume;
         float multiplier = AudioPicker.Instance.menuSwooshVolume;
         source.volume = globalVolume * multiplier;
 
+        source.clip = AudioPicker.Instance.menuOpen;
         source.Play();
     }
 
     void PlayCloseSound(){
-        source.clip = AudioPicker.Instance.menuClose;
-        
         float globalVolume = GlobalSettings.Instance.sfxVolume;
         float multiplier = AudioPicker.Instance.menuSwooshVolume;
         source.volume = globalVolume * multiplier;
-        
+
+        source.clip = AudioPicker.Instance.menuClose;       
         source.Play();
     }
 
