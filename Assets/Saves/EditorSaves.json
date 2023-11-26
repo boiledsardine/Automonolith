@@ -2,7 +2,7 @@
     "Items": [
         {
             "levelIndex": 0,
-            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\nBot.moveUp(2);\nBot.moveDown(2);\nBot.say(\"HI\");"
+            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\nBot.moveUp(2);\nBot.moveDown(2);\nBot.say(\"HI\");\n\n\n"
         },
         {
             "levelIndex": 1,

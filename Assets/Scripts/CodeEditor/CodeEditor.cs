@@ -36,6 +36,7 @@ public class CodeEditor : MonoBehaviour{
     public GameObject methodsPanelViewport, methodsPanelSet;
     AudioSource source;
     System.Random rnd;
+    public Canvas dialogueCanvas;
 
     public bool KeyPressed {
         get { return keyPressed; }
@@ -128,6 +129,10 @@ public class CodeEditor : MonoBehaviour{
     }
 
     private void Update(){
+        if(dialogueCanvas.gameObject.activeInHierarchy){
+            return;
+        }
+        
         keyPressed = false;
         if(editorMainText.transform.gameObject.activeInHierarchy && takeInputs){
             EventSystem.current.SetSelectedGameObject(null);

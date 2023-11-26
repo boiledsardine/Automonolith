@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour{
     public TMP_Dropdown dropdown;
@@ -82,7 +83,7 @@ public class OptionsMenu : MonoBehaviour{
     }
 
     public void BGM_Changed(){
-        if(!sfxSlider.GetComponent<SliderMouseCheck>().isDragging){
+        if(!bgmSlider.GetComponent<SliderMouseCheck>().isDragging){
             return;
         }
         
@@ -104,11 +105,24 @@ public class OptionsMenu : MonoBehaviour{
             GlobalSettings.Instance.SaveSettings();
         } else {
             GlobalSettings.Instance.LoadOptions();
-            SetValues();
         }
+        SetValues();
 
-        PlayCloseSound();
         panelAnim.SetBool("isOpen", false);
+
+        if(SceneManager.GetActiveScene().buildIndex == 0){
+            PlayCloseWindow();
+            Animator opPanel = GameObject.Find("CreditsCanvas").transform.Find("CR Panel").GetComponent<Animator>();
+            opPanel.SetBool("isOpen", false);
+            Invoke(nameof(DeactivatePanel), 0.25f);
+        } else {
+            PlayCloseSound();
+        }
+    }
+
+    void DeactivatePanel(){
+        Animator opPanel = GameObject.Find("CreditsCanvas").transform.Find("CR Panel").GetComponent<Animator>();
+        opPanel.gameObject.SetActive(false);
     }
 
     public void PlayOpenSound(){
@@ -122,6 +136,13 @@ public class OptionsMenu : MonoBehaviour{
         source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.clip = AudioPicker.Instance.menuClose;
+        source.Play();
+    }
+
+    void PlayCloseWindow(){
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
+        
+        source.clip = AudioPicker.Instance.titleWindowClose;
         source.Play();
     }
 }

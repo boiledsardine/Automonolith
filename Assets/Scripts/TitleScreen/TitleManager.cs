@@ -8,7 +8,7 @@ using System.Linq;
 
 public class TitleManager : MonoBehaviour{
     public Button ngButton, contButton, quitButton;
-    public Canvas loadCanvas, creditsCanvas;
+    public Canvas loadCanvas, creditsCanvas, optionsCanvas;
     public Slider loadBar;
     string levelSave, editorSave, minigameSave;
     SaveGenerator saveGen;
@@ -137,6 +137,23 @@ public class TitleManager : MonoBehaviour{
         //load scene 1 (main menu)
         loadCanvas.gameObject.SetActive(true);
         StartCoroutine(LoadAsync(1));
+    }
+
+    public void Options(){
+        //do something
+        //should open options submenu
+        OptionsMenu optionMenu = optionsCanvas.GetComponent<OptionsMenu>();
+        optionMenu.SetValues();
+
+        optionsCanvas.gameObject.SetActive(true);
+        Animator panelAnim = optionsCanvas.transform.GetChild(0).transform.gameObject.GetComponent<Animator>();
+        panelAnim.SetBool("isOpen", true);
+        
+        Animator opPanel = GameObject.Find("CreditsCanvas").transform.Find("CR Panel").GetComponent<Animator>();
+        opPanel.gameObject.SetActive(true);
+        opPanel.SetBool("isOpen", true);
+        
+        PlayOpenWindow();
     }
 
     public void Credits(){

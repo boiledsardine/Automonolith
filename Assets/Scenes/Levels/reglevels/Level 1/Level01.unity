@@ -367,10 +367,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5197601580922141448, guid: 1808408a9ded042409c5048392652a74, type: 3}
-      propertyPath: environmentVolume
-      value: 0.65
-      objectReference: {fileID: 0}
     - target: {fileID: 5197601580922141449, guid: 1808408a9ded042409c5048392652a74, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -800,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 991590744249070314, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 991590744292383664, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchorMax.y
@@ -880,11 +876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 991590744865660092, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 110.26
       objectReference: {fileID: 0}
     - target: {fileID: 991590744865660092, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 28.01
       objectReference: {fileID: 0}
     - target: {fileID: 991590745362033010, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2509,6 +2505,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1387905786518933597, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+    - {fileID: 2855861547234625891, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
+    - {fileID: 4083039300742855997, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ee01c9fb417a9cf4c8516e8dfca41693, type: 3}
 --- !u!1 &621168990 stripped
 GameObject:

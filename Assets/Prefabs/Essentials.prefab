@@ -3893,6 +3893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editorCanvas: {fileID: 4162064607429903040}
+  dialogueCanvas: {fileID: 4644243243080574055}
   panelAnimator: {fileID: 2597080345160860618}
   controlAnimator: {fileID: 7119197247235057210}
   invokeTime: 0.1
@@ -3923,6 +3924,7 @@ MonoBehaviour:
   takeInputs: 0
   methodsPanelViewport: {fileID: 5158666660333876911}
   methodsPanelSet: {fileID: 5787419908052779707, guid: cace6977239638847b723339d1d44ee0, type: 3}
+  dialogueCanvas: {fileID: 4644243243080574055}
 --- !u!82 &7965159469630060040
 AudioSource:
   m_ObjectHideFlags: 0

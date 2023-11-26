@@ -141,19 +141,14 @@ public class MenuControl : MonoBehaviour{
 
         source.clip = AudioPicker.Instance.menuOpen;
         
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
-
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         source.Play();
     }
 
     void PlayCloseSound(){
         source.clip = AudioPicker.Instance.menuClose;
         
-        float globalVolume = GlobalSettings.Instance.sfxVolume;
-        float multiplier = AudioPicker.Instance.menuSwooshVolume;
-        source.volume = globalVolume * multiplier;
+        source.outputAudioMixerGroup = AudioPicker.Instance.swooshMixer;
         
         source.Play();
     }

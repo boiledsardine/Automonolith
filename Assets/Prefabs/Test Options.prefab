@@ -47,9 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resolution: 1
   isFullscreen: 0
+  bgmVolume: 0
+  sfxVolume: 0
   optionsSave: 
   forceWaitTime: 1
-  mixer: {fileID: 24100000, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  mixer: {fileID: 24100000, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
 --- !u!114 &5197601580922141448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,17 +64,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e48f1297fe99f943bd6eca8553b43f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
-  sfxMaster: {fileID: -2210354981601073857, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
-  bgmMaster: {fileID: 0}
-  environmentMixer: {fileID: -4491838062042060296, guid: 9c6249ac39fe0f642a8fba9e15b39baf, type: 2}
+  mixer: {fileID: 24100000, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  sfxMaster: {fileID: 2202705967905388730, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  bgmMaster: {fileID: -1968023998397521370, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  buttonMixer: {fileID: -8121224385871044593, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  swooshMixer: {fileID: -7030406133031229049, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  footstepMixer: {fileID: 3023832489498688160, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  minigameMixer: {fileID: -4210314644517897894, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  typingMixer: {fileID: 2090942842118095887, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  talkingMixer: {fileID: -3073256786829856403, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
+  environmentMixer: {fileID: 3319399538303839069, guid: 4826efaae0a503a4d90dab61b1fd35f1, type: 2}
   buttonVolume: 0.3
   menuSwooshVolume: 0.5
   footstepVolume: 0.75
   minigameVolume: 0.5
   typingVolume: 0.25
   talkingVolume: 0.15
-  environmentVolume: 0.75
+  environmentVolume: 0.65
   successFanfare: {fileID: 8300000, guid: 4d53ee82e50fb1b4293de89e63d3c78a, type: 3}
   uiMouseover: {fileID: 8300000, guid: 461d5b0ad2855c84f9a9ba7afe1929bd, type: 3}
   uiClick: {fileID: 8300000, guid: 9c3dba50d77058547989255a4a858ff5, type: 3}

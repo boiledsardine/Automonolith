@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EditorToggle : MonoBehaviour{
-    public Canvas editorCanvas;
+    public Canvas editorCanvas, dialogueCanvas;
     public Animator panelAnimator, controlAnimator;
     CodeEditor editor;
     public float invokeTime = 0.1f;
@@ -13,7 +13,7 @@ public class EditorToggle : MonoBehaviour{
     }
 
     public void openEditor(){
-        if(editorCanvas.gameObject.activeInHierarchy){
+        if(editorCanvas.gameObject.activeInHierarchy || dialogueCanvas.gameObject.activeInHierarchy){
             return;
         }
 
@@ -26,11 +26,11 @@ public class EditorToggle : MonoBehaviour{
     }
 
     public void closeEditor(){
-        editor.takeInputs = false;
-
-        if(!editorCanvas.gameObject.activeSelf || !panelAnimator.GetBool("isOpen")){
+        if(!editorCanvas.gameObject.activeSelf || !panelAnimator.GetBool("isOpen") || dialogueCanvas.gameObject.activeInHierarchy){
             return;
         }
+
+        editor.takeInputs = false;
 
         panelAnimator.SetBool("isOpen", false);
         controlAnimator.SetBool("isOpen", false);
