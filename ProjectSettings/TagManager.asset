@@ -14,6 +14,8 @@ TagManager:
   - Held Big
   - Save Manager
   - Pillar
+  - Play Button
+  - Title Button
   layers:
   - Default
   - TransparentFX

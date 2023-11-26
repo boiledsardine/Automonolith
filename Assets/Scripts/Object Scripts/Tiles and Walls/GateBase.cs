@@ -6,6 +6,12 @@ public class GateBase : MonoBehaviour{
     private Vector3 openPos, closedPos;
     [SerializeField] float targetPosY;
     [SerializeField] protected TileBase tileFront, tileBack;
+    AudioSource source;
+    protected bool isActive;
+
+    void Awake(){
+        source = GetComponent<AudioSource>();
+    }
 
     void Update(){
         //divisible by 180, probably facing x axis
@@ -72,5 +78,25 @@ public class GateBase : MonoBehaviour{
             yield return null;
         }
         transform.position = closedPos;
+    }
+
+    protected void PlayOpenSound(){
+        if(isActive){
+            return;
+        }
+
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.gateOpen;
+        source.Play();
+    }
+
+    protected void PlayCloseSound(){
+        if(!isActive){
+            return;
+        }
+
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.gateClose;
+        source.Play();
     }
 }

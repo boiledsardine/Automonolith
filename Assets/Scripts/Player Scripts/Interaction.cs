@@ -17,10 +17,12 @@ public class Interaction : MonoBehaviour {
     private Environment envirScript;
     private Animator anim;
     public RuntimeAnimatorController[] animStates; 
+    AudioSource source;
 
     private void Awake(){
         envirScript = gameObject.GetComponent<Environment>();
         anim = gameObject.GetComponent<Animator>();
+        source = gameObject.GetComponent<AudioSource>();
     }
 
     void Update(){
@@ -68,6 +70,9 @@ public class Interaction : MonoBehaviour {
                 if(hitObject.GetComponent<ObjectBase>().isMovable){
                     heldObject = hitObject;
                     isHolding = true;
+                    
+                    PlayHoldSound();
+
                     if(heldObject.tag == "Big Object"){
                         anim.runtimeAnimatorController = animStates[1];
                         anim.SetBool("armsForward", true);
@@ -112,10 +117,7 @@ public class Interaction : MonoBehaviour {
 
     public IEnumerator drop(){
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 50, transform.position.z);
-        anim.SetBool("armsUp", false);
-        anim.SetBool("armsForward", false);
         yield return new WaitForSeconds(Globals.Instance.timePerStep);
-        anim.runtimeAnimatorController = animStates[0];
 
         if(!isHolding){
             Compiler.Instance.addErr(string.Format("G4wain isn't holding anything!"));
@@ -161,8 +163,17 @@ public class Interaction : MonoBehaviour {
         }
 
         if(releaseTile != null && !isObstructed){
+            anim.SetBool("armsUp", false);
+            anim.SetBool("armsForward", false);
+            Invoke(nameof(ResetAnimState), Globals.Instance.timePerStep);
+            PlayDropSound();
+            
             drop_NoExecute(releaseTile);
         }
+    }
+
+    void ResetAnimState(){
+        anim.runtimeAnimatorController = animStates[0];
     }
 
     public void drop_NoExecute(TileBase releaseTile){
@@ -245,6 +256,7 @@ public class Interaction : MonoBehaviour {
             Debug.LogWarning("No panels found!");
         }
 
+        PlayReadSound();
         return readString;
     }
 
@@ -298,6 +310,7 @@ public class Interaction : MonoBehaviour {
             Debug.LogWarning("No panels found!");
         }
 
+        PlayReadSound();
         return readInt;
     }
 
@@ -351,6 +364,7 @@ public class Interaction : MonoBehaviour {
             Debug.LogWarning("No panels found!");
         }
 
+        PlayReadSound();
         return readBool;
     }
     
@@ -404,6 +418,7 @@ public class Interaction : MonoBehaviour {
             Debug.LogWarning("No panels found!");
         }
 
+        PlayReadSound();
         return arr;
     }
     
@@ -457,6 +472,7 @@ public class Interaction : MonoBehaviour {
             Debug.LogWarning("No panels found!");
         }
 
+        PlayReadSound();
         return arr;
     }
     
@@ -510,6 +526,7 @@ public class Interaction : MonoBehaviour {
             Debug.LogWarning("No panels found!");
         }
 
+        PlayReadSound();
         return arr;
     }
     
@@ -579,6 +596,7 @@ public class Interaction : MonoBehaviour {
 
         var speechText = bubble.transform.GetChild(0);
         speechText.GetComponent<TextMesh>().text = input;
+        PlaySaySound();
 
         //fire raycast in 4 directions
         Vector3 north = new Vector3(0, 0, 1);
@@ -598,6 +616,7 @@ public class Interaction : MonoBehaviour {
         if(Physics.Raycast(pos, west, out RaycastHit hitE, distance)){
             ActivateVox(hitE, input);
         }
+
         yield return new WaitForSeconds(Globals.Instance.timePerStep * 3);
     }
 
@@ -606,6 +625,30 @@ public class Interaction : MonoBehaviour {
             var voxObject = hit.transform.gameObject.GetComponent<IVox>();
             voxObject.activateVox(input);
         }
+    }
+
+    void PlaySaySound(){
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.botSay;
+        source.Play();
+    }
+
+    void PlayReadSound(){
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.botRead;
+        source.Play();
+    }
+
+    void PlayHoldSound(){
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.botHold;
+        source.Play();
+    }
+
+    void PlayDropSound(){
+        source.volume = GlobalSettings.Instance.sfxVolume;
+        source.clip = AudioPicker.Instance.botDrop;
+        source.Play();
     }
 
     public void moveObject(char direction){

@@ -14,6 +14,7 @@ public class TitleManager : MonoBehaviour{
     SaveGenerator saveGen;
     List<LevelInfo> savedLevels;
     public Image ngPanel, ngFrame, crPanel, crFrame;
+    AudioSource source;
 
     void Start(){
         levelSave = Application.dataPath + "/Saves/SaveLevels.json";
@@ -23,6 +24,7 @@ public class TitleManager : MonoBehaviour{
         saveGen = GetComponent<SaveGenerator>();
 
         contButton.interactable = CheckContinue();
+        source = GetComponent<AudioSource>();
     }
 
     bool CheckContinue(){
@@ -110,11 +112,15 @@ public class TitleManager : MonoBehaviour{
 
         var frameAnim = frame.GetComponent<Animator>();
         frameAnim.SetBool("isOpen", true);
+
+        PlayOpenWindow();
     }
 
 
     public IEnumerator CloseWindow(Image panel, Image frame){
         //close window
+        PlayCloseWindow();
+
         var panelAnim = panel.GetComponent<Animator>();
         panelAnim.SetBool("isOpen", false);
 
@@ -181,16 +187,43 @@ public class TitleManager : MonoBehaviour{
     }
 
     public void Quit(){
-        Application.Quit();
+        Invoke(nameof(Application.Quit), 0.5f);
     }
 
     public IEnumerator LoadAsync(int sceneIndex){
+        Debug.Log("LOADING!");
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneIndex);
+
+        loadOp.allowSceneActivation = false;
 
         while(!loadOp.isDone){
             float progress = Mathf.Clamp01(loadOp.progress / 0.9f);
             loadBar.value = progress;
+
+            if(loadOp.progress >= 0.9f){
+                yield return new WaitForSeconds(GlobalSettings.Instance.forceWaitTime);
+                loadOp.allowSceneActivation = true;
+            }
+
             yield return null;
         }
+    }
+
+    void PlayOpenWindow(){
+        float globalVolume = GlobalSettings.Instance.sfxVolume;
+        float multiplier = AudioPicker.Instance.menuSwooshVolume;
+        source.volume = globalVolume * multiplier;
+
+        source.clip = AudioPicker.Instance.titleWindowOpen;
+        source.Play();
+    }
+
+    void PlayCloseWindow(){
+        float globalVolume = GlobalSettings.Instance.sfxVolume;
+        float multiplier = AudioPicker.Instance.menuSwooshVolume;
+        source.volume = globalVolume * multiplier;
+        
+        source.clip = AudioPicker.Instance.titleWindowClose;
+        source.Play();
     }
 }

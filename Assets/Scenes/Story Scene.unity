@@ -222,6 +222,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9120321298353219363, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
+      propertyPath: enable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
 --- !u!224 &370596902 stripped
@@ -229,6 +233,25 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 130158755023163463, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
   m_PrefabInstance: {fileID: 370596901}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &370596903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5634517474948971521, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
+  m_PrefabInstance: {fileID: 370596901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &370596904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370596903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be3fa50a8ee294ab85aced8f6e70c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickType: 4
+  mouseoverType: 1
 --- !u!223 &370596909 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 130158755023163462, guid: 6282f8f2965057042bf42d347927f6fe, type: 3}
@@ -2787,6 +2810,8 @@ MonoBehaviour:
   submenuAnimator: {fileID: 503083904244509042}
   saveLoad: {fileID: 0}
   fsHelp: {fileID: 0}
+  menuButtons: []
+  loadCanvas: {fileID: 1388076305}
 --- !u!1 &5798270736538418718
 GameObject:
   m_ObjectHideFlags: 0
