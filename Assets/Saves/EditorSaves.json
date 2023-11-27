@@ -2,7 +2,7 @@
     "Items": [
         {
             "levelIndex": 0,
-            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\nBot.moveUp(2);\nBot.moveDown(2);\nBot.say(\"HI\");\n\n\n"
+            "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//move the pillar up by the value in the variable\n//then push it to the right button\n\n//then move to the exit point at E2!\n//while(true){\n//Bot.moveRight();\n//Bot.moveLeft();\n//}\n\nBot.moveRight();\nBot.hold();\nBot.moveUp(num);\nBot.moveRight();\n\n//ashdizpihaweuj "
         },
         {
             "levelIndex": 1,
@@ -10,7 +10,7 @@
         },
         {
             "levelIndex": 2,
-            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft();"
+            "editorContent": "//move to near the pillar\n//hold it then push it as far as possible\n//to open a path to the exit\n\nBot.moveLeft(2);\nBot.moveDown(2);\nBot.moveRight();\nBot.hold();\nBot.moveRight(3);\nBot.drop();\nBot.moveUp(2);\nBot.moveDown(3);"
         },
         {
             "levelIndex": 3,
@@ -26,7 +26,7 @@
         },
         {
             "levelIndex": 6,
-            "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//move the pillar up by the value in the variable\n//then push it to the right button\n\n//then move to the exit point at E2!\n"
+            "editorContent": "//get the int variable from the green panel\nint num = Bot.readInt();\n\n//move the pillar up by the value in the variable\n//then push it to the right button\n\n//then move to the exit point at E2!\nBot.moveTo(\"B3\");"
         },
         {
             "levelIndex": 7,

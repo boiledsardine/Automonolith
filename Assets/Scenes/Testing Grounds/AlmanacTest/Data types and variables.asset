@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0c933dcd6352540a63df3fae47e0f6, type: 3}
   m_Name: Data types and variables
   m_EditorClassIdentifier: 
-  articleName: Data types and variables
+  articleName: Types and Variables
   articleText: "Variables are containers for storing values with their own data type,
     such as integer, double, char, string, or bool. They can be called in code using
     their identifier or name, and their value is replaced by the value of that variable.

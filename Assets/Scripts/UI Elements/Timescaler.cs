@@ -35,6 +35,8 @@ public class Timescaler : MonoBehaviour{
         tt2[0].transform.GetChild(0).GetComponent<Image>().color = black;
         tt2[1].transform.GetChild(0).GetComponent<Image>().color = white;
         tt2[2].transform.GetChild(0).GetComponent<Image>().color = white;
+
+        AdjustPitch();
     }
 
     public void FF2(){
@@ -46,6 +48,8 @@ public class Timescaler : MonoBehaviour{
         tt2[0].transform.GetChild(0).GetComponent<Image>().color = white;
         tt2[1].transform.GetChild(0).GetComponent<Image>().color = black;
         tt2[2].transform.GetChild(0).GetComponent<Image>().color = white;
+
+        AdjustPitch();
     }
 
     public void FF3(){
@@ -57,5 +61,19 @@ public class Timescaler : MonoBehaviour{
         tt2[0].transform.GetChild(0).GetComponent<Image>().color = white;
         tt2[1].transform.GetChild(0).GetComponent<Image>().color = white;
         tt2[2].transform.GetChild(0).GetComponent<Image>().color = black;
+
+        AdjustPitch();
+    }
+
+    //adjust pitch and playback time
+    //exclusions: UI objects, BGM, dialogue
+    public void AdjustPitch(){
+        Debug.Log(Time.timeScale);
+        var sources = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource source in sources){
+            if(source.transform.root.name != "Essentials"){
+                source.pitch = Time.timeScale;
+            }
+        }
     }
 }

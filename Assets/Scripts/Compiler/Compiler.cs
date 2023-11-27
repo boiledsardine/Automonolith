@@ -146,10 +146,22 @@ public class Compiler : MonoBehaviour{
     }
 
     private void delayedRun(){
+        AdjustPitch();
         if(isResetSuccessful()){
             linesCount = 0;
             preprocessCode(editorManager.code);
             StartCoroutine(firstPass(0, codeLines.Length));
+        }
+    }
+
+    //here for reasons
+    public void AdjustPitch(){
+        Debug.Log(Time.timeScale);
+        var sources = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource source in sources){
+            if(source.transform.root.name != "Essentials"){
+                source.pitch = Time.timeScale;
+            }
         }
     }
 
